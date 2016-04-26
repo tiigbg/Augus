@@ -3,7 +3,9 @@ import React, {
   Image,
   Text,
   View,
+  TouchableHighlight
 } from 'react-native';
+var AudioPlayer = require('react-native-audioplayer');
 
 import styles from '../styles/styles';
 
@@ -26,6 +28,9 @@ export default React.createClass({
         </View>
         <View style={styles.separator} />
         <Text style={styles.adventureTitle}>{this.props.adventure.title}</Text>
+        <TouchableHighlight onPress={() => (AudioPlayer.play('beep.mp3'))}>
+          <Text>Click here to play audio</Text>
+        </TouchableHighlight>
         </ScrollView>
     );
   },

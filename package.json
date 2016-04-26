@@ -8,6 +8,7 @@
   "dependencies": {
     "react": "^0.14.7",
     "react-native": "0.23.1",
+    "react-native-audioplayer": "^0.2.0",
     "react-native-maps": "0.3.1",
     "react-native-router-flux": "3.2.9",
     "react-native-tabs": "1.0.2",
