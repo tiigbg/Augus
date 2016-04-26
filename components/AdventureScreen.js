@@ -5,9 +5,18 @@ import React, {
   View,
   TouchableHighlight
 } from 'react-native';
-var AudioPlayer = require('react-native-audioplayer');
 
 import styles from '../styles/styles';
+
+var Sound = require('react-native-sound');
+var beep = new Sound('beep.mp3', Sound.MAIN_BUNDLE, (error) => {
+  if (error) {
+    console.log('failed to load the sound', error);
+  } else { // loaded successfully
+    console.log('duration in seconds: ' + beep.getDuration() +
+        'number of channels: ' + beep.getNumberOfChannels());
+  }
+});
 
 export default React.createClass({
   render() {
@@ -28,7 +37,7 @@ export default React.createClass({
         </View>
         <View style={styles.separator} />
         <Text style={styles.adventureTitle}>{this.props.adventure.title}</Text>
-        <TouchableHighlight onPress={() => (AudioPlayer.play('beep.mp3'))}>
+        <TouchableHighlight onPress={() =>beep.play()}>
           <Text>Click here to play audio</Text>
         </TouchableHighlight>
         </ScrollView>

@@ -5,7 +5,7 @@ import com.AirMaps.AirPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-import com.sh3rawi.RNAudioPlayer.RNAudioPlayer;
+import com.zmxv.RNSound.RNSoundPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +40,7 @@ public class MainActivity extends ReactActivity {
             new MainReactPackage(),
             new AirPackage(),
             new VectorIconsPackage(),
-            new RNAudioPlayer()
+            new RNSoundPackage()
         );
     }
 }
