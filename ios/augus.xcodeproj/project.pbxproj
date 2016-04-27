@@ -23,6 +23,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1664E6E26DD54CACB79C460D /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4039D331E034549A4BA95AE /* EvilIcons.ttf */; };
+		536A6E751CD111A800196FC9 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 536A6E731CD1117400196FC9 /* libRNSound.a */; };
+		536A6E771CD1123C00196FC9 /* urbanum1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 536A6E761CD1123C00196FC9 /* urbanum1.mp3 */; };
 		6193F578729E4D85AC579FE4 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9A773FB246D4C30B6FC9C0B /* MaterialIcons.ttf */; };
 		63BD1F2FB7564C28804F8839 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32115323C22E47D5A3D8376D /* Ionicons.ttf */; };
 		792E333F329A4E5FB2F4190A /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 755E14F5DFCF47FF88625815 /* Foundation.ttf */; };
@@ -98,6 +100,13 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
+		536A6E721CD1117400196FC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 536A6E631CD1117400196FC9 /* RNSound.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19825A1E1BD4A89800EE0337;
+			remoteInfo = RNSound;
+		};
 		53E03FA31CA80A7E00611687 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 187DEFFB252D49289998692B /* RNVectorIcons.xcodeproj */;
@@ -151,6 +160,8 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		187DEFFB252D49289998692B /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		32115323C22E47D5A3D8376D /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		536A6E631CD1117400196FC9 /* RNSound.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
+		536A6E761CD1123C00196FC9 /* urbanum1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = urbanum1.mp3; path = ../android/app/src/main/res/raw/urbanum1.mp3; sourceTree = "<group>"; };
 		755E14F5DFCF47FF88625815 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7FB1716242954D63B19F0D8A /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
@@ -176,6 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				536A6E751CD111A800196FC9 /* libRNSound.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -289,6 +301,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		536A6E641CD1117400196FC9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				536A6E731CD1117400196FC9 /* libRNSound.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		536A6E781CD1124500196FC9 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				536A6E761CD1123C00196FC9 /* urbanum1.mp3 */,
+			);
+			name = assets;
+			sourceTree = "<group>";
+		};
 		53E03F961CA80A7E00611687 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +344,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				536A6E631CD1117400196FC9 /* RNSound.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -343,6 +372,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				536A6E781CD1124500196FC9 /* assets */,
 				13B07FAE1A68108700A75B9A /* augus */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* augusTests */,
@@ -488,6 +518,10 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = 536A6E641CD1117400196FC9 /* Products */;
+					ProjectRef = 536A6E631CD1117400196FC9 /* RNSound.xcodeproj */;
+				},
+				{
 					ProductGroup = 53E03F961CA80A7E00611687 /* Products */;
 					ProjectRef = 187DEFFB252D49289998692B /* RNVectorIcons.xcodeproj */;
 				},
@@ -557,6 +591,13 @@
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		536A6E731CD1117400196FC9 /* libRNSound.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSound.a;
+			remoteRef = 536A6E721CD1117400196FC9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		53E03FA41CA80A7E00611687 /* libRNVectorIcons.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -605,6 +646,7 @@
 				1664E6E26DD54CACB79C460D /* EvilIcons.ttf in Resources */,
 				893718A2FB67409581DE8939 /* FontAwesome.ttf in Resources */,
 				792E333F329A4E5FB2F4190A /* Foundation.ttf in Resources */,
+				536A6E771CD1123C00196FC9 /* urbanum1.mp3 in Resources */,
 				63BD1F2FB7564C28804F8839 /* Ionicons.ttf in Resources */,
 				6193F578729E4D85AC579FE4 /* MaterialIcons.ttf in Resources */,
 				B46A0559560242AA8B5B6995 /* Octicons.ttf in Resources */,
