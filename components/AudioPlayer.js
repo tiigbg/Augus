@@ -1,6 +1,4 @@
 import React, {
-  ScrollView,
-  Image,
   Text,
   View,
   TouchableHighlight,
@@ -23,20 +21,23 @@ export default React.createClass({
     return {
       time: this.props.time,
       isPlaying: this.props.isPlaying,
+      sound: null,
     };
   },
-  beep: new Sound('urbanum1.mp3', Sound.MAIN_BUNDLE, (error) => {
-    if (error) {
-      console.log('failed to load the sound', error);
-    }
-  }),
+  componentWillMount() {
+    const sound = new Sound(this.props.file, Sound.MAIN_BUNDLE, (error) => {
+      if (error) {
+        console.log('failed to load the sound', error);
+      } else {
+        this.setState({ sound: sound });
+      }});
+  },
   handlePress() {
     if (this.state.isPlaying){
-      this.beep.pause();
+      this.state.sound.pause();
       this.setState({isPlaying: false});
-    }
-    else {
-      this.beep.play((success) => {
+    } else {
+      this.state.sound.play((success) => {
         this.setState({isPlaying: false});
         if (success) {
           console.log('successfully finished playing');
@@ -47,13 +48,20 @@ export default React.createClass({
     }
   },
   render() {
-    return (
-      <TouchableHighlight onPress={this.handlePress}>
-        <View><Icon name={this.state.isPlaying? 'pause':'play'} size={60} color={'black'} />
-          <Text>Duration:{Math.round(this.beep.getDuration())} seconds
-            Playing:{this.state.isPlaying? 'yes':'no'}
-          </Text></View>
-      </TouchableHighlight>
-    );
-  }
-});
+    if (this.state.sound === null) {
+      return (
+        <Text>Loading</Text>
+      );
+    }
+    else {
+      return (
+        <TouchableHighlight onPress={this.handlePress}>
+          <View><Icon name={this.state.isPlaying? 'pause':'play'} size={60} color={'black'} />
+            <Text>Duration:{Math.round(this.state.sound.getDuration())} seconds
+              Playing:{this.state.isPlaying? 'yes':'no'}
+            </Text></View>
+        </TouchableHighlight>
+      );}
+  },
+}
+);
