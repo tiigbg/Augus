@@ -73,4 +73,16 @@ export default StyleSheet.create({
   mainSection: {
     flexDirection: 'row',
   },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+  video: {
+    position: 'absolute',
+    width: 200,
+    height: 200,
+  },
 });

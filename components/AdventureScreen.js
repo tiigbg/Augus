@@ -3,65 +3,14 @@ import React, {
   Image,
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
 } from 'react-native';
 
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-var Sound = require('react-native-sound');
-var beep = new Sound('urbanum1.mp3', Sound.MAIN_BUNDLE, (error) => {
-  if (error) {
-    console.log('failed to load the sound', error);
-  } else { // loaded successfully
-    console.log('duration in seconds: ' + beep.getDuration() +
-        'number of channels: ' + beep.getNumberOfChannels());
-  }
-});
-
-var AudioPlayer = React.createClass({
-  getDefaultProps() {
-    return {
-      time: 0,
-      isPlaying: false,
-    };
-   },
-
-   getInitialState() {
-     return {
-       time: this.props.time,
-       isPlaying: this.props.isPlaying,
-     };
-   },
-
-   render() {
-    return (
-      <TouchableHighlight onPress={() =>{
-        if(this.state.isPlaying){
-          beep.pause();
-          this.setState({isPlaying: false});
-        }
-        else {
-          beep.play((success) => {
-            this.setState({isPlaying: false});
-            if (success) {
-              console.log('successfully finished playing');
-            } else {
-              console.log('playback failed due to audio decoding errors');
-            }});
-          this.setState({isPlaying: true});
-        }
-      }}>
-        <View><Icon name={this.state.isPlaying? 'pause':'play'} size={60} color={'black'} />
-        <Text>Duration:{Math.round(beep.getDuration())} seconds
-         Playing:{this.state.isPlaying? 'yes':'no'}
-        </Text></View>
-      </TouchableHighlight>
-    );
-  }
-});
-
-
+import AudioPlayer from './AudioPlayer';
+import VideoPlayer from './VideoPlayer';
 
 export default React.createClass({
   render() {
@@ -82,7 +31,9 @@ export default React.createClass({
         </View>
         <View style={styles.separator} />
         <Text style={styles.adventureTitle}>{this.props.adventure.title}</Text>
-        <AudioPlayer />
+        <AudioPlayer file="urbanum1.mp3" />
+        <View style={styles.separator} />
+        <VideoPlayer file="bird" />
         </ScrollView>
     );
   },
