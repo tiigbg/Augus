@@ -17,29 +17,29 @@ const Map = React.createClass({
   },
   render() {
     return (
-        <MapView
-      style={ styles.map }
-      region= {this.props.region}
-      onPress={this.props.onPress}
-      onLongPress={this.props.onLongPress}
-        >
+      <MapView
+        style={ styles.map }
+        region= {this.props.region}
+        onPress={this.props.onPress}
+        onLongPress={this.props.onLongPress}
+      >
         {this.props.markers.map(marker => (
-            <MapView.Marker
-          key={marker.latlng.latitude}
-          coordinate={marker.latlng}
-          title={marker.title}
-          description={marker.description}
-            />
-        ))}
-      {this.props.polygons.map(polygon => (
-          <MapView.Polygon
-        key={polygon.coordinates[0].latitude}
-        coordinates={polygon.coordinates}
-        strokeColor="#F00"
-        fillColor="rgba(255,0,0,0.5)"
-        strokeWidth={1}
-          />
-      ))}
+           <MapView.Marker
+             key={marker.latlng.latitude}
+             coordinate={marker.latlng}
+             title={marker.title}
+             description={marker.description}
+           />
+         ))}
+           {this.props.polygons.map(polygon => (
+              <MapView.Polygon
+                key={polygon.coordinates[0].latitude}
+                coordinates={polygon.coordinates}
+                strokeColor="#F00"
+                fillColor="rgba(255,0,0,0.5)"
+                strokeWidth={1}
+              />
+            ))}
       </MapView>
     );
   },
