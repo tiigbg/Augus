@@ -15,12 +15,14 @@ export default React.createClass({
   getDefaultProps() {
     return {
       time: 0,
+      duration: 0,
       isPlaying: false,
     };
   },
   getInitialState() {
     return {
       time: this.props.time,
+      duration: this.props.duration,
       isPlaying: this.props.isPlaying,
       sound: null,
     };
@@ -31,6 +33,7 @@ export default React.createClass({
         console.log('failed to load the sound', error);
       } else {
         this.setState({ sound: sound });
+        this.setState({ duration: this.state.sound.getDuration() });
       }});
   },
   handlePress() {
@@ -50,6 +53,7 @@ export default React.createClass({
         }});
       this.setState({isPlaying: true});
       this.interval = setInterval(this.tick, 100);
+
     }
   },
   componentWillUnmount: function componentWillUnmount() {
@@ -71,9 +75,11 @@ export default React.createClass({
           <View>
             <Icon name={this.state.isPlaying? 'pause':'play'} size={60} color={'black'} />
             <Slider value={this.state.time} maximumValue={this.state.sound.getDuration()} onValueChange={(value) => this.state.sound.setCurrentTime(value)} />
-            <Text>Duration:{Math.round(this.state.sound.getDuration())} seconds
+            <Text>Duration:{Math.round(this.state.duration)} seconds
               Playing:{this.state.isPlaying? 'yes':'no'}
-              Current time: {this.state.time}
+              Current time: {Math.round(this.state.time)}
+              Remaining time: {Math.round(this.state.duration - this.state.time)}
+
             </Text>
           </View>
         </TouchableHighlight>
