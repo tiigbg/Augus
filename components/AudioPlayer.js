@@ -70,11 +70,12 @@ export default React.createClass({
       );
     } else {
       return (
-        <TouchableHighlight onPress={this.handlePress}>
           <View style={styles.mainSection}>
-            <Icon name={this.state.isPlaying ? 'pause' : 'play'} size={60} color={'black'} />
+            <TouchableHighlight onPress={this.handlePress}>
+              <Icon name={this.state.isPlaying ? 'pause' : 'play'} size={60} color={'black'} />
+            </TouchableHighlight>
             <View style={{ flex:1}}>
-              <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+              <View style={{ flexDirection:'row', justifyContent:'space-between' }}>
                 <Text>{secondsToTime(Math.round(this.state.time))}</Text>
                 <Text>
                   {secondsToTime(Math.round(this.state.duration - this.state.time))}
@@ -87,7 +88,6 @@ export default React.createClass({
               />
             </View>
           </View>
-        </TouchableHighlight>
       );
     }
   },
