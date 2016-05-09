@@ -5,6 +5,7 @@ import React, {
   Slider,
 } from 'react-native';
 
+import { secondsToTime } from '../util/time';
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -32,59 +33,63 @@ export default React.createClass({
       if (error) {
         console.log('failed to load the sound', error);
       } else {
-        this.setState({ sound: sound });
+        this.setState({ sound });
         this.setState({ duration: this.state.sound.getDuration() });
-      }});
+      } });
+  },
+  componentWillUnmount: function componentWillUnmount() {
+    clearInterval(this.interval);
+    this.state.sound.stop();
   },
   handlePress() {
-    this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }))
-    if (this.state.isPlaying){
+    this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }));
+    if (this.state.isPlaying) {
       this.state.sound.pause();
-      this.setState({isPlaying: false});
+      this.setState({ isPlaying: false });
       clearInterval(this.interval);
     } else {
       this.state.sound.play((success) => {
-        this.setState({isPlaying: false});
+        this.setState({ isPlaying: false });
         clearInterval(this.interval);
         if (success) {
           console.log('successfully finished playing');
         } else {
           console.log('playback failed due to audio decoding errors');
-        }});
-      this.setState({isPlaying: true});
+        } });
+      this.setState({ isPlaying: true });
       this.interval = setInterval(this.tick, 100);
-
     }
   },
-  componentWillUnmount: function componentWillUnmount() {
-    clearInterval(this.interval);
-    this.state.sound.stop()
-  },
   tick: function tick() {
-    this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }))
+    this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }));
   },
   render() {
     if (this.state.sound === null) {
       return (
         <Text>Loading</Text>
       );
-    }
-    else {
+    } else {
       return (
         <TouchableHighlight onPress={this.handlePress}>
-          <View>
-            <Icon name={this.state.isPlaying? 'pause':'play'} size={60} color={'black'} />
-            <Slider value={this.state.time} maximumValue={this.state.sound.getDuration()} onValueChange={(value) => this.state.sound.setCurrentTime(value)} />
-            <Text>Duration:{Math.round(this.state.duration)} seconds
-              Playing:{this.state.isPlaying? 'yes':'no'}
-              Current time: {Math.round(this.state.time)}
-              Remaining time: {Math.round(this.state.duration - this.state.time)}
-
-            </Text>
+          <View style={styles.mainSection}>
+            <Icon name={this.state.isPlaying ? 'pause' : 'play'} size={60} color={'black'} />
+            <View style={{ flex:1}}>
+              <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                <Text>{secondsToTime(Math.round(this.state.time))}</Text>
+                <Text>
+                  {secondsToTime(Math.round(this.state.duration - this.state.time))}
+                </Text>
+              </View>
+              <Slider value={this.state.time}
+                maximumValue={this.state.sound.getDuration()}
+                onValueChange={(value) => (this.state.sound.setCurrentTime(value),
+                                            this.setState({ time: value }))}
+              />
+            </View>
           </View>
         </TouchableHighlight>
-
-      );}
+      );
+    }
   },
 }
 );
