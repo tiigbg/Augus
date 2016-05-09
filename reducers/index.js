@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import Adventures from './Adventures';
+import Exhibitions from './Exhibitions';
 import Map from './Map';
 
 const rootReducer = combineReducers({
-  exhibitions : Adventures,
+  exhibitions : Exhibitions,
   map : Map
 });
 
