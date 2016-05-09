@@ -3,7 +3,7 @@ import Adventures from './Adventures';
 import Map from './Map';
 
 const rootReducer = combineReducers({
-  adventures : Adventures,
+  exhibitions : Adventures,
   map : Map
 });
 

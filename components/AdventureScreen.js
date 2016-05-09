@@ -21,16 +21,16 @@ export default React.createClass({
           * omit a property or set it to undefined if it's inside a shape,
           * even if it isn't required */}
           <Image
-            source={{ uri: this.props.adventure.thumbnail }}
+            source={{ uri: this.props.exhibition.image }}
             style={styles.detailsImage}
           />
           <View style={styles.rightPane}>
-            <Text style={styles.adventureTitle}>{this.props.adventure.title}</Text>
-            <Text>Players: {this.props.adventure.players}</Text>
+            <Text style={styles.adventureTitle}>{this.props.exhibition.exhibition_name.sv}</Text>
+            <Text>English: {this.props.exhibition.exhibition_name.en}</Text>
           </View>
         </View>
         <View style={styles.separator} />
-        <Text style={styles.adventureTitle}>{this.props.adventure.title}</Text>
+        <Text style={styles.adventureTitle}>{this.props.exhibition.exhibition_name.sv}</Text>
         <AudioPlayer file="urbanum1.mp3" />
         <View style={styles.separator} />
         <VideoPlayer file="bird" />

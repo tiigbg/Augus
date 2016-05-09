@@ -8,6 +8,7 @@ function* fetchAdventures(action) {
     const payload = yield call(fetchData, action.payload.REQUEST_URL);
     yield put({ type: AT.ADVENTURES_FETCH_SUCCEEDED, payload: payload});
   } catch (e) {
+    console.log("error in fetching:" + e.message);
     yield put({ type: AT.ADVENTURES_FETCH_FAILED, message: e.message });
   }
 }

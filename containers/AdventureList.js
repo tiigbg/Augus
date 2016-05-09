@@ -10,7 +10,11 @@ import { Actions } from 'react-native-router-flux';
 import styles from '../styles/styles';
 import * as AT from '../constants/ActionTypes';
 
-const REQUEST_URL = 'https://gist.githubusercontent.com/Jickelsen/13c93e3797ee390cb772/raw/2def314de7cd6c3a44c31095d7298d46e6cdf061/adventures.json';
+//const REQUEST_URL = 'https://gist.githubusercontent.com/Jickelsen/13c93e3797ee390cb772/raw/2def314de7cd6c3a44c31095d7298d46e6cdf061/adventures.json';
+// const REQUEST_URL = 'https://gist.githubusercontent.com/nielsswinkels/cd70fffbde91a72df3a61defedc231d3/raw/d97b662e9b47063a8ba8d614e1f6776643db30eb/goteborgsstadsmuseum.json';
+//const REQUEST_URL = 'https://www.dropbox.com/s/brozcyqt4yf8jvu/goteborgsstadsmuseum.json?dl=0';
+// const REQUEST_URL = 'https://drive.google.com/file/d/0Bzb0I-9LyL9BMDJKRmF6dG5TU1k/view?usp=sharing';
+const REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum.json';
 
 const AdventureList = React.createClass({
   componentDidMount() {
@@ -26,14 +30,14 @@ const AdventureList = React.createClass({
       </View>
     );
   },
-  renderAdventure(adventure) {
+  renderAdventure(exhibition) {
     return (
-        <TouchableHighlight onPress={() => Actions.adventureScreen({ adventure, title: adventure.title })}>
+      //<Image source={{ uri: adventure.thumbnail }} style={styles.thumbnail} />
+        <TouchableHighlight onPress={() => Actions.adventureScreen({ exhibition, title: exhibition.exhibition_name.sv })}>
         <View style={styles.container}>
-          <Image source={{ uri: adventure.thumbnail }} style={styles.thumbnail} />
+        {/* <Text style={styles.year}>Playeers: {exhibition.players}</Text>*/}
           <View style={styles.rightContainer}>
-            <Text style={styles.title}>{adventure.title}</Text>
-            <Text style={styles.year}>Playeers: {adventure.players}</Text>
+            <Text style={styles.title}>{exhibition.exhibition_name.sv}</Text>
           </View>
         </View>
         </TouchableHighlight>
@@ -60,9 +64,9 @@ const dataSource = new ListView.DataSource({
 // add some more props that come from the global state tree
 const mapStateToProps = (state) => {
   return {
-    adventures: state.adventures.adventures,
-    dataSource: dataSource.cloneWithRows(state.adventures.adventures),
-    loaded: state.adventures.loaded,
+    exhibitions: state.exhibitions.exhibitions,
+    dataSource: dataSource.cloneWithRows(state.exhibitions.exhibitions),
+    loaded: state.exhibitions.loaded,
   };
 };
 
