@@ -6,10 +6,16 @@ import React, {
 } from 'react-native';
 
 import { secondsToTime } from '../util/time';
+import Lightbox from 'react-native-lightbox';
+
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Video from 'react-native-video';
+
+const activeProps = {
+  style: styles.lightBox,
+};
 
 export default React.createClass({
   getDefaultProps() {
@@ -54,6 +60,7 @@ export default React.createClass({
             onValueChange={(value) => (this.refs.videoPlayer.seek(value),
                 this.setState({ time: value }))}
           />
+        <Lightbox navigator={this.props.navigator} activeProps ={activeProps} >
           <Video ref="videoPlayer" style={styles.video} source={{uri: this.props.file}} // Can be a URL or a local file.
             rate={1.0}                   // 0 is paused, 1 is normal.
             volume={1.0}                 // 0 is muted, 1 is normal.
@@ -66,6 +73,7 @@ export default React.createClass({
             onEnd={this.onEnd}           // Callback when playback finishes
             onError={this.videoError}    // Callback when video cannot be loaded
             style={styles.video} />
+        </Lightbox>
         </View>
       </View>
     );

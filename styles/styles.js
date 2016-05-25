@@ -70,6 +70,9 @@ export default StyleSheet.create({
     backgroundColor: '#eaeaea',
     marginRight: 10,
   },
+  col: {
+    flex: 1,
+  },
   mainSection: {
     flexDirection: 'row',
   },
@@ -84,5 +87,9 @@ export default StyleSheet.create({
     position: 'absolute',
     width: 200,
     height: 200,
+  },
+  lightBox: {
+    flex: 1,
+    height: 150,
   },
 });
