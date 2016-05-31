@@ -42,6 +42,26 @@ export default StyleSheet.create({
   year: {
     textAlign: 'center',
   },
+  section_name: {
+    fontSize: 20,
+    marginBottom: 4,
+    textAlign: 'center',
+  },
+  section_name_container: {
+    backgroundColor:"#e1057d",
+    marginBottom: 4,
+  },
+  station_name: {
+    fontSize: 22,
+    marginTop: 0,
+    marginBottom: 14,
+    textAlign: 'center',
+  },
+  station_text: {
+    fontSize: 22,
+    marginTop: 0,
+    marginBottom: 14,
+  },
   listView: {
     paddingTop: 64,
     backgroundColor: '#F5FCFF',

@@ -7,6 +7,7 @@ import { TabBar, Modal, Actions, Scene, Router } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import ExhibitionList from './containers/ExhibitionList';
+import StationList from './containers/StationList';
 import ExhibitionScreen from './components/ExhibitionScreen';
 import Map from './containers/Map';
 
@@ -33,6 +34,7 @@ const scenes = Actions.create(
       <Scene key="tabbar" tabs={true} default="tab1" >
         <Scene key="tab1" title="Stories" icon={TabIcon} icontype="leaf">
           <Scene key="exhibitonList" component={ExhibitionList} title="Exhibition List" initial={ true } />
+          <Scene key="stationList" component={StationList} title="Station List"  />
           <Scene key="exhibitionScreen" component={ExhibitionScreen} title="ExhibitionScreen" />
         </Scene>
         <Scene key="tab2" title="Nearby" icon={TabIcon} icontype="map">

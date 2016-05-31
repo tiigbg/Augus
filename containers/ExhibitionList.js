@@ -31,7 +31,9 @@ const ExhibitionList = React.createClass({
   renderExhibition(exhibition) {
     return (
       //<Image source={{ uri: adventure.thumbnail }} style={styles.thumbnail} />
-        <TouchableHighlight onPress={() => Actions.exhibitionScreen({ exhibition, title: exhibition.exhibition_name.sv })}>
+      //
+        <TouchableHighlight onPress={() => Actions.stationList({ exhibition: exhibition
+          , title: exhibition.exhibition_name.sv })}>
         <View style={styles.container}>
           <View style={styles.rightContainer}>
             <Text style={styles.title}>{exhibition.exhibition_name.sv}</Text>

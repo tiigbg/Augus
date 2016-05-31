@@ -16,6 +16,12 @@ import VideoPlayer from './VideoPlayer';
 
 export default React.createClass({
   render() {
+    if(this.props.station.images.length > 0) {
+      imgUrl = this.props.station.images[0].url;
+    }
+    else {
+      imgUrl = "";
+    }
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.mainSection}>
@@ -24,20 +30,21 @@ export default React.createClass({
           * even if it isn't required */}
         <Lightbox navigator={this.props.navigator} activeProps={{style: styles.lightBox}}>
           <Image
-              source={{ uri: this.props.exhibition.image }}
+              source={{ uri: imgUrl }}
               style={styles.detailsImage}
           />
         </Lightbox>
           <View style={styles.rightPane}>
-            <Text style={styles.adventureTitle}>{this.props.exhibition.exhibition_name.sv}</Text>
-            <Text>English: {this.props.exhibition.exhibition_name.en}</Text>
+            <Text style={styles.adventureTitle}>{this.props.station.station_name.sv}</Text>
+            <Text>English: {this.props.station.station_name.en}</Text>
           </View>
         </View>
         <View style={styles.separator} />
-        <Text style={styles.adventureTitle}>{this.props.exhibition.exhibition_name.sv}</Text>
         <AudioPlayer file="urbanum1.mp3" />
         <View style={styles.separator} />
         <VideoPlayer file="bird" />
+        <View style={styles.separator} />
+        <Text style={styles.station_text}>{this.props.station.text.sv}</Text>
       </ScrollView>
     );
   },
