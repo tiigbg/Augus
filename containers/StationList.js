@@ -1,10 +1,5 @@
-import React, {
-  Image,
-  ListView,
-  TouchableHighlight,
-  Text,
-  View,
-} from 'react-native';
+import React from 'react';
+import {Image, ListView, TouchableHighlight, Text, View} from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from '../styles/styles';

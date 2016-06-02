@@ -1,12 +1,12 @@
 package com.augus;
 
 import com.facebook.react.ReactActivity;
-import com.brentvatne.react.ReactVideoPackage;
-import com.AirMaps.AirPackage;
+import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.zmxv.RNSound.RNSoundPackage;
+import com.brentvatne.react.ReactVideoPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-import com.zmxv.RNSound.RNSoundPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,9 +40,10 @@ public class MainActivity extends ReactActivity {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
             new ReactVideoPackage(),
-            new AirPackage(),
             new VectorIconsPackage(),
-            new RNSoundPackage()
+            new RNSoundPackage(),
+            new ReactVideoPackage(),
+            new MapsPackage()
         );
     }
 }

@@ -1,10 +1,5 @@
-import React, {
-  ScrollView,
-  Image,
-  Text,
-  View,
-  TouchableHighlight,
-} from 'react-native';
+import React from 'react';
+import {ScrollView, Image, Text, View, TouchableHighlight} from 'react-native';
 
 import Lightbox from 'react-native-lightbox';
 

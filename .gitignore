@@ -38,3 +38,9 @@ npm-debug.log
 
 # vim stuff
 .#*
+
+# BUCK
+buck-out/
+\.buckd/
+android/app/libs
+android/keystores/debug.keystore

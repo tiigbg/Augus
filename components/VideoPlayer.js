@@ -1,9 +1,5 @@
-import React, {
-  Text,
-  View,
-  TouchableHighlight,
-  Slider,
-} from 'react-native';
+import React from 'react';
+import {Text, View, TouchableHighlight, Slider} from 'react-native';
 
 import { secondsToTime } from '../util/time';
 import Lightbox from 'react-native-lightbox';
