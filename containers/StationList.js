@@ -23,9 +23,9 @@ export default React.createClass({
       stations.push(
       	<View>
           <TouchableHighlight onPress={() => Actions.exhibitionScreen({station , title: station.station_name.sv })}>
-          <View style={styles.container}>
+          <View style={styles.listContainer}>
             <View style={styles.rightContainer}>
-              <Text style={styles.station_name}>{station.station_name.sv}</Text>
+              <Text style={styles.listText}>{station.station_name.sv}</Text>
             </View>
           </View>
           </TouchableHighlight>
@@ -37,11 +37,11 @@ export default React.createClass({
 
 
         <View>
-          <View style={styles.section_name_container}>
-            <Text style={styles.section_name}>{section.section_name.sv}</Text>
+          <View style={styles.listCategoryContainer}>
           </View>
           { stations }
         </View>
+        // <Text style={styles.listCategoryText}>{section.section_name.sv.toUpperCase()}</Text>
     );
   },
   render() {
@@ -51,10 +51,7 @@ export default React.createClass({
     {
       console.log("Datasource null");
       return(
-        <Text>loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading
-        loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading
-        dataSource is null
-        </Text>
+        <Text>loading</Text>
       )
     }
     return (
