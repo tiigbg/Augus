@@ -36,7 +36,6 @@ export default React.createClass({
         </Lightbox>
           <View style={styles.rightPane}>
             <Text style={styles.adventureTitle}>{this.props.station.station_name.sv}</Text>
-            <Text>English: {this.props.station.station_name.en}</Text>
           </View>
         </View>
         <View style={styles.separator} />
