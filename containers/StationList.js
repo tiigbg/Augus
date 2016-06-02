@@ -21,7 +21,7 @@ export default React.createClass({
     {
       let station = section.stations[i]
       stations.push(
-      	<View>
+      	<View key={i}>
           <TouchableHighlight onPress={() => Actions.exhibitionScreen({station , title: station.station_name.sv })}>
           <View style={styles.listContainer}>
             <View style={styles.rightContainer}>
@@ -60,6 +60,8 @@ export default React.createClass({
         renderRow={this.renderSection}
         style={styles.listView}
       />
+      // <ScrollView style={styles.scrollview}>
+      // </ScrollView>
     );
   },
   defaultRenderer(){
