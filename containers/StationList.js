@@ -1,42 +1,39 @@
 import React from 'react';
-import {Image, ListView, TouchableHighlight, Text, View} from 'react-native';
-import { connect } from 'react-redux';
+import { ListView, TouchableHighlight, Text, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from '../styles/styles';
-import * as AT from '../constants/ActionTypes';
 
-//const StationList = React.createClass({
+
 export default React.createClass({
   renderSection(section) {
-    var stations = [];
+    let stations = [];
     console.log(section.stations);
     console.log(section.stations.length);
 
-    for (var i = 0; i < section.stations.length; i++)
-    {
-      let station = section.stations[i]
+    for (let i = 0; i < section.stations.length; i++) {
+      const station = section.stations[i];
       stations.push(
-      	<View key={i}>
-          <TouchableHighlight onPress={() => Actions.exhibitionScreen({station , title: station.station_name.sv })}>
-          <View style={styles.listContainer}>
-            <View style={styles.rightContainer}>
-              <Text style={styles.listText}>{station.station_name.sv}</Text>
+        <View key={i}>
+          <TouchableHighlight
+            onPress={() => Actions.exhibitionScreen(
+            { station, title: station.station_name.sv })}
+          >
+            <View style={styles.listContainer}>
+              <View style={styles.rightContainer}>
+                <Text style={styles.listText}>{station.station_name.sv}</Text>
+              </View>
             </View>
-          </View>
           </TouchableHighlight>
         </View>
-      )
+      );
     }
     return (
-      //<Image source={{ uri: adventure.thumbnail }} style={styles.thumbnail} />
-
-
-        <View>
-          <View style={styles.listCategoryContainer}>
-          </View>
-          { stations }
+      <View>
+        <View style={styles.listCategoryContainer}>
         </View>
-        // <Text style={styles.listCategoryText}>{section.section_name.sv.toUpperCase()}</Text>
+        {stations}
+      </View>
+      // <Text style={styles.listCategoryText}>{section.section_name.sv.toUpperCase()}</Text>
     );
   },
   render() {
