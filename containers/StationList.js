@@ -15,7 +15,7 @@ export default React.createClass({
       stations.push(
         <View key={i}>
           <TouchableHighlight
-            onPress={() => Actions.exhibitionScreen(
+            onPress={() => Actions.stationScreen(
             { station, title: station.station_name.sv })}
           >
             <View style={styles.listContainer}>

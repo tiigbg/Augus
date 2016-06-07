@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import ExhibitionList from './containers/ExhibitionList';
 import StationList from './containers/StationList';
-import ExhibitionScreen from './components/ExhibitionScreen';
+import StationScreen from './components/StationScreen';
 import Map from './containers/Map';
 
 import styles from './styles/styles';
@@ -34,9 +34,9 @@ const scenes = Actions.create(
     <Scene key="root" hideNavBar={true}>
       <Scene key="tabbar" tabs={true} default="tab1" >
         <Scene key="tab1" title="Stories" icon={TabIcon} icontype="leaf">
-          <Scene key="exhibitonList" component={ExhibitionList} title="Exhibition List" initial={ true } />
+          <Scene key="exhibitonList" component={ExhibitionList} title="Utställningar" initial={ true } />
           <Scene key="stationList" component={StationList} title="Station List"  />
-          <Scene key="exhibitionScreen" component={ExhibitionScreen} title="ExhibitionScreen" />
+          <Scene key="stationScreen" component={StationScreen} title="StationScreen" />
         </Scene>
         <Scene key="tab2" title="Nearby" icon={TabIcon} icontype="map">
           <Scene key="map" component={Map} title="Nearby Stories" initial={ true } />
