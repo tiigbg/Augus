@@ -1,5 +1,6 @@
 import React from 'react';
 import {ScrollView, Image, Text, View, TouchableHighlight} from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import Lightbox from 'react-native-lightbox';
 
@@ -23,8 +24,14 @@ export default React.createClass({
     }
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
-      <View style={styles.rightPane}>
-      <Text style={styles.adventureTitle}>{this.props.station.station_name.sv}</Text>
+      <View style={styles.stationTitlePane}>
+        <TouchableHighlight
+          onPress={() => Actions.exhibitionScreen(
+            { null, title: 'test' })}>
+          <Icon name={'arrow-left'} size={60} color={'black'} />
+        </TouchableHighlight>
+        <Text style={styles.station_name}>{this.props.station.station_name.sv}</Text>
+        <Icon name={'arrow-right'} size={60} color={'black'} />
       </View>
         <View style={styles.mainSection}>
           {/* $FlowIssue #7363964 - There's a bug in Flow where you cannot

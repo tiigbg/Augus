@@ -86,10 +86,11 @@ export default StyleSheet.create({
     marginBottom: 4,
   },
   station_name: {
-    fontSize: 22,
+    fontSize: 28,
     marginTop: 0,
     marginBottom: 14,
     textAlign: 'center',
+    fontWeight: '500',
   },
   station_text: {
     fontSize: 22,
@@ -107,6 +108,12 @@ export default StyleSheet.create({
   rightPane: {
     justifyContent: 'space-between',
     flex: 1,
+  },
+  stationTitlePane: {
+    justifyContent: 'space-between',
+    flex: 1,
+    flexDirection: 'row',
+    marginBottom: 20,
   },
   adventureTitle: {
     flex: 1,
