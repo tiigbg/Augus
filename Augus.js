@@ -16,8 +16,6 @@ import styles from './styles/styles';
 
 import { configureStore } from './store/Store.js';
 
-const store = configureStore();
-
 class TabIcon extends React.Component {
   render() {
     return (
@@ -47,9 +45,13 @@ const scenes = Actions.create(
 );
 
 export default class Augus extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {store: configureStore()};
+  }
   render() {
     return (
-        <Provider store={store}>
+        <Provider store={this.state.store}>
         <Router scenes={scenes} />
       </Provider>
     );
