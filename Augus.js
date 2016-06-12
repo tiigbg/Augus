@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 
 
 import { TabBar, Modal, Actions, Scene, Router } from 'react-native-router-flux';
@@ -15,6 +15,8 @@ import Map from './containers/Map';
 import styles from './styles/styles';
 
 import { configureStore } from './store/Store.js';
+
+const RouterWithRedux = connect()(Router);
 
 class TabIcon extends React.Component {
   render() {
@@ -52,7 +54,7 @@ export default class Augus extends React.Component {
   render() {
     return (
         <Provider store={this.state.store}>
-        <Router scenes={scenes} />
+        <RouterWithRedux scenes={scenes} />
       </Provider>
     );
   }
