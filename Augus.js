@@ -1,33 +1,17 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import { Provider, connect } from 'react-redux';
+import { Modal, Actions, Scene, Router } from 'react-native-router-flux';
 
-
-import { TabBar, Modal, Actions, Scene, Router } from 'react-native-router-flux';
-
-import Icon from 'react-native-vector-icons/FontAwesome';
-
+import TabIcon from './components/TabIcon.js';
 import ExhibitionList from './containers/ExhibitionList';
 import StationList from './containers/StationList';
 import StationScreen from './components/StationScreen';
 import Map from './containers/Map';
 
-import styles from './styles/styles';
 
 import { configureStore } from './store/Store.js';
 
 const RouterWithRedux = connect()(Router);
-
-class TabIcon extends React.Component {
-  render() {
-    return (
-      <View style={styles.tabIcon}>
-        <Icon name={this.props.icontype} size={20} color={this.props.selected ? 'green' :'black'} />
-        <Text style={{color: this.props.selected ? 'green' :'black'}}> {this.props.title}</Text>
-      </View>
-    );
-  }
-}
 
 const scenes = Actions.create(
   <Scene key="modal" component={Modal} >

@@ -38,25 +38,27 @@ export default React.createClass({
   },
   render() {
     return (
-      <View style={styles.mainSection}>
-        <TouchableHighlight onPress={this.handlePress}>
-          <View>
+      <View style={styles.videoPlayer}>
+        <View style={{flexDirection: 'row', justifyContent:'space-between', marginBottom: 4}}>
+          <TouchableHighlight onPress={this.handlePress}>
             <Icon name={this.state.isPlaying? 'pause':'play'} size={60} color={'black'} />
+          </TouchableHighlight>
+          <View style={{ flex: 1, flexDirection: 'column' }}>
+            <View style={{ flex: 1, flexDirection:'row', justifyContent:'space-between' }}>
+              <Text>{secondsToTime(Math.round(this.state.time))}</Text>
+              <Text>
+                {secondsToTime(Math.round(this.state.duration - this.state.time))}
+              </Text>
+            </View>
+            <Slider value={this.state.time}
+              maximumValue={this.state.duration}
+              onValueChange={(value) => (this.refs.videoPlayer.seek(value),
+                  this.setState({ time: value }))}
+            />
           </View>
-        </TouchableHighlight>
-        <View style={{ flex:1}}>
-          <View style={{ flexDirection:'row', justifyContent:'space-between' }}>
-            <Text>{secondsToTime(Math.round(this.state.time))}</Text>
-            <Text>
-              {secondsToTime(Math.round(this.state.duration - this.state.time))}
-            </Text>
-          </View>
-          <Slider value={this.state.time}
-            maximumValue={this.state.duration}
-            onValueChange={(value) => (this.refs.videoPlayer.seek(value),
-                this.setState({ time: value }))}
-          />
-          <Video ref="videoPlayer" style={styles.video} source={{uri: this.props.file}} // Can be a URL or a local file.
+        </View>
+        <View style={{alignItems: 'center'}}>
+          <Video ref="videoPlayer" source={{uri: this.props.file}} // Can be a URL or a local file.
             rate={1.0}                   // 0 is paused, 1 is normal.
             volume={1.0}                 // 0 is muted, 1 is normal.
             muted={false}                // Mut
@@ -70,8 +72,6 @@ export default React.createClass({
             style={styles.video} />
         </View>
       </View>
-      // <Lightbox navigator={this.props.navigator} activeProps ={activeProps}>
-      // </Lightbox>
     );
   },
 });

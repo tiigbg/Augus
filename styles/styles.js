@@ -86,6 +86,7 @@ export default StyleSheet.create({
     marginBottom: 4,
   },
   station_name: {
+    flex: 1,
     fontSize: 28,
     marginTop: 0,
     marginBottom: 14,
@@ -154,10 +155,14 @@ export default StyleSheet.create({
     bottom: 0,
     right: 0,
   },
+  videoPlayer: {
+    flexDirection: 'column',
+    alignItems: 'stretch',
+  },
   video: {
-    position: 'absolute',
-    width: 200,
-    height: 200,
+    flex: 1,
+    width: 295,
+    height: 221,
   },
   lightBox: {
     flex: 1,
