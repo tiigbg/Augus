@@ -142,9 +142,6 @@ export default StyleSheet.create({
     marginRight: -8,
     marginLeft: -8,
   },
-  col: {
-    flex: 1,
-  },
   mainSection: {
     flexDirection: 'row',
   },
@@ -155,14 +152,13 @@ export default StyleSheet.create({
     bottom: 0,
     right: 0,
   },
-  videoPlayer: {
+  colStretch: {
     flexDirection: 'column',
     alignItems: 'stretch',
   },
   video: {
-    flex: 1,
-    width: 295,
-    height: 221,
+    height: 210,
+    alignSelf: 'stretch',
   },
   lightBox: {
     flex: 1,

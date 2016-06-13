@@ -36,9 +36,9 @@ export default React.createClass({
     this.refs.videoPlayer.seek(0);
     this.setState({ time: 0 });
   },
-  render() {
+ render() {
     return (
-      <View style={styles.videoPlayer}>
+      <View style={styles.colStretch}>
         <View style={{flexDirection: 'row', justifyContent:'space-between', marginBottom: 4}}>
           <TouchableHighlight onPress={this.handlePress}>
             <Icon name={this.state.isPlaying? 'pause':'play'} size={60} color={'black'} />
@@ -57,20 +57,19 @@ export default React.createClass({
             />
           </View>
         </View>
-        <View style={{alignItems: 'center'}}>
-          <Video ref="videoPlayer" source={{uri: this.props.file}} // Can be a URL or a local file.
-            rate={1.0}                   // 0 is paused, 1 is normal.
-            volume={1.0}                 // 0 is muted, 1 is normal.
-            muted={false}                // Mut
-            paused={!this.state.isPlaying}               // Pauses playback entirely.
-            repeat={false}                // Repeat forever.
-            onLoadStart={this.loadStart} // Callback when video starts to load
-            onLoad={(videoStats) => this.setState({duration:videoStats.duration})}    // Callback when video loads
-            onProgress={(progressStats) => this.setState({time:progressStats.currentTime})}    // Callback every ~250ms with currentTime
-            onEnd={this.onEnd}           // Callback when playback finishes
-            onError={this.videoError}    // Callback when video cannot be loaded
-            style={styles.video} />
-        </View>
+        <Video ref="videoPlayer" source={{uri: this.props.file}} // Can be a URL or a local file.
+          rate={1.0}                   // 0 is paused, 1 is normal.
+          volume={1.0}                 // 0 is muted, 1 is normal.
+          muted={false}                // Mut
+          resizeMode="contain"
+          paused={!this.state.isPlaying}               // Pauses playback entirely.
+          repeat={false}                // Repeat forever.
+          onLoadStart={this.loadStart} // Callback when video starts to load
+          onLoad={(videoStats) => this.setState({duration:videoStats.duration})}    // Callback when video loads
+          onProgress={(progressStats) => this.setState({time:progressStats.currentTime})}    // Callback every ~250ms with currentTime
+          onEnd={this.onEnd}           // Callback when playback finishes
+          onError={this.videoError}    // Callback when video cannot be loaded
+          style={styles.video} />
       </View>
     );
   },
