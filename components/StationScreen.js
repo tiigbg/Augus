@@ -55,15 +55,15 @@ export default React.createClass({
           </View>
         </View>
         <View style={styles.separator} />
-        <View style={{flex:1, flexDirection: 'row', alignItems: 'flex-start',}}>
-          <Image
-            source={icon_signlanguage_sv}
-            style={{ width: 50, height: 50, marginRight: 10 }}
-          />
-          <View style={{flex:1,flexDirection:'column', }}>
-            <VideoPlayer file="bird" />
+          <View style={{flex:1, flexDirection: 'row', alignItems: 'flex-start',}}>
+            <Image
+              source={icon_signlanguage_sv}
+              style={{ width: 50, height: 50, marginRight: 10 }}
+            />
+            <View style={{flex:1,flexDirection:'column', }}>
+              <VideoPlayer file="bird" />
+            </View>
           </View>
-        </View>
         <View style={styles.separator} />
         <Image
           source={icon_text_sv}
