@@ -5,6 +5,28 @@ import styles from '../styles/styles';
 
 
 export default React.createClass({
+  getInitialState() {
+    var dataSource = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2,
+    });
+    console.log('getinitialstate');
+    console.log(this.props.exhibition.sections);
+    return {
+      dataSource: dataSource.cloneWithRows(this.props.exhibition.sections),
+    };
+  },
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps');
+    console.log(nextProps);
+    // this.setState({
+    //   dataSource: dataSource.cloneWithRows(this.nextProps.exhibition.sections),
+    // });
+  },
+  defaultRenderer() {
+    return (
+      <Text>hello</Text>
+    );
+  },
   renderSection(section) {
     let stations = [];
     console.log(section.stations);
@@ -37,14 +59,13 @@ export default React.createClass({
     );
   },
   render() {
-    console.log('render')
-    console.log(this.state.dataSource)
-    if (this.state.dataSource == null)
-    {
-      console.log("Datasource null");
-      return(
+    console.log('render');
+    console.log(this.state.dataSource);
+    if (this.state.dataSource == null) {
+      console.log('Datasource null');
+      return (
         <Text>loading</Text>
-      )
+      );
     }
     return (
       <ListView
@@ -56,29 +77,6 @@ export default React.createClass({
       // </ScrollView>
     );
   },
-  defaultRenderer(){
-    return(
-      <Text>hello</Text>
-    )
-  },
-  getInitialState(){
-    var dataSource = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-    });
-    console.log('getinitialstate');
-    console.log(this.props.exhibition.sections);
-    return {
-      dataSource: dataSource.cloneWithRows(this.props.exhibition.sections),
-    }
-  },
-  componentWillReceiveProps(nextProps){
-    console.log('componentWillReceiveProps')
-    console.log(nextProps)
-    // this.setState({
-    //   dataSource: dataSource.cloneWithRows(this.nextProps.exhibition.sections),
-    // });
-  },
-
 });
 
 // const dataSource = new ListView.DataSource({
