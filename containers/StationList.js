@@ -59,10 +59,20 @@ const StationList = React.createClass({
     console.log('stationList renderRow '+sectionID+':'+rowID);
     console.log(rowData);
     const station = this.props.stations[rowID];
+    const colors = [ '#f00', '#0f0', '#00f'];
     return (
-      <Text>
-        {station.station_name.sv}
-      </Text>
+      <View>
+        <TouchableHighlight
+          onPress={() => Actions.stationScreen(
+          { station, title: station.station_name.sv })}
+        >
+          <View style={[styles.listContainer, {backgroundColor: colors[sectionID]}]}>
+            <View style={styles.rightContainer}>
+              <Text style={styles.listText}>{station.station_name.sv}</Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
     );
   },
   renderSectionHeader(sectionData, sectionID) {
