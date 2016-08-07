@@ -4,6 +4,7 @@ import { Modal, Actions, Scene, Router } from 'react-native-router-flux';
 
 import TabIcon from './components/TabIcon.js';
 import ExhibitionList from './containers/ExhibitionList';
+import Experiment from './containers/Experiment';
 import StationList from './containers/StationList';
 import StationScreen from './components/StationScreen';
 import Map from './containers/Map';
@@ -18,6 +19,7 @@ const scenes = Actions.create(
     <Scene key="root" hideNavBar>
       <Scene key="tabbar" tabs default="tab1" >
         <Scene key="tab1" title="Stories" icon={TabIcon} icontype="leaf">
+          <Scene key="experiment" component={Experiment} title="Experiment"  />
           <Scene key="exhibitonList" component={ExhibitionList} title="Utställningar" initial />
           <Scene key="stationList" component={StationList} title="Station List" />
           <Scene key="stationScreen" component={StationScreen} title="StationScreen" />
