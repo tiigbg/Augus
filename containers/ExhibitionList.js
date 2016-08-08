@@ -67,7 +67,7 @@ const ExhibitionList = React.createClass({
     return (
       // <TouchableHighlight onPress={() => Actions.stationList(sectionID)}>
       <View>
-        <TouchableHighlight onPress={() => Actions.stationList(exhibition)}>
+        <TouchableHighlight onPress={() => Actions.stationList({exhibition, title: exhibition.exhibition_name.sv})}>
           <View style={styles.listContainer}>
             <Image
               source={{ uri: exhibition.image }}
@@ -81,14 +81,13 @@ const ExhibitionList = React.createClass({
   },
   renderListView() {
     return (
-      <View>
-        <ListView
-          dataSource={myDataSource}
-          renderRow={this.renderRow}
-          renderSectionHeader={this.renderSectionHeader}
-          enableEmptySections
-        />
-      </View>
+      <ListView
+        style={styles.listMargin}
+        dataSource={myDataSource}
+        renderRow={this.renderRow}
+        renderSectionHeader={this.renderSectionHeader}
+        enableEmptySections
+      />
     );
   },
   render() {

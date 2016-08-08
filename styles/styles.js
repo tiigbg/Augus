@@ -7,6 +7,10 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  listMargin: {
+    marginTop: 70,
+    marginBottom: 50,
+  },
   container: {
     flex: 1,
     flexDirection: 'row',
@@ -103,8 +107,9 @@ export default StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   contentContainer: {
-    paddingTop: 64,
     padding: 10,
+    paddingTop: 64,
+    paddingBottom: 50,
   },
   rightPane: {
     justifyContent: 'space-between',

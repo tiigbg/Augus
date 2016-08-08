@@ -27,23 +27,16 @@ export default function Exhibitions(state = initialState, action) {
         const exhibition = action.payload.exhibitions[iExh];
         exhibitions[iExh] = {
           id: iExh,
-          exhibition_name: {
-            sv: exhibition.exhibition_name.sv,
-            en: 'english exhibition name',
-          },
-          image: 'image.jpg',
         };
+        Object.assign(exhibitions[iExh], exhibition);
         // parse sections
         for (let j = 0; j < exhibition.sections.length; j++) {
           const section = exhibition.sections[j];
           sections[iSec] = {
             id: iSec,
             exhibition: iExh,
-            section_name: {
-              sv: section.section_name.sv,
-              en: 'english section name',
-            },
-          }
+          };
+          Object.assign(sections[iSec], section);
           // parse stations
           for (let k = 0; k < section.stations.length; k++){
             const station = section.stations[k];
@@ -51,11 +44,8 @@ export default function Exhibitions(state = initialState, action) {
               id: iStat,
               section: iSec,
               exhibition: iExh,
-              station_name: {
-                sv: station.station_name.sv,
-                en: 'english station name',
-              },
-            }
+            };
+            Object.assign(stations[iStat], station);
             iStat++;
           }
           iSec++;

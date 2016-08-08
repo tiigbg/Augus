@@ -17,7 +17,7 @@ const StationList = React.createClass({
   getInitialState() {
     console.log('StationList getInitialState props:');
     console.log(this.props);
-    const exhibition = this.props.exhibitions[this.props.id];
+    const exhibition = this.props.exhibitions[this.props.exhibition.id];
     const exhibitionSections = this.props.sections;
     const stations = this.props.stations;
     const dataBlob = {};
@@ -59,7 +59,8 @@ const StationList = React.createClass({
     console.log('stationList renderRow '+sectionID+':'+rowID);
     console.log(rowData);
     const station = this.props.stations[rowID];
-    const colors = [ '#f00', '#0f0', '#00f'];
+    // FIXME this is temporarily hardcoded
+    const colors = ['#694628', '#007da0', '#e1057d', '#007da0', '#e1057d'];
     return (
       <View>
         <TouchableHighlight
@@ -137,12 +138,12 @@ const StationList = React.createClass({
     // }
     return (
       <ListView
+        style={styles.listMargin}
         dataSource={myDataSource}
         renderRow={this.renderRow}
         renderSectionHeader={this.renderSectionHeader}
         enableEmptySections
       />
-      // <Text>DERP</Text>
     );
   },
 });
