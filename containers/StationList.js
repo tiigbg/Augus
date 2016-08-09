@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from '../styles/styles';
 
+// FIXME this is temporarily hardcoded
+const darkColors = ['#694628', '#007da0', '#e1057d', '#007da0', '#e1057d'];
+const lightColors = ['#ebdcd2', '#d5e9f3', '#ffdce6', '#d5e9f3', '#ffdce6'];
+
 const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
 const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID];
 let myDataSource = new ListView.DataSource({
@@ -59,17 +63,17 @@ const StationList = React.createClass({
     console.log('stationList renderRow '+sectionID+':'+rowID);
     console.log(rowData);
     const station = this.props.stations[rowID];
-    // FIXME this is temporarily hardcoded
-    const colors = ['#694628', '#007da0', '#e1057d', '#007da0', '#e1057d'];
     return (
       <View>
         <TouchableHighlight
           onPress={() => Actions.stationScreen(
           { station, title: station.station_name.sv })}
         >
-          <View style={[styles.listContainer, {backgroundColor: colors[sectionID]}]}>
+          <View style={[styles.listContainer, {backgroundColor: lightColors[sectionID]}]}>
             <View style={styles.rightContainer}>
-              <Text style={styles.listText}>{station.station_name.sv}</Text>
+              <Text style={[styles.listText, { color: '#000' }]}>
+                {station.station_name.sv}
+              </Text>
             </View>
           </View>
         </TouchableHighlight>
@@ -91,9 +95,15 @@ const StationList = React.createClass({
       //   </View>
       // </TouchableHighlight>
       <View>
-        <Text>
-          === {section.section_name.sv} ===
-        </Text>
+        <View style={[styles.listContainer, { backgroundColor: darkColors[sectionID] }]}>
+          <View style={styles.rightContainer}>
+            <Text
+              style={[styles.listText, { fontWeight: 'bold',color: '#fff' }]}
+            >
+              {section.section_name.sv}
+            </Text>
+          </View>
+        </View>
       </View>
     );
   },
