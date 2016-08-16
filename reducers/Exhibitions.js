@@ -1,6 +1,5 @@
 import * as AT from '../constants/ActionTypes';
-import { ListView } from 'react-native';
-
+import { put } from 'redux-saga/effects';
 
 const initialState = {
   exhibitions: [
@@ -8,49 +7,96 @@ const initialState = {
   loaded: false,
 };
 
+let iNode = 0;
+let nodes = {};
+
+function parseNode(node, iParent) {
+  nodes[iNode] = {
+    id: iNode,
+    isExhibition: false,
+    parent: iParent,
+  };
+  Object.assign(nodes[iNode], node, { nodes: null });
+  iNode++;
+  if (node.type != 'leaf') {
+    const parent = iNode - 1;
+    for (const i of node.nodes) {
+      parseNode(i, nodes[parent].id);
+    }
+  }
+}
+
 export default function Exhibitions(state = initialState, action) {
   switch (action.type) {
     case AT.MUSEUM_DATA_FETCH_SUCCEEDED:
       console.log("Exhibitions in the reducer are :");
       console.log(action.payload.exhibitions);
-      // console.log("Loaded in the reducer is " + state.loaded);
 
       // convert and normalize JSON into state
-      // TODO check that exhibitions exist?
-      // parse exhibitions
-      let exhibitions = {};
-      let sections = {};
-      let stations = {};
-      let iSec = 0;
-      let iStat = 0;
-      for (let iExh = 0; iExh < action.payload.exhibitions.length; iExh++) {
-        const exhibition = action.payload.exhibitions[iExh];
-        exhibitions[iExh] = {
-          id: iExh,
+
+      // check that exhibitions exist?
+      if (!action.payload.exhibitions) {
+        put({
+          type: AT.MUSEUM_DATA_FETCH_FAILED,
+          message: 'The loaded data was empty or unreadable.',
+        });
+      }
+
+      // new version
+      nodes = {};
+      iNode = 0;
+      for (const exhibition of action.payload.exhibitions) {
+        nodes[iNode] = {
+          id: iNode,
+          isExhibition: true,
+          parent: null,
         };
-        Object.assign(exhibitions[iExh], exhibition);
-        // parse sections
-        for (let j = 0; j < exhibition.sections.length; j++) {
-          const section = exhibition.sections[j];
-          sections[iSec] = {
-            id: iSec,
-            exhibition: iExh,
-          };
-          Object.assign(sections[iSec], section);
-          // parse stations
-          for (let k = 0; k < section.stations.length; k++){
-            const station = section.stations[k];
-            stations[iStat] = {
-              id: iStat,
-              section: iSec,
-              exhibition: iExh,
-            };
-            Object.assign(stations[iStat], station);
-            iStat++;
-          }
-          iSec++;
+        Object.assign(nodes[iNode], exhibition, { nodes: null });
+        iNode++;
+        const parent = iNode - 1;
+        for (const j of exhibition.nodes) {
+          parseNode(j, nodes[parent].id);
         }
       }
+
+      console.log('Parsed data into list of nodes:');
+      console.log(nodes);
+
+      //
+      // // parse exhibitions
+      // const exhibitions = {};
+      // const sections = {};
+      // const stations = {};
+      // let iSec = 0;
+      // let iStat = 0;
+      // for (let iExh = 0; iExh < action.payload.exhibitions.length; iExh++) {
+      //   const exhibition = action.payload.exhibitions[iExh];
+      //   exhibitions[iExh] = {
+      //     id: iExh,
+      //   };
+      //   Object.assign(exhibitions[iExh], exhibition);
+      //   // parse sections
+      //   for (let j = 0; j < exhibition.sections.length; j++) {
+      //     const section = exhibition.sections[j];
+      //     sections[iSec] = {
+      //       id: iSec,
+      //       exhibition: iExh,
+      //     };
+      //     Object.assign(sections[iSec], section);
+      //     // parse stations
+      //     for (let k = 0; k < section.stations.length; k++){
+      //       const station = section.stations[k];
+      //       stations[iStat] = {
+      //         id: iStat,
+      //         section: iSec,
+      //         exhibition: iExh,
+      //       };
+      //       Object.assign(stations[iStat], station);
+      //       iStat++;
+      //     }
+      //     iSec++;
+      //   }
+      // }
 
 
 
@@ -107,9 +153,10 @@ export default function Exhibitions(state = initialState, action) {
       // console.log(derp);
       return {
         // exhibitions: action.payload.exhibitions,
-        exhibitions,
-        sections,
-        stations,
+        // exhibitions,
+        // sections,
+        // stations,
+        nodes,
         loaded: true,
       };
     case AT.MUSEUM_DATA_FETCH_FAILED:

@@ -16,21 +16,24 @@ let icon_text_sv = require('../assets/img/textning.png');
 
 export default React.createClass({
   render() {
-    if(this.props.station.images.length > 0) {
+    console.log('StationScreen render props.station:');
+    console.log(this.props.station);
+    if(this.props.station.images && this.props.station.images.length > 0) {
       imgUrl = this.props.station.images[0].url;
     }
     else {
       imgUrl = "";
     }
+    const station = this.props.station;
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
       <View style={styles.stationTitlePane}>
         <TouchableHighlight
-          onPress={() => Actions.exhibitionScreen(
-            { null, title: 'test' })}>
+          onPress={() => Actions.stationScreen(
+            { station, title: station.name.sv })}>
           <Icon name={'arrow-left'} size={60} color={'black'} />
         </TouchableHighlight>
-        <Text style={styles.station_name}>{this.props.station.station_name.sv}</Text>
+        <Text style={styles.station_name}>{this.props.station.name.sv}</Text>
         <Icon name={'arrow-right'} size={60} color={'black'} />
       </View>
         <View style={styles.mainSection}>
