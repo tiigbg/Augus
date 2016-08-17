@@ -18,8 +18,25 @@ export default React.createClass({
   render() {
     console.log('StationScreen render props:');
     console.log(this.props);
-    if(this.props.station.images && this.props.station.images.length > 0) {
-      imgUrl = this.props.station.images[0].url;
+    let imageView = '';
+    if (this.props.station.images && this.props.station.images.length > 0) {
+      imageView = (<View>
+        {
+          this.props.station.images.map((eachImage) => {
+            return (
+              <Lightbox navigator={this.props.navigator} activeProps={{ style: styles.lightBox }}>
+                <Image
+                  source={{ uri: eachImage.url }}
+                  style={styles.detailsImage}
+                />
+              </Lightbox>
+            );
+          })
+        }
+      </View>
+      );
+      console.log('imageView');
+      console.log(imageView);
     }
     else {
       imgUrl = "";
@@ -57,15 +74,7 @@ export default React.createClass({
         </TouchableHighlight>
       </View>
         <View style={styles.mainSection}>
-          {/* $FlowIssue #7363964 - There's a bug in Flow where you cannot
-          * omit a property or set it to undefined if it's inside a shape,
-          * even if it isn't required */}
-        <Lightbox navigator={this.props.navigator} activeProps={{style: styles.lightBox}}>
-          <Image
-              source={{ uri: imgUrl }}
-              style={styles.detailsImage}
-          />
-        </Lightbox>
+          {imageView}
         </View>
         <View style={styles.separator} />
         <View style={{flex:1, flexDirection: 'row', alignItems: 'center',}}>
