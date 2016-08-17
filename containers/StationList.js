@@ -70,9 +70,11 @@ const StationList = React.createClass({
     console.log('stationList renderRow '+sectionID+':'+rowID);
     console.log(rowData);
     const station = this.props.nodes[rowID];
-    let openFunction = () => Actions.stationList({ node: station, title: station.name.sv });
+    let openFunction = () => Actions.stationList({ node: station, title: station.name.sv});
     if (station.type === 'leaf') {
-      openFunction = () => Actions.stationScreen({ station, title: station.name.sv });
+      openFunction = () => Actions.stationScreen(
+        { station, title: station.name.sv, nodes: this.props.nodes }
+      );
     }
     return (
       <View>

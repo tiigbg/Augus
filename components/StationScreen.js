@@ -16,8 +16,8 @@ let icon_text_sv = require('../assets/img/textning.png');
 
 export default React.createClass({
   render() {
-    console.log('StationScreen render props.station:');
-    console.log(this.props.station);
+    console.log('StationScreen render props:');
+    console.log(this.props);
     if(this.props.station.images && this.props.station.images.length > 0) {
       imgUrl = this.props.station.images[0].url;
     }
@@ -25,16 +25,36 @@ export default React.createClass({
       imgUrl = "";
     }
     const station = this.props.station;
+    let nodes = this.props.nodes;
+    function findPrevious(node) {
+      return node && node.parent === station.parent && node.id === station.id - 1;
+    }
+    function findNext(node) {
+      return node && node.parent === station.parent && node.id === station.id + 1;
+    }
+    let prevStation = nodes.find(findPrevious);
+    let nextStation = nodes.find(findNext);
+    if (!prevStation) prevStation = station;
+    if (!nextStation) nextStation = station;
+
+    console.log('prevStation');
+    console.log(prevStation);
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
       <View style={styles.stationTitlePane}>
         <TouchableHighlight
           onPress={() => Actions.stationScreen(
-            { station, title: station.name.sv })}>
+            { station: prevStation, title: prevStation.name.sv, nodes: this.props.nodes })}
+        >
           <Icon name={'arrow-left'} size={60} color={'black'} />
         </TouchableHighlight>
         <Text style={styles.station_name}>{this.props.station.name.sv}</Text>
-        <Icon name={'arrow-right'} size={60} color={'black'} />
+        <TouchableHighlight
+          onPress={() => Actions.stationScreen(
+            { station: nextStation, title: prevStation.name.sv, nodes: this.props.nodes })}
+        >
+          <Icon name={'arrow-right'} size={60} color={'black'} />
+        </TouchableHighlight>
       </View>
         <View style={styles.mainSection}>
           {/* $FlowIssue #7363964 - There's a bug in Flow where you cannot

@@ -8,7 +8,7 @@ const initialState = {
 };
 
 let iNode = 0;
-let nodes = {};
+let nodes = [];
 
 function parseNode(node, iParent) {
   nodes[iNode] = {
@@ -43,7 +43,7 @@ export default function Exhibitions(state = initialState, action) {
       }
 
       // new version
-      nodes = {};
+      nodes = [];
       iNode = 0;
       for (const exhibition of action.payload.exhibitions) {
         nodes[iNode] = {
@@ -61,7 +61,7 @@ export default function Exhibitions(state = initialState, action) {
 
       console.log('Parsed data into list of nodes:');
       console.log(nodes);
-
+      console.log(nodes instanceof Array);
       //
       // // parse exhibitions
       // const exhibitions = {};
