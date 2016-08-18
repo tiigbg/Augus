@@ -3,6 +3,7 @@ import { ScrollView, Image, Text, View, TouchableHighlight, TouchableOpacity } f
 import { Actions } from 'react-native-router-flux';
 
 import Lightbox from 'react-native-lightbox';
+import PhotoView from 'react-native-photo-view';
 import Dimensions from 'Dimensions';
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -21,27 +22,30 @@ export default React.createClass({
     let imageView = (<View />);
     if (!!this.props.station.images && this.props.station.images.length > 0) {
       imageView = (
-        <View>
-          <ScrollView horizontal swipeToDismiss={false}
-            style={{ flex: 1, flexDirection: 'row', width: Dimensions.get('window').width }}
-          >
+        <ScrollView horizontal
+          style={{ flex: 1, flexDirection: 'row', width: Dimensions.get('window').width }}
+        >
         {
-          this.props.station.images.map((eachImage) => {
+          this.props.station.images.map((eachImage, i) => {
             function renderFullScreenImage() {
               return (
-                <Image
+                <PhotoView
+                  key={i}
                   source={{ uri: eachImage.url }}
+                  minimumZoomScale={0.5}
+                  maximumZoomScale={5}
+                  androidScaleType="center"
                   style={{
                     width: Dimensions.get('window').width,
-                    height: Dimensions.get('window').height }}
+                    height: Dimensions.get('window').height,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
                 />
               );
             }
             function renderLightboxHeader(close) {
               return (
-                // <Text style={styles.closeButton}>
-                //   Close
-                // </Text>
                 <TouchableOpacity onPress={close} style={styles.closeButtonContainer}>
                   <Icon name={'times'} style={styles.closeButton} />
                 </TouchableOpacity>
@@ -50,6 +54,7 @@ export default React.createClass({
             return (
               <Lightbox navigator={this.props.navigator} activeProps={{ style: styles.lightBox }}
                 renderContent={renderFullScreenImage} renderHeader={renderLightboxHeader}
+                swipeToDismiss={false}
               >
                 <Image
                   source={{ uri: eachImage.url }}
@@ -60,13 +65,12 @@ export default React.createClass({
           })
         }
         </ScrollView>
-      </View>
       );
       console.log('imageView');
       console.log(imageView);
     }
     const station = this.props.station;
-    let nodes = this.props.nodes;
+    const nodes = this.props.nodes;
     function findPrevious(node) {
       return node && node.parent === station.parent && node.id === station.id - 1;
     }
@@ -111,15 +115,15 @@ export default React.createClass({
           </View>
         </View>
         <View style={styles.separator} />
-          <View style={{flex:1, flexDirection: 'row', alignItems: 'flex-start',}}>
-            <Image
-              source={icon_signlanguage_sv}
-              style={{ width: 50, height: 50, marginRight: 10 }}
-            />
-            <View style={{flex:1,flexDirection:'column', }}>
-              <VideoPlayer file="bird" />
-            </View>
+        <View style={{flex:1, flexDirection: 'row', alignItems: 'flex-start',}}>
+          <Image
+            source={icon_signlanguage_sv}
+            style={{ width: 50, height: 50, marginRight: 10 }}
+          />
+          <View style={{flex:1,flexDirection:'column', }}>
+            <VideoPlayer file="bird" />
           </View>
+        </View>
         <View style={styles.separator} />
         <Image
           source={icon_text_sv}
