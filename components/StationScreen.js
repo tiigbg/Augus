@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Image, Text, View, TouchableHighlight} from 'react-native';
+import { ScrollView, Image, Text, View, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import Lightbox from 'react-native-lightbox';
@@ -22,13 +22,35 @@ export default React.createClass({
     if (!!this.props.station.images && this.props.station.images.length > 0) {
       imageView = (
         <View>
-          <ScrollView horizontal
+          <ScrollView horizontal swipeToDismiss={false}
             style={{ flex: 1, flexDirection: 'row', width: Dimensions.get('window').width }}
           >
         {
           this.props.station.images.map((eachImage) => {
+            function renderFullScreenImage() {
+              return (
+                <Image
+                  source={{ uri: eachImage.url }}
+                  style={{
+                    width: Dimensions.get('window').width,
+                    height: Dimensions.get('window').height }}
+                />
+              );
+            }
+            function renderLightboxHeader(close) {
+              return (
+                // <Text style={styles.closeButton}>
+                //   Close
+                // </Text>
+                <TouchableOpacity onPress={close} style={styles.closeButtonContainer}>
+                  <Icon name={'times'} style={styles.closeButton} />
+                </TouchableOpacity>
+              );
+            }
             return (
-              <Lightbox navigator={this.props.navigator} activeProps={{ style: styles.lightBox }}>
+              <Lightbox navigator={this.props.navigator} activeProps={{ style: styles.lightBox }}
+                renderContent={renderFullScreenImage} renderHeader={renderLightboxHeader}
+              >
                 <Image
                   source={{ uri: eachImage.url }}
                   style={styles.detailsImage}
