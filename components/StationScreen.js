@@ -3,7 +3,7 @@ import {ScrollView, Image, Text, View, TouchableHighlight} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import Lightbox from 'react-native-lightbox';
-
+import Dimensions from 'Dimensions';
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -18,9 +18,13 @@ export default React.createClass({
   render() {
     console.log('StationScreen render props:');
     console.log(this.props);
-    let imageView = '';
-    if (this.props.station.images && this.props.station.images.length > 0) {
-      imageView = (<View>
+    let imageView = (<View />);
+    if (!!this.props.station.images && this.props.station.images.length > 0) {
+      imageView = (
+        <View>
+          <ScrollView horizontal
+            style={{ flex: 1, flexDirection: 'row', width: Dimensions.get('window').width }}
+          >
         {
           this.props.station.images.map((eachImage) => {
             return (
@@ -33,13 +37,11 @@ export default React.createClass({
             );
           })
         }
+        </ScrollView>
       </View>
       );
       console.log('imageView');
       console.log(imageView);
-    }
-    else {
-      imgUrl = "";
     }
     const station = this.props.station;
     let nodes = this.props.nodes;
@@ -58,21 +60,21 @@ export default React.createClass({
     console.log(prevStation);
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
-      <View style={styles.stationTitlePane}>
-        <TouchableHighlight
-          onPress={() => Actions.stationScreen(
-            { station: prevStation, title: prevStation.name.sv, nodes: this.props.nodes })}
-        >
-          <Icon name={'arrow-left'} size={60} color={'black'} />
-        </TouchableHighlight>
-        <Text style={styles.station_name}>{this.props.station.name.sv}</Text>
-        <TouchableHighlight
-          onPress={() => Actions.stationScreen(
-            { station: nextStation, title: prevStation.name.sv, nodes: this.props.nodes })}
-        >
-          <Icon name={'arrow-right'} size={60} color={'black'} />
-        </TouchableHighlight>
-      </View>
+        <View style={styles.stationTitlePane}>
+          <TouchableHighlight
+            onPress={() => Actions.stationScreen(
+              { station: prevStation, title: prevStation.name.sv, nodes: this.props.nodes })}
+          >
+            <Icon name={'arrow-left'} size={60} color={'black'} />
+          </TouchableHighlight>
+          <Text style={styles.station_name}>{this.props.station.name.sv}</Text>
+          <TouchableHighlight
+            onPress={() => Actions.stationScreen(
+              { station: nextStation, title: prevStation.name.sv, nodes: this.props.nodes })}
+          >
+            <Icon name={'arrow-right'} size={60} color={'black'} />
+          </TouchableHighlight>
+        </View>
         <View style={styles.mainSection}>
           {imageView}
         </View>
