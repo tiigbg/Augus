@@ -32,8 +32,9 @@ export default React.createClass({
   },
   onEnd() {
     this.setState({ isPlaying: false });
-    if (this.refs.videoPlayer)
+    if (this.refs.videoPlayer) {
       this.refs.videoPlayer.seek(0);
+    }
     this.setState({ time: 0 });
   },
   onFullscreenOpen() {
