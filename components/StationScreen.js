@@ -30,7 +30,6 @@ export default React.createClass({
             function renderFullScreenImage() {
               return (
                 <PhotoView
-                  key={i}
                   source={{ uri: eachImage.url }}
                   minimumZoomScale={0.5}
                   maximumZoomScale={5}
@@ -52,8 +51,12 @@ export default React.createClass({
               );
             }
             return (
-              <Lightbox navigator={this.props.navigator} activeProps={{ style: styles.lightBox }}
-                renderContent={renderFullScreenImage} renderHeader={renderLightboxHeader}
+              <Lightbox
+                key={i}
+                navigator={this.props.navigator}
+                activeProps={{ style: styles.lightBox }}
+                renderContent={renderFullScreenImage}
+                renderHeader={renderLightboxHeader}
                 swipeToDismiss={false}
               >
                 <Image
@@ -82,8 +85,6 @@ export default React.createClass({
     if (!prevStation) prevStation = station;
     if (!nextStation) nextStation = station;
 
-    console.log('prevStation');
-    console.log(prevStation);
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.stationTitlePane}>
