@@ -89,9 +89,15 @@ export default StyleSheet.create({
     backgroundColor:"#e1057d",
     marginBottom: 4,
   },
+  stationTitlePane: {
+    justifyContent: 'space-between',
+    flex: 1,
+    flexDirection: 'row',
+    marginBottom: 20,
+  },
   station_name: {
     flex: 1,
-    fontSize: 28,
+    fontSize: 32,
     marginTop: 0,
     marginBottom: 14,
     textAlign: 'center',
@@ -114,12 +120,6 @@ export default StyleSheet.create({
   rightPane: {
     justifyContent: 'space-between',
     flex: 1,
-  },
-  stationTitlePane: {
-    justifyContent: 'space-between',
-    flex: 1,
-    flexDirection: 'row',
-    marginBottom: 20,
   },
   adventureTitle: {
     flex: 1,

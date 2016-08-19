@@ -6,6 +6,7 @@ import Lightbox from 'react-native-lightbox';
 import PhotoView from 'react-native-photo-view';
 import Dimensions from 'Dimensions';
 import styles from '../styles/styles';
+import { findColors } from '../util/station.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AudioPlayer from './AudioPlayer';
@@ -74,6 +75,7 @@ export default React.createClass({
     }
     const station = this.props.station;
     const nodes = this.props.nodes;
+    const backgroundColor = findColors(station, this.props.nodes).dark;
     function findPrevious(node) {
       return node && node.parent === station.parent && node.id === station.id - 1;
     }
@@ -87,19 +89,21 @@ export default React.createClass({
 
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        <View style={styles.stationTitlePane}>
+        <View style={[styles.stationTitlePane, { backgroundColor }]}>
           <TouchableHighlight
             onPress={() => Actions.stationScreen(
               { station: prevStation, title: prevStation.name.sv, nodes: this.props.nodes })}
           >
-            <Icon name={'arrow-left'} size={60} color={'black'} />
+            <Icon name={'arrow-left'} size={60} color={'white'} style={{ textAlign: 'center' }} />
           </TouchableHighlight>
-          <Text style={styles.station_name}>{this.props.station.name.sv}</Text>
+          <Text style={[styles.station_name, { color: 'white' }]}>
+            {this.props.station.name.sv}
+          </Text>
           <TouchableHighlight
             onPress={() => Actions.stationScreen(
               { station: nextStation, title: prevStation.name.sv, nodes: this.props.nodes })}
           >
-            <Icon name={'arrow-right'} size={60} color={'black'} />
+            <Icon name={'arrow-right'} size={60} color={'white'} />
           </TouchableHighlight>
         </View>
         <View style={styles.mainSection}>
