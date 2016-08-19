@@ -3,10 +3,7 @@ import { ListView, TouchableHighlight, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from '../styles/styles';
-
-// FIXME this is temporarily hardcoded
-const darkColors = ['#694628', '#007da0', '#e1057d', '#007da0', '#e1057d'];
-const lightColors = ['#ebdcd2', '#d5e9f3', '#ffdce6', '#d5e9f3', '#ffdce6'];
+import { findColors } from '../util/station.js';
 
 const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
 const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID];
@@ -76,10 +73,7 @@ const StationList = React.createClass({
         { station, title: station.name.sv, nodes: this.props.nodes }
       );
     }
-    let backgroundColor = lightColors[0];
-    if (!!this.props.nodes[station.parent] && this.props.nodes[station.parent].hasOwnProperty('colors')) {
-      backgroundColor = this.props.nodes[station.parent].colors.light;
-    }
+    const backgroundColor = findColors(station, this.props.nodes).light;
     return (
       <View>
         <TouchableHighlight
@@ -103,10 +97,7 @@ const StationList = React.createClass({
     console.log('stationList renderSectionHeader '+sectionID);
     const section = this.props.nodes[sectionID];
     console.log(section.name.sv);
-    let backgroundColor = lightColors[0];
-    if (section.hasOwnProperty('colors')) {
-      backgroundColor = section.colors.dark;
-    }
+    const backgroundColor = findColors(section, this.props.nodes).dark;
     return (
       // <TouchableHighlight onPress={() => Actions.stationList({ sectionID })}>
       //   <View style={styles.listContainer}>
