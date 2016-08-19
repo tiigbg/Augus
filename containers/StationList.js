@@ -17,7 +17,7 @@ let myDataSource = new ListView.DataSource({
   sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
 });
 
-let derp = false;
+let renderSectionHeaders = false;
 
 const StationList = React.createClass({
   getInitialState() {
@@ -55,15 +55,15 @@ const StationList = React.createClass({
     console.log('StationList getInitialState sectionIDs:');
     console.log(sectionIDs.length);
     console.log(sectionIDs);
-    derp = false;
+    renderSectionHeaders = false;
     if (sectionIDs.length > 1) {
-      derp = true;
+      renderSectionHeaders = true;
     }
-    console.log(derp);
+    console.log(renderSectionHeaders);
     myDataSource = myDataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
     return {
       myDataSource,
-      renderSectionHeaders: derp,
+      renderSectionHeaders,
     };
   },
   renderRow(rowData, sectionID, rowID) {
@@ -76,12 +76,16 @@ const StationList = React.createClass({
         { station, title: station.name.sv, nodes: this.props.nodes }
       );
     }
+    let backgroundColor = lightColors[0];
+    if (!!this.props.nodes[station.parent] && this.props.nodes[station.parent].hasOwnProperty('colors')) {
+      backgroundColor = this.props.nodes[station.parent].colors.light;
+    }
     return (
       <View>
         <TouchableHighlight
           onPress={openFunction}
         >
-          <View style={[styles.listContainer, {backgroundColor: lightColors[0]}]}>
+          <View style={[styles.listContainer, { backgroundColor }]}>
             <View style={styles.rightContainer}>
               <Text style={[styles.listText, { color: '#000' }]}>
                 {station.name.sv}
@@ -99,6 +103,10 @@ const StationList = React.createClass({
     console.log('stationList renderSectionHeader '+sectionID);
     const section = this.props.nodes[sectionID];
     console.log(section.name.sv);
+    let backgroundColor = lightColors[0];
+    if (section.hasOwnProperty('colors')) {
+      backgroundColor = section.colors.dark;
+    }
     return (
       // <TouchableHighlight onPress={() => Actions.stationList({ sectionID })}>
       //   <View style={styles.listContainer}>
@@ -110,7 +118,7 @@ const StationList = React.createClass({
       //   </View>
       // </TouchableHighlight>
       <View>
-        <View style={[styles.listContainer, { backgroundColor: darkColors[0] }]}>
+        <View style={[styles.listContainer, { backgroundColor }]}>
           <View style={styles.rightContainer}>
             <Text
               style={[styles.listText, { fontWeight: 'bold',color: '#fff' }]}
