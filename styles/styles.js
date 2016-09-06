@@ -9,7 +9,7 @@ export default StyleSheet.create({
   },
   listMargin: {
     marginTop: 70,
-    marginBottom: 50,
+    marginBottom: 0,
   },
   container: {
     flex: 1,
