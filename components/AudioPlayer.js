@@ -35,7 +35,9 @@ export default React.createClass({
   },
   componentWillUnmount: function componentWillUnmount() {
     clearInterval(this.interval);
-    this.state.sound.stop();
+    if (!!this.state.sound) {
+      this.state.sound.stop();
+    }
   },
   handlePress() {
     this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }));
