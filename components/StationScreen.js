@@ -82,29 +82,36 @@ export default React.createClass({
     function findNext(node) {
       return node && node.parent === station.parent && node.id === station.id + 1;
     }
-    let prevStation = nodes.find(findPrevious);
-    let nextStation = nodes.find(findNext);
-    if (!prevStation) prevStation = station;
-    if (!nextStation) nextStation = station;
-
+    const prevStation = nodes.find(findPrevious);
+    const nextStation = nodes.find(findNext);
+    let prevButton = (<View />);
+    let nextButton = (<View />);
+    if (!!prevStation) {
+      prevButton = (
+        <TouchableHighlight
+          onPress={() => Actions.stationScreen(
+            { station: prevStation, title: prevStation.name.sv, nodes: this.props.nodes })}
+        >
+          <Icon name={'arrow-left'} size={60} color={'white'} style={{ textAlign: 'center' }} />
+        </TouchableHighlight>);
+    }
+    if (!!nextStation) {
+      nextButton = (
+        <TouchableHighlight
+          onPress={() => Actions.stationScreen(
+            { station: nextStation, title: nextStation.name.sv, nodes: this.props.nodes })}
+        >
+          <Icon name={'arrow-right'} size={60} color={'white'} />
+        </TouchableHighlight>);
+    }
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={[styles.stationTitlePane, { backgroundColor }]}>
-          <TouchableHighlight
-            onPress={() => Actions.stationScreen(
-              { station: prevStation, title: prevStation.name.sv, nodes: this.props.nodes })}
-          >
-            <Icon name={'arrow-left'} size={60} color={'white'} style={{ textAlign: 'center' }} />
-          </TouchableHighlight>
+          {prevButton}
           <Text style={[styles.station_name, { color: 'white' }]}>
             {this.props.station.name.sv}
           </Text>
-          <TouchableHighlight
-            onPress={() => Actions.stationScreen(
-              { station: nextStation, title: prevStation.name.sv, nodes: this.props.nodes })}
-          >
-            <Icon name={'arrow-right'} size={60} color={'white'} />
-          </TouchableHighlight>
+          {nextButton}
         </View>
         <View style={styles.mainSection}>
           {imageView}
