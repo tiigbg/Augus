@@ -116,7 +116,7 @@ export default React.createClass({
             style={{ width: 50, height: 50, marginRight: 10 }}
           />
           <View style={{flex:1,flexDirection:'column', }}>
-            <AudioPlayer file="urbanum1.mp3"/>
+            <AudioPlayer file={this.props.station.audio.sv} />
           </View>
         </View>
         <View style={styles.separator} />
@@ -126,7 +126,7 @@ export default React.createClass({
             style={{ width: 50, height: 50, marginRight: 10 }}
           />
           <View style={{flex:1,flexDirection:'column', }}>
-            <VideoPlayer file="bird" />
+            <VideoPlayer file={this.props.station.signlanguage.sv} />
           </View>
         </View>
         <View style={styles.separator} />
