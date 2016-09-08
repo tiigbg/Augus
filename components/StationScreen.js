@@ -104,6 +104,40 @@ export default React.createClass({
           <Icon name={'arrow-right'} size={60} color={'white'} />
         </TouchableHighlight>);
     }
+    let audioPlayerView = (<View />);
+    if (!!this.props.station.audio.sv && this.props.station.audio.sv != '-') {
+      audioPlayerView = (
+        <View>
+          <View style={styles.separator} />
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+            <Image
+              source={icon_audio_sv}
+              style={{ width: 50, height: 50, marginRight: 10 }}
+            />
+            <View style={{ flex: 1, flexDirection: 'column' }}>
+              <AudioPlayer file={this.props.station.audio.sv} />
+            </View>
+          </View>
+        </View>
+      );
+    }
+    let signlanguageView = (<View />);
+    if (!!this.props.station.signlanguage.sv && this.props.station.signlanguage.sv != '-') {
+      signlanguageView = (
+        <View>
+          <View style={styles.separator} />
+          <View style={{flex:1, flexDirection: 'row', alignItems: 'flex-start',}}>
+            <Image
+              source={icon_signlanguage_sv}
+              style={{ width: 50, height: 50, marginRight: 10 }}
+            />
+            <View style={{flex:1,flexDirection:'column', }}>
+              <VideoPlayer file={this.props.station.signlanguage.sv} />
+            </View>
+          </View>
+        </View>
+      );
+    }
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={[styles.stationTitlePane, { backgroundColor }]}>
@@ -116,26 +150,8 @@ export default React.createClass({
         <View style={styles.mainSection}>
           {imageView}
         </View>
-        <View style={styles.separator} />
-        <View style={{flex:1, flexDirection: 'row', alignItems: 'center',}}>
-          <Image
-            source={icon_audio_sv}
-            style={{ width: 50, height: 50, marginRight: 10 }}
-          />
-          <View style={{flex:1,flexDirection:'column', }}>
-            <AudioPlayer file={this.props.station.audio.sv} />
-          </View>
-        </View>
-        <View style={styles.separator} />
-        <View style={{flex:1, flexDirection: 'row', alignItems: 'flex-start',}}>
-          <Image
-            source={icon_signlanguage_sv}
-            style={{ width: 50, height: 50, marginRight: 10 }}
-          />
-          <View style={{flex:1,flexDirection:'column', }}>
-            <VideoPlayer file={this.props.station.signlanguage.sv} />
-          </View>
-        </View>
+        {audioPlayerView}
+        {signlanguageView}
         <View style={styles.separator} />
         <Image
           source={icon_text_sv}
