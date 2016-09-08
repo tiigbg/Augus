@@ -58,7 +58,7 @@ const ExhibitionList = React.createClass({
     return (
       <View style={styles.container}>
         <Text>
-          Loading exhibitions...
+          Laddar ner utställningar...
         </Text>
       </View>
     );
