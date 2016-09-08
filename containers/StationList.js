@@ -67,19 +67,20 @@ const StationList = React.createClass({
     console.log('stationList renderRow '+sectionID+':'+rowID);
     console.log(rowData);
     const station = this.props.nodes[rowID];
-    let openFunction = () => Actions.stationList({ node: station, title: station.name.sv});
+    let openFunction = () => Actions.stationList({ node: station, title: station.name.sv });
     if (station.type === 'leaf') {
       openFunction = () => Actions.stationScreen(
         { station, title: station.name.sv, nodes: this.props.nodes }
       );
     }
     const backgroundColor = findColors(station, this.props.nodes).light;
+    const borderColor = findColors(station, this.props.nodes).dark;
     return (
       <View>
         <TouchableHighlight
           onPress={openFunction}
         >
-          <View style={[styles.listContainer, { backgroundColor }]}>
+          <View style={[styles.listContainer, { backgroundColor, borderColor, borderWidth: 3 }]}>
             <View style={styles.rightContainer}>
               <Text style={[styles.listText, { color: '#000' }]}>
                 {station.name.sv}
