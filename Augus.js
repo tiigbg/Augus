@@ -39,7 +39,7 @@ export default class Augus extends React.Component {
   }
   render() {
     // FIXME remove this after the usertest
-    console.disableYellowBox = true;
+    // console.disableYellowBox = true;
     return (
       <Provider store={this.state.store}>
         <RouterWithRedux scenes={scenes} />
