@@ -20,6 +20,8 @@ export default StyleSheet.create({
   },
   rightContainer: {
     flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
     // backgroundColor: '#333333',
   },
   listCategoryContainer: {
@@ -39,12 +41,13 @@ export default StyleSheet.create({
     marginRight: 8,
     marginLeft: 8,
     padding: 8,
+    height: 100,
   },
   listText: {
     flex: 1,
     flexDirection: 'row',
     fontSize: 28,
-    textAlign: 'center',
+    textAlign: 'left',
     justifyContent: 'center',
     color: '#fff',
   },
@@ -165,6 +168,11 @@ export default StyleSheet.create({
     marginTop: -8,
     marginRight: -8,
     marginLeft: -8,
+  },
+  stationSymbol: {
+    height: 40,
+    width: 40,
+    marginRight: 10,
   },
   mainSection: {
     flexDirection: 'row',

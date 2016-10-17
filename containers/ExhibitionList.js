@@ -109,23 +109,23 @@ const ExhibitionList = React.createClass({
             style={{ margin: 10 }}
           >
             <Text>
-              Normal
+              Version 1
             </Text>
           </TouchableHighlight>
           <TouchableHighlight
-            onPress={() => { REQUEST_URL = 'http://www.tiigbg.se/augus/tiny.json'; this.fetchData(); }}
+            onPress={() => { REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2-numbers.json'; this.fetchData(); }}
             style={{ margin: 10 }}
           >
             <Text>
-              Simple
+              Version 2
             </Text>
           </TouchableHighlight>
           <TouchableHighlight
-            onPress={() => { REQUEST_URL = 'http://www.tiigbg.se/augus/no_signlanguage.json'; this.fetchData(); }}
+            onPress={() => { REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2-symbols.json'; this.fetchData(); }}
             style={{ margin: 10 }}
           >
             <Text>
-              Ingen teckenspråk
+              Version 3
             </Text>
           </TouchableHighlight>
         </View>

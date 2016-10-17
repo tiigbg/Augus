@@ -1,9 +1,9 @@
 import React from 'react';
-import { ListView, TouchableHighlight, Text, View } from 'react-native';
+import { Image, ListView, TouchableHighlight, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from '../styles/styles';
-import { findColors } from '../util/station.js';
+import { findColors, findSymbol } from '../util/station.js';
 
 const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
 const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID];
@@ -73,6 +73,15 @@ const StationList = React.createClass({
         { station, title: station.name.sv, nodes: this.props.nodes }
       );
     }
+    const symbolUrl = findSymbol(station, this.props.nodes);
+    let symbol = (<View />);
+    if (symbolUrl !== '') {
+      symbol = (
+        <Image
+          source={{ uri: symbolUrl }}
+          style={styles.stationSymbol}
+        />);
+    }
     const backgroundColor = findColors(station, this.props.nodes).light;
     const borderColor = findColors(station, this.props.nodes).dark;
     return (
@@ -82,6 +91,7 @@ const StationList = React.createClass({
         >
           <View style={[styles.listContainer, { backgroundColor, borderColor, borderWidth: 3 }]}>
             <View style={styles.rightContainer}>
+              {symbol}
               <Text style={[styles.listText, { color: '#000' }]}>
                 {station.name.sv}
               </Text>
