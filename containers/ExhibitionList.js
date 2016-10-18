@@ -83,12 +83,14 @@ const ExhibitionList = React.createClass({
         <TouchableHighlight
           onPress={() => Actions.stationList({ node: exhibition, title: exhibition.name.sv })}
         >
+          <View>
+          <Image
+          source={{ uri: exhibition.image }}
+          style={styles.exhibitionImage}
+          />
           <View style={styles.listContainer}>
-            <Image
-              source={{ uri: exhibition.image }}
-              style={styles.exhibitionImage}
-            />
             <Text style={styles.listText}>{exhibition.name.sv}</Text>
+          </View>
           </View>
         </TouchableHighlight>
       </View>
