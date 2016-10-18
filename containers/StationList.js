@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from '../styles/styles';
 import { findColors, findSymbol } from '../util/station.js';
+import NavBar from '../components/NavBar';
 
 const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
 const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID];
@@ -35,7 +36,6 @@ const StationList = React.createClass({
         dataBlob[`${id}`] = id;
         // rowIDs[`${id}`] = [];
         rowIDs.push([]);
-        console.log('Adding rowID '+id);
         // add all stations for this section
         for (const subId in nodes) {
           const subNode = nodes[subId];
@@ -46,12 +46,6 @@ const StationList = React.createClass({
         }
       }
     }
-    console.log('StationList getInitialState rowIDs:');
-    console.log(rowIDs.length);
-    console.log(rowIDs);
-    console.log('StationList getInitialState sectionIDs:');
-    console.log(sectionIDs.length);
-    console.log(sectionIDs);
     renderSectionHeaders = false;
     if (sectionIDs.length > 1) {
       renderSectionHeaders = true;
@@ -171,14 +165,23 @@ const StationList = React.createClass({
     //     <Text>loading</Text>
     //     );
     // }
+    let navbar = (
+      <NavBar
+        title={this.props.title}
+        node={this.props.node}
+        nodes={this.props.nodes}
+      />);
     return (
-      <ListView
-        style={styles.listMargin}
-        dataSource={myDataSource}
-        renderRow={this.renderRow}
-        renderSectionHeader={this.renderSectionHeader}
-        enableEmptySections
-      />
+      <View style={styles.screenContainer}>
+        <View>{navbar}</View>
+        <ListView
+          style={styles.listMargin}
+          dataSource={myDataSource}
+          renderRow={this.renderRow}
+          renderSectionHeader={this.renderSectionHeader}
+          enableEmptySections
+        />
+      </View>
     );
   },
 });

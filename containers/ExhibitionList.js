@@ -2,13 +2,14 @@ import React from 'react';
 import {Image, ListView, TouchableHighlight, Text, View} from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import NavBar from '../components/NavBar';
 import styles from '../styles/styles';
 import * as AT from '../constants/ActionTypes';
 // import { StationList } from 'StationList';
 
 //const REQUEST_URL = 'https://gist.githubusercontent.com/Jickelsen/13c93e3797ee390cb772/raw/2def314de7cd6c3a44c31095d7298d46e6cdf061/adventures.json';
 // const REQUEST_URL = 'https://gist.githubusercontent.com/nielsswinkels/cd70fffbde91a72df3a61defedc231d3/raw/d97b662e9b47063a8ba8d614e1f6776643db30eb/goteborgsstadsmuseum.json';
-let REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2.json';
+let REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2-symbols.json';
 // const REQUEST_URL = 'http://www.tiigbg.se/augus/tiny.json';
 
 const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
@@ -133,10 +134,23 @@ const ExhibitionList = React.createClass({
     );
   },
   render() {
+    let navbar = (<NavBar title={this.props.title} noBackButton />);
     if (!this.props.loaded) {
-      return this.renderLoadingView();
+      let loadingView = this.renderLoadingView();
+      return (
+        <View style={styles.screenContainer}>
+          <View>{navbar}</View>
+          {loadingView}
+        </View>
+      );
     }
-    return this.renderListView();
+    let listView = this.renderListView();
+    return (
+      <View style={styles.screenContainer}>
+        <View>{navbar}</View>
+        {listView}
+      </View>
+    );
   },
 });
 

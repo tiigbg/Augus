@@ -22,14 +22,14 @@ const scenes = Actions.create(
   // <Scene key="map" component={Map} title="Nearby Stories" initial />
   // </Scene>
   // </Scene>
-  <Scene key="modal" component={Modal} >
+  // <Scene key="experiment" component={Experiment} title="Experiment"  />
+  // <Scene key="modal" component={Modal} >
     <Scene key="root">
-      <Scene key="experiment" component={Experiment} title="Experiment"  />
-      <Scene key="exhibitonList" component={ExhibitionList} title="Utställningar" initial />
-      <Scene key="stationList" component={StationList} title="Station List" />
-      <Scene key="stationScreen" component={StationScreen} title="StationScreen" />
+      <Scene key="exhibitonList" component={ExhibitionList} hideNavBar  title="Utställningar" initial />
+      <Scene key="stationList" component={StationList} hideNavBar  title="Station List" />
+      <Scene key="stationScreen" component={StationScreen} hideNavBar  title="StationScreen" />
     </Scene>
-  </Scene>
+  // </Scene>
 );
 
 export default class Augus extends React.Component {

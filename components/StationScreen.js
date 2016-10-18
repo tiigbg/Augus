@@ -9,6 +9,7 @@ import styles from '../styles/styles';
 import { findColors } from '../util/station.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import NavBar from './NavBar';
 import AudioPlayer from './AudioPlayer';
 import VideoPlayer from './VideoPlayer';
 
@@ -21,7 +22,8 @@ export default React.createClass({
     console.log('StationScreen render props:');
     console.log(this.props);
     let imageView = (<View />);
-    if (!!this.props.station.images && this.props.station.images.length > 0) {
+    if (this.props.station.hasOwnProperty('images') && this.props.station.images.length > 0) {
+      console.log('This node has images so I am generating imageView');
       imageView = (
         <ScrollView horizontal
           style={{ flex: 1, flexDirection: 'row', width: Dimensions.get('window').width }}
@@ -138,27 +140,30 @@ export default React.createClass({
         </View>
       );
     }
+    let navbar = (<NavBar
+      title={this.props.title}
+      previous={prevStation}
+      next={nextStation}
+      node={this.props.station}
+      nodes={this.props.nodes}
+    />);
     return (
-      <ScrollView contentContainerStyle={styles.contentContainer}>
-        <View style={[styles.stationTitlePane, { backgroundColor }]}>
-          {prevButton}
-          <Text style={[styles.station_name, { color: 'white' }]}>
-            {this.props.station.name.sv}
-          </Text>
-          {nextButton}
-        </View>
-        <View style={styles.mainSection}>
-          {imageView}
-        </View>
-        {audioPlayerView}
-        {signlanguageView}
-        <View style={styles.separator} />
-        <Image
-          source={icon_text_sv}
-          style={{ width: 50, height: 50, marginRight: 10 }}
-        />
-        <Text style={styles.station_text}>{this.props.station.text.sv}</Text>
-      </ScrollView>
+      <View style={styles.screenContainer}>
+        <View>{navbar}</View>
+        <ScrollView contentContainerStyle={styles.contentContainer}>
+          <View style={styles.mainSection}>
+            {imageView}
+          </View>
+          {audioPlayerView}
+          {signlanguageView}
+          <View style={styles.separator} />
+          <Text style={styles.station_text}>{this.props.station.text.sv}</Text>
+        </ScrollView>
+      </View>
+      // <Image
+      //   source={icon_text_sv}
+      //   style={{ width: 50, height: 50, marginRight: 10 }}
+      // />
     );
   },
 });

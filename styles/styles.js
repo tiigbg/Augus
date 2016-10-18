@@ -7,8 +7,13 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  screenContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
   listMargin: {
-    marginTop: 70,
+    marginTop: 5,
     marginBottom: 0,
   },
   container: {
@@ -96,7 +101,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     flex: 1,
     flexDirection: 'row',
-    marginBottom: 20,
+    marginBottom: 5,
   },
   station_name: {
     flex: 1,
@@ -117,7 +122,7 @@ export default StyleSheet.create({
   },
   contentContainer: {
     padding: 10,
-    paddingTop: 64,
+    paddingTop: 5,
     paddingBottom: 50,
   },
   rightPane: {
@@ -173,6 +178,7 @@ export default StyleSheet.create({
     height: 40,
     width: 40,
     marginRight: 10,
+
   },
   mainSection: {
     flexDirection: 'row',
