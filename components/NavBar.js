@@ -19,8 +19,8 @@ export default React.createClass({
     if (!this.props.noBackButton) {
       backButton = (
         <TouchableHighlight onPress={() => Actions.pop()}>
-          <Text style={[styles.station_name, { color: 'white' }]}>
-            <Icon name={'chevron-left'} size={50} color={'white'} style={{ textAlign: 'center' }} />
+          <Text style={[styles.station_name, { color: 'white', margin: 5 }]}>
+            <Icon name={'chevron-left'} size={50} color={'white'} style={{ textAlign: 'center' }} /> 
           </Text>
         </TouchableHighlight>);
     }
@@ -35,7 +35,7 @@ export default React.createClass({
               nodes: this.props.nodes,
               type: ActionConst.REFRESH })}
         >
-          <Icon name={'arrow-left'} size={50} color={'white'} style={{ textAlign: 'center' }} />
+          <Icon name={'arrow-left'} size={50} color={'white'} style={{ textAlign: 'center', margin:5 }} />
         </TouchableHighlight>);
     }
     if (!!this.props.next) {
@@ -47,7 +47,7 @@ export default React.createClass({
               nodes: this.props.nodes,
               type: ActionConst.REFRESH })}
         >
-          <Icon name={'arrow-right'} size={50} color={'white'} style={{ textAlign: 'center' }} />
+          <Icon name={'arrow-right'} size={50} color={'white'} style={{ textAlign: 'center', margin: 5 }} />
         </TouchableHighlight>);
     }
     return (

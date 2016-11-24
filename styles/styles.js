@@ -106,13 +106,15 @@ export default StyleSheet.create({
   station_name: {
     flex: 1,
     fontSize: 32,
-    marginTop: 0,
+    margin: 0,
+    marginTop: 10,
     marginBottom: 14,
     textAlign: 'center',
     fontWeight: '500',
   },
   station_text: {
     fontSize: 22,
+    color: '#000',
     marginTop: 0,
     marginBottom: 14,
   },
@@ -138,6 +140,10 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
     height: StyleSheet.hairlineWidth,
     marginVertical: 10,
+  },
+  imageDescription: {
+    fontSize: 22,
+    color: '#000',
   },
   detailsImage: {
     width: 134,
