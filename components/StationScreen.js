@@ -30,25 +30,29 @@ export default React.createClass({
         >
         {
           this.props.station.images.map((eachImage, i) => {
+            const imageboxwidth = Dimensions.get('window').width/3*2;
             function renderFullScreenImage() {
               return (
-                <PhotoView
-                  source={{ uri: eachImage.url }}
-                  minimumZoomScale={0.5}
-                  maximumZoomScale={5}
-                  androidScaleType="center"
-                  style={{
-                    width: Dimensions.get('window').width,
-                    height: Dimensions.get('window').height,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                />
+                <View>
+                  <PhotoView
+                    source={{ uri: eachImage.url }}
+                    minimumZoomScale={0.5}
+                    maximumZoomScale={5}
+                    androidScaleType="center"
+                    style={{
+                      width: Dimensions.get('window').width,
+                      height: Dimensions.get('window').height,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  />
+                  <Text style={{ color: '#fff', marginTop: -100, fontSize: 28 }}>{eachImage.text.sv}</Text>
+                </View>
               );
             }
             function renderLightboxHeader(close) {
               return (
-                <TouchableOpacity onPress={close} style={styles.closeButtonContainer}>
+                <TouchableOpacity onPress={close} style={styles.closeButtonContainer} accessibilityLabel={'Close'}>
                   <Icon name={'times'} style={styles.closeButton} />
                 </TouchableOpacity>
               );
@@ -62,10 +66,13 @@ export default React.createClass({
                 renderHeader={renderLightboxHeader}
                 swipeToDismiss={false}
               >
-                <Image
-                  source={{ uri: eachImage.url }}
-                  style={styles.detailsImage}
-                />
+                <View style={{ width: imageboxwidth, justifyContent: 'center', alignItems: 'center' }}>
+                  <Image
+                    source={{ uri: eachImage.url }}
+                    style={styles.detailsImage}
+                  />
+                  <Text style={styles.imageDescription} >{eachImage.text.sv}</Text>
+                </View>
               </Lightbox>
             );
           })
@@ -93,6 +100,7 @@ export default React.createClass({
         <TouchableHighlight
           onPress={() => Actions.stationScreen(
             { station: prevStation, title: prevStation.name.sv, nodes: this.props.nodes })}
+          accessibilityLabel={'Previous'}
         >
           <Icon name={'arrow-left'} size={60} color={'white'} style={{ textAlign: 'center' }} />
         </TouchableHighlight>);
@@ -102,6 +110,7 @@ export default React.createClass({
         <TouchableHighlight
           onPress={() => Actions.stationScreen(
             { station: nextStation, title: nextStation.name.sv, nodes: this.props.nodes })}
+          accessibilityLabel={'Next'}
         >
           <Icon name={'arrow-right'} size={60} color={'white'} />
         </TouchableHighlight>);
