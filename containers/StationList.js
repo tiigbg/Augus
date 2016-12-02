@@ -1,10 +1,16 @@
 import React from 'react';
-import { Image, ListView, TouchableHighlight, Text, View } from 'react-native';
+import { ScrollView, Image, ListView, TouchableHighlight, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from '../styles/styles';
 import { findColors, findSymbol } from '../util/station.js';
 import NavBar from '../components/NavBar';
+import AudioPlayer from '../components/AudioPlayer';
+import VideoPlayer from '../components/VideoPlayer';
+
+let icon_audio_sv = require('../assets/img/upplast_text.png');
+let icon_signlanguage_sv = require('../assets/img/teckensprakstolkning.png');
+let icon_text_sv = require('../assets/img/textning.png');
 
 const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
 const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID];
@@ -171,9 +177,74 @@ const StationList = React.createClass({
         node={this.props.node}
         nodes={this.props.nodes}
       />);
+    let imageView = (
+      <View></View>
+    );
+    let audioPlayerView = (
+      <View></View>
+    );
+    let signlanguageView = (
+      <View></View>
+    );
+    let textView = (
+      <Text></Text>
+    );
+    if ('audio' in this.props.node && !!this.props.node.audio.sv && this.props.node.audio.sv != '-') {
+      audioPlayerView = (
+        <View>
+          <View style={styles.separator} />
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+            <Image
+              source={icon_audio_sv}
+              style={{ width: 50, height: 50, marginRight: 10 }}
+            />
+            <View style={{ flex: 1, flexDirection: 'column' }}>
+              <AudioPlayer file={this.props.node.audio.sv} />
+            </View>
+          </View>
+        </View>
+      );
+    }
+    if ('signlanguage' in this.props.node && !!this.props.node.signlanguage.sv && this.props.node.signlanguage.sv != '-') {
+      signlanguageView = (
+        <View>
+          <View style={styles.separator} />
+          <View style={{flex:1, flexDirection: 'row', alignItems: 'flex-start',}}>
+            <Image
+              source={icon_signlanguage_sv}
+              style={{ width: 50, height: 50, marginRight: 10 }}
+            />
+            <View style={{flex:1,flexDirection:'column', }}>
+              <VideoPlayer file={this.props.node.signlanguage.sv} />
+            </View>
+          </View>
+        </View>
+      );
+    }
+    if ('text' in this.props.node)
+    {
+      textView = (
+        <View>
+          <Text style={styles.station_text}>{this.props.node.text.sv}</Text>
+          <View style={styles.separator} />
+        </View>
+      );
+    }
+    let stationView = (
+      <View style={styles.contentContainer}>
+        <View style={styles.mainSection}>
+          {imageView}
+        </View>
+        {audioPlayerView}
+        {signlanguageView}
+        {textView}
+      </View>
+    );
     return (
       <View style={styles.screenContainer}>
         <View>{navbar}</View>
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        {stationView}
         <ListView
           style={styles.listMargin}
           dataSource={myDataSource}
@@ -181,6 +252,7 @@ const StationList = React.createClass({
           renderSectionHeader={this.renderSectionHeader}
           enableEmptySections
         />
+        </ScrollView>
       </View>
     );
   },

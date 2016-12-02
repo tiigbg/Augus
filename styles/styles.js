@@ -125,7 +125,7 @@ export default StyleSheet.create({
   contentContainer: {
     padding: 10,
     paddingTop: 5,
-    paddingBottom: 50,
+    //paddingBottom: 50,
   },
   rightPane: {
     justifyContent: 'space-between',
