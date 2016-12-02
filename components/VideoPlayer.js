@@ -81,7 +81,7 @@ export default React.createClass({
               />
             </TouchableHighlight>
             <View style={{ flex: 1, flexDirection: 'column' }}>
-              <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Text style={{ color: this.state.isFullScreen ? 'white' : 'black' }}>
                   {secondsToTime(Math.round(this.state.time))}
                 </Text>

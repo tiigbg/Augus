@@ -14,7 +14,7 @@ import AudioPlayer from './AudioPlayer';
 import VideoPlayer from './VideoPlayer';
 
 let icon_audio_sv = require('../assets/img/upplast_text.png');
-let icon_signlanguage_sv = require('../assets/img/teckensprakstolkning.png');
+let icon_signlanguage_sv = require('../assets/img/teckensprakstolkning_opaque.png');
 let icon_text_sv = require('../assets/img/textning.png');
 
 export default React.createClass({
@@ -118,13 +118,13 @@ export default React.createClass({
     let audioPlayerView = (<View />);
     if (!!this.props.station.audio.sv && this.props.station.audio.sv != '-') {
       audioPlayerView = (
+            // <Image
+            //   source={icon_audio_sv}
+            //   style={{ width: 50, height: 50, marginRight: 10 }}
+            // />
         <View>
           <View style={styles.separator} />
           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-            <Image
-              source={icon_audio_sv}
-              style={{ width: 50, height: 50, marginRight: 10 }}
-            />
             <View style={{ flex: 1, flexDirection: 'column' }}>
               <AudioPlayer file={this.props.station.audio.sv} />
             </View>
