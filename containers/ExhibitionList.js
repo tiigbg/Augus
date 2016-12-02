@@ -107,10 +107,10 @@ const ExhibitionList = React.createClass({
           renderSectionHeader={this.renderSectionHeader}
           enableEmptySections
         />
-        <View style={{ margin: 10, paddingTop: 100 }} >
+        <View style={{ margin: 10, paddingTop: -10 }} >
           <TouchableHighlight
-            onPress={() => { REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2.json'; this.fetchData(); }}
-            style={{ margin: 10 }}
+            onPress={() => { REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2-symbols2.json'; this.fetchData(); }}
+            style={{ margin: 5 }}
           >
             <Text>
               Version 1
@@ -118,7 +118,7 @@ const ExhibitionList = React.createClass({
           </TouchableHighlight>
           <TouchableHighlight
             onPress={() => { REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2-numbers.json'; this.fetchData(); }}
-            style={{ margin: 10 }}
+            style={{ margin: 5 }}
           >
             <Text>
               Version 2
@@ -126,7 +126,7 @@ const ExhibitionList = React.createClass({
           </TouchableHighlight>
           <TouchableHighlight
             onPress={() => { REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2-symbols.json'; this.fetchData(); }}
-            style={{ margin: 10 }}
+            style={{ margin: 5 }}
           >
             <Text>
               Version 3
