@@ -10,7 +10,7 @@ import * as AT from '../constants/ActionTypes';
 //const REQUEST_URL = 'https://gist.githubusercontent.com/Jickelsen/13c93e3797ee390cb772/raw/2def314de7cd6c3a44c31095d7298d46e6cdf061/adventures.json';
 // const REQUEST_URL = 'https://gist.githubusercontent.com/nielsswinkels/cd70fffbde91a72df3a61defedc231d3/raw/d97b662e9b47063a8ba8d614e1f6776643db30eb/goteborgsstadsmuseum.json';
 //let REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2-symbols2.json';
-let REQUEST_URL = 'http://192.168.1.122:8000/allexhibitions';
+let REQUEST_URL = 'http://192.168.1.122:8000/alldata';
 // const REQUEST_URL = 'http://www.tiigbg.se/augus/tiny.json';
 
 const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
@@ -32,7 +32,7 @@ const ExhibitionList = React.createClass({
     this.fetchData();
   },
   componentWillUpdate(nextProps, nextState) {
-    console.log('componentWillUpdate');
+    console.log('exhibitionlist componentWillUpdate');
     const nodes = nextProps.nodes;
     const dataBlob = {};
     const sectionIDs = [];
@@ -41,7 +41,9 @@ const ExhibitionList = React.createClass({
     let iExh = 0;
     for (const i in nodes) {
       const node = nodes[i];
-      if (node.isExhibition === true) {
+      console.log('reading node');
+      if (node.parent_id == null) {
+        console.log('found exhibition');
         console.log('exhibition');
         console.log(node);
         sectionIDs.push(`${iExh}`);
@@ -62,6 +64,14 @@ const ExhibitionList = React.createClass({
         <Text>
           Laddar ner utställningar...
         </Text>
+        <TouchableHighlight
+            onPress={() => { this.fetchData(); }}
+            style={{ margin: 5 }}
+          >
+            <Text>
+              Retry
+            </Text>
+          </TouchableHighlight>
       </View>
     );
   },
@@ -77,12 +87,26 @@ const ExhibitionList = React.createClass({
     console.log('sectionData');
     console.log(sectionData);
     const exhibition = this.props.nodes[sectionData];
+    let title = exhibition.id;
+    console.log('texts:');
+    console.log(this.props.texts);
+    for(i in this.props.texts)
+    {
+      const text = texts[i];
+      console.log('text');
+      console.log(text);
+      console.log(text.text);
+      if (text.parent_id == exhibition.id && text.type=='title' && text.language=='sv')
+      {
+        title = text.text
+      }
+    }
     console.log(exhibition);
     return (
       // <TouchableHighlight onPress={() => Actions.stationList(sectionID)}>
       <View>
         <TouchableHighlight
-          onPress={() => Actions.stationList({ node: exhibition, title: exhibition.name.sv })}
+          onPress={() => Actions.stationList({ node: exhibition, title })}
         >
           <View>
           <Image
@@ -90,7 +114,7 @@ const ExhibitionList = React.createClass({
           style={styles.exhibitionImage}
           />
           <View style={styles.listContainer}>
-            <Text style={styles.listText}>{exhibition.name.sv}</Text>
+            <Text style={styles.listText}>{title}</Text>
           </View>
           </View>
         </TouchableHighlight>
@@ -163,6 +187,7 @@ const mapStateToProps = (state) => {
     // sections: state.exhibitions.sections,
     // stations: state.exhibitions.stations,
     nodes: state.exhibitions.nodes,
+    texts: state.exhibitions.texts,
     loaded: state.exhibitions.loaded,
   };
 };

@@ -30,34 +30,43 @@ export default function Exhibitions(state = initialState, action) {
   switch (action.type) {
     case AT.MUSEUM_DATA_FETCH_SUCCEEDED:
       console.log("Exhibitions in the reducer are :");
-      console.log(action.payload.exhibitions);
+      console.log(action.payload);
 
       // convert and normalize JSON into state
 
-      // check that exhibitions exist?
-      if (!action.payload.exhibitions) {
+      // check that nodes exist?
+      if (!action.payload.nodes) {
         put({
           type: AT.MUSEUM_DATA_FETCH_FAILED,
           message: 'The loaded data was empty or unreadable.',
         });
       }
+      // Laravel data parser
+      nodes = JSON.parse(JSON.stringify(action.payload.nodes));
+      texts = JSON.parse(JSON.stringify(action.payload.texts));
+      images = JSON.parse(JSON.stringify(action.payload.images));
+      audio = JSON.parse(JSON.stringify(action.payload.audio));
+      video = JSON.parse(JSON.stringify(action.payload.video));
+      
+
+      // end laravel data parser
 
       // new version
-      nodes = [];
-      iNode = 0;
-      for (const exhibition of action.payload.exhibitions) {
-        nodes[iNode] = {
-          id: iNode,
-          isExhibition: true,
-          parent: null,
-        };
-        Object.assign(nodes[iNode], exhibition, { nodes: null });
-        iNode++;
-        const parent = iNode - 1;
-        for (const j of exhibition.nodes) {
-          parseNode(j, nodes[parent].id);
-        }
-      }
+      // nodes = [];
+      // iNode = 0;
+      // for (const exhibition of action.payload.exhibitions) {
+      //   nodes[iNode] = {
+      //     id: iNode,
+      //     isExhibition: true,
+      //     parent: null,
+      //   };
+      //   Object.assign(nodes[iNode], exhibition, { nodes: null });
+      //   iNode++;
+      //   const parent = iNode - 1;
+      //   for (const j of exhibition.nodes) {
+      //     parseNode(j, nodes[parent].id);
+      //   }
+      // }
 
       console.log('Parsed data into list of nodes:');
       console.log(nodes);
@@ -157,6 +166,10 @@ export default function Exhibitions(state = initialState, action) {
         // sections,
         // stations,
         nodes,
+        texts,
+        images,
+        audio,
+        video,
         loaded: true,
       };
     case AT.MUSEUM_DATA_FETCH_FAILED:
