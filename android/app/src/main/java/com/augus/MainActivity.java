@@ -44,7 +44,6 @@ public class MainActivity extends ReactActivity {
             new ReactVideoPackage(),
             new VectorIconsPackage(),
             new RNSoundPackage(),
-            new ReactVideoPackage(),
             new MapsPackage()
         );
     }
