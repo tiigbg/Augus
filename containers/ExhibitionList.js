@@ -87,13 +87,12 @@ const ExhibitionList = React.createClass({
     );
   },
   renderSectionHeader(sectionData, sectionID) {
-    console.log('renderSectionHeader');
-    console.log('sectionData');
-    console.log(sectionData);
+    // console.log('renderSectionHeader');
+    // console.log('sectionData');
+    // console.log(sectionData);
     const exhibition = this.props.nodes[sectionData];
     let title = findText(exhibition, this.props.texts, 'section', 'title', 'sv').text;
-    console.log('texts:');
-    console.log(this.props.texts);
+    
 
     // for(i in this.props.texts)
     // {
@@ -106,7 +105,7 @@ const ExhibitionList = React.createClass({
     //     title = text.text
     //   }
     // }
-    console.log(exhibition);
+    
     return (
       // <TouchableHighlight onPress={() => Actions.stationList(sectionID)}>
       <View>

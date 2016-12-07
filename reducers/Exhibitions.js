@@ -70,7 +70,7 @@ export default function Exhibitions(state = initialState, action) {
 
       console.log('Parsed data into list of nodes:');
       console.log(nodes);
-      console.log(nodes instanceof Array);
+      // console.log(nodes instanceof Array);
       //
       // // parse exhibitions
       // const exhibitions = {};
