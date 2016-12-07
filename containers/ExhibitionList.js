@@ -6,10 +6,6 @@ import { findText } from '../util/station.js';
 import NavBar from '../components/NavBar';
 import styles from '../styles/styles';
 import * as AT from '../constants/ActionTypes';
-
-
-var SQLite = require('react-native-sqlite-storage')
-
 // import { StationList } from 'StationList';
 
 //const REQUEST_URL = 'https://gist.githubusercontent.com/Jickelsen/13c93e3797ee390cb772/raw/2def314de7cd6c3a44c31095d7298d46e6cdf061/adventures.json';
