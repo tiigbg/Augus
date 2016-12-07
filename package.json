@@ -15,6 +15,7 @@
     "react-native-photo-view": "1.0.1",
     "react-native-router-flux": "^3.30.3",
     "react-native-sound": "^0.8.1",
+    "react-native-sqlite-storage": "^3.1.2",
     "react-native-tabs": "1.0.2",
     "react-native-vector-icons": "^2.0.3",
     "react-native-video": "git://github.com/brentvatne/react-native-video#master",

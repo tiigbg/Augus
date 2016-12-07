@@ -1,6 +1,7 @@
 package com.augus;
 
 import com.facebook.react.ReactActivity;
+import com.zmxv.RNSound.RNSoundPackage;
 import com.reactnative.photoview.PhotoViewPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -8,6 +9,7 @@ import com.zmxv.RNSound.RNSoundPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
+import org.pgsqlite.SQLitePluginPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,12 +42,12 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new RNSoundPackage(),
             new PhotoViewPackage(),
+            new MapsPackage(),
             new ReactVideoPackage(),
             new VectorIconsPackage(),
-            new RNSoundPackage(),
-            new ReactVideoPackage(),
-            new MapsPackage()
+            new SQLitePluginPackage()
         );
     }
 }
