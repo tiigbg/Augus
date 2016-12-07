@@ -9,7 +9,6 @@ import * as AT from '../constants/ActionTypes';
 
 
 var SQLite = require('react-native-sqlite-storage')
-SQLite.DEBUG(true); // FIXME remove in production
 
 // import { StationList } from 'StationList';
 
@@ -30,42 +29,6 @@ let myDataSource = new ListView.DataSource({
 });
 
 const ExhibitionList = React.createClass({
-  errorCB(err) {
-    console.log("SQL Error: ");
-    console.log(err);
-  },
-
-  successCB() {
-    console.log("SQL executed fine");
-  },
-  querySuccess(tx, results) {
-    console.log('query success with results:');
-    console.log(results);
-
-    const len = results.rows.length;
-    for (let i = 0; i < len; i++) {
-        let row = results.rows.item(i);
-        console.log(`row: ${row.version_id}`);
-    }
-  },
-  openCB() {
-    console.log("Database OPENED");
-  },
-  populateDatabase(db){
-    console.log('populateDatabase()');
-    db.transaction( (tx) =>{
-      tx.executeSql('DROP TABLE IF EXISTS Version', [], this.successCB, this.errorCB);
-      
-
-      tx.executeSql('CREATE TABLE IF NOT EXISTS Version( '
-            + 'version_id INTEGER PRIMARY KEY NOT NULL); ', [], this.successCB, this.errorCB);
-
-      tx.executeSql('INSERT INTO Version (version_id) VALUES (1); ', [], this.successCB, this.errorCB);
-
-      tx.executeSql('SELECT * FROM Version; ', [], this.querySuccess, this.errorCB);
-    });
-    console.log('Done with SQL');
-  },
   getInitialState() {
     return {
       loaded: false,
@@ -73,9 +36,6 @@ const ExhibitionList = React.createClass({
   },
   componentDidMount() {
     this.fetchData();
-
-    let db = SQLite.openDatabase({name: 'my.db', location: 'default'}, this.successCB, this.errorCB);
-    this.setState({'database': db});
   },
   componentWillUpdate(nextProps, nextState) {
     console.log('exhibitionlist componentWillUpdate');
@@ -119,7 +79,7 @@ const ExhibitionList = React.createClass({
                 Retry
               </Text>
           </TouchableHighlight>
-        </View>
+          </View>
       </View>
     );
   },
@@ -224,16 +184,6 @@ const ExhibitionList = React.createClass({
     return (
       <View style={styles.screenContainer}>
         <View>{navbar}</View>
-        <View>
-          <TouchableHighlight
-              onPress={() => { this.populateDatabase(this.state.database); }}
-              style={{ margin: 5 }}
-            >
-              <Text>
-                Database!
-              </Text>
-          </TouchableHighlight>
-        </View>
         <TouchableHighlight
           onPress={() => { this.fetchData(); }}
           style={{ margin: 5 }} >
