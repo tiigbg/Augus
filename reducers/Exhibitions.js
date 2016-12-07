@@ -10,21 +10,21 @@ const initialState = {
 let iNode = 0;
 let nodes = [];
 
-function parseNode(node, iParent) {
-  nodes[iNode] = {
-    id: iNode,
-    isExhibition: false,
-    parent: iParent,
-  };
-  Object.assign(nodes[iNode], node, { nodes: null });
-  iNode++;
-  if (node.type != 'leaf') {
-    const parent = iNode - 1;
-    for (const i of node.nodes) {
-      parseNode(i, nodes[parent].id);
-    }
-  }
-}
+// function parseNode(node, iParent) {
+//   nodes[iNode] = {
+//     id: iNode,
+//     isExhibition: false,
+//     parent: iParent,
+//   };
+//   Object.assign(nodes[iNode], node, { nodes: null });
+//   iNode++;
+//   if (node.type != 'leaf') {
+//     const parent = iNode - 1;
+//     for (const i of node.nodes) {
+//       parseNode(i, nodes[parent].id);
+//     }
+//   }
+// }
 
 export default function Exhibitions(state = initialState, action) {
   switch (action.type) {

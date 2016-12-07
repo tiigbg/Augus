@@ -20,3 +20,41 @@ export function findSymbol(node, nodes) {
   }
   return '';
 }
+
+export function findNode(id, nodes) {
+  for(i in nodes)
+  {
+    const node = nodes[i];
+    if (node.id == id)
+    {
+      return node;
+    }
+  }
+  return null;
+}
+
+export function findChildren(parent, nodes) {
+  children = [];
+  for(i in nodes)
+  {
+    const node = nodes[i];
+    if (node.parent_id == parent.id)
+    {
+      children.push(node);
+    }
+  }
+  return children;
+}
+
+export function findText(node, texts, parent_type='section', type='title', language='sv') {
+  for(i in texts)
+  {
+    const text = texts[i];
+    if (text.parent_id == node.id && text.type==type && text.language==language && text.parent_type==parent_type)
+    {
+      return text;
+    }
+  }
+  console.log('text not found, returning Untitled for parent_id='+node.id+' type='+type+' language='+language);
+  return {'text':'(Untitled)'}; // FIXME Should this throw an error instead?
+}
