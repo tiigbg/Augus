@@ -11,6 +11,8 @@ import Dimensions from 'Dimensions';
 import Lightbox from 'react-native-lightbox';
 import PhotoView from 'react-native-photo-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Platform } from 'react-native';
+import RNFetchBlob from 'react-native-fetch-blob'
 
 
 let icon_audio_sv = require('../assets/img/upplast_text.png');
@@ -70,9 +72,49 @@ const StationList = React.createClass({
     }
     console.log(renderSectionHeaders);
     myDataSource = myDataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
+
+    let hasAudio = false;
+    let audioFilename = '';
+    let audioFile = this.props.audio.find((item)=>{ return item.parent_id == this.props.node.id && item.language=='sv'; });
+    console.log(audioFile);
+    if (typeof audioFile !== "undefined") {
+      
+      console.log(hasAudio);
+      console.log('hasaudio');
+      // download audio file and save in state
+      RNFetchBlob
+      .config({
+        fileCache : true,
+        // by adding this option, the temp files will have a file extension
+        appendExt : 'mp3'
+      })
+      .fetch('GET', 'http://192.168.1.121:8000/audiofiles/'+audioFile.file, {
+        
+      })
+      .progress((received, total) => {
+        console.log('progress', received / total);
+      })
+      .then((res) => {
+        // the temp file path with file extension `png`
+        console.log('The file saved to ', res.path())
+        // Beware that when using a file path as Image source on Android,
+        // you must prepend "file://"" before the file path
+        // audioFilename = Platform.OS === 'android' ? 'file://' + res.path()  : '' + res.path();
+        audioFilename = res.path();
+        this.setState({ audioFilename, hasAudio: true });
+        console.log(this.state.audioFilename);
+      })
+      .catch((err) => {
+        console.log("error with fetching file:");
+        console.log(err);
+      });
+    }
+
     return {
       myDataSource,
       renderSectionHeaders,
+      hasAudio,
+      audioFilename,
     };
   },
   renderRow(rowData, sectionID, rowID) {
@@ -262,17 +304,14 @@ const StationList = React.createClass({
         </ScrollView>
       );
     }
-    if ('audio' in this.props.node && !!this.props.node.audio.sv && this.props.node.audio.sv != '-') {
+    
+    if(this.state.hasAudio) {
       audioPlayerView = (
-            // <Image
-            //   source={icon_audio_sv}
-            //   style={{ width: 50, height: 50, marginRight: 10 }}
-            // />
         <View>
           <View style={styles.separator} />
           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
             <View style={{ flex: 1, flexDirection: 'column' }}>
-              <AudioPlayer file={this.props.node.audio.sv} />
+              <AudioPlayer file={ this.state.audioFilename } />
             </View>
           </View>
         </View>
