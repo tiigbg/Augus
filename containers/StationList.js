@@ -217,7 +217,7 @@ const StationList = React.createClass({
               return (
                 <View>
                   <PhotoView
-                    source={{ uri: 'http://192.168.1.122:8000/images/'+eachImage.file }}
+                    source={{ uri: 'http://192.168.1.121:8000/images/'+eachImage.file }}
                     minimumZoomScale={0.5}
                     maximumZoomScale={5}
                     androidScaleType="center"
@@ -250,7 +250,7 @@ const StationList = React.createClass({
               >
                 <View style={{ width: imageboxwidth, justifyContent: 'center', alignItems: 'center' }}>
                   <Image
-                    source={{ uri: 'http://192.168.1.122:8000/images/'+eachImage.file }}
+                    source={{ uri: 'http://192.168.1.121:8000/images/'+eachImage.file }}
                     style={styles.detailsImage}
                   />
                   <Text style={styles.imageDescription} >{imageDescription}</Text>

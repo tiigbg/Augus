@@ -14,8 +14,8 @@ import RNFetchBlob from 'react-native-fetch-blob'
 //const REQUEST_URL = 'https://gist.githubusercontent.com/Jickelsen/13c93e3797ee390cb772/raw/2def314de7cd6c3a44c31095d7298d46e6cdf061/adventures.json';
 // const REQUEST_URL = 'https://gist.githubusercontent.com/nielsswinkels/cd70fffbde91a72df3a61defedc231d3/raw/d97b662e9b47063a8ba8d614e1f6776643db30eb/goteborgsstadsmuseum.json';
 //let REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2-symbols2.json';
-// let REQUEST_URL = 'http://192.168.1.122:8000/alldata';
-let REQUEST_URL = 'http://192.168.2.95:8000/alldata';
+let REQUEST_URL = 'http://192.168.1.121:8000/alldata';
+// let REQUEST_URL = 'http://192.168.2.95:8000/alldata';
 // const REQUEST_URL = 'http://www.tiigbg.se/augus/tiny.json';
 
 const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
