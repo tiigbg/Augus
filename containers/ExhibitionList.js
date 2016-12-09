@@ -7,6 +7,7 @@ import NavBar from '../components/NavBar';
 import styles from '../styles/styles';
 import * as AT from '../constants/ActionTypes';
 // import { StationList } from 'StationList';
+import Storage from 'react-native-storage';
 import { Platform, AsyncStorage } from 'react-native';
 import RNFetchBlob from 'react-native-fetch-blob'
 
@@ -26,6 +27,57 @@ let myDataSource = new ListView.DataSource({
   sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
 });
 
+global.storage = new Storage({
+    // maximum capacity, default 1000 
+    size: 1000,
+
+    // Use AsyncStorage for RN, or window.localStorage for web.
+    // If not set, data would be lost after reload.
+    storageBackend: AsyncStorage,
+
+    // expire time, default 1 day(1000 * 3600 * 24 milliseconds).
+    // can be null, which means never expire.
+    defaultExpires: 1000 * 3600 * 24,
+
+    // cache data in the memory. default is true.
+    enableCache: true,
+
+    // if data was not found in storage or expired,
+    // the corresponding sync method will be invoked and return 
+    // the latest data.
+    sync : {
+      // we'll talk about the details later.
+      user(params){
+      let { id, resolve, reject } = params;
+        fetch('user/', {
+            method: 'GET',
+            body: 'id=' + id
+        }).then(response => {
+            return response.json();
+        }).then(json => {
+          // console.log(json);
+          if(json && json.user){
+            storage.save({
+                key: 'user',
+                id,
+                rawData: json.user
+            });
+            // Call resolve() when succeed
+            resolve && resolve(json.user);
+          }
+          else{
+            // Call reject() when failed
+            reject && reject(new Error('data parse error'));
+          }
+        }).catch(err => {
+          console.warn(err);
+          reject && reject(err);
+        });
+      }
+    }
+})  
+
+
 const ExhibitionList = React.createClass({
   getInitialState() {
     return {
@@ -35,6 +87,48 @@ const ExhibitionList = React.createClass({
   },
   componentDidMount() {
     this.fetchData();
+
+    global.storage.save({
+      key: 'loginState',   // Note: Do not use underscore("_") in key!
+      rawData: { 
+          from: 'some other site',
+          userid: 'some userid',
+          token: 'some token'
+      },
+
+      // if not specified, the defaultExpires will be applied instead.
+      // if set to null, then it will never expire.
+      expires: 1000 * 3600
+    });
+
+    storage.load({
+      key: 'loginState',
+
+      // autoSync(default true) means if data not found or expired,
+      // then invoke the corresponding sync method
+      autoSync: true,
+
+      // syncInBackground(default true) means if data expired,
+      // return the outdated data first while invoke the sync method.
+      // It can be set to false to always return data provided by sync method when expired.(Of course it's slower)
+      syncInBackground: true
+    }).then(ret => {
+      // found data go to then()
+      console.log(ret.userid);
+    }).catch(err => {
+      // any exception including data not found 
+      // goes to catch()
+      console.warn(err.message);
+      switch (err.name) {
+          case 'NotFoundError':
+              // TODO;
+              break;
+          case 'ExpiredError':
+              // TODO
+              break;
+      }
+    })
+
   },
   componentWillUpdate(nextProps, nextState) {
     console.log('exhibitionlist componentWillUpdate');
