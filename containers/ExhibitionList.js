@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, ListView, TouchableHighlight, Text, View} from 'react-native';
+import { ScrollView, Image, ListView, TouchableHighlight, Text, View} from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { findText } from '../util/station.js';
@@ -186,7 +186,9 @@ const ExhibitionList = React.createClass({
               Reload
             </Text>
         </TouchableHighlight>
-        {listView}
+        <ScrollView contentContainerStyle={styles.contentContainer}>
+          {listView}
+        </ScrollView>
       </View>
     );
   },

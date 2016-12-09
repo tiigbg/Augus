@@ -317,15 +317,15 @@ const StationList = React.createClass({
     return (
       <View style={styles.screenContainer}>
         <View>{navbar}</View>
-      <ScrollView contentContainerStyle={styles.contentContainer}>
-        {stationView}
-        <ListView
-          style={styles.listMargin}
-          dataSource={myDataSource}
-          renderRow={this.renderRow}
-          renderSectionHeader={this.renderSectionHeader}
-          enableEmptySections
-        />
+        <ScrollView contentContainerStyle={styles.contentContainer}>
+          {stationView}
+          <ListView
+            style={styles.listMargin}
+            dataSource={myDataSource}
+            renderRow={this.renderRow}
+            renderSectionHeader={this.renderSectionHeader}
+            enableEmptySections
+          />
         </ScrollView>
       </View>
     );
