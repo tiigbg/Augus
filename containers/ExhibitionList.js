@@ -7,6 +7,8 @@ import NavBar from '../components/NavBar';
 import styles from '../styles/styles';
 import * as AT from '../constants/ActionTypes';
 // import { StationList } from 'StationList';
+import { Platform, AsyncStorage } from 'react-native';
+import RNFetchBlob from 'react-native-fetch-blob'
 
 //const REQUEST_URL = 'https://gist.githubusercontent.com/Jickelsen/13c93e3797ee390cb772/raw/2def314de7cd6c3a44c31095d7298d46e6cdf061/adventures.json';
 // const REQUEST_URL = 'https://gist.githubusercontent.com/nielsswinkels/cd70fffbde91a72df3a61defedc231d3/raw/d97b662e9b47063a8ba8d614e1f6776643db30eb/goteborgsstadsmuseum.json';
@@ -28,6 +30,7 @@ const ExhibitionList = React.createClass({
   getInitialState() {
     return {
       loaded: false,
+      fetchedImage: (<View><Text>Failed to load image</Text></View>),
     };
   },
   componentDidMount() {
@@ -59,6 +62,41 @@ const ExhibitionList = React.createClass({
   fetchData() {
     const { dispatch } = this.props;
     dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: { REQUEST_URL } });
+
+    RNFetchBlob
+      .config({
+        fileCache : true,
+        // by adding this option, the temp files will have a file extension
+        appendExt : 'jpg'
+      })
+      .fetch('GET', 'http://192.168.1.121:8000/images/1479110439.jpg', {
+        
+      })
+      .progress((received, total) => {
+        console.log('progress', received / total)
+      })
+      .then((res) => {
+        // the temp file path with file extension `png`
+        console.log('The file saved to ', res.path())
+        // Beware that when using a file path as Image source on Android,
+        // you must prepend "file://"" before the file path
+        fetchedImage = (
+          <View>
+            <Text>
+              Yes?
+            </Text>
+            <Image 
+              style={styles.detailsImage}
+              source={{ uri : Platform.OS === 'android' ? 'file://' + res.path()  : '' + res.path() }}
+            />
+          </View>);
+        this.setState({ fetchedImage });
+        console.log(this.state.fetchedImage);
+      })
+      .catch((err) => {
+        console.log("error with fetching file:");
+        console.log(err);
+      });
   },
   renderLoadingView() {
     return (
@@ -186,6 +224,7 @@ const ExhibitionList = React.createClass({
               Reload
             </Text>
         </TouchableHighlight>
+        {this.state.fetchedImage}
         <ScrollView contentContainerStyle={styles.contentContainer}>
           {listView}
         </ScrollView>
