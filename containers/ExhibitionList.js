@@ -191,9 +191,15 @@ const ExhibitionList = React.createClass({
     const exhibition = this.props.nodes[sectionData];
     let title = findText(exhibition, this.props.texts, 'section', 'title', 'sv').text;
     let images = findChildren(exhibition, this.props.images);
+    let exhibitionImageTag = (<View/>);
     if(images.length > 0) {
       exhibitionImage = images[0];
-
+      exhibitionImageTag = (
+        <Image
+          source={{ uri: this.props.baseUrl+'/imageFile/'+exhibitionImage.id }}
+          style={styles.exhibitionImage}
+        />
+      );
     }
     // for(i in this.props.texts)
     // {
@@ -214,13 +220,10 @@ const ExhibitionList = React.createClass({
           onPress={() => Actions.stationList({ node: exhibition, title })}
         >
           <View>
-          <Image
-          source={{ uri: 'http://192.168.1.121:8000/images/'+exhibitionImage.file }}
-          style={styles.exhibitionImage}
-          />
-          <View style={styles.listContainer}>
-            <Text style={styles.listText}>{title}</Text>
-          </View>
+            { exhibitionImageTag }
+            <View style={styles.listContainer}>
+              <Text style={styles.listText}>{title}</Text>
+            </View>
           </View>
         </TouchableHighlight>
       </View>
@@ -307,6 +310,7 @@ const mapStateToProps = (state) => {
     images: state.exhibitions.images,
     audio: state.exhibitions.audio,
     video: state.exhibitions.video,
+    signlanguages: state.exhibitions.signlanguages,
     loaded: state.exhibitions.loaded,
     baseUrl: state.settings.baseUrl,
   };

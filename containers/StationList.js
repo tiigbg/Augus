@@ -85,7 +85,7 @@ const StationList = React.createClass({
         fileCache : true,
         appendExt : 'mp3' // FIXME should this be fixated to always be mp3?
       })
-      .fetch('GET', 'http://192.168.1.121:8000/audiofiles/'+audioFile.file, {
+      .fetch('GET', this.props.baseUrl+'/audioFile/'+audioFile.id, {
         
       })
       .progress((received, total) => {
@@ -102,12 +102,78 @@ const StationList = React.createClass({
       });
     }
 
+    let hasSignlanguage = false;
+    let signlanguageLoaded = false;
+    let signlanguageFilename = '';
+    let signlanguageFile = this.props.signlanguages.find((item)=>{ return item.parent_id == this.props.node.id && item.language=='sv'; });
+    if (typeof signlanguageFile !== "undefined") {
+      hasSignlanguage = true;
+      // download audio file and save in state
+      RNFetchBlob
+      .config({
+        fileCache : true,
+        // appendExt : 'mp3' // FIXME should this be fixated to always be mp3?
+      })
+      .fetch('GET', this.props.baseUrl+'/signlanguageFile/'+signlanguageFile.id, {
+        
+      })
+      .progress((received, total) => {
+        this.setState({ signlanguageLoadProgress: received / total });
+      })
+      .then((res) => {
+        signlanguageFilename = res.path();
+        this.setState({ signlanguageFilename, signlanguageLoaded: true });
+        console.log('done loading signlanguage with filename:');
+        console.log(this.state.signlanguageFilename);
+      })
+      .catch((err) => {
+        console.log("error with fetching file:");
+        console.log(err);
+      });
+    }
+
+    let hasVideo = false;
+    let videoLoaded = false;
+    let videoFilename = '';
+    let videoFile = this.props.video.find((item)=>{ return item.parent_id == this.props.node.id && item.language=='sv'; });
+    if (typeof videoFile !== "undefined") {
+      hasVideo = true;
+      // download video file and save in state
+      RNFetchBlob
+      .config({
+        fileCache : true,
+        // appendExt : 'mp3' // FIXME should this be fixated to always be mp3?
+      })
+      .fetch('GET', this.props.baseUrl+'/videoFile/'+videoFile.id, {
+        
+      })
+      .progress((received, total) => {
+        this.setState({ videoLoadProgress: received / total });
+      })
+      .then((res) => {
+        videoFilename = res.path();
+        this.setState({ videoFilename, videoLoaded: true });
+        console.log('done loading video with filename:');
+        console.log(this.state.videoFilename);
+      })
+      .catch((err) => {
+        console.log("error with fetching file:");
+        console.log(err);
+      });
+    }
+
     return {
       myDataSource,
       renderSectionHeaders,
       hasAudio,
       audioLoaded,
       audioFilename,
+      hasSignlanguage,
+      signlanguageLoaded,
+      signlanguageFilename,
+      hasVideo,
+      videoLoaded,
+      videoFilename,
     };
   },
   renderRow(rowData, sectionID, rowID) {
@@ -181,38 +247,6 @@ const StationList = React.createClass({
       </View>
     );
   },
-  //
-  // renderSection(section) {
-  //   let stations = [];
-  //   console.log(section.stations);
-  //   console.log(section.stations.length);
-  //
-  //   for (let i = 0; i < section.stations.length; i++) {
-  //     const station = section.stations[i];
-  //     stations.push(
-  //       <View key={i}>
-  //         <TouchableHighlight
-  //           onPress={() => Actions.stationScreen(
-  //           { station, title: station.station_name.sv })}
-  //         >
-  //           <View style={styles.listContainer}>
-  //             <View style={styles.rightContainer}>
-  //               <Text style={styles.listText}>{station.station_name.sv}</Text>
-  //             </View>
-  //           </View>
-  //         </TouchableHighlight>
-  //       </View>
-  //     );
-  //   }
-  //   return (
-  //     <View>
-  //       <View style={styles.listCategoryContainer}>
-  //       </View>
-  //       {stations}
-  //     </View>
-  //     // <Text style={styles.listCategoryText}>{section.section_name.sv.toUpperCase()}</Text>
-  //   );
-  // },
   render() {
     // if (this.props.dataSource == null) {
     //   console.log('Datasource null');
@@ -226,6 +260,8 @@ const StationList = React.createClass({
         node={this.props.node}
         nodes={this.props.nodes}
       />);
+    console.log('stationlist render after navbar')
+    console.log(this.props)
     let imageView = (
       <View></View>
     );
@@ -233,6 +269,9 @@ const StationList = React.createClass({
       <View></View>
     );
     let signlanguageView = (
+      <View></View>
+    );
+    let videoPlayerView = (
       <View></View>
     );
     let textView = (
@@ -249,10 +288,11 @@ const StationList = React.createClass({
             const imageboxwidth = Dimensions.get('window').width/3*2;
             const imageDescription = findText(eachImage, this.props.texts, 'image', 'body', 'sv').text;
             function renderFullScreenImage() {
+              console.log('renderFullScreenImage with props');
+              console.log(this.props);
               return (
                 <View>
                   <PhotoView
-                    source={{ uri: 'http://192.168.1.121:8000/images/'+eachImage.file }}
                     source={{ uri: this.props.baseUrl+'/imageFile/'+eachImage.id }}
                     minimumZoomScale={0.5}
                     maximumZoomScale={5}
@@ -323,21 +363,52 @@ const StationList = React.createClass({
         }
       }
     }
-    if ('signlanguage' in this.props.node && !!this.props.node.signlanguage.sv && this.props.node.signlanguage.sv != '-') {
-      signlanguageView = (
-        <View>
-          <View style={styles.separator} />
-          <View style={{flex:1, flexDirection: 'row', alignItems: 'flex-start',}}>
-            <Image
-              source={icon_signlanguage_sv}
-              style={{ width: 50, height: 50, marginRight: 10 }}
-            />
-            <View style={{flex:1,flexDirection:'column', }}>
-              <VideoPlayer file={this.props.node.signlanguage.sv} />
+    if(this.state.hasSignlanguage) {
+      if(this.state.signlanguageLoaded) {
+        signlanguageView = (
+          <View>
+            <View style={styles.separator} />
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+              <View style={{ flex: 1, flexDirection: 'column' }}>
+                <VideoPlayer file={ this.state.signlanguageFilename } showSignlanguageIcon={ true } />
+              </View>
             </View>
           </View>
-        </View>
-      );
+        );
+      }
+      else {
+        if (Platform.OS === 'android') {
+          signlanguageView = (<ProgressBarAndroid progress={this.state.signlanguageLoadProgress}  styleAttr='Horizontal'></ProgressBarAndroid>)
+        }
+        else
+        {
+          signlanguageView = (<ProgressViewIOS progress={this.state.signlanguageLoadProgress} progressViewStyle='bar'></ProgressViewIOS >);
+        }
+      }
+    }
+
+    if(this.state.hasVideo) {
+      if(this.state.videoLoaded) {
+        videoPlayerView = (
+          <View>
+            <View style={styles.separator} />
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+              <View style={{ flex: 1, flexDirection: 'column' }}>
+                <VideoPlayer file={ this.state.videoFilename } />
+              </View>
+            </View>
+          </View>
+        );
+      }
+      else {
+        if (Platform.OS === 'android') {
+          videoPlayerView = (<ProgressBarAndroid progress={this.state.videoLoadProgress}  styleAttr='Horizontal'></ProgressBarAndroid>)
+        }
+        else
+        {
+          videoPlayerView = (<ProgressViewIOS progress={this.state.videoLoadProgress} progressViewStyle='bar'></ProgressViewIOS >);
+        }
+      }
     }
     let description = findText(this.props.node, this.props.texts, 'section', 'body', 'sv');
     if ('parent_id' in description)
@@ -356,6 +427,7 @@ const StationList = React.createClass({
         </View>
         {audioPlayerView}
         {signlanguageView}
+        {videoPlayerView}
         {textView}
       </View>
     );
@@ -381,16 +453,13 @@ const mapStateToProps = (state) => {
   console.log('StationList mapStateToProps state:');
   console.log(state);
   return {
-    // exhibitions: state.exhibitions.exhibitions,
-    // sections: state.exhibitions.sections,
-    // stations: state.exhibitions.stations,
     nodes: state.exhibitions.nodes,
     texts: state.exhibitions.texts,
     images: state.exhibitions.images,
     audio: state.exhibitions.audio,
     video: state.exhibitions.video,
+    signlanguages: state.exhibitions.signlanguages,
     loaded: state.exhibitions.loaded,
-    // selectedExhibition: state.selectedExhibition,
     baseUrl: state.settings.baseUrl,
   };
 };

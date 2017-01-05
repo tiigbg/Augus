@@ -47,6 +47,7 @@ export default function Exhibitions(state = initialState, action) {
       images = JSON.parse(JSON.stringify(action.payload.images));
       audio = JSON.parse(JSON.stringify(action.payload.audio));
       video = JSON.parse(JSON.stringify(action.payload.video));
+      signlanguages = JSON.parse(JSON.stringify(action.payload.signlanguages));
       
 
       // end laravel data parser
@@ -170,6 +171,7 @@ export default function Exhibitions(state = initialState, action) {
         images,
         audio,
         video,
+        signlanguages,
         loaded: true,
       };
     case AT.MUSEUM_DATA_FETCH_FAILED:
