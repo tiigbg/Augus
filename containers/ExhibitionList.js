@@ -14,7 +14,7 @@ import RNFetchBlob from 'react-native-fetch-blob'
 //const REQUEST_URL = 'https://gist.githubusercontent.com/Jickelsen/13c93e3797ee390cb772/raw/2def314de7cd6c3a44c31095d7298d46e6cdf061/adventures.json';
 // const REQUEST_URL = 'https://gist.githubusercontent.com/nielsswinkels/cd70fffbde91a72df3a61defedc231d3/raw/d97b662e9b47063a8ba8d614e1f6776643db30eb/goteborgsstadsmuseum.json';
 //let REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2-symbols2.json';
-let REQUEST_URL = 'http://192.168.1.121:8000/alldata';
+// let REQUEST_URL = 'http://192.168.43.95:8000/alldata';
 // let REQUEST_URL = 'http://192.168.2.95:8000/alldata';
 // const REQUEST_URL = 'http://www.tiigbg.se/augus/tiny.json';
 
@@ -80,6 +80,8 @@ global.storage = new Storage({
 
 const ExhibitionList = React.createClass({
   getInitialState() {
+    //const { dispatch } = this.props;
+    //dispatch({ type: AT.CHANGE_BASE_URL, payload: { baseUrl: 'http://192.168.43.95:8000' } });
     return {
       loaded: false,
     };
@@ -154,7 +156,7 @@ const ExhibitionList = React.createClass({
   },
   fetchData() {
     const { dispatch } = this.props;
-    dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: { REQUEST_URL } });
+    dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: { REQUEST_URL: this.props.baseUrl+'/alldata' } });
   },
   renderLoadingView() {
     return (
@@ -264,6 +266,8 @@ const ExhibitionList = React.createClass({
     );
   },
   render() {
+    console.log('exhibitionliast render');
+    console.log(this.props)
     let navbar = (<NavBar title={this.props.title} noBackButton />);
     if (!this.props.loaded) {
       let loadingView = this.renderLoadingView();
@@ -304,6 +308,7 @@ const mapStateToProps = (state) => {
     audio: state.exhibitions.audio,
     video: state.exhibitions.video,
     loaded: state.exhibitions.loaded,
+    baseUrl: state.settings.baseUrl,
   };
 };
 

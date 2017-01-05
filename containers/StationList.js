@@ -253,6 +253,7 @@ const StationList = React.createClass({
                 <View>
                   <PhotoView
                     source={{ uri: 'http://192.168.1.121:8000/images/'+eachImage.file }}
+                    source={{ uri: this.props.baseUrl+'/imageFile/'+eachImage.id }}
                     minimumZoomScale={0.5}
                     maximumZoomScale={5}
                     androidScaleType="center"
@@ -267,6 +268,8 @@ const StationList = React.createClass({
                 </View>
               );
             }
+            // Needed to be able to reach props inside function
+            renderFullScreenImage = renderFullScreenImage.bind(this);
             function renderLightboxHeader(close) {
               return (
                 <TouchableOpacity onPress={close} style={styles.closeButtonContainer} accessibilityLabel={'Close'}>
@@ -285,7 +288,7 @@ const StationList = React.createClass({
               >
                 <View style={{ width: imageboxwidth, justifyContent: 'center', alignItems: 'center' }}>
                   <Image
-                    source={{ uri: 'http://192.168.1.121:8000/images/'+eachImage.file }}
+                    source={{ uri: this.props.baseUrl+'/imageFile/'+eachImage.id }}
                     style={styles.detailsImage}
                   />
                   <Text style={styles.imageDescription} >{imageDescription}</Text>
@@ -388,6 +391,7 @@ const mapStateToProps = (state) => {
     video: state.exhibitions.video,
     loaded: state.exhibitions.loaded,
     // selectedExhibition: state.selectedExhibition,
+    baseUrl: state.settings.baseUrl,
   };
 };
 
