@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../styles/styles';
-import { findColor } from '../util/station.js';
+import { findColor, findText } from '../util/station.js';
 import { Actions, ActionConst } from 'react-native-router-flux';
 
 export default React.createClass({
@@ -29,11 +29,15 @@ export default React.createClass({
     if (!!this.props.previous) {
       prevButton = (
         <TouchableHighlight
-          onPress={() => Actions.stationScreen(
-            { station: this.props.previous,
-              title: this.props.previous.name.sv,
-              nodes: this.props.nodes,
-              type: ActionConst.REFRESH })}
+          onPress={() => {
+            console.log('going to previous');
+            console.log(this.props.previous);
+            Actions.stationList(
+            { node: this.props.previous,
+              title: findText(this.props.previous, this.props.texts, 'section', 'title', 'sv').text,
+              type: ActionConst.PUSH
+            });
+          }}
         >
           <Icon name={'arrow-left'} size={50} color={'white'} style={{ textAlign: 'center', margin:5 }} />
         </TouchableHighlight>);
@@ -41,11 +45,12 @@ export default React.createClass({
     if (!!this.props.next) {
       nextButton = (
         <TouchableHighlight
-          onPress={() => Actions.stationScreen(
-            { station: this.props.next,
-              title: this.props.next.name.sv,
-              nodes: this.props.nodes,
-              type: ActionConst.REFRESH })}
+          onPress={() => Actions.stationList(
+            { node: this.props.next,
+              title: findText(this.props.next, this.props.texts, 'section', 'title', 'sv').text,
+              type: ActionConst.PUSH 
+            })
+          }
         >
           <Icon name={'arrow-right'} size={50} color={'white'} style={{ textAlign: 'center', margin: 5 }} />
         </TouchableHighlight>);

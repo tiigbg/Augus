@@ -254,11 +254,26 @@ const StationList = React.createClass({
     //     <Text>loading</Text>
     //     );
     // }
+    const station = this.props.node;
+    const nodes = this.props.nodes;
+    const backgroundColor = findColor(station, this.props.nodes, true);
+    function findPrevious(node) {
+      return node && node.parent === station.parent && node.order === station.order - 1;
+    }
+    function findNext(node) {
+      return node && node.parent === station.parent && node.order === station.order + 1;
+    }
+    const prevStation = nodes.find(findPrevious);
+    const nextStation = nodes.find(findNext);
+    
     let navbar = (
       <NavBar
         title={this.props.title}
+        previous={prevStation}
+        next={nextStation}
         node={this.props.node}
         nodes={this.props.nodes}
+        texts={this.props.texts}
       />);
     console.log('stationlist render after navbar')
     console.log(this.props)
