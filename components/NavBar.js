@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../styles/styles';
-import { findColors } from '../util/station.js';
+import { findColor } from '../util/station.js';
 import { Actions, ActionConst } from 'react-native-router-flux';
 
 export default React.createClass({
@@ -14,7 +14,7 @@ export default React.createClass({
   },
   render() {
     console.log('NavBar render');
-    const backgroundColor = findColors(this.props.node, this.props.nodes).dark;
+    const backgroundColor = findColor(this.props.node, this.props.nodes, true);
     let backButton = (<View />);
     if (!this.props.noBackButton) {
       backButton = (

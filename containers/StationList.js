@@ -3,7 +3,7 @@ import { ProgressBarAndroid, ProgressViewIOS, ScrollView, Image, ListView, Touch
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from '../styles/styles';
-import { findColors, findSymbol, findNode, findText, findChildren } from '../util/station.js';
+import { findColor, findSymbol, findNode, findText, findChildren } from '../util/station.js';
 import NavBar from '../components/NavBar';
 import AudioPlayer from '../components/AudioPlayer';
 import VideoPlayer from '../components/VideoPlayer';
@@ -196,8 +196,8 @@ const StationList = React.createClass({
           style={styles.stationSymbol}
         />);
     }
-    const backgroundColor = findColors(station, this.props.nodes).light;
-    const borderColor = findColors(station, this.props.nodes).dark;
+    const backgroundColor = findColor(station, this.props.nodes, false);
+    const borderColor = findColor(station, this.props.nodes, true);
     return (
       <View>
         <TouchableHighlight
@@ -223,7 +223,7 @@ const StationList = React.createClass({
     const section = this.props.nodes[sectionID];
     let title = findText(section, this.props.texts, 'section', 'title', 'sv').text;
     console.log(title);
-    const backgroundColor = findColors(section, this.props.nodes).dark;
+    const backgroundColor = findColor(section, this.props.nodes, true);
     return (
       // <TouchableHighlight onPress={() => Actions.stationList({ sectionID })}>
       //   <View style={styles.listContainer}>

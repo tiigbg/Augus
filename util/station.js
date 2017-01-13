@@ -1,13 +1,38 @@
-export function findColors(node, nodes) {
+export function findColor(node, nodes, isDark) {
   if (typeof node !== 'undefined' && !!node) {
-    if (node.hasOwnProperty('colors')) {
-      return node.colors;
-    } else if (node.hasOwnProperty('parent') && !!node.parent && !!nodes[node.parent]) {
-      return findColors(nodes[node.parent], nodes);
+    console.log('finding color for node');
+    console.log(node.id)
+    if(isDark)
+    {
+      if (node.hasOwnProperty('dark_color') && !!node.dark_color) {
+        console.log('returning dark color');
+        console.log(node.dark_color);
+        return node.dark_color;
+      } else if (node.hasOwnProperty('parent_id') && !!node.parent_id && !!nodes[node.parent_id]) {
+        console.log('redirect to parent color');
+        console.log(node.parent_id);
+        return findColor(findNode(node.parent_id, nodes), nodes, isDark);
+      }
+    }
+    else
+    {
+      if (node.hasOwnProperty('light_color') && !!node.light_color) {
+        console.log('returning light color');
+        console.log(node.light_color);
+        return node.light_color;
+      } else if (node.hasOwnProperty('parent_id') && !!node.parent_id && !!nodes[node.parent_id]) {
+        console.log('redirect to parent color');
+        console.log(node.parent_id);
+        return findColor(findNode(node.parent_id, nodes), nodes, isDark);
+      }
     }
   }
+  console.log('returning default color');
   // FIXME this default should be in a place that is easier to find
-  return { light: '#fff', dark: '#000' };
+  if(isDark)
+    return '#000';
+  else
+    return '#FFF';
 }
 
 export function findSymbol(node, nodes) {
