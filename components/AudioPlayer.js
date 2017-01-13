@@ -72,10 +72,10 @@ export default React.createClass({
             <TouchableHighlight onPress={this.handlePress}>
               <Icon name={this.state.isPlaying ? 'pause' : 'play'} size={60} color={'black'} />
             </TouchableHighlight>
-            <View style={{ flex:1}}>
+            <View style={{ flex:1, flexDirection: 'column' }}>
               <View style={{ flexDirection:'row', justifyContent:'space-between' }}>
-                <Text>{secondsToTime(Math.round(this.state.time))}</Text>
-                <Text>
+                <Text style={{ color: 'black' }}>{secondsToTime(Math.round(this.state.time))}</Text>
+                <Text style={{ color: 'black' }}>
                   {secondsToTime(Math.round(this.state.duration - this.state.time))}
                 </Text>
               </View>

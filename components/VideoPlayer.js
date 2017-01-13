@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableHighlight, Slider } from 'react-native';
+import { Text, View, Image, TouchableHighlight, Slider } from 'react-native';
 
 import { secondsToTime } from '../util/time';
 import Lightbox from 'react-native-lightbox';
@@ -9,6 +9,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Video from 'react-native-video';
 
+let icon_signlanguage_sv = require('../assets/img/teckensprakstolkning_opaque.png');
+
 export default React.createClass({
   getDefaultProps() {
     return {
@@ -16,6 +18,7 @@ export default React.createClass({
       duration: 100,
       isPlaying: false,
       isFullScreen: false,
+      showSignlanguageIcon: false,
     };
   },
   getInitialState() {
@@ -24,6 +27,7 @@ export default React.createClass({
       duration: this.props.duration,
       isPlaying: this.props.isPlaying,
       isFullScreen: this.props.isFullScreen,
+      showSignlanguageIcon: this.props.showSignlanguageIcon,
     };
   },
   onEnd() {
@@ -73,6 +77,11 @@ export default React.createClass({
             style={this.state.isPlaying ? (styles.video) : { height: 0 }}
           />
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 }}>
+            { this.props.showSignlanguageIcon ? <Image
+                source={icon_signlanguage_sv}
+                style={{ width: 50, height: 50, marginRight: 10 }}
+              /> : null
+            }
             <TouchableHighlight onPress={this.handlePress}>
               <Icon
                 name={this.state.isPlaying ? 'pause' : 'play'}
@@ -81,7 +90,7 @@ export default React.createClass({
               />
             </TouchableHighlight>
             <View style={{ flex: 1, flexDirection: 'column' }}>
-              <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Text style={{ color: this.state.isFullScreen ? 'white' : 'black' }}>
                   {secondsToTime(Math.round(this.state.time))}
                 </Text>
