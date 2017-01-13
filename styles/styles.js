@@ -100,11 +100,11 @@ export default StyleSheet.create({
   stationTitlePane: {
     justifyContent: 'space-between',
     flex: 1,
+    flexBasis:  70,
     flexDirection: 'row',
     marginBottom: 5,
   },
   station_name: {
-    flex: 1,
     fontSize: 32,
     margin: 0,
     marginTop: 10,
