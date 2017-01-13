@@ -269,7 +269,7 @@ const ExhibitionList = React.createClass({
     );
   },
   render() {
-    console.log('exhibitionliast render');
+    console.log('exhibitionlist render');
     console.log(this.props)
     let navbar = (<NavBar title={this.props.title} noBackButton />);
     if (!this.props.loaded) {
