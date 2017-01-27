@@ -100,7 +100,7 @@ export default StyleSheet.create({
   stationTitlePane: {
     justifyContent: 'space-between',
     flex: 1,
-    flexBasis:  70,
+    flexBasis:  250,
     flexDirection: 'row',
     marginBottom: 5,
   },
