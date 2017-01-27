@@ -8,10 +8,11 @@
     "test-nocache": "jest --no-cache"
   },
   "dependencies": {
-    "react": "^15.0.0",
-    "react-native": "^0.39.0",
+    "react": "^15.4.2",
+    "react-native": "^0.40.0",
     "react-native-fetch-blob": "^0.10.0",
     "react-native-lightbox": "^0.6.0",
+    "react-native-maps": "^0.11.0",
     "react-native-photo-view": "^1.2.0",
     "react-native-router-flux": "^3.30.3",
     "react-native-sound": "^0.8.3",
@@ -19,7 +20,6 @@
     "react-native-tabs": "1.0.2",
     "react-native-vector-icons": "^3.0.0",
     "react-native-video": "^0.9.0",
-    "react-native-maps": "^0.11.0",
     "react-redux": "^4.4.1",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.0",
