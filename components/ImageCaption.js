@@ -11,7 +11,7 @@ import RNFetchBlob from 'react-native-fetch-blob'
 export default React.createClass({
   getDefaultProps() {
     return {
-      visible: true,
+      visible: false,
       image: null,
     };
   },
@@ -59,6 +59,9 @@ export default React.createClass({
     if(this.props.image === null)
       return (<View />);
     const imageDescription = findText(this.props.image, this.props.texts, 'image', 'body', 'sv').text;
+    if(imageDescription == null) // TODO also check if there is no audio either?
+      return (<View />);
+
     let imageAudioPlayerView = (<View />);
     if(this.state.audioLoaded)
     {
@@ -72,12 +75,14 @@ export default React.createClass({
     if(this.state.visible)
     {
       return (
-        <View>
-          <TouchableHighlight
-            onPress={() => this.setState({ visible: false }) }
-          >
-            <Icon name={'chevron-up'} style={styles.collapseIcon} />
-          </TouchableHighlight>
+        <View style={{ borderWidth: 0, flexGrow: 1}}>
+          <View>
+            <TouchableHighlight
+              onPress={() => this.setState({ visible: false }) }
+            >
+              <Icon name={'chevron-up'} style={styles.collapseIcon} />
+            </TouchableHighlight>
+          </View>
           { imageAudioPlayerView }
           <Text style={styles.imageDescription} >{imageDescription}</Text>
         </View>
@@ -86,12 +91,16 @@ export default React.createClass({
     else
     {
       return (
-        <View>
-          <TouchableHighlight
-            onPress={() => this.setState({ visible: true }) }
-          >
-            <Icon name={'chevron-down'} style={styles.collapseIcon} />
-          </TouchableHighlight>
+        <View style={{ borderWidth: 0, flexGrow: 1}}>
+          <View>
+            <TouchableHighlight
+              onPress={() => this.setState({ visible: true }) }
+            >
+              <Icon name={'chevron-down'} style={styles.collapseIcon} />
+            </TouchableHighlight>
+          </View>
+          <Text style={[styles.imageDescription, { height: 30, overflow:'hidden', marginBottom:-15, }]} >{imageDescription}</Text>
+          <View style={{ borderBottomWidth:15, borderBottomColor: '#eeeeeedd', marginBottom: 0 }}></View>
         </View>
       );
     }

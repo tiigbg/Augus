@@ -68,7 +68,7 @@ export default React.createClass({
       );
     } else {
       return (
-          <View style={styles.mainSection}>
+          <View style={{ flexDirection: 'row' }}>
             <TouchableHighlight onPress={this.handlePress}>
               <Icon name={this.state.isPlaying ? 'pause' : 'play'} size={60} color={'black'} />
             </TouchableHighlight>

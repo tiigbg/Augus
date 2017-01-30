@@ -70,5 +70,5 @@ export function findText(node, texts, parent_type='section', type='title', langu
     }
   }
   console.log('text not found, returning Untitled for parent_id='+node.id+' type='+type+' language='+language);
-  return {'text':'(Untitled)'}; // FIXME Should this throw an error instead?
+  return {'text':null}; // FIXME Should this throw an error instead?
 }

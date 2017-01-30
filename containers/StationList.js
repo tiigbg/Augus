@@ -225,15 +225,6 @@ const StationList = React.createClass({
     console.log(title);
     const backgroundColor = findColor(section, this.props.nodes, true);
     return (
-      // <TouchableHighlight onPress={() => Actions.stationList({ sectionID })}>
-      //   <View style={styles.listContainer}>
-      //     <Image
-      //       source={{ uri: exhibition.image }}
-      //       style={styles.exhibitionImage}
-      //     />
-      //     <Text style={styles.listText}>{exhibition.exhibition_name.sv}</Text>
-      //   </View>
-      // </TouchableHighlight>
       <View>
         <View style={[styles.listContainer, { backgroundColor }]}>
           <View style={styles.rightContainer}>
@@ -296,11 +287,11 @@ const StationList = React.createClass({
     if(images.length > 0) {
       imageView = (
         <ScrollView horizontal
-          style={{ flex: 1, flexDirection: 'row', width: Dimensions.get('window').width }}
+          style={styles.imageGallery}
         >
         {
           images.map((eachImage, i) => {
-            const imageboxwidth = Dimensions.get('window').width/3*2;
+            const imageboxwidth = Dimensions.get('window').width/5*4;
             const imageDescription = findText(eachImage, this.props.texts, 'image', 'body', 'sv').text;
             function renderFullScreenImage() {
               console.log('renderFullScreenImage with props');
@@ -342,13 +333,16 @@ const StationList = React.createClass({
                 renderHeader={renderLightboxHeader}
                 swipeToDismiss={false}
               >
-                <View style={{ width: imageboxwidth, justifyContent: 'center', alignItems: 'center', borderColor:'rgba(0, 0, 0, 0.1)', borderWidth:1, padding: 10, marginRight:5 }}>
+                <View style={[styles.imageGalleryBox, { width: imageboxwidth }]}>
                   <Image
                     source={{ uri: this.props.baseUrl+'/imageFile/'+eachImage.id }}
                     style={styles.detailsImage}
                   />
-                  <View>
-                    <ImageCaption texts={this.props.texts} image={eachImage} baseUrl={this.props.baseUrl}/>
+                  <View style={ styles.expandIconBox }>
+                    <Icon name={'expand'} style={styles.expandIcon} />
+                  </View>
+                  <View style={{ flexDirection: 'row' }}>
+                    <ImageCaption texts={this.props.texts} image={eachImage} baseUrl={this.props.baseUrl} audio={this.props.audio} node={this.props.node}/>
                   </View>
                 </View>
               </Lightbox>
@@ -439,20 +433,22 @@ const StationList = React.createClass({
       );
     }
     let stationView = (
+      <View>
+      <View >
+        {imageView}
+      </View>
       <View style={styles.contentContainer}>
-        <View style={styles.mainSection}>
-          {imageView}
-        </View>
         {audioPlayerView}
         {signlanguageView}
         {videoPlayerView}
         {textView}
       </View>
+      </View>
     );
     return (
       <View style={styles.screenContainer}>
         <View>{navbar}</View>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
+        <ScrollView >
           {stationView}
           <ListView
             style={styles.listMargin}

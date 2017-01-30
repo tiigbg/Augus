@@ -10,6 +10,7 @@ import * as AT from '../constants/ActionTypes';
 import Storage from 'react-native-storage';
 import { Platform, AsyncStorage } from 'react-native';
 import RNFetchBlob from 'react-native-fetch-blob'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 //const REQUEST_URL = 'https://gist.githubusercontent.com/Jickelsen/13c93e3797ee390cb772/raw/2def314de7cd6c3a44c31095d7298d46e6cdf061/adventures.json';
 // const REQUEST_URL = 'https://gist.githubusercontent.com/nielsswinkels/cd70fffbde91a72df3a61defedc231d3/raw/d97b662e9b47063a8ba8d614e1f6776643db30eb/goteborgsstadsmuseum.json';
@@ -220,8 +221,8 @@ const ExhibitionList = React.createClass({
           onPress={() => Actions.stationList({ node: exhibition, title })}
         >
           <View>
-            { exhibitionImageTag }
             <View style={styles.listContainer}>
+              { exhibitionImageTag }
               <Text style={styles.listText}>{title}</Text>
             </View>
           </View>
@@ -240,6 +241,16 @@ const ExhibitionList = React.createClass({
           enableEmptySections
         />
         <View style={{ margin: 10, paddingTop: -10 }} >
+          <TouchableHighlight
+            onPress={() => { this.fetchData(); }}
+            style={{ margin: 5 }} >
+            <View>
+                <Icon name={'refresh'} style={styles.collapseIcon} />
+                <Text>
+                  Reload
+                </Text>
+              </View>
+          </TouchableHighlight>
           <TouchableHighlight
             onPress={() => { REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2-symbols2.json'; this.fetchData(); }}
             style={{ margin: 5 }}
@@ -285,13 +296,6 @@ const ExhibitionList = React.createClass({
     return (
       <View style={styles.screenContainer}>
         <View>{navbar}</View>
-        <TouchableHighlight
-          onPress={() => { this.fetchData(); }}
-          style={{ margin: 5 }} >
-            <Text>
-              Reload
-            </Text>
-        </TouchableHighlight>
         <ScrollView contentContainerStyle={styles.contentContainer}>
           {listView}
         </ScrollView>

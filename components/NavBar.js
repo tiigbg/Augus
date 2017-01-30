@@ -19,7 +19,7 @@ export default React.createClass({
     if (!this.props.noBackButton) {
       backButton = (
         <TouchableHighlight onPress={() => Actions.pop()}>
-          <Text style={[styles.station_name, { color: 'white', margin: 10, marginRight: 10 }]}>
+          <Text style={ styles.backButton }>
             <Icon name={'level-up'} size={50} color={'white'} style={{ textAlign: 'center' }} /> 
           </Text>
         </TouchableHighlight>);

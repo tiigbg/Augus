@@ -47,6 +47,7 @@ export default StyleSheet.create({
     marginLeft: 8,
     padding: 8,
     height: 100,
+    borderRadius: 5,
   },
   listText: {
     flex: 1,
@@ -112,6 +113,15 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontWeight: '500',
   },
+  backButton: {
+    fontSize: 32,
+    margin: 10,
+    marginRight: 20,
+    marginLeft: 20,
+    textAlign: 'center',
+    fontWeight: '500',
+    color: 'white',
+  },
   station_text: {
     fontSize: 22,
     color: '#000',
@@ -145,15 +155,33 @@ export default StyleSheet.create({
     fontSize: 22,
     color: '#000',
   },
+  expandIconBox: {
+    width: 200,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginTop: -70,
+    marginBottom:0,
+  },
+  expandIcon: {
+    fontSize: 48,
+    color: '#000',
+    backgroundColor: '#ffffff',
+    borderWidth: 3,
+    borderRadius: 5,
+    padding: 10,
+    paddingBottom: 5,
+    paddingRight: 5,
+    marginRight: 5,
+  },
   collapseIcon: {
     fontSize: 48,
     color: '#000',
+    padding: 10,
   },
   detailsImage: {
-    width: 134,
+    width: 200,
     height: 200,
     backgroundColor: '#eaeaea',
-    marginRight: 10,
   },
   closeButton: {
     color: 'white',
@@ -182,8 +210,11 @@ export default StyleSheet.create({
     backgroundColor: '#eaeaea',
     borderWidth: 3,
     borderColor: '#007da0',
-    marginRight: 8,
-    marginLeft: 8,
+    marginRight: -10,
+    marginLeft: -10,
+    marginTop: -10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
     padding: 8,
   },
   stationSymbol: {
@@ -192,8 +223,28 @@ export default StyleSheet.create({
     marginRight: 10,
 
   },
-  mainSection: {
+  imageGallery: {
+    paddingTop: 10,
+    paddingBottom: 10,
     flexDirection: 'row',
+    backgroundColor: '#888',
+  },
+  imageGalleryBox: {
+    justifyContent: 'center',
+    flexDirection:'column', 
+    flex:1, 
+    alignItems: 'center', 
+    borderColor:'rgba(0, 0, 0, 0.1)', 
+    borderWidth:1, 
+    padding: 10, 
+    marginRight:5, 
+    marginLeft:5, 
+    backgroundColor: '#eee',
+    borderRadius: 10,
+  },
+  imageCaption: { 
+    flexGrow: 1,
+    borderWidth: 10,
   },
   backgroundVideo: {
     position: 'absolute',
