@@ -145,6 +145,10 @@ export default StyleSheet.create({
     fontSize: 22,
     color: '#000',
   },
+  collapseIcon: {
+    fontSize: 48,
+    color: '#000',
+  },
   detailsImage: {
     width: 134,
     height: 200,

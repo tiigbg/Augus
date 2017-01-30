@@ -7,6 +7,7 @@ import { findColor, findSymbol, findNode, findText, findChildren } from '../util
 import NavBar from '../components/NavBar';
 import AudioPlayer from '../components/AudioPlayer';
 import VideoPlayer from '../components/VideoPlayer';
+import ImageCaption from '../components/ImageCaption';
 import Dimensions from 'Dimensions';
 import Lightbox from 'react-native-lightbox';
 import PhotoView from 'react-native-photo-view';
@@ -161,7 +162,6 @@ const StationList = React.createClass({
         console.log(err);
       });
     }
-
     return {
       myDataSource,
       renderSectionHeaders,
@@ -319,9 +319,9 @@ const StationList = React.createClass({
                       alignItems: 'center',
                     }}
                   />
-                  <Text style={{ color: '#fff', marginTop: -100, fontSize: 28 }}>{imageDescription}</Text>
                 </View>
               );
+                  // <Text style={{ color: '#fff', marginTop: -100, fontSize: 28 }}>{imageDescription}</Text>
             }
             // Needed to be able to reach props inside function
             renderFullScreenImage = renderFullScreenImage.bind(this);
@@ -332,6 +332,7 @@ const StationList = React.createClass({
                 </TouchableOpacity>
               );
             }
+            
             return (
               <Lightbox
                 key={i}
@@ -341,12 +342,14 @@ const StationList = React.createClass({
                 renderHeader={renderLightboxHeader}
                 swipeToDismiss={false}
               >
-                <View style={{ width: imageboxwidth, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ width: imageboxwidth, justifyContent: 'center', alignItems: 'center', borderColor:'rgba(0, 0, 0, 0.1)', borderWidth:1, padding: 10, marginRight:5 }}>
                   <Image
                     source={{ uri: this.props.baseUrl+'/imageFile/'+eachImage.id }}
                     style={styles.detailsImage}
                   />
-                  <Text style={styles.imageDescription} >{imageDescription}</Text>
+                  <View>
+                    <ImageCaption texts={this.props.texts} image={eachImage} baseUrl={this.props.baseUrl}/>
+                  </View>
                 </View>
               </Lightbox>
             );
