@@ -312,6 +312,7 @@ const mapStateToProps = (state) => {
     nodes: state.exhibitions.nodes,
     texts: state.exhibitions.texts,
     images: state.exhibitions.images,
+    icons: state.exhibitions.icons,
     audio: state.exhibitions.audio,
     video: state.exhibitions.video,
     signlanguages: state.exhibitions.signlanguages,

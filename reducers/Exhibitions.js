@@ -45,6 +45,7 @@ export default function Exhibitions(state = initialState, action) {
       nodes = JSON.parse(JSON.stringify(action.payload.nodes));
       texts = JSON.parse(JSON.stringify(action.payload.texts));
       images = JSON.parse(JSON.stringify(action.payload.images));
+      icons = JSON.parse(JSON.stringify(action.payload.icons));
       audio = JSON.parse(JSON.stringify(action.payload.audio));
       video = JSON.parse(JSON.stringify(action.payload.video));
       signlanguages = JSON.parse(JSON.stringify(action.payload.signlanguages));
@@ -169,6 +170,7 @@ export default function Exhibitions(state = initialState, action) {
         nodes,
         texts,
         images,
+        icons,
         audio,
         video,
         signlanguages,

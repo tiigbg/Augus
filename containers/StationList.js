@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProgressBarAndroid, ProgressViewIOS, ScrollView, Image, ListView, TouchableHighlight, Text, View, TouchableOpacity } from 'react-native';
+import { ProgressBarAndroid, ProgressViewIOS, ScrollView, Image, ListView, TouchableHighlight, Text, View, TouchableOpacity, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from '../styles/styles';
@@ -12,7 +12,6 @@ import Dimensions from 'Dimensions';
 import Lightbox from 'react-native-lightbox';
 import PhotoView from 'react-native-photo-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Platform } from 'react-native';
 import RNFetchBlob from 'react-native-fetch-blob'
 
 
@@ -187,12 +186,12 @@ const StationList = React.createClass({
         { station, title, nodes: this.props.nodes }
       );
     }
-    const symbolUrl = findSymbol(station, this.props.nodes);
-    let symbol = (<View />);
-    if (symbolUrl !== '') {
-      symbol = (
+    const symbol = findSymbol(station, this.props.nodes, this.props.icons);
+    let symbolView = (<View />);
+    if (symbol !== '') {
+      symbolView = (
         <Image
-          source={{ uri: symbolUrl }}
+          source={{ uri: this.props.baseUrl+'/iconFile/'+symbol.id }}
           style={styles.stationSymbol}
         />);
     }
@@ -205,7 +204,7 @@ const StationList = React.createClass({
         >
           <View style={[styles.listContainer, { backgroundColor, borderColor, borderWidth: 3 }]}>
             <View style={styles.rightContainer}>
-              {symbol}
+              {symbolView}
               <Text style={[styles.listText, { color: '#000' }]}>
                 {title}
               </Text>
@@ -470,6 +469,7 @@ const mapStateToProps = (state) => {
     nodes: state.exhibitions.nodes,
     texts: state.exhibitions.texts,
     images: state.exhibitions.images,
+    icons: state.exhibitions.icons,
     audio: state.exhibitions.audio,
     video: state.exhibitions.video,
     signlanguages: state.exhibitions.signlanguages,
