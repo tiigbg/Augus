@@ -2,7 +2,7 @@ import * as AT from '../constants/ActionTypes';
 import { put } from 'redux-saga/effects';
 
 const initialState = {
-  baseUrl: 'http://www.augus.se',
+  baseUrl: 'http://gsm.augus.se',
 };
 
 export default function Settings(state = initialState, action) {
