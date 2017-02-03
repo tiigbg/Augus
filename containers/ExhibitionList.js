@@ -190,6 +190,8 @@ const ExhibitionList = React.createClass({
     // console.log('sectionData');
     // console.log(sectionData);
     const exhibition = this.props.nodes[sectionData];
+    if(exhibition.hasOwnProperty('visibility') && exhibition.visibility == 'hidden')
+      return (<View/>);
     let title = findText(exhibition, this.props.texts, 'section', 'title', 'sv').text;
     let images = findChildren(exhibition, this.props.images);
     let exhibitionImageTag = (<View/>);
