@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, TouchableHighlight, Slider} from 'react-native';
+import {Text, View, TouchableHighlight, Slider, Platform, ProgressBarAndroid, ProgressViewIOS } from 'react-native';
 import { findNode, findText } from '../util/station.js';
 import AudioPlayer from '../components/AudioPlayer';
 
@@ -16,7 +16,7 @@ export default React.createClass({
     };
   },
   getInitialState() {
-    let audioFile = this.props.audio.find((item)=>{ return item.parent_id == this.props.node.id && item.language=='sv'; });
+    let audioFile = this.props.audio.find((item)=>{ return item.parent_id == this.props.image.id && item.language=='sv'; });
     if (typeof audioFile !== "undefined") {
       hasAudio = true;
       // download audio file and save in state
@@ -69,7 +69,13 @@ export default React.createClass({
     }
     else
     {
-
+      if (Platform.OS === 'android') {
+        audioPlayerView = (<ProgressBarAndroid progress={this.state.audioLoadProgress}  styleAttr='Horizontal'></ProgressBarAndroid>)
+      }
+      else
+      {
+        audioPlayerView = (<ProgressViewIOS progress={this.state.audioLoadProgress} progressViewStyle='bar'></ProgressViewIOS >);
+      }
     }
 
     if(this.state.visible)
