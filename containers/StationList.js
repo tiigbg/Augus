@@ -76,7 +76,7 @@ const StationList = React.createClass({
     let hasAudio = false;
     let audioLoaded = false;
     let audioFilename = '';
-    let audioFile = this.props.audio.find((item)=>{ return item.parent_id == this.props.node.id && item.language=='sv'; });
+    let audioFile = this.props.audio.find((item)=>{ return item.parent_id == this.props.node.id && item.parent_type=='section' && item.language=='sv'; });
     if (typeof audioFile !== "undefined") {
       hasAudio = true;
       // download audio file and save in state

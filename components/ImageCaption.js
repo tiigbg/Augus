@@ -16,7 +16,7 @@ export default React.createClass({
     };
   },
   getInitialState() {
-    let audioFile = this.props.audio.find((item)=>{ return item.parent_id == this.props.image.id && item.language=='sv'; });
+    let audioFile = this.props.audio.find((item)=>{ return item.parent_id == this.props.image.id && item.parent_type=='image' && item.language=='sv'; });
     if (typeof audioFile !== "undefined") {
       hasAudio = true;
       // download audio file and save in state
