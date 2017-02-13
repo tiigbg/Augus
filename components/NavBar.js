@@ -13,7 +13,10 @@ export default React.createClass({
     return {};
   },
   render() {
-    console.log('NavBar render');
+    console.log('NavBar render with prev:');
+    console.log(this.props.previous);
+    console.log('and next:');
+    console.log(this.props.next);
     const backgroundColor = findColor(this.props.node, this.props.nodes, true);
     let backButton = (<View />);
     if (!this.props.noBackButton) {
@@ -34,7 +37,7 @@ export default React.createClass({
             console.log(this.props.previous);
             Actions.stationList(
             { node: this.props.previous,
-              title: findText(this.props.previous, this.props.texts, 'section', 'title', 'sv').text,
+              title: findText(this.props.previous, this.props.texts, 'section', 'title', this.props.language).text,
               type: ActionConst.PUSH
             });
           }}
@@ -45,11 +48,15 @@ export default React.createClass({
     if (!!this.props.next) {
       nextButton = (
         <TouchableHighlight
-          onPress={() => Actions.stationList(
+          onPress={() => {
+            console.log('going to next');
+            console.log(this.props.next);
+            Actions.stationList(
             { node: this.props.next,
-              title: findText(this.props.next, this.props.texts, 'section', 'title', 'sv').text,
-              type: ActionConst.PUSH 
+              title: findText(this.props.next, this.props.texts, 'section', 'title', this.props.language).text,
+              type: ActionConst.PUSH
             })
+            }
           }
         >
           <Icon name={'arrow-right'} size={50} color={'white'} style={{ textAlign: 'center', margin: 5 }} />

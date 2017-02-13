@@ -46,9 +46,9 @@ const StationList = React.createClass({
     for (const id in nodes){
       // don't confuse museum sections and list sections here
       const node = nodes[id];
-      console.log('going through nodes (id='+id+')');
+      //console.log('going through nodes (id='+id+')');
       if (node.parent_id === exhibition.id) {
-        console.log('Found child node with id='+node.id);
+        //console.log('Found child node with id='+node.id);
         // sectionIDs.push(`${id}`);
         // rowIDs.push(`${id}`);
         rowIDs[0].push(`${id}`);
@@ -76,7 +76,7 @@ const StationList = React.createClass({
     let hasAudio = false;
     let audioLoaded = false;
     let audioFilename = '';
-    let audioFile = this.props.audio.find((item)=>{ return item.parent_id == this.props.node.id && item.parent_type=='section' && item.language=='sv'; });
+    let audioFile = this.props.audio.find((item)=>{ return item.parent_id == this.props.node.id && item.parent_type=='section' && item.language==this.props.language; });
     if (typeof audioFile !== "undefined") {
       hasAudio = true;
       // download audio file and save in state
@@ -105,8 +105,8 @@ const StationList = React.createClass({
     let hasSignlanguage = false;
     let signlanguageLoaded = false;
     let signlanguageFilename = '';
-    let signlanguageFile = this.props.signlanguages.find((item)=>{ return item.parent_id == this.props.node.id && item.language=='sv'; });
-    if (typeof signlanguageFile !== "undefined") {
+    let signlanguageFile = this.props.signlanguages.find((item)=>{ return item.parent_id == this.props.node.id && item.language==this.props.language; });
+    if (typeof signlanguageFile !== "undefined" && this.props.displaySignlanguage) {
       hasSignlanguage = true;
       // download audio file and save in state
       RNFetchBlob
@@ -135,7 +135,7 @@ const StationList = React.createClass({
     let hasVideo = false;
     let videoLoaded = false;
     let videoFilename = '';
-    let videoFile = this.props.video.find((item)=>{ return item.parent_id == this.props.node.id && item.language=='sv'; });
+    let videoFile = this.props.video.find((item)=>{ return item.parent_id == this.props.node.id && item.language==this.props.language; });
     if (typeof videoFile !== "undefined") {
       hasVideo = true;
       // download video file and save in state
@@ -176,10 +176,10 @@ const StationList = React.createClass({
     };
   },
   renderRow(rowData, sectionID, rowID) {
-    console.log('stationList renderRow '+sectionID+':'+rowID);
-    console.log(rowData);
+    //console.log('stationList renderRow '+sectionID+':'+rowID);
+    //console.log(rowData);
     const station = this.props.nodes[rowID];
-    let title = findText(station, this.props.texts, 'section', 'title', 'sv').text;
+    let title = findText(station, this.props.texts, 'section', 'title', this.props.language).text;
     let openFunction = () => Actions.stationList({ node: station, title });
     if (station.type === 'leaf') {
       openFunction = () => Actions.stationScreen(
@@ -220,7 +220,7 @@ const StationList = React.createClass({
     }
     console.log('stationList renderSectionHeader '+sectionID);
     const section = this.props.nodes[sectionID];
-    let title = findText(section, this.props.texts, 'section', 'title', 'sv').text;
+    let title = findText(section, this.props.texts, 'section', 'title', this.props.language).text;
     console.log(title);
     const backgroundColor = findColor(section, this.props.nodes, true);
     return (
@@ -264,6 +264,7 @@ const StationList = React.createClass({
         node={this.props.node}
         nodes={this.props.nodes}
         texts={this.props.texts}
+        language={this.props.language}
       />);
     console.log('stationlist render after navbar')
     console.log(this.props)
@@ -291,7 +292,7 @@ const StationList = React.createClass({
         {
           images.map((eachImage, i) => {
             const imageboxwidth = Dimensions.get('window').width/5*4;
-            const imageDescription = findText(eachImage, this.props.texts, 'image', 'body', 'sv').text;
+            const imageDescription = findText(eachImage, this.props.texts, 'image', 'body', this.props.language).text;
             function renderFullScreenImage() {
               console.log('renderFullScreenImage with props');
               console.log(this.props);
@@ -341,7 +342,7 @@ const StationList = React.createClass({
                     <Icon name={'expand'} style={styles.expandIcon} />
                   </View>
                   <View style={{ flexDirection: 'row' }}>
-                    <ImageCaption texts={this.props.texts} image={eachImage} baseUrl={this.props.baseUrl} audio={this.props.audio} node={this.props.node}/>
+                    <ImageCaption texts={this.props.texts} image={eachImage} baseUrl={this.props.baseUrl} audio={this.props.audio} node={this.props.node} language={this.props.language}/>
                   </View>
                 </View>
               </Lightbox>
@@ -374,7 +375,7 @@ const StationList = React.createClass({
         }
       }
     }
-    if(this.state.hasSignlanguage) {
+    if(this.state.hasSignlanguage && this.props.displaySignlanguage) {
       if(this.state.signlanguageLoaded) {
         signlanguageView = (
           <View>
@@ -421,7 +422,7 @@ const StationList = React.createClass({
         }
       }
     }
-    let description = findText(this.props.node, this.props.texts, 'section', 'body', 'sv');
+    let description = findText(this.props.node, this.props.texts, 'section', 'body', this.props.language);
     if ('parent_id' in description)
     {
       textView = (
@@ -475,6 +476,8 @@ const mapStateToProps = (state) => {
     signlanguages: state.exhibitions.signlanguages,
     loaded: state.exhibitions.loaded,
     baseUrl: state.settings.baseUrl,
+    language: state.settings.language,
+    displaySignlanguage: state.settings.displaySignlanguage,
   };
 };
 

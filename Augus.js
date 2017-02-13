@@ -3,6 +3,7 @@ import { Provider, connect } from 'react-redux';
 import { Modal, Actions, Scene, Router } from 'react-native-router-flux';
 
 import TabIcon from './components/TabIcon.js';
+import LanguageSelect from './containers/LanguageSelect';
 import ExhibitionList from './containers/ExhibitionList';
 //import Experiment from './containers/Experiment';
 import StationList from './containers/StationList';
@@ -23,7 +24,8 @@ const scenes = Actions.create(
   // <Scene key="modal" component={Modal} >
 //      <Scene key="stationScreen" component={StationScreen} hideNavBar  title="StationScreen" />
     <Scene key="root">
-      <Scene key="exhibitonList" component={ExhibitionList} hideNavBar  title="Utställningar" initial />
+      <Scene key="languageSelect" component={LanguageSelect} hideNavBar  title="Language" initial />
+      <Scene key="exhibitionList" component={ExhibitionList} hideNavBar  title="Utställningar" />
       <Scene key="stationList" component={StationList} hideNavBar  title="Station List" />
     </Scene>
   // </Scene>

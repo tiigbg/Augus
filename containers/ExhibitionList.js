@@ -192,7 +192,7 @@ const ExhibitionList = React.createClass({
     const exhibition = this.props.nodes[sectionData];
     if(exhibition.hasOwnProperty('visibility') && exhibition.visibility == 'hidden')
       return (<View/>);
-    let title = findText(exhibition, this.props.texts, 'section', 'title', 'sv').text;
+    let title = findText(exhibition, this.props.texts, 'section', 'title', this.props.language).text;
     let images = findChildren(exhibition, this.props.images);
     let exhibitionImageTag = (<View/>);
     if(images.length > 0) {
@@ -204,18 +204,6 @@ const ExhibitionList = React.createClass({
         />
       );
     }
-    // for(i in this.props.texts)
-    // {
-    //   const text = texts[i];
-    //   // console.log('text');
-    //   // console.log(text);
-    //   // console.log(text.text);
-    //   if (text.parent_id == exhibition.id && text.type=='title' && text.language=='sv')
-    //   {
-    //     title = text.text
-    //   }
-    // }
-    
     return (
       // <TouchableHighlight onPress={() => Actions.stationList(sectionID)}>
       <View>
@@ -248,34 +236,7 @@ const ExhibitionList = React.createClass({
             style={{ margin: 5 }} >
             <View>
                 <Icon name={'refresh'} style={styles.collapseIcon} />
-                <Text>
-                  Reload
-                </Text>
               </View>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => { REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2-symbols2.json'; this.fetchData(); }}
-            style={{ margin: 5 }}
-          >
-            <Text>
-              Version 1
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => { REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2-numbers.json'; this.fetchData(); }}
-            style={{ margin: 5 }}
-          >
-            <Text>
-              Version 2
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => { REQUEST_URL = 'http://www.tiigbg.se/augus/goteborgsstadsmuseum2-symbols.json'; this.fetchData(); }}
-            style={{ margin: 5 }}
-          >
-            <Text>
-              Version 3
-            </Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -284,7 +245,7 @@ const ExhibitionList = React.createClass({
   render() {
     console.log('exhibitionlist render');
     console.log(this.props)
-    let navbar = (<NavBar title={this.props.title} noBackButton />);
+    let navbar = (<NavBar title={this.props.title} language={this.props.language} noBackButton />);
     if (!this.props.loaded) {
       let loadingView = this.renderLoadingView();
       return (
@@ -320,6 +281,8 @@ const mapStateToProps = (state) => {
     signlanguages: state.exhibitions.signlanguages,
     loaded: state.exhibitions.loaded,
     baseUrl: state.settings.baseUrl,
+    language: state.settings.language,
+    displaySignlanguage: state.settings.displaySignlanguage,
   };
 };
 
