@@ -73,6 +73,6 @@ export function findText(node, texts, parent_type='section', type='title', langu
       return text;
     }
   }
-  console.log('text not found, returning Untitled for parent_id='+node.id+' type='+type+' language='+language);
+  // console.log('text not found, returning Untitled for parent_id='+node.id+' type='+type+' language='+language);
   return {'text':null}; // FIXME Should this throw an error instead?
 }

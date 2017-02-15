@@ -1,7 +1,6 @@
 import React from 'react';
 import { ScrollView, Image, ListView, TouchableHighlight, Text, View} from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import { findText, findChildren } from '../util/station.js';
 import NavBar from '../components/NavBar';
 import styles from '../styles/styles';
@@ -80,6 +79,10 @@ global.storage = new Storage({
 
 
 const ExhibitionList = React.createClass({
+  // Currently not used as we are not using the native navbar from React Navigation
+  // navigationOptions: {
+  //   title: 'Utställningar',
+  // },
   getInitialState() {
     //const { dispatch } = this.props;
     //dispatch({ type: AT.CHANGE_BASE_URL, payload: { baseUrl: 'http://192.168.43.95:8000' } });
@@ -205,10 +208,9 @@ const ExhibitionList = React.createClass({
       );
     }
     return (
-      // <TouchableHighlight onPress={() => Actions.stationList(sectionID)}>
       <View>
         <TouchableHighlight
-          onPress={() => Actions.stationList({ node: exhibition, title })}
+      onPress={() => this.props.navigation.navigate('StationList', { node: exhibition, title })}
         >
           <View>
             <View style={styles.listContainer}>
@@ -244,8 +246,7 @@ const ExhibitionList = React.createClass({
   },
   render() {
     console.log('exhibitionlist render');
-    console.log(this.props)
-    let navbar = (<NavBar title={this.props.title} language={this.props.language} noBackButton />);
+    const navbar = (<NavBar title={this.props.title} language={this.props.language} noBackButton />);
     if (!this.props.loaded) {
       let loadingView = this.renderLoadingView();
       return (

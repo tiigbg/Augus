@@ -1,7 +1,6 @@
 import React from 'react';
 import { ProgressBarAndroid, ProgressViewIOS, ScrollView, Image, ListView, TouchableHighlight, Text, View, TouchableOpacity, Platform } from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import * as AT from '../constants/ActionTypes';
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
