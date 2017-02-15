@@ -2,53 +2,54 @@ import React from 'react';
 import { Text, View, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../styles/styles';
-import { findColor, findText } from '../util/station.js';
-import { Actions, ActionConst } from 'react-native-router-flux';
+import { findColor, findText, findNode } from '../util/station.js';
+import * as NavigationService from '../util/NavigationService';
 
 export default React.createClass({
-  getDefaultProps() {
-    return {};
-  },
-  getInitialState() {
-    return {};
-  },
   render() {
     console.log('NavBar render');
+    let parentNode;
+    if (this.props.node) {
+      parentNode = findNode(this.props.node.parent_id, this.props.nodes);
+    }
     const backgroundColor = findColor(this.props.node, this.props.nodes, true);
     let backButton = (<View />);
     if (!this.props.noBackButton) {
       backButton = (
-        <TouchableHighlight onPress={() => Actions.pop()}>
-          <Text style={ styles.backButton }>
-            <Icon name={'level-up'} size={50} color={'white'} style={{ textAlign: 'center' }} /> 
-          </Text>
-        </TouchableHighlight>);
+        <TouchableHighlight onPress={() => {
+          if (parentNode) {
+            NavigationService.navigate('StationList', { node: parentNode,
+              title: findText(parentNode, this.props.texts, 'section', 'title', 'sv').text,
+            });
+          } else {
+            NavigationService.navigate('ExhibitionList');
+          } }}
+        >
+        <Text style={ styles.backButton }>
+          <Icon name={'level-up'} size={50} color={'white'} style={{ textAlign: 'center' }} />
+        </Text>
+      </TouchableHighlight>);
     }
     let prevButton = (<View />);
     let nextButton = (<View />);
-    if (!!this.props.previous) {
+    if (!!this.props.previous && parentNode) {
       prevButton = (
         <TouchableHighlight
           onPress={() => {
-            console.log('going to previous');
-            console.log(this.props.previous);
-            Actions.stationList(
-            { node: this.props.previous,
+            NavigationService.navigate('StationList', { node: this.props.previous,
               title: findText(this.props.previous, this.props.texts, 'section', 'title', 'sv').text,
-              type: ActionConst.PUSH
             });
           }}
         >
           <Icon name={'arrow-left'} size={50} color={'white'} style={{ textAlign: 'center', margin:5 }} />
         </TouchableHighlight>);
     }
-    if (!!this.props.next) {
+    if (!!this.props.next && parentNode) {
       nextButton = (
         <TouchableHighlight
-          onPress={() => Actions.stationList(
-            { node: this.props.next,
+          onPress={() =>
+            NavigationService.navigate('StationList', { node: this.props.next,
               title: findText(this.props.next, this.props.texts, 'section', 'title', 'sv').text,
-              type: ActionConst.PUSH 
             })
           }
         >

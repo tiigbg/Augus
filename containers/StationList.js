@@ -1,7 +1,6 @@
 import React from 'react';
 import { ProgressBarAndroid, ProgressViewIOS, ScrollView, Image, ListView, TouchableHighlight, Text, View, TouchableOpacity, Platform } from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import styles from '../styles/styles';
 import { findColor, findSymbol, findNode, findText, findChildren } from '../util/station.js';
 import NavBar from '../components/NavBar';
@@ -32,11 +31,11 @@ let renderSectionHeaders = false;
 
 const StationList = React.createClass({
   getInitialState() {
-    console.log('StationList getInitialState props:');
-    console.log(this.props);
+    //console.log('StationList getInitialState props:');
+    //console.log(this.props);
     const nodes = this.props.nodes;
     // const exhibition = nodes[this.props.node.id];
-    const exhibition = findNode(this.props.node.id, nodes);
+    const exhibition = findNode(this.props.navigation.state.params.node.id, nodes);
     const dataBlob = {};
     const sectionIDs = [];
     const rowIDs = [];
@@ -46,9 +45,9 @@ const StationList = React.createClass({
     for (const id in nodes){
       // don't confuse museum sections and list sections here
       const node = nodes[id];
-      console.log('going through nodes (id='+id+')');
+      //console.log('going through nodes (id='+id+')');
       if (node.parent_id === exhibition.id) {
-        console.log('Found child node with id='+node.id);
+        //console.log('Found child node with id='+node.id);
         // sectionIDs.push(`${id}`);
         // rowIDs.push(`${id}`);
         rowIDs[0].push(`${id}`);
@@ -76,7 +75,7 @@ const StationList = React.createClass({
     let hasAudio = false;
     let audioLoaded = false;
     let audioFilename = '';
-    let audioFile = this.props.audio.find((item)=>{ return item.parent_id == this.props.node.id && item.parent_type=='section' && item.language=='sv'; });
+    let audioFile = this.props.audio.find((item)=>{ return item.parent_id == this.props.navigation.state.params.node.id && item.parent_type=='section' && item.language=='sv'; });
     if (typeof audioFile !== "undefined") {
       hasAudio = true;
       // download audio file and save in state
@@ -105,7 +104,7 @@ const StationList = React.createClass({
     let hasSignlanguage = false;
     let signlanguageLoaded = false;
     let signlanguageFilename = '';
-    let signlanguageFile = this.props.signlanguages.find((item)=>{ return item.parent_id == this.props.node.id && item.language=='sv'; });
+    let signlanguageFile = this.props.signlanguages.find((item)=>{ return item.parent_id == this.props.navigation.state.params.node.id && item.language=='sv'; });
     if (typeof signlanguageFile !== "undefined") {
       hasSignlanguage = true;
       // download audio file and save in state
@@ -135,7 +134,7 @@ const StationList = React.createClass({
     let hasVideo = false;
     let videoLoaded = false;
     let videoFilename = '';
-    let videoFile = this.props.video.find((item)=>{ return item.parent_id == this.props.node.id && item.language=='sv'; });
+    let videoFile = this.props.video.find((item)=>{ return item.parent_id == this.props.navigation.state.params.node.id && item.language=='sv'; });
     if (typeof videoFile !== "undefined") {
       hasVideo = true;
       // download video file and save in state
@@ -176,15 +175,14 @@ const StationList = React.createClass({
     };
   },
   renderRow(rowData, sectionID, rowID) {
-    console.log('stationList renderRow '+sectionID+':'+rowID);
-    console.log(rowData);
+    /* console.log('stationList renderRow '+sectionID+':'+rowID);*/
+    /* console.log(rowData);*/
     const station = this.props.nodes[rowID];
     let title = findText(station, this.props.texts, 'section', 'title', 'sv').text;
-    let openFunction = () => Actions.stationList({ node: station, title });
+    let openFunction = () => { this.props.navigation.navigate('StationList', { node: station, title }); };
     if (station.type === 'leaf') {
-      openFunction = () => Actions.stationScreen(
-        { station, title, nodes: this.props.nodes }
-      );
+      console.log("Oh no, don't go here!!");
+      openFunction = () => { this.props.navigation.navigate('StationScreen', { station, title, nodes: this.props.nodes }); };
     }
     const symbol = findSymbol(station, this.props.nodes, this.props.icons);
     let symbolView = (<View />);
@@ -218,10 +216,10 @@ const StationList = React.createClass({
     if (!this.state.renderSectionHeaders) {
       return (<View></View>);
     }
-    console.log('stationList renderSectionHeader '+sectionID);
+    //console.log('stationList renderSectionHeader '+sectionID);
     const section = this.props.nodes[sectionID];
     let title = findText(section, this.props.texts, 'section', 'title', 'sv').text;
-    console.log(title);
+    //console.log(title);
     const backgroundColor = findColor(section, this.props.nodes, true);
     return (
       <View>
@@ -244,7 +242,7 @@ const StationList = React.createClass({
     //     <Text>loading</Text>
     //     );
     // }
-    const station = this.props.node;
+    const station = this.props.navigation.state.params.node;
     const nodes = this.props.nodes;
     const backgroundColor = findColor(station, this.props.nodes, true);
     function findPrevious(node) {
@@ -261,7 +259,7 @@ const StationList = React.createClass({
         title={this.props.title}
         previous={prevStation}
         next={nextStation}
-        node={this.props.node}
+        node={this.props.navigation.state.params.node}
         nodes={this.props.nodes}
         texts={this.props.texts}
       />);
@@ -282,7 +280,7 @@ const StationList = React.createClass({
     let textView = (
       <Text></Text>
     );
-    let images = findChildren(this.props.node, this.props.images);
+    let images = findChildren(this.props.navigation.state.params.node, this.props.images);
     if(images.length > 0) {
       imageView = (
         <ScrollView horizontal
@@ -293,8 +291,7 @@ const StationList = React.createClass({
             const imageboxwidth = Dimensions.get('window').width/5*4;
             const imageDescription = findText(eachImage, this.props.texts, 'image', 'body', 'sv').text;
             function renderFullScreenImage() {
-              console.log('renderFullScreenImage with props');
-              console.log(this.props);
+              //console.log('renderFullScreenImage with props', this.props);
               return (
                 <View>
                   <PhotoView
@@ -341,7 +338,7 @@ const StationList = React.createClass({
                     <Icon name={'expand'} style={styles.expandIcon} />
                   </View>
                   <View style={{ flexDirection: 'row' }}>
-                    <ImageCaption texts={this.props.texts} image={eachImage} baseUrl={this.props.baseUrl} audio={this.props.audio} node={this.props.node}/>
+                    <ImageCaption texts={this.props.texts} image={eachImage} baseUrl={this.props.baseUrl} audio={this.props.audio} node={this.props.navigation.state.params.node}/>
                   </View>
                 </View>
               </Lightbox>
@@ -421,7 +418,7 @@ const StationList = React.createClass({
         }
       }
     }
-    let description = findText(this.props.node, this.props.texts, 'section', 'body', 'sv');
+    let description = findText(this.props.navigation.state.params.node, this.props.texts, 'section', 'body', 'sv');
     if ('parent_id' in description)
     {
       textView = (
