@@ -25,24 +25,17 @@ export function findColor(node, nodes, isDark) {
 }
 
 export function findSymbol(node, nodes, icons) {
-  // console.log('findSymbol');
   if (typeof node !== 'undefined' && !!node) {
-    // console.log('for node id='+node.id);
     for(i in icons)
     {
-      // console.log('going through nodes, i:'+i);
       const icon = icons[i];
       if (icon.parent_id == node.id)
       {
-        // console.log('findSymbol ended, returning icon:');
-        // console.log(icon);
         return icon;
       }
     }
-    // console.log('did not find symbol, trying parent');
     return findSymbol(findNode(node.parent_id, nodes), nodes, icons);
   }
-  // console.log('findSymbol ended, nothing found');
   return '';
 }
 

@@ -7,11 +7,14 @@ import * as NavigationService from '../util/NavigationService';
 
 export default React.createClass({
   render() {
-    console.log('NavBar render');
     let parentNode;
     if (this.props.node) {
       parentNode = findNode(this.props.node.parent_id, this.props.nodes);
     }
+    console.log('NavBar render with prev:');
+    console.log(this.props.previous);
+    console.log('and next:');
+    console.log(this.props.next);
     const backgroundColor = findColor(this.props.node, this.props.nodes, true);
     let backButton = (<View />);
     if (!this.props.noBackButton) {
@@ -36,6 +39,8 @@ export default React.createClass({
       prevButton = (
         <TouchableHighlight
           onPress={() => {
+            console.log('going to previous');
+            console.log(this.props.previous);
             NavigationService.navigate('StationList', { node: this.props.previous,
               title: findText(this.props.previous, this.props.texts, 'section', 'title', 'sv').text,
             });
@@ -47,10 +52,13 @@ export default React.createClass({
     if (!!this.props.next && parentNode) {
       nextButton = (
         <TouchableHighlight
-          onPress={() =>
+          onPress={() => {
+            console.log('going to next');
+            console.log(this.props.next);
             NavigationService.navigate('StationList', { node: this.props.next,
               title: findText(this.props.next, this.props.texts, 'section', 'title', 'sv').text,
-            })
+            });
+            }
           }
         >
           <Icon name={'arrow-right'} size={50} color={'white'} style={{ textAlign: 'center', margin: 5 }} />

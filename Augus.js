@@ -5,6 +5,7 @@ import { StackNavigator } from 'react-navigation';
 import * as NavigationService from './util/NavigationService';
 
 import TabIcon from './components/TabIcon.js';
+import LanguageSelect from './containers/LanguageSelect';
 import ExhibitionList from './containers/ExhibitionList';
 //import Experiment from './containers/Experiment';
 import StationList from './containers/StationList';
