@@ -1,10 +1,12 @@
 import React from 'react';
-import { Text, View, TouchableHighlight } from 'react-native';
+import { Text, View, TouchableHighlight, BackAndroid } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../styles/styles';
 import { findColor, findText, findNode } from '../util/station.js';
 import * as NavigationService from '../util/NavigationService';
 import { findExhibitionListTitle } from '../util/exhibitionlist.js';
+
+
 
 export default React.createClass({
   render() {
@@ -16,6 +18,20 @@ export default React.createClass({
     console.log(this.props.previous);
     console.log('and next:');
     console.log(this.props.next);
+
+    function goBack() {
+      if (parentNode) {
+        NavigationService.navigate('StationList', { node: parentNode,
+          title: findText(parentNode, this.props.texts, 'section', 'title', this.props.language).text,
+        });
+      } else if(!this.props.noBackButton) { 
+        NavigationService.navigate('ExhibitionList', {title: findExhibitionListTitle(this.props.language)} );
+      } // FIXME Should we quit the app here?
+      return true;
+    }
+    goBack = goBack.bind(this);
+    BackAndroid.addEventListener('hardwareBackPress', goBack);
+
     const backgroundColor = findColor(this.props.node, this.props.nodes, true);
     let backButton = (<View />);
     if (!this.props.noBackButton) {

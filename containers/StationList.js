@@ -246,10 +246,10 @@ const StationList = React.createClass({
     const nodes = this.props.nodes;
     const backgroundColor = findColor(station, this.props.nodes, true);
     function findPrevious(node) {
-      return node && node.parent === station.parent && node.order === station.order - 1;
+      return node && node.parent_id === station.parent_id && node.order === station.order - 1;
     }
     function findNext(node) {
-      return node && node.parent === station.parent && node.order === station.order + 1;
+      return node && node.parent_id === station.parent_id && node.order === station.order + 1;
     }
     const prevStation = nodes.find(findPrevious);
     const nextStation = nodes.find(findNext);
