@@ -444,8 +444,8 @@ const StationList = React.createClass({
     );
     return (
       <View style={styles.screenContainer}>
-        <View>{navbar}</View>
-        <ScrollView >
+        <View style={ styles.navbar_container }>{navbar}</View>
+        <ScrollView style={ styles.body_container }>
           {stationView}
           <ListView
             style={styles.listMargin}

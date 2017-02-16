@@ -259,8 +259,8 @@ const ExhibitionList = React.createClass({
     let listView = this.renderListView();
     return (
       <View style={styles.screenContainer}>
-        <View>{navbar}</View>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
+        <View style={ styles.navbar_container }>{navbar}</View>
+        <ScrollView style={ styles.body_container } contentContainerStyle={styles.contentContainer}>
           {listView}
         </ScrollView>
       </View>

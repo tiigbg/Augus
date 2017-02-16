@@ -12,6 +12,9 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
   },
+  body_container: {
+    flexGrow: 80,
+  },
   listMargin: {
     marginTop: 5,
     marginBottom: 0,
@@ -98,10 +101,12 @@ export default StyleSheet.create({
     backgroundColor:"#e1057d",
     marginBottom: 4,
   },
+  navbar_container: {
+    flexGrow: 1,
+  },
   stationTitlePane: {
     justifyContent: 'space-between',
-    flex: 1,
-    flexBasis:  250,
+    flexGrow: 1,
     flexDirection: 'row',
     marginBottom: 5,
   },
@@ -112,6 +117,8 @@ export default StyleSheet.create({
     marginBottom: 14,
     textAlign: 'center',
     fontWeight: '500',
+    flexWrap: 'wrap',
+    flex: 1,
   },
   backButton: {
     fontSize: 32,
