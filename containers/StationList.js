@@ -256,7 +256,7 @@ const StationList = React.createClass({
     
     let navbar = (
       <NavBar
-        title={this.props.title}
+        title={this.props.navigation.state.params.title}
         previous={prevStation}
         next={nextStation}
         node={this.props.navigation.state.params.node}

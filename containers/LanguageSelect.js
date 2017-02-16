@@ -5,6 +5,8 @@ import * as AT from '../constants/ActionTypes';
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RNFetchBlob from 'react-native-fetch-blob'
+import { findExhibitionListTitle } from '../util/exhibitionlist.js';
+
 
 
 const LanguageSelect = React.createClass({
@@ -21,7 +23,7 @@ const LanguageSelect = React.createClass({
           <TouchableHighlight
               onPress={() => {
                 this.props.changeLanguage('sv', false);
-                Actions.exhibitionList({ title: 'Utställningar' });
+                this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle(this.props.language)} );
               }}
               style={[styles.listContainer, { marginTop: 16 }]}
             >
@@ -32,7 +34,7 @@ const LanguageSelect = React.createClass({
           <TouchableHighlight
               onPress={() => {
                 this.props.changeLanguage('sv', true);
-                Actions.exhibitionList({ title: 'Utställningar' });
+                this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle(this.props.language)} );
               }}
               style={styles.listContainer}
             >
@@ -43,7 +45,7 @@ const LanguageSelect = React.createClass({
           <TouchableHighlight
               onPress={() => {
                 this.props.changeLanguage('en', false);
-                Actions.exhibitionList({ title: 'Exhibitions' });
+                this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle(this.props.language)} );
               }}
               style={styles.listContainer}
             >

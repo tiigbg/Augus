@@ -34,6 +34,7 @@ export default class Augus extends React.Component {
 
 const AppNavigator = StackNavigator(
   {
+    LanguageSelect: { screen: LanguageSelect },
     ExhibitionList: { screen: ExhibitionList },
     StationList: { screen: StationList },
   }, {

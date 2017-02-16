@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../styles/styles';
 import { findColor, findText, findNode } from '../util/station.js';
 import * as NavigationService from '../util/NavigationService';
+import { findExhibitionListTitle } from '../util/exhibitionlist.js';
 
 export default React.createClass({
   render() {
@@ -22,10 +23,10 @@ export default React.createClass({
         <TouchableHighlight onPress={() => {
           if (parentNode) {
             NavigationService.navigate('StationList', { node: parentNode,
-              title: findText(parentNode, this.props.texts, 'section', 'title', 'sv').text,
+              title: findText(parentNode, this.props.texts, 'section', 'title', this.props.language).text,
             });
           } else {
-            NavigationService.navigate('ExhibitionList');
+            NavigationService.navigate('ExhibitionList', {title: findExhibitionListTitle(this.props.language)} );
           } }}
         >
         <Text style={ styles.backButton }>
@@ -42,7 +43,7 @@ export default React.createClass({
             console.log('going to previous');
             console.log(this.props.previous);
             NavigationService.navigate('StationList', { node: this.props.previous,
-              title: findText(this.props.previous, this.props.texts, 'section', 'title', 'sv').text,
+              title: findText(this.props.previous, this.props.texts, 'section', 'title', this.props.language).text,
             });
           }}
         >
