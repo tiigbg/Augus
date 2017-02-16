@@ -1,4 +1,4 @@
-package com.augus;
+package se.tii.augus.gbgfodelse;
 
 import com.facebook.react.ReactActivity;
 

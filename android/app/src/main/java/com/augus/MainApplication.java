@@ -1,4 +1,4 @@
-package com.augus;
+package se.tii.augus.gbgfodelse;
 
 import android.app.Application;
 import android.util.Log;
