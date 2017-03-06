@@ -107,12 +107,12 @@ const StationList = React.createClass({
     let signlanguageFile = this.props.signlanguages.find((item)=>{ return item.parent_id == this.props.navigation.state.params.node.id && item.language==this.props.language; });
     if (typeof signlanguageFile !== "undefined" && this.props.displaySignlanguage) {
       hasSignlanguage = true;
-      // download audio file and save in state
       RNFetchBlob
       .config({
         fileCache : true,
-        // appendExt : 'mp3' // FIXME should this be fixated to always be mp3?
+        appendExt : 'mp4'
       })
+      
       .fetch('GET', this.props.baseUrl+'/signlanguageFile/'+signlanguageFile.id, {
         
       })
