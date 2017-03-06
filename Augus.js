@@ -38,6 +38,7 @@ const AppNavigator = StackNavigator(
     ExhibitionList: { screen: ExhibitionList },
     StationList: { screen: StationList },
   }, {
+    headerMode: 'screen',
     navigationOptions: {
       header: {
         visible: false,
