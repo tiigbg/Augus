@@ -110,7 +110,7 @@ const StationList = React.createClass({
       RNFetchBlob
       .config({
         fileCache : true,
-        appendExt : 'mp4'
+        appendExt : 'mp4',
       })
       
       .fetch('GET', this.props.baseUrl+'/signlanguageFile/'+signlanguageFile.id, {
@@ -137,11 +137,10 @@ const StationList = React.createClass({
     let videoFile = this.props.video.find((item)=>{ return item.parent_id == this.props.navigation.state.params.node.id && item.language==this.props.language; });
     if (typeof videoFile !== "undefined") {
       hasVideo = true;
-      // download video file and save in state
       RNFetchBlob
       .config({
         fileCache : true,
-        // appendExt : 'mp3' // FIXME should this be fixated to always be mp3?
+        appendExt : 'mp´4',
       })
       .fetch('GET', this.props.baseUrl+'/videoFile/'+videoFile.id, {
         
