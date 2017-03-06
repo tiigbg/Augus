@@ -7,6 +7,7 @@ import NavBar from '../components/NavBar';
 import AudioPlayer from '../components/AudioPlayer';
 import VideoPlayer from '../components/VideoPlayer';
 import ImageCaption from '../components/ImageCaption';
+import StationText from '../components/StationText';
 import Dimensions from 'Dimensions';
 import Lightbox from 'react-native-lightbox';
 import PhotoView from 'react-native-photo-view';
@@ -429,6 +430,14 @@ const StationList = React.createClass({
         </View>
       );
     }
+
+    textView = (
+        <StationText
+          texts={this.props.texts}
+          node={this.props.navigation.state.params.node}
+          language={this.props.language} />
+      );
+
     let stationView = (
       <View>
       <View >

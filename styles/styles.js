@@ -11,6 +11,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
+    backgroundColor: '#f0f0f0',
   },
   body_container: {
     flexGrow: 80,
