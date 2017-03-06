@@ -241,6 +241,15 @@ const ExhibitionList = React.createClass({
               </View>
           </TouchableHighlight>
         </View>
+        <View style={{ margin: 10, paddingTop: -10 }} >
+          <TouchableHighlight
+            onPress={() => { this.props.navigation.navigate('LanguageSelect'); }}
+            style={{ margin: 5 }} >
+            <View>
+                <Icon name={'language'} style={styles.collapseIcon} />
+              </View>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   },

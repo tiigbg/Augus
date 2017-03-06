@@ -23,7 +23,7 @@ const LanguageSelect = React.createClass({
           <TouchableHighlight
               onPress={() => {
                 this.props.changeLanguage('sv', false);
-                this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle(this.props.language)} );
+                this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle('sv')} );
               }}
               style={[styles.listContainer, { marginTop: 16 }]}
             >
@@ -34,7 +34,7 @@ const LanguageSelect = React.createClass({
           <TouchableHighlight
               onPress={() => {
                 this.props.changeLanguage('sv', true);
-                this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle(this.props.language)} );
+                this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle('sv')} );
               }}
               style={styles.listContainer}
             >
@@ -45,7 +45,7 @@ const LanguageSelect = React.createClass({
           <TouchableHighlight
               onPress={() => {
                 this.props.changeLanguage('en', false);
-                this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle(this.props.language)} );
+                this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle('en')} );
               }}
               style={styles.listContainer}
             >
@@ -63,6 +63,7 @@ const mapStateToProps = (state) => {
   return {
     loaded: state.exhibitions.loaded,
     baseUrl: state.settings.baseUrl,
+    language: state.settings.language,
   };
 };
 
