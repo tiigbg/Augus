@@ -25,7 +25,7 @@ export default React.createClass({
     };
   },
   componentWillMount() {
-    const sound = new Sound(this.props.file, Sound.MAIN_BUNDLE, (error) => {
+    const sound = new Sound(this.props.file, '', (error) => {
       if (error) {
         console.log('failed to load the sound', error);
       } else {
