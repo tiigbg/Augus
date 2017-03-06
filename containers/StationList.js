@@ -333,6 +333,7 @@ const StationList = React.createClass({
                   <Image
                     source={{ uri: this.props.baseUrl+'/imageFile/'+eachImage.id }}
                     style={styles.detailsImage}
+                    resizeMode={'contain'}
                   />
                   <View style={ styles.expandIconBox }>
                     <Icon name={'expand'} style={styles.expandIcon} />
