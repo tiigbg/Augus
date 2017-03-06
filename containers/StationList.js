@@ -300,6 +300,7 @@ const StationList = React.createClass({
                     minimumZoomScale={0.5}
                     maximumZoomScale={5}
                     androidScaleType="center"
+                    resizeMode={'contain'}
                     style={{
                       width: Dimensions.get('window').width,
                       height: Dimensions.get('window').height,
