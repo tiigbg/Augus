@@ -19,11 +19,10 @@ export default React.createClass({
     let audioFile = this.props.audio.find((item)=>{ return item.parent_id == this.props.image.id && item.parent_type=='image' && item.language==this.props.language; });
     if (typeof audioFile !== "undefined") {
       hasAudio = true;
-      // download audio file and save in state
       RNFetchBlob
       .config({
         fileCache : true,
-        appendExt : 'mp3' // FIXME should this be fixated to always be mp3?
+        appendExt : 'mp3',
       })
       .fetch('GET', this.props.baseUrl+'/audioFile/'+audioFile.id, {
         
