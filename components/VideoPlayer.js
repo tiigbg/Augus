@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Image, TouchableHighlight, Slider } from 'react-native';
 
 import { secondsToTime } from '../util/time';
-import Lightbox from 'react-native-lightbox';
+//import Lightbox from 'react-native-lightbox';
 
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -47,14 +47,15 @@ export default React.createClass({
     this.setState({ isPlaying: !this.state.isPlaying });
   },
   render() {
-    return (
-      <Lightbox
+      /*<Lightbox
         navigator={this.props.navigator}
         activeProps={{ style: styles.lightBox }}
         style={styles.colStretch}
         onClose={this.onFullscreenClose}
         onOpen={this.onFullscreenOpen}
-      >
+      </Lightbox>
+      >*/
+    return (
         <View style={styles.colStretch}>
           <Video
             ref="videoPlayer"
@@ -106,7 +107,6 @@ export default React.createClass({
             </View>
           </View>
         </View>
-      </Lightbox>
     );
   },
 });
