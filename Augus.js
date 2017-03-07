@@ -22,8 +22,6 @@ export default class Augus extends React.Component {
   }
   render() {
     console.log("root", this);
-    // FIXME remove this after the usertest
-    // console.disableYellowBox = true;
     return (
       <Provider store={this.state.store}>
         <AppNavigator ref={(nav) => { this.navigator = nav; }}  />
