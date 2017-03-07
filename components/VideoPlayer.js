@@ -71,7 +71,7 @@ export default React.createClass({
               (videoStats) => this.setState({ duration: videoStats.duration })
             }    // Callback when video loads
             onProgress={
-              (progressStats) => this.setState({ time: progressStats.currentTime })
+              (progressStats) => {if (this.state.isPlaying) {this.setState({ time: progressStats.currentTime });}}
             }    // Callback every ~250ms with currentTime
             onEnd={this.onEnd}           // Callback when playback finishes
             onError={this.videoError}    // Callback when video cannot be loaded
