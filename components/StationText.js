@@ -25,6 +25,7 @@ export default React.createClass({
       return (<View />);
 
     if(!this.props.collapse)
+    if(!this.props.collapse || bodyText.length < 200)
     {
       return (
         <View style={{ borderWidth: 0, flexGrow: 1}}>
