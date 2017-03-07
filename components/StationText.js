@@ -8,14 +8,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 export default React.createClass({
-  getDefaultProps() {
-    return {
-      visible: false,
-    };
-  },
   getInitialState() {
     return {
-      visible: this.props.visible,
+      visible: false,
     };
   },
   componentWillMount() {
@@ -26,8 +21,17 @@ export default React.createClass({
   },
   render() {
     const bodyText = findText(this.props.node, this.props.texts, 'section', 'body', this.props.language).text;
-    if(bodyText == null) // TODO also check if there is no audio either?
+    if(bodyText == null)
       return (<View />);
+
+    if(!this.props.collapse)
+    {
+      return (
+        <View style={{ borderWidth: 0, flexGrow: 1}}>
+          <Text style={styles.imageDescription} >{bodyText}</Text>
+        </View>
+      );
+    }
 
     if(this.state.visible)
     {

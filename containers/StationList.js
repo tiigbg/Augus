@@ -28,7 +28,6 @@ let myDataSource = new ListView.DataSource({
   sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
 });
 
-let renderSectionHeaders = false;
 
 const StationList = React.createClass({
   getInitialState() {
@@ -65,12 +64,9 @@ const StationList = React.createClass({
         // }
       }
     }
-    renderSectionHeaders = false;
-    if (sectionIDs.length > 1 ) {
-      console.log('sectionIDs.length='+sectionIDs.length);
-      renderSectionHeaders = true;
-    }
-    console.log(renderSectionHeaders);
+    
+    collapseText = (rowIDs[0].length > 0);
+    
     myDataSource = myDataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
 
     let hasAudio = false;
@@ -165,7 +161,7 @@ const StationList = React.createClass({
     }
     return {
       myDataSource,
-      renderSectionHeaders,
+      collapseText,
       hasAudio,
       audioLoaded,
       audioFilename,
@@ -216,27 +212,7 @@ const StationList = React.createClass({
     );
   },
   renderSectionHeader(sectionData, sectionID) {
-    if (!this.state.renderSectionHeaders) {
-      return (<View></View>);
-    }
-    //console.log('stationList renderSectionHeader '+sectionID);
-    const section = this.props.nodes[sectionID];
-    let title = findText(section, this.props.texts, 'section', 'title', this.props.language).text;
-    console.log(title);
-    const backgroundColor = findColor(section, this.props.nodes, true);
-    return (
-      <View>
-        <View style={[styles.listContainer, { backgroundColor }]}>
-          <View style={styles.rightContainer}>
-            <Text
-              style={[styles.listText, { fontWeight: 'bold',color: '#fff' }]}
-            >
-              {title}
-            </Text>
-          </View>
-        </View>
-      </View>
-    );
+    return (<View></View>);
   },
   render() {
     // if (this.props.dataSource == null) {
@@ -439,7 +415,8 @@ const StationList = React.createClass({
         <StationText
           texts={this.props.texts}
           node={this.props.navigation.state.params.node}
-          language={this.props.language} />
+          language={this.props.language}
+          collapse={this.state.collapseText} />
       );
 
     let stationView = (
