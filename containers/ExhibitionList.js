@@ -115,7 +115,6 @@ const ExhibitionList = React.createClass({
       syncInBackground: true
     }).then(ret => {
       // found data go to then()
-      console.log('nodes data loaded from storage');
       const { dispatch } = this.props;
       dispatch({ type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, data: ret });
       
@@ -124,14 +123,14 @@ const ExhibitionList = React.createClass({
       // goes to catch()
       console.warn(err.message);
       switch (err.name) {
-          case 'NotFoundError':
-              console.log('exhibitionlist NotFoundError');
-              this.fetchData();
-              break;
-          case 'ExpiredError':
-            console.log('exhibitionlist ExpiredError');
-              this.fetchData();
-              break;
+        case 'NotFoundError':
+            console.log('exhibitionlist NotFoundError');
+            this.fetchData();
+            break;
+        case 'ExpiredError':
+          console.log('exhibitionlist ExpiredError');
+            this.fetchData();
+            break;
       }
     })
 
