@@ -22,6 +22,7 @@ export default React.createClass({
       RNFetchBlob
       .config({
         fileCache : true,
+        key: ''+audioFile.id,
         appendExt : 'mp3',
       })
       .fetch('GET', this.props.baseUrl+'/audioFile/'+audioFile.id, {

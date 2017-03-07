@@ -83,6 +83,7 @@ const StationList = React.createClass({
       RNFetchBlob
       .config({
         fileCache : true,
+        key: ''+audioFile.id,
         appendExt : 'mp3', // FIXME should this be fixated to always be mp3?
       })
       .fetch('GET', this.props.baseUrl+'/audioFile/'+audioFile.id, {
@@ -111,6 +112,7 @@ const StationList = React.createClass({
       RNFetchBlob
       .config({
         fileCache : true,
+        key: ''+signlanguageFile.id,
         appendExt : 'mp4',
       })
       
@@ -141,6 +143,7 @@ const StationList = React.createClass({
       RNFetchBlob
       .config({
         fileCache : true,
+        key: ''+videoFile.id,
         appendExt : 'mp4',
       })
       .fetch('GET', this.props.baseUrl+'/videoFile/'+videoFile.id, {
