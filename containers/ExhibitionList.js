@@ -101,7 +101,6 @@ const ExhibitionList = React.createClass({
     };
   },
   componentDidMount() {
-    console.log('exhibitionlist componentDidMount()');
     storage.load({
       key: 'json',
 

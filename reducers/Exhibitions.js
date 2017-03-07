@@ -195,8 +195,6 @@ export default function Exhibitions(state = initialState, action) {
     case AT.MUSEUM_DATA_FETCH_FAILED:
       return state;
     case AT.MUSEUM_DATA_LOADED_FROM_CACHE:
-    console.log('MUSEUM_DATA_LOADED_FROM_CACHE');
-    console.log(action);
       return {
         nodes: action.data.nodes,
         texts: action.data.texts,

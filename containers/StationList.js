@@ -91,7 +91,6 @@ const StationList = React.createClass({
       .then((res) => {
         audioFilename = res.path();
         this.setState({ audioFilename, audioLoaded: true });
-        console.log(this.state.audioFilename);
       })
       .catch((err) => {
         console.log("error with fetching file:");
@@ -121,8 +120,6 @@ const StationList = React.createClass({
       .then((res) => {
         signlanguageFilename = res.path();
         this.setState({ signlanguageFilename, signlanguageLoaded: true });
-        console.log('done loading signlanguage with filename:');
-        console.log(this.state.signlanguageFilename);
       })
       .catch((err) => {
         console.log("error with fetching file:");
@@ -151,8 +148,6 @@ const StationList = React.createClass({
       .then((res) => {
         videoFilename = res.path();
         this.setState({ videoFilename, videoLoaded: true });
-        console.log('done loading video with filename:');
-        console.log(this.state.videoFilename);
       })
       .catch((err) => {
         console.log("error with fetching file:");
@@ -243,8 +238,6 @@ const StationList = React.createClass({
         texts={this.props.texts}
         language={this.props.language}
       />);
-    console.log('stationlist render after navbar')
-    console.log(this.props)
     let imageView = (
       <View></View>
     );
