@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, TouchableHighlight, Slider} from 'react-native';
+import {Text, View, TouchableHighlight, Slider, AppState} from 'react-native';
 
 import { secondsToTime } from '../util/time';
 import styles from '../styles/styles';
@@ -32,11 +32,26 @@ export default React.createClass({
         this.setState({ sound });
         this.setState({ duration: this.state.sound.getDuration() });
       } });
+    AppState.addEventListener('change', this._handleAppStateChange);
   },
   componentWillUnmount: function componentWillUnmount() {
     clearInterval(this.interval);
     if (!!this.state.sound) {
       this.state.sound.stop();
+    }
+    AppState.removeEventListener('change', this._handleAppStateChange);
+  },
+  _handleAppStateChange: function(currentAppState) {
+    console.log('_handleAppStateChange');
+    if(currentAppState == "background") {
+      if (!!this.state.sound) {
+        this.state.sound.pause();
+        this.setState({ isPlaying: false });
+        clearInterval(this.interval);
+      }
+    } 
+    if(currentAppState == "active") {
+        //resume();
     }
   },
   handlePress() {
