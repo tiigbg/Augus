@@ -254,7 +254,7 @@ const ExhibitionList = React.createClass({
     );
   },
   render() {
-    console.log('exhibitionlist render');
+    //console.log('exhibitionlist render');
     const navbar = (<NavBar title={this.props.navigation.state.params.title} language={this.props.language} noBackButton />);
     if (!this.props.loaded) {
       let loadingView = this.renderLoadingView();

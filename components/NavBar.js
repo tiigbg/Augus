@@ -14,10 +14,6 @@ export default React.createClass({
     if (this.props.node) {
       parentNode = findNode(this.props.node.parent_id, this.props.nodes);
     }
-    console.log('NavBar render with prev:');
-    console.log(this.props.previous);
-    console.log('and next:');
-    console.log(this.props.next);
 
     function goBack() {
       if (parentNode) {
@@ -56,8 +52,6 @@ export default React.createClass({
       prevButton = (
         <TouchableHighlight
           onPress={() => {
-            console.log('going to previous');
-            console.log(this.props.previous);
             NavigationService.navigate('StationList', { node: this.props.previous,
               title: findText(this.props.previous, this.props.texts, 'section', 'title', this.props.language).text,
             });
@@ -70,8 +64,6 @@ export default React.createClass({
       nextButton = (
         <TouchableHighlight
           onPress={() => {
-            console.log('going to next');
-            console.log(this.props.next);
             NavigationService.navigate('StationList', { node: this.props.next,
               title: findText(this.props.next, this.props.texts, 'section', 'title', 'sv').text,
             });
