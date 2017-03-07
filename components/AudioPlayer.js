@@ -42,7 +42,6 @@ export default React.createClass({
     AppState.removeEventListener('change', this._handleAppStateChange);
   },
   _handleAppStateChange: function(currentAppState) {
-    console.log('_handleAppStateChange');
     if(currentAppState == "background") {
       if (!!this.state.sound) {
         this.state.sound.pause();
