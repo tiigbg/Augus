@@ -83,11 +83,16 @@ export default React.createClass({
                 style={{ width: 50, height: 50, marginRight: 10 }}
               /> : null
             }
+            { !this.props.showSignlanguageIcon ? <Icon
+                name={'video-camera'}
+                style={{ fontSize:44, margin: 10, color:'black' }}
+              /> : null
+            }
             <TouchableHighlight onPress={this.handlePress}>
               <Icon
                 name={this.state.isPlaying ? 'pause' : 'play'}
-                size={60}
                 color={this.state.isFullScreen ? 'white' : 'black'}
+                style={styles.playPauseButton}
               />
             </TouchableHighlight>
             <View style={{ flex: 1, flexDirection: 'column' }}>

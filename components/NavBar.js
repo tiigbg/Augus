@@ -40,9 +40,11 @@ export default React.createClass({
           } else {
             NavigationService.navigate('ExhibitionList', {title: findExhibitionListTitle(this.props.language)} );
           } }}
+
+          style={{ borderWidth:3, borderColor:'black', borderRadius:5, backgroundColor:'white'}}
         >
         <Text style={ styles.backButton }>
-          <Icon name={'level-up'} size={50} color={'white'} style={{ textAlign: 'center' }} />
+          <Icon name={'level-up'} size={50} color={'black'} style={{ textAlign: 'center', margin:5, marginTop:0, marginBottom:0, }} />
         </Text>
       </TouchableHighlight>);
     }
@@ -56,8 +58,9 @@ export default React.createClass({
               title: findText(this.props.previous, this.props.texts, 'section', 'title', this.props.language).text,
             });
           }}
+          style={{ borderWidth:3, borderColor:'black', borderRadius:5, backgroundColor:'white'}}
         >
-          <Icon name={'arrow-left'} size={50} color={'white'} style={{ textAlign: 'center', margin:5 }} />
+          <Icon name={'arrow-left'} size={50} color={'black'} style={{ textAlign: 'center', margin:25, marginTop:5, marginBottom:0, }} />
         </TouchableHighlight>);
     }
     if (!!this.props.next && parentNode) {
@@ -69,19 +72,31 @@ export default React.createClass({
             });
             }
           }
+          style={{ borderWidth:3, borderColor:'black', borderRadius:5, backgroundColor:'white'}}
         >
-          <Icon name={'arrow-right'} size={50} color={'white'} style={{ textAlign: 'center', margin: 5 }} />
+          <Icon name={'arrow-right'} size={50} color={'black'} style={{ textAlign: 'center', margin:25, marginTop:5, marginBottom:0, }} />
         </TouchableHighlight>);
     }
     return (
-      <View style={[styles.stationTitlePane, { backgroundColor }]}>
-        {backButton}
-        {prevButton}
-        <Text style={[styles.station_name, { color: 'white' }]}>
-          {this.props.title}
-        </Text>
-        {nextButton}
-      </View>
+      <View style={{justifyContent: 'space-between',
+    flexGrow: 1,
+    flexDirection: 'column',
+    backgroundColor}}>
+        <View style={{ justifyContent: 'space-between',
+    flexGrow: 1,
+    flexDirection: 'row',}}>
+          {backButton}
+          {prevButton}
+          {nextButton}
+        </View>
+        <View style={{justifyContent: 'space-between',
+    flexGrow: 1,
+    flexDirection: 'row',}}>
+          <Text style={[styles.station_name, { color: 'white', marginTop:0, marginBottom:0, }]}>
+            {this.props.title}
+          </Text>
+        </View>
+      </View> 
     );
   },
 });

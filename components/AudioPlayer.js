@@ -83,8 +83,15 @@ export default React.createClass({
     } else {
       return (
           <View style={{ flexDirection: 'row' }}>
+            <Icon
+                name={'volume-up'} 
+                color={'black'} 
+                style={{fontSize: 47, margin: 10}} />
             <TouchableHighlight onPress={this.handlePress}>
-              <Icon name={this.state.isPlaying ? 'pause' : 'play'} size={60} color={'black'} />
+              <Icon
+                name={this.state.isPlaying ? 'pause' : 'play'} 
+                color={'black'} 
+                style={styles.playPauseButton} />
             </TouchableHighlight>
             <View style={{ flex:1, flexDirection: 'column' }}>
               <View style={{ flexDirection:'row', justifyContent:'space-between' }}>

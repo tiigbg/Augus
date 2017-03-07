@@ -327,12 +327,12 @@ const StationList = React.createClass({
       if(this.state.audioLoaded) {
         audioPlayerView = (
           <View>
-            <View style={styles.separator} />
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
               <View style={{ flex: 1, flexDirection: 'column' }}>
                 <AudioPlayer file={ this.state.audioFilename } />
               </View>
             </View>
+            <View style={styles.separator} />
           </View>
         );
       }
@@ -350,12 +350,12 @@ const StationList = React.createClass({
       if(this.state.signlanguageLoaded) {
         signlanguageView = (
           <View>
-            <View style={styles.separator} />
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
               <View style={{ flex: 1, flexDirection: 'column' }}>
                 <VideoPlayer file={ this.state.signlanguageFilename } showSignlanguageIcon={ true } />
               </View>
             </View>
+            <View style={styles.separator} />
           </View>
         );
       }
@@ -374,12 +374,12 @@ const StationList = React.createClass({
       if(this.state.videoLoaded) {
         videoPlayerView = (
           <View>
-            <View style={styles.separator} />
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
               <View style={{ flex: 1, flexDirection: 'column' }}>
                 <VideoPlayer file={ this.state.videoFilename } />
               </View>
             </View>
+            <View style={styles.separator} />
           </View>
         );
       }
@@ -398,19 +398,16 @@ const StationList = React.createClass({
     {
       textView = (
         <View>
-          <Text style={styles.station_text}>{description.text}</Text>
+          <StationText
+            texts={this.props.texts}
+            node={this.props.navigation.state.params.node}
+            language={this.props.language}
+            collapse={this.state.collapseText} />
           <View style={styles.separator} />
         </View>
       );
     }
 
-    textView = (
-        <StationText
-          texts={this.props.texts}
-          node={this.props.navigation.state.params.node}
-          language={this.props.language}
-          collapse={this.state.collapseText} />
-      );
 
     let stationView = (
       <View>

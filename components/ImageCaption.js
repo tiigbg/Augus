@@ -82,31 +82,33 @@ export default React.createClass({
     {
       return (
         <View style={{ borderWidth: 0, flexGrow: 1}}>
-          <View>
+          { imageAudioPlayerView }
+          <Text style={styles.imageDescription} >{imageDescription}</Text>
+          <View style={{flexDirection:'row'}}>
             <TouchableHighlight
               onPress={() => this.setState({ visible: false }) }
+              style={styles.collapseIconTouch}
             >
               <Icon name={'chevron-up'} style={styles.collapseIcon} />
             </TouchableHighlight>
           </View>
-          { imageAudioPlayerView }
-          <Text style={styles.imageDescription} >{imageDescription}</Text>
         </View>
       );
     }
     else
     {
+          /*<Text style={[styles.imageDescription, { height: 30, overflow:'hidden', marginBottom:-15, }]} >{imageDescription}</Text>
+          <View style={{ borderBottomWidth:15, borderBottomColor: '#eeeeeedd', marginBottom: 0 }}></View>*/
       return (
-        <View style={{ borderWidth: 0, flexGrow: 1}}>
-          <View>
+        <View style={{ borderWidth: 0, flexGrow: 1, marginTop:-60,}}>
+          <View style={{flexDirection:'row'}}>
             <TouchableHighlight
               onPress={() => this.setState({ visible: true }) }
+              style={styles.collapseIconTouch}
             >
               <Icon name={'chevron-down'} style={styles.collapseIcon} />
             </TouchableHighlight>
           </View>
-          <Text style={[styles.imageDescription, { height: 30, overflow:'hidden', marginBottom:-15, }]} >{imageDescription}</Text>
-          <View style={{ borderBottomWidth:15, borderBottomColor: '#eeeeeedd', marginBottom: 0 }}></View>
         </View>
       );
     }

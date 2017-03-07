@@ -21,10 +21,10 @@ export default React.createClass({
   },
   render() {
     const bodyText = findText(this.props.node, this.props.texts, 'section', 'body', this.props.language).text;
+    const shortBodyText = bodyText.substring(0, 140)+'...';
     if(bodyText == null)
       return (<View />);
 
-    if(!this.props.collapse)
     if(!this.props.collapse || bodyText.length < 200)
     {
       return (
@@ -39,9 +39,10 @@ export default React.createClass({
       return (
         <View style={{ borderWidth: 0, flexGrow: 1}}>
           <Text style={styles.imageDescription} >{bodyText}</Text>
-          <View>
+          <View style={{ flexDirection:'row'}}>
             <TouchableHighlight
               onPress={() => this.setState({ visible: false }) }
+              style={styles.collapseIconTouch}
             >
               <Icon name={'chevron-up'} style={styles.collapseIcon} />
             </TouchableHighlight>
@@ -51,15 +52,16 @@ export default React.createClass({
     }
     else
     {
+          //<View style={{ borderBottomWidth:15, borderBottomColor: '#f0f0f0dd', marginBottom: 0 }}></View>
       return (
         <View style={{ borderWidth: 0, flexGrow: 1}}>
-          <Text style={[styles.imageDescription, { height: 100, overflow:'hidden', marginBottom:-15, }]} >{bodyText}</Text>
-          <View style={{ borderBottomWidth:15, borderBottomColor: '#f0f0f0dd', marginBottom: 0 }}></View>
-          <View>
+          <Text style={[styles.imageDescription, {  }]} >{shortBodyText}</Text>
+          <View style={{ flexDirection:'row'}}>
             <TouchableHighlight
               onPress={() => this.setState({ visible: true }) }
+              style={styles.collapseIconTouch}
             >
-              <Icon name={'chevron-down'} style={styles.collapseIcon} />
+              <Icon name={'chevron-down'} size={40} style={styles.collapseIcon} />
             </TouchableHighlight>
           </View>
         </View>
