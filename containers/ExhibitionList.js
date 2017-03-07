@@ -29,7 +29,7 @@ let myDataSource = new ListView.DataSource({
 
 global.storage = new Storage({
     // maximum capacity, default 1000 
-    size: 1000,
+    size: 10000,
 
     // Use AsyncStorage for RN, or window.localStorage for web.
     // If not set, data would be lost after reload.
@@ -46,13 +46,19 @@ global.storage = new Storage({
     // the corresponding sync method will be invoked and return 
     // the latest data.
     sync : {
-      // we'll talk about the details later.
-      user(params){
-      let { id, resolve, reject } = params;
-        fetch('user/', {
+      
+      // The name of the sync method must be the same of the data's key
+      // And the passed params will be an all-in-one object.
+      // You can use promise here. 
+      // Or plain callback function with resolve/reject, like:
+      image(params){
+        let { id, resolve, reject } = params;
+        fetch(this.props.baseUrl+'/imageFile/'+id, {
             method: 'GET',
             body: 'id=' + id
         }).then(response => {
+            console.log('response image:');
+            console.log(response);
             return response.json();
         }).then(json => {
           // console.log(json);
@@ -75,8 +81,12 @@ global.storage = new Storage({
         });
       }
     }
-})  
+});
 
+/*storage.remove({
+    key: 'json'
+});
+*/
 
 const ExhibitionList = React.createClass({
   // Currently not used as we are not using the native navbar from React Navigation
@@ -87,27 +97,13 @@ const ExhibitionList = React.createClass({
     //const { dispatch } = this.props;
     //dispatch({ type: AT.CHANGE_BASE_URL, payload: { baseUrl: 'http://192.168.43.95:8000' } });
     return {
-      loaded: false,
+      //loaded: false,
     };
   },
   componentDidMount() {
-    this.fetchData();
-
-    global.storage.save({
-      key: 'loginState',   // Note: Do not use underscore("_") in key!
-      rawData: { 
-          from: 'some other site',
-          userid: 'some userid',
-          token: 'some token'
-      },
-
-      // if not specified, the defaultExpires will be applied instead.
-      // if set to null, then it will never expire.
-      expires: 1000 * 3600
-    });
-
+    console.log('exhibitionlist componentDidMount()');
     storage.load({
-      key: 'loginState',
+      key: 'json',
 
       // autoSync(default true) means if data not found or expired,
       // then invoke the corresponding sync method
@@ -119,24 +115,29 @@ const ExhibitionList = React.createClass({
       syncInBackground: true
     }).then(ret => {
       // found data go to then()
-      console.log(ret.userid);
+      console.log('nodes data loaded from storage');
+      const { dispatch } = this.props;
+      dispatch({ type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, data: ret });
+      
     }).catch(err => {
       // any exception including data not found 
       // goes to catch()
       console.warn(err.message);
       switch (err.name) {
           case 'NotFoundError':
-              // TODO;
+              console.log('exhibitionlist NotFoundError');
+              this.fetchData();
               break;
           case 'ExpiredError':
-              // TODO
+            console.log('exhibitionlist ExpiredError');
+              this.fetchData();
               break;
       }
     })
 
   },
   componentWillUpdate(nextProps, nextState) {
-    console.log('exhibitionlist componentWillUpdate');
+    //console.log('exhibitionlist componentWillUpdate');
     const nodes = nextProps.nodes;
     const dataBlob = {};
     const sectionIDs = [];
@@ -159,6 +160,7 @@ const ExhibitionList = React.createClass({
     myDataSource = myDataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
   },
   fetchData() {
+    console.log('exhibitionlist fetchData()');
     const { dispatch } = this.props;
     dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: { REQUEST_URL: this.props.baseUrl+'/alldata' } });
   },

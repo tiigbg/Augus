@@ -50,6 +50,22 @@ export default function Exhibitions(state = initialState, action) {
       video = JSON.parse(JSON.stringify(action.payload.video));
       signlanguages = JSON.parse(JSON.stringify(action.payload.signlanguages));
       
+      global.storage.save({
+        key: 'json',   // Note: Do not use underscore("_") in key!
+        rawData: { 
+            nodes,
+            texts,
+            images,
+            icons,
+            audio,
+            video,
+            signlanguages,
+        },
+
+        // if not specified, the defaultExpires will be applied instead.
+        // if set to null, then it will never expire.
+        //expires: 1000 * 3600
+      });
 
       // end laravel data parser
 
@@ -178,6 +194,19 @@ export default function Exhibitions(state = initialState, action) {
       };
     case AT.MUSEUM_DATA_FETCH_FAILED:
       return state;
+    case AT.MUSEUM_DATA_LOADED_FROM_CACHE:
+    console.log('MUSEUM_DATA_LOADED_FROM_CACHE');
+    console.log(action);
+      return {
+        nodes: action.data.nodes,
+        texts: action.data.texts,
+        images: action.data.images,
+        icons: action.data.icons,
+        audio: action.data.audio,
+        video: action.data.video,
+        signlanguages: action.data.signlanguages,
+        loaded: true,
+      };
     default:
       return state;
   }
