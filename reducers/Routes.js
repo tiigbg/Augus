@@ -1,5 +1,8 @@
+import * as AT from '../constants/ActionTypes';
+
 const initialState = {
   scene: {},
+  currentNodeId: 0,
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -10,8 +13,10 @@ export default function reducer(state = initialState, action = {}) {
       ...state,
       scene: action.scene,
     };
-
-    // ...other actions
+  case AT.NAVIGATOR_STATE_CHANGE:
+    return Object.assign({}, state, {
+        currentNodeId: action.currentNodeId,
+      });
 
   default:
     return state;

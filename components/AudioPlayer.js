@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {Text, View, TouchableHighlight, Slider, AppState} from 'react-native';
 
 import { secondsToTime } from '../util/time';
@@ -8,7 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Sound from 'react-native-sound';
 
 
-export default React.createClass({
+const AudioPlayer = React.createClass({
   getDefaultProps() {
     return {
       time: 0,
@@ -73,7 +74,21 @@ export default React.createClass({
     }
   },
   tick: function tick() {
-    this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }));
+    console.log('this.props.node.id',this.props.node.id);
+    console.log('this.props.currentNodeId',this.props.currentNodeId);
+
+    if(this.props.node.id == this.props.currentNodeId)
+    {
+      this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }));
+    }
+    else
+    {
+      if (!!this.state.sound) {
+        this.state.sound.pause();
+        this.setState({ isPlaying: false });
+        clearInterval(this.interval);
+      }
+    }
   },
   render() {
     if (this.state.sound === null) {
@@ -112,3 +127,14 @@ export default React.createClass({
   },
 }
 );
+
+
+const mapStateToProps = (state) => {
+  console.log('StationList mapStateToProps state:');
+  console.log(state);
+  return {
+    currentNodeId: state.routes.currentNodeId,
+  };
+};
+
+export default connect(mapStateToProps)(AudioPlayer);
