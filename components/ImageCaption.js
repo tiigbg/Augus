@@ -65,7 +65,12 @@ export default React.createClass({
     let imageAudioPlayerView = (<View />);
     if(this.state.audioLoaded)
     {
-      imageAudioPlayerView = (<AudioPlayer file={ this.state.audioFilename } style={{backgroundColor:'#fff', borderColor:'#fff', borderWidth: 3}} />);
+      imageAudioPlayerView = (
+        <AudioPlayer
+          file={ this.state.audioFilename }
+          style={{backgroundColor:'#fff', borderColor:'#fff', borderWidth: 3}}
+          nodeId={this.props.image.parent_id}/>
+      );
     }
     else
     {

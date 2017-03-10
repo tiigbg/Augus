@@ -329,7 +329,7 @@ const StationList = React.createClass({
           <View>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
               <View style={{ flex: 1, flexDirection: 'column' }}>
-                <AudioPlayer file={ this.state.audioFilename } node={this.props.navigation.state.params.node} />
+                <AudioPlayer file={ this.state.audioFilename } nodeId={this.props.navigation.state.params.node.id} />
               </View>
             </View>
             <View style={styles.separator} />

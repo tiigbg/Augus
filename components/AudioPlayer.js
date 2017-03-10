@@ -74,10 +74,10 @@ const AudioPlayer = React.createClass({
     }
   },
   tick: function tick() {
-    console.log('this.props.node.id',this.props.node.id);
+    console.log('this.props.nodeId',this.props.nodeId);
     console.log('this.props.currentNodeId',this.props.currentNodeId);
 
-    if(this.props.node.id == this.props.currentNodeId)
+    if(this.props.nodeId == this.props.currentNodeId)
     {
       this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }));
     }
