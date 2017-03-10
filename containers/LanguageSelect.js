@@ -74,7 +74,7 @@ const LanguageSelect = React.createClass({
               style={styles.listContainer}
             >
               <Text style={[styles.listText]}>
-                Svensk teckenspråk
+                Svenskt teckenspråk
               </Text>
           </TouchableHighlight>
           <TouchableHighlight
