@@ -441,8 +441,8 @@ const StationList = React.createClass({
 });
 
 const mapStateToProps = (state) => {
-  console.log('StationList mapStateToProps state:');
-  console.log(state);
+  //console.log('StationList mapStateToProps state:');
+  //console.log(state);
   return {
     nodes: state.exhibitions.nodes,
     texts: state.exhibitions.texts,

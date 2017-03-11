@@ -159,7 +159,7 @@ const ExhibitionList = React.createClass({
     myDataSource = myDataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
   },
   fetchData() {
-    console.log('exhibitionlist fetchData()');
+    //console.log('exhibitionlist fetchData()');
     const { dispatch } = this.props;
     dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: { REQUEST_URL: this.props.baseUrl+'/alldata' } });
   },

@@ -29,8 +29,8 @@ let nodes = [];
 export default function Exhibitions(state = initialState, action) {
   switch (action.type) {
     case AT.MUSEUM_DATA_FETCH_SUCCEEDED:
-      console.log("Exhibitions in the reducer are :");
-      console.log(action.payload);
+      //console.log("Exhibitions in the reducer are :");
+      //console.log(action.payload);
 
       // convert and normalize JSON into state
 
@@ -86,8 +86,8 @@ export default function Exhibitions(state = initialState, action) {
       //   }
       // }
 
-      console.log('Parsed data into list of nodes:');
-      console.log(nodes);
+      //console.log('Parsed data into list of nodes:');
+      //console.log(nodes);
       // console.log(nodes instanceof Array);
       //
       // // parse exhibitions
