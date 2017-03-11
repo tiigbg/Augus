@@ -242,9 +242,7 @@ const ExhibitionList = React.createClass({
               </View>
           </TouchableHighlight>
         </View>
-      </View>
-    );
-        /*<View>
+        <View>
           <TouchableHighlight
             onPress={() => { this.fetchData(); this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle(this.props.language)}); }}>
             <View style={[styles.listContainer, {flexDirection: 'row'}]}>
@@ -252,7 +250,9 @@ const ExhibitionList = React.createClass({
                 <Text style={styles.listText}>{ this.props.language=='sv'? 'Ladda om':'Reload'}</Text>
               </View>
           </TouchableHighlight>
-        </View>*/
+        </View>
+      </View>
+    );
   },
   render() {
     //console.log('exhibitionlist render');
