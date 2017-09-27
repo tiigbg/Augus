@@ -27,7 +27,5 @@ function fetchData(url) {
  and only the latest one will be run
  */
 export default function* fetchDataSaga() {
-  console.log('fetchDataSaga');
   yield* takeLatest(AT.MUSEUM_DATA_FETCH_REQUESTED, fetchMuseumData);
-  console.log('fetchDataSaga has yielded');
 }
