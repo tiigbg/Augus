@@ -17,7 +17,7 @@ export default function Settings(state = initialState, action) {
     case AT.CHANGE_LANGUAGE:
       global.storage.save({
         key: 'language',   // Note: Do not use underscore("_") in key!
-        rawData: { 
+        data: { 
             language: action.language,
             displaySignlanguage: action.displaySignlanguage,
         },

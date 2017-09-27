@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableHighlight, BackAndroid } from 'react-native';
+import { Text, View, TouchableHighlight, BackHandler } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../styles/styles';
 import { findColor, findText, findNode } from '../util/station.js';
@@ -26,7 +26,7 @@ export default React.createClass({
       return true;
     }
     goBack = goBack.bind(this);
-    BackAndroid.addEventListener('hardwareBackPress', goBack);
+    BackHandler.addEventListener('hardwareBackPress', goBack);
 
     const backgroundColor = findColor(this.props.node, this.props.nodes, true);
     let backButton = (<View />);

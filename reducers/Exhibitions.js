@@ -52,7 +52,7 @@ export default function Exhibitions(state = initialState, action) {
       
       global.storage.save({
         key: 'json',   // Note: Do not use underscore("_") in key!
-        rawData: { 
+        data: { 
             nodes,
             texts,
             images,

@@ -67,7 +67,7 @@ global.storage = new Storage({
             storage.save({
                 key: 'user',
                 id,
-                rawData: json.user
+                data: json.user
             });
             // Call resolve() when succeed
             resolve && resolve(json.user);
@@ -159,7 +159,7 @@ const ExhibitionList = React.createClass({
     myDataSource = myDataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
   },
   fetchData() {
-    //console.log('exhibitionlist fetchData()');
+    console.log('exhibitionlist fetchData()' +this.props.baseUrl+'/alldata');
     const { dispatch } = this.props;
     dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: { REQUEST_URL: this.props.baseUrl+'/alldata' } });
   },

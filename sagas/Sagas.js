@@ -1,9 +1,10 @@
-import { takeLatest } from 'redux-saga';
+import { takeLatest } from 'redux-saga/effects';
 import { call, put } from 'redux-saga/effects';
 import * as AT from '../constants/ActionTypes';
 
 // worker Saga : will be fired on ADVENTURES_FETCH_REQUESTED actions
 function* fetchMuseumData(action) {
+  console.log('fetchMuseumData');
   try {
     const payload = yield call(fetchData, action.payload.REQUEST_URL);
     yield put({ type: AT.MUSEUM_DATA_FETCH_SUCCEEDED, payload: payload});
@@ -26,5 +27,7 @@ function fetchData(url) {
  and only the latest one will be run
  */
 export default function* fetchDataSaga() {
+  console.log('fetchDataSaga');
   yield* takeLatest(AT.MUSEUM_DATA_FETCH_REQUESTED, fetchMuseumData);
+  console.log('fetchDataSaga has yielded');
 }

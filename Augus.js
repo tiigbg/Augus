@@ -47,9 +47,7 @@ const AppNavigator = StackNavigator(
   }, {
     headerMode: 'screen',
     navigationOptions: {
-      header: {
-        visible: false,
-      },
+      header: null, // hide the header
     },
   },
 );
