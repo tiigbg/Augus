@@ -40,7 +40,6 @@ public class MainApplication extends Application implements ReactApplication {
             new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
             new AppCenterReactNativeAnalyticsPackage(MainApplication.this, getResources().getString(R.string.appCenterAnalytics_whenToEnableAnalytics)),
             new AppCenterReactNativePackage(MainApplication.this),
-            new OrientationPackage(),
             new ReactVideoPackage(),
             new VectorIconsPackage(),
             new RNSoundPackage(),
