@@ -25,7 +25,8 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.15.6"
+    "redux-saga": "^0.15.6",
+    "wordwrap": "^1.0.0"
   },
   "devDependencies": {
     "babel-jest": "^12.1.0",
