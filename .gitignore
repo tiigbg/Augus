@@ -27,7 +27,6 @@ project.xcworkspace
 .idea
 .gradle
 local.properties
-release.keystore.properties
 
 # node.js
 #
@@ -44,14 +43,9 @@ yarn-error.log
 # BUCK
 buck-out/
 \.buckd/
-<<<<<<< ours
 android/app/libs
-<<<<<<< ours
-android/keystores/debug.keystore
-=======
-=======
->>>>>>> theirs
 *.keystore
+*.jks
 
 # fastlane
 #
