@@ -108,13 +108,7 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-    signingConfigs { 
-        release { 
-            storeFile file(keystoreProperties['MYAPP_RELEASE_STORE_FILE'])
-            storePassword keystoreProperties['MYAPP_RELEASE_STORE_PASSWORD']
-            keyAlias keystoreProperties['MYAPP_RELEASE_KEY_ALIAS']
-            keyPassword keystoreProperties['MYAPP_RELEASE_KEY_PASSWORD']
-        }
+    signingConfigs {
     }
     splits {
         abi {
