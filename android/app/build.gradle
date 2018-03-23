@@ -121,7 +121,6 @@ android {
             }
         } else {
             release {
-                storeFile file("$System.env.MYAPP_RELEASE_STORE_FILE")
                 storePassword "$System.env.MYAPP_RELEASE_STORE_PASSWORD"
                 keyAlias "$System.env.MYAPP_RELEASE_KEY_ALIAS"
                 keyPassword "$System.env.MYAPP_RELEASE_KEY_PASSWORD"
