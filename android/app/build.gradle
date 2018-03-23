@@ -89,10 +89,13 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
-// Load keystore
-def keystorePropertiesFile = rootProject.file("keystores/release.keystore.properties");
+// Key configuration
 def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+if ("$System.env.CLOUDBUILD" != "true") {
+    def keystorePropertiesFile = rootProject.file("keystores/release.keystore.properties")
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
 
 android {
     compileSdkVersion 23
@@ -108,12 +111,21 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-    signingConfigs { 
-        release { 
-            storeFile file(keystoreProperties['MYAPP_RELEASE_STORE_FILE'])
-            storePassword keystoreProperties['MYAPP_RELEASE_STORE_PASSWORD']
-            keyAlias keystoreProperties['MYAPP_RELEASE_KEY_ALIAS']
-            keyPassword keystoreProperties['MYAPP_RELEASE_KEY_PASSWORD']
+    signingConfigs {
+        if ("$System.env.CLOUDBUILD" != "true") {
+            release {
+                storeFile file(keystoreProperties['MYAPP_RELEASE_STORE_FILE'])
+                storePassword keystoreProperties['MYAPP_RELEASE_STORE_PASSWORD']
+                keyAlias keystoreProperties['MYAPP_RELEASE_KEY_ALIAS']
+                keyPassword keystoreProperties['MYAPP_RELEASE_KEY_PASSWORD']
+            }
+        } else {
+            release {
+                storeFile file("$System.env.MYAPP_RELEASE_STORE_FILE")
+                storePassword "$System.env.MYAPP_RELEASE_STORE_PASSWORD"
+                keyAlias "$System.env.MYAPP_RELEASE_KEY_ALIAS"
+                keyPassword "$System.env.MYAPP_RELEASE_KEY_PASSWORD"
+            }
         }
     }
     splits {
