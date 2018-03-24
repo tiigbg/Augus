@@ -814,6 +814,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 4U49S8227Q;
+						ProvisioningStyle = Manual;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1407,6 +1408,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 4U49S8227Q;
@@ -1427,6 +1429,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = se.tii.augus.cathedral;
 				PRODUCT_NAME = "Göteborgs Födelse";
+				PROVISIONING_PROFILE = "07a0f087-a0d7-4e79-a80b-e504d2231681";
+				PROVISIONING_PROFILE_SPECIFIER = "Augus Cathedral Dev Cert March";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1438,6 +1442,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4U49S8227Q;
 				HEADER_SEARCH_PATHS = (
@@ -1457,6 +1462,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = se.tii.augus.cathedral;
 				PRODUCT_NAME = "Göteborgs Födelse";
+				PROVISIONING_PROFILE = "07a0f087-a0d7-4e79-a80b-e504d2231681";
+				PROVISIONING_PROFILE_SPECIFIER = "Augus Cathedral Dev Cert March";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
