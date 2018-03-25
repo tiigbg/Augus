@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -25,9 +24,12 @@
 		145416D67CE841CEAF659331 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DCA1354385441B8F7AB88B /* libRCTVideo.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		257E819D084443F2832EBD86 /* libAppCenterReactNativeCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A7CF4DAF224E3EA5F85E6A /* libAppCenterReactNativeCrashes.a */; };
+		2D4B6DE164BA7BFD829E9C36 /* libPods-augus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2C74738D9474E5B9B8B6CFB /* libPods-augus.a */; };
 		2F03638F3ED44C8395653171 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F95DAB45049E4BB50F473 /* Octicons.ttf */; };
+		2F6BB59A63C1F68DF9FF4B0A /* libPods-augusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A18E8ABFD0FEB67A9D2495F6 /* libPods-augusTests.a */; };
 		3881E92FCFE34BFBA90AD247 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BB57C9A312E41369F26AA4A /* Ionicons.ttf */; };
 		3F63992C324F418DA5883C3A /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 414B7EB8E7DE4289B4C2DACB /* SimpleLineIcons.ttf */; };
+		417A296DC2EA4F5B9F2346CA /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D456D7A6F6C456A8BB1AFA8 /* Feather.ttf */; };
 		48785315DF7D4796B9EDA26D /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4093592546014F38BFEDCFD0 /* Foundation.ttf */; };
 		492B26E1ADFA4DEB92787CC9 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42F366C026724714912CE9E6 /* Entypo.ttf */; };
 		49600D048E9345A39BBCC206 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40195FAE74F64E35A47FCFBA /* libRNSound.a */; };
@@ -37,12 +39,14 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		83FD05838C554161B79EFD02 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E44C771F1474C0E97C7D15C /* libRNVectorIcons.a */; };
 		8EAF305DC5994E9081DE624C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6714B050E04747F1A4D5A238 /* FontAwesome.ttf */; };
+		A4CCDA7B02AE1EF5231DF7E9 /* libPods-augus-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F141D9B3B40BDD4770F676 /* libPods-augus-tvOS.a */; };
 		A8728E6B12A743299FD63E71 /* libRNPhotoView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6702AF3D7B4278B8A383EE /* libRNPhotoView.a */; };
 		A9539857F01B4C429AFEF86C /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C426914C36EC4AA68E534C30 /* MaterialIcons.ttf */; };
 		AB5A08ABF9F04394B69C39E6 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 879CBEDD000B4AE29CF1EA92 /* MaterialCommunityIcons.ttf */; };
 		BCB0D640FA164461BC1D5750 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9EE4278D8B942638B56BBCC /* EvilIcons.ttf */; };
 		EA7CD0A352E547AF9943B622 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16BACC977B444A128914DF7B /* AppCenter-Config.plist */; };
 		F448C514E1A042FFBE7F2161 /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D689531FE8A4394B3780AFB /* libAppCenterReactNative.a */; };
+		F8037D6BD5B86FAF7C77E494 /* libPods-augus-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A5D2380CC4B3BF2DAB31A /* libPods-augus-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,6 +328,7 @@
 		00E356EE1AD99517003FC87E /* augusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = augusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* augusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = augusTests.m; sourceTree = "<group>"; };
+		0183FA9700C2AE1DFAFF9D80 /* Pods-augus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augus.release.xcconfig"; path = "Pods/Target Support Files/Pods-augus/Pods-augus.release.xcconfig"; sourceTree = "<group>"; };
 		12FE72774ADA4154B1D51C1F /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -341,7 +346,9 @@
 		2D02E47B1E0B4A5D006451C7 /* augus-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "augus-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* augus-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "augus-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DFD40801E55BEAE00E3A545 /* augus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = augus.entitlements; path = augus/augus.entitlements; sourceTree = "<group>"; };
+		2F38FF065503B711AE21D403 /* Pods-augus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-augus/Pods-augus.debug.xcconfig"; sourceTree = "<group>"; };
 		3CFB0883CF8F415F877D8042 /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
+		3D456D7A6F6C456A8BB1AFA8 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		40195FAE74F64E35A47FCFBA /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
 		4093592546014F38BFEDCFD0 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		414B7EB8E7DE4289B4C2DACB /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -350,6 +357,8 @@
 		43A7CF4DAF224E3EA5F85E6A /* libAppCenterReactNativeCrashes.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAppCenterReactNativeCrashes.a; sourceTree = "<group>"; };
 		4BB57C9A312E41369F26AA4A /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		4D689531FE8A4394B3780AFB /* libAppCenterReactNative.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAppCenterReactNative.a; sourceTree = "<group>"; };
+		56DCF3C225A96639C20B9521 /* Pods-augus-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augus-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-augus-tvOS/Pods-augus-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		5BA579D069CD2B9556D4C422 /* Pods-augus-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augus-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-augus-tvOS/Pods-augus-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		5E44C771F1474C0E97C7D15C /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		601DC6062577466CB477472D /* AppCenterReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNative.xcodeproj; path = ../node_modules/appcenter/ios/AppCenterReactNative.xcodeproj; sourceTree = "<group>"; };
@@ -358,16 +367,24 @@
 		6714B050E04747F1A4D5A238 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		6810A3C7BC9D44A78DF9F388 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		764F6225E459430D82C835DD /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		787A5D2380CC4B3BF2DAB31A /* libPods-augus-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-augus-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		803CEA9894EF4B0594EBD054 /* RNPhotoView.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNPhotoView.xcodeproj; path = "../node_modules/react-native-photo-view/ios/RNPhotoView.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		879CBEDD000B4AE29CF1EA92 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		915F95DAB45049E4BB50F473 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		9606FFD0885248F59DAC4CE3 /* AppCenterReactNativeCrashes.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeCrashes.xcodeproj; path = "../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes.xcodeproj"; sourceTree = "<group>"; };
+		A18E8ABFD0FEB67A9D2495F6 /* libPods-augusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-augusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2C74738D9474E5B9B8B6CFB /* libPods-augus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-augus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A403DF08C1AE471D9733CC7A /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		A9EE4278D8B942638B56BBCC /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		C426914C36EC4AA68E534C30 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		E6F141D9B3B40BDD4770F676 /* libPods-augus-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-augus-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E760E4E0F98BEADF8C3AE488 /* Pods-augusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-augusTests/Pods-augusTests.release.xcconfig"; sourceTree = "<group>"; };
+		ED48038FD3AE47C47A4FB710 /* Pods-augus-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augus-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-augus-tvOSTests/Pods-augus-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EF186CC531CAD04388468447 /* Pods-augusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augusTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-augusTests/Pods-augusTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F8A64A09595E08F0C7C28ED8 /* Pods-augus-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augus-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-augus-tvOSTests/Pods-augus-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
+				2F6BB59A63C1F68DF9FF4B0A /* libPods-augusTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +421,7 @@
 				5BB9DAF880784480B7E49B73 /* libAppCenterReactNativeAnalytics.a in Frameworks */,
 				A8728E6B12A743299FD63E71 /* libRNPhotoView.a in Frameworks */,
 				257E819D084443F2832EBD86 /* libAppCenterReactNativeCrashes.a in Frameworks */,
+				2D4B6DE164BA7BFD829E9C36 /* libPods-augus.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +429,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4CCDA7B02AE1EF5231DF7E9 /* libPods-augus-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +437,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8037D6BD5B86FAF7C77E494 /* libPods-augus-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +564,7 @@
 				414B7EB8E7DE4289B4C2DACB /* SimpleLineIcons.ttf */,
 				764F6225E459430D82C835DD /* Zocial.ttf */,
 				879CBEDD000B4AE29CF1EA92 /* MaterialCommunityIcons.ttf */,
+				3D456D7A6F6C456A8BB1AFA8 /* Feather.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -583,6 +605,10 @@
 		2DFD407D1E55BEAE00E3A545 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A2C74738D9474E5B9B8B6CFB /* libPods-augus.a */,
+				E6F141D9B3B40BDD4770F676 /* libPods-augus-tvOS.a */,
+				787A5D2380CC4B3BF2DAB31A /* libPods-augus-tvOSTests.a */,
+				A18E8ABFD0FEB67A9D2495F6 /* libPods-augusTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -699,6 +725,7 @@
 				2DFD407D1E55BEAE00E3A545 /* Frameworks */,
 				16BACC977B444A128914DF7B /* AppCenter-Config.plist */,
 				5389731F206648F700F0FA33 /* Recovered References */,
+				F66143E302605AF6407938C5 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -725,6 +752,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		F66143E302605AF6407938C5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2F38FF065503B711AE21D403 /* Pods-augus.debug.xcconfig */,
+				0183FA9700C2AE1DFAFF9D80 /* Pods-augus.release.xcconfig */,
+				56DCF3C225A96639C20B9521 /* Pods-augus-tvOS.debug.xcconfig */,
+				5BA579D069CD2B9556D4C422 /* Pods-augus-tvOS.release.xcconfig */,
+				ED48038FD3AE47C47A4FB710 /* Pods-augus-tvOSTests.debug.xcconfig */,
+				F8A64A09595E08F0C7C28ED8 /* Pods-augus-tvOSTests.release.xcconfig */,
+				EF186CC531CAD04388468447 /* Pods-augusTests.debug.xcconfig */,
+				E760E4E0F98BEADF8C3AE488 /* Pods-augusTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -732,9 +774,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "augusTests" */;
 			buildPhases = (
+				DD7B7D727C7B7986CB38BEFB /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				12EDF1E6918CA1EC9481E630 /* [CP] Embed Pods Frameworks */,
+				591BE2DCBAD9CDE54997FCDF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -750,10 +795,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "augus" */;
 			buildPhases = (
+				4EFB5620DC48D63D7371DC65 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				CA88ED1D6BF845CB18F7DF06 /* [CP] Embed Pods Frameworks */,
+				AAAAF3112A614FE43103ADB4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -768,10 +816,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "augus-tvOS" */;
 			buildPhases = (
+				4FC8DA75FE3064E30D1A2229 /* [CP] Check Pods Manifest.lock */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
 				2D02E4791E0B4A5D006451C7 /* Resources */,
 				2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */,
+				297159B24C83DF827364311D /* [CP] Embed Pods Frameworks */,
+				0D927B0EA561BB79D5943EA3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -786,9 +837,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "augus-tvOSTests" */;
 			buildPhases = (
+				4A22400CB659446525441B87 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
+				F2700D2DD73A4670B68D2592 /* [CP] Embed Pods Frameworks */,
+				4BC008DA88CA42877C574D35 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1215,6 +1269,7 @@
 				05E7A43728B64B02AD8AC5A2 /* Zocial.ttf in Resources */,
 				AB5A08ABF9F04394B69C39E6 /* MaterialCommunityIcons.ttf in Resources */,
 				EA7CD0A352E547AF9943B622 /* AppCenter-Config.plist in Resources */,
+				417A296DC2EA4F5B9F2346CA /* Feather.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1249,6 +1304,51 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		0D927B0EA561BB79D5943EA3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-augus-tvOS/Pods-augus-tvOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		12EDF1E6918CA1EC9481E630 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-augusTests/Pods-augusTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		297159B24C83DF827364311D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-augus-tvOS/Pods-augus-tvOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1262,6 +1362,153 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		4A22400CB659446525441B87 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-augus-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4BC008DA88CA42877C574D35 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-augus-tvOSTests/Pods-augus-tvOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4EFB5620DC48D63D7371DC65 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-augus-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FC8DA75FE3064E30D1A2229 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-augus-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		591BE2DCBAD9CDE54997FCDF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-augusTests/Pods-augusTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAAAF3112A614FE43103ADB4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-augus/Pods-augus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA88ED1D6BF845CB18F7DF06 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-augus/Pods-augus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD7B7D727C7B7986CB38BEFB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-augusTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2700D2DD73A4670B68D2592 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-augus-tvOSTests/Pods-augus-tvOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1327,6 +1574,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF186CC531CAD04388468447 /* Pods-augusTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4U49S8227Q;
@@ -1367,6 +1615,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E760E4E0F98BEADF8C3AE488 /* Pods-augusTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -1404,6 +1653,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F38FF065503B711AE21D403 /* Pods-augus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
@@ -1438,6 +1688,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0183FA9700C2AE1DFAFF9D80 /* Pods-augus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
@@ -1471,6 +1722,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56DCF3C225A96639C20B9521 /* Pods-augus-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1511,6 +1763,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BA579D069CD2B9556D4C422 /* Pods-augus-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1551,6 +1804,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED48038FD3AE47C47A4FB710 /* Pods-augus-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1579,6 +1833,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8A64A09595E08F0C7C28ED8 /* Pods-augus-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
