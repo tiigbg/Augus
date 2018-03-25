@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -28,6 +27,7 @@
 		2F03638F3ED44C8395653171 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F95DAB45049E4BB50F473 /* Octicons.ttf */; };
 		3881E92FCFE34BFBA90AD247 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BB57C9A312E41369F26AA4A /* Ionicons.ttf */; };
 		3F63992C324F418DA5883C3A /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 414B7EB8E7DE4289B4C2DACB /* SimpleLineIcons.ttf */; };
+		4019DDAFFF2B277E08E143C7 /* libPods-augusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FCA23BA2E8108322C196BE4 /* libPods-augusTests.a */; };
 		417A296DC2EA4F5B9F2346CA /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D456D7A6F6C456A8BB1AFA8 /* Feather.ttf */; };
 		48785315DF7D4796B9EDA26D /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4093592546014F38BFEDCFD0 /* Foundation.ttf */; };
 		492B26E1ADFA4DEB92787CC9 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42F366C026724714912CE9E6 /* Entypo.ttf */; };
@@ -43,6 +43,7 @@
 		AB5A08ABF9F04394B69C39E6 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 879CBEDD000B4AE29CF1EA92 /* MaterialCommunityIcons.ttf */; };
 		BCB0D640FA164461BC1D5750 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9EE4278D8B942638B56BBCC /* EvilIcons.ttf */; };
 		EA7CD0A352E547AF9943B622 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16BACC977B444A128914DF7B /* AppCenter-Config.plist */; };
+		F209279973C7883C8FDD2119 /* libPods-augus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 856AC8B8084AFE7C50CA737E /* libPods-augus.a */; };
 		F448C514E1A042FFBE7F2161 /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D689531FE8A4394B3780AFB /* libAppCenterReactNative.a */; };
 /* End PBXBuildFile section */
 
@@ -360,6 +361,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		16BACC977B444A128914DF7B /* AppCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "augus/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		1A6702AF3D7B4278B8A383EE /* libRNPhotoView.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNPhotoView.a; sourceTree = "<group>"; };
+		1FCA23BA2E8108322C196BE4 /* libPods-augusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-augusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29CD5089505E46CB8EB4491A /* AppCenterReactNativeAnalytics.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeAnalytics.xcodeproj; path = "../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics.xcodeproj"; sourceTree = "<group>"; };
 		2DFD40801E55BEAE00E3A545 /* augus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = augus.entitlements; path = augus/augus.entitlements; sourceTree = "<group>"; };
 		2F38FF065503B711AE21D403 /* Pods-augus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-augus/Pods-augus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		803CEA9894EF4B0594EBD054 /* RNPhotoView.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNPhotoView.xcodeproj; path = "../node_modules/react-native-photo-view/ios/RNPhotoView.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		856AC8B8084AFE7C50CA737E /* libPods-augus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-augus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		879CBEDD000B4AE29CF1EA92 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		915F95DAB45049E4BB50F473 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		9606FFD0885248F59DAC4CE3 /* AppCenterReactNativeCrashes.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeCrashes.xcodeproj; path = "../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes.xcodeproj"; sourceTree = "<group>"; };
@@ -405,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
+				4019DDAFFF2B277E08E143C7 /* libPods-augusTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +436,7 @@
 				5BB9DAF880784480B7E49B73 /* libAppCenterReactNativeAnalytics.a in Frameworks */,
 				A8728E6B12A743299FD63E71 /* libRNPhotoView.a in Frameworks */,
 				257E819D084443F2832EBD86 /* libAppCenterReactNativeCrashes.a in Frameworks */,
+				F209279973C7883C8FDD2119 /* libPods-augus.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +608,8 @@
 		2DFD407D1E55BEAE00E3A545 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				856AC8B8084AFE7C50CA737E /* libPods-augus.a */,
+				1FCA23BA2E8108322C196BE4 /* libPods-augusTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
