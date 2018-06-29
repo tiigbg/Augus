@@ -102,7 +102,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "se.tii.augus.gbgfodelse"
+        applicationId "se.tii.augus.strangnas"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 2

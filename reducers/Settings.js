@@ -2,7 +2,7 @@ import * as AT from '../constants/ActionTypes';
 import { put } from 'redux-saga/effects';
 
 const initialState = {
-  baseUrl: 'http://gsm.augus.se',
+  baseUrl: 'http://strangnas.augus.se',
   language: 'sv',
   displaySignlanguage: false,
 };

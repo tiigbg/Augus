@@ -1503,8 +1503,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = se.tii.augus.cathedral;
-				PRODUCT_NAME = "Göteborgs Födelse";
+				PRODUCT_BUNDLE_IDENTIFIER = se.ri.augus.strangnas;
 				PROVISIONING_PROFILE = "07a0f087-a0d7-4e79-a80b-e504d2231681";
 				PROVISIONING_PROFILE_SPECIFIER = "Augus Cathedral Dev Cert March";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1537,7 +1536,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = se.tii.augus.cathedral;
+				PRODUCT_BUNDLE_IDENTIFIER = se.ri.augus.strangnas;
 				PRODUCT_NAME = "Göteborgs Födelse";
 				PROVISIONING_PROFILE = "07a0f087-a0d7-4e79-a80b-e504d2231681";
 				PROVISIONING_PROFILE_SPECIFIER = "Augus Cathedral Dev Cert March";

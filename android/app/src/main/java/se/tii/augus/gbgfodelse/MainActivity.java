@@ -1,4 +1,4 @@
-package se.tii.augus.gbgfodelse;
+package se.ri.augus.strangnas;
 
 import com.facebook.react.ReactActivity;
 import android.content.Intent;

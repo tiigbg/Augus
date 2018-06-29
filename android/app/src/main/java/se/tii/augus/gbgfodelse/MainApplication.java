@@ -1,4 +1,4 @@
-package se.tii.augus.gbgfodelse;
+package se.ri.augus.strangnas;
 
 import android.app.Application;
 

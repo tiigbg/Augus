@@ -30,7 +30,7 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>gsm.augus.se</key>
+			<key>strangnas.augus.se</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
