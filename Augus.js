@@ -22,6 +22,7 @@ export default class Augus extends React.Component {
   }
   onNavigationStateChange() {
     let currentNodeId = 0;
+    
     if(this.navigator.state.nav.routes[this.navigator.state.nav.index].params && this.navigator.state.nav.routes[this.navigator.state.nav.index].params.node)
     {
       currentNodeId = this.navigator.state.nav.routes[this.navigator.state.nav.index].params.node.id;
