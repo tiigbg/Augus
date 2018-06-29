@@ -44,13 +44,8 @@ yarn-error.log
 # BUCK
 buck-out/
 \.buckd/
-<<<<<<< ours
 android/app/libs
-<<<<<<< ours
 android/keystores/debug.keystore
-=======
-=======
->>>>>>> theirs
 *.keystore
 
 # fastlane
@@ -63,4 +58,6 @@ android/keystores/debug.keystore
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
->>>>>>> theirs
+
+# visual studio code
+.vs/slnx.sqlite
