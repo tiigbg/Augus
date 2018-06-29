@@ -110,7 +110,8 @@ const ExhibitionList = React.createClass({
     }).then(ret => {
       // found data go to then()
       const { dispatch } = this.props;
-      dispatch({ type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, data: ret });
+      this.props.loadFromCache(ret);
+
       
     }).catch(err => {
       // any exception including data not found 
@@ -154,8 +155,7 @@ const ExhibitionList = React.createClass({
   },
   fetchData() {
     console.log('exhibitionlist fetchData()' +this.props.baseUrl+'/alldata');
-    const { dispatch } = this.props;
-    dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: { REQUEST_URL: this.props.baseUrl+'/alldata' } });
+    this.props.fetchMuseumData(this.props.baseUrl);
   },
   renderLoadingView() {
     return (
@@ -291,5 +291,17 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    fetchMuseumData: (baseUrl) => {
+      console.log("Time to fetch from", baseUrl);
+      dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: { REQUEST_URL: baseUrl +'/alldata' } });
+    },
+    loadFromCache: (data) => {
+      dispatch({ type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, data });
+    }
+  }
+};
+
 // upgrade our component to become Redux-aware
-export default connect(mapStateToProps)(ExhibitionList);
+export default connect(mapStateToProps, mapDispatchToProps)(ExhibitionList);

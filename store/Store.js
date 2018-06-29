@@ -12,7 +12,8 @@ export function configureStore(initialState) {
   const store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(sagaMiddleware)
+    applyMiddleware(sagaMiddleware),
+    applyMiddleware(logger)
   );
 
   sagaMiddleware.run(fetchDataSaga);
