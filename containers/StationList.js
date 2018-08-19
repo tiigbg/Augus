@@ -29,8 +29,9 @@ let myDataSource = new ListView.DataSource({
 });
 
 
-const StationList = React.createClass({
-  getInitialState() {
+class StationList extends React.Component {
+  constructor(props){
+    super(props);
     //console.log('StationList getInitialState props:');
     //console.log(this.props);
     const nodes = this.props.nodes;
@@ -154,7 +155,7 @@ const StationList = React.createClass({
         console.log(err);
       });
     }
-    return {
+    this.state = {
       myDataSource,
       collapseText,
       hasAudio,
@@ -167,10 +168,9 @@ const StationList = React.createClass({
       videoLoaded,
       videoFilename,
     };
-  },
+  }
   renderRow(rowData, sectionID, rowID) {
-    //console.log('stationList renderRow '+sectionID+':'+rowID);
-    //console.log(rowData);
+    //console.log('stationList renderRow', this.props);
     const station = this.props.nodes[rowID];
     let title = findText(station, this.props.texts, 'section', 'title', this.props.language).text;
     let openFunction = () => { this.props.navigation.navigate('StationList', { node: station, title }); };
@@ -205,10 +205,10 @@ const StationList = React.createClass({
         </TouchableHighlight>
       </View>
     );
-  },
+  }
   renderSectionHeader(sectionData, sectionID) {
     return (<View></View>);
-  },
+  }
   render() {
     // if (this.props.dataSource == null) {
     //   console.log('Datasource null');
@@ -430,15 +430,15 @@ const StationList = React.createClass({
           <ListView
             style={styles.listMargin}
             dataSource={myDataSource}
-            renderRow={this.renderRow}
+            renderRow={this.renderRow.bind(this)}
             renderSectionHeader={this.renderSectionHeader}
             enableEmptySections
           />
         </ScrollView>
       </View>
     );
-  },
-});
+  }
+}
 
 const mapStateToProps = (state) => {
   //console.log('StationList mapStateToProps state:');

@@ -50,5 +50,11 @@ const AppNavigator = StackNavigator(
     navigationOptions: {
       header: null, // hide the header
     },
+    // Disable Navigator transition animations
+    transitionConfig: () => ({
+      transitionSpec: {
+          duration: 0,
+      },
+  }),
   },
 );

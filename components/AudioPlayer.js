@@ -9,22 +9,16 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Sound from 'react-native-sound';
 
 
-const AudioPlayer = React.createClass({
-  getDefaultProps() {
-    return {
-      time: 0,
-      duration: 0,
-      isPlaying: false,
-    };
-  },
-  getInitialState() {
-    return {
+class AudioPlayer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       time: this.props.time,
       duration: this.props.duration,
       isPlaying: this.props.isPlaying,
       sound: null,
     };
-  },
+  }
   componentWillMount() {
     const sound = new Sound(this.props.file, '', (error) => {
       if (error) {
@@ -34,15 +28,15 @@ const AudioPlayer = React.createClass({
         this.setState({ duration: this.state.sound.getDuration() });
       } });
     AppState.addEventListener('change', this._handleAppStateChange);
-  },
-  componentWillUnmount: function componentWillUnmount() {
+  }
+  componentWillUnmount() {
     clearInterval(this.interval);
     if (!!this.state.sound) {
       this.state.sound.stop();
     }
     AppState.removeEventListener('change', this._handleAppStateChange);
-  },
-  _handleAppStateChange: function(currentAppState) {
+  }
+  _handleAppStateChange(currentAppState) {
     if(currentAppState == "background") {
       if (!!this.state.sound) {
         this.state.sound.pause();
@@ -53,7 +47,7 @@ const AudioPlayer = React.createClass({
     if(currentAppState == "active") {
         //resume();
     }
-  },
+  }
   handlePress() {
     this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }));
     if (this.state.isPlaying) {
@@ -70,12 +64,10 @@ const AudioPlayer = React.createClass({
           console.log('playback failed due to audio decoding errors');
         } });
       this.setState({ isPlaying: true });
-      this.interval = setInterval(this.tick, 100);
+      this.interval = setInterval(this.tick.bind(this), 100);
     }
-  },
-  tick: function tick() {
-    console.log('this.props.nodeId',this.props.nodeId);
-    console.log('this.props.currentNodeId',this.props.currentNodeId);
+  }
+  tick() {
 
     if(this.props.nodeId == this.props.currentNodeId)
     {
@@ -89,7 +81,7 @@ const AudioPlayer = React.createClass({
         clearInterval(this.interval);
       }
     }
-  },
+  }
   render() {
     if (this.state.sound === null) {
       return (
@@ -102,7 +94,7 @@ const AudioPlayer = React.createClass({
                 name={'volume-up'} 
                 color={'black'} 
                 style={{fontSize: 47, margin: 10}} />
-            <TouchableHighlight onPress={this.handlePress}>
+            <TouchableHighlight onPress={this.handlePress.bind(this)}>
               <Icon
                 name={this.state.isPlaying ? 'pause' : 'play'} 
                 color={'black'} 
@@ -124,13 +116,18 @@ const AudioPlayer = React.createClass({
           </View>
       );
     }
-  },
+  }
 }
-);
+AudioPlayer.defaultProps = {
+  time: 0,
+  duration: 0,
+  isPlaying: false,
+};
+
+
 
 
 const mapStateToProps = (state) => {
-  console.log('StationList mapStateToProps state:');
   console.log(state);
   return {
     currentNodeId: state.routes.currentNodeId,

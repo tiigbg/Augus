@@ -16,7 +16,7 @@ let myDataSource = new ListView.DataSource({
   sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
 });
 
-const Experiment = React.createClass({
+class Experiment extends React.Component {
   getInitialState() {
     const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
     const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID];
@@ -24,14 +24,14 @@ const Experiment = React.createClass({
     return {
       loaded: false,
     };
-  },
+  }
   componentDidMount() {
     this.fetchData();
-  },
+  }
   fetchData() {
     const { dispatch } = this.props;
     dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: { REQUEST_URL } });
-  },
+  }
   componentWillUpdate(nextProps, nextState) {
     console.log('componentWillUpdate');
     const exhibitions = nextProps.exhibitions;
@@ -104,14 +104,14 @@ const Experiment = React.createClass({
     //   dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs),
     //   loaded: true,
     // });
-  },
+  }
   renderRow(rowData, sectionID, rowID) {
     return (
       <Text>
         {rowData}
       </Text>
     );
-  },
+  }
   renderSectionHeader(sectionData, sectionID) {
     return (
       <View>
@@ -126,7 +126,7 @@ const Experiment = React.createClass({
         </Text>
       </View>
     );
-  },
+  }
   renderListView() {
     return (
       <View>
@@ -156,7 +156,7 @@ const Experiment = React.createClass({
           />
       </View>
     );
-  },
+  }
   render() {
     if (!this.props.loaded) {
       return (
@@ -182,12 +182,9 @@ const Experiment = React.createClass({
         </View>
       );
     }
-
-
-
     return this.renderListView();
-  },
-});
+  }
+}
 
 const mapStateToProps = (state) => {
   return {

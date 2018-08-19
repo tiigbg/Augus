@@ -83,18 +83,7 @@ global.storage = new Storage({
 });
 */
 
-const ExhibitionList = React.createClass({
-  // Currently not used as we are not using the native navbar from React Navigation
-  // navigationOptions: {
-  //   title: 'Utställningar',
-  // },
-  getInitialState() {
-    //const { dispatch } = this.props;
-    //dispatch({ type: AT.CHANGE_BASE_URL, payload: { baseUrl: 'http://192.168.43.95:8000' } });
-    return {
-      //loaded: false,
-    };
-  },
+class ExhibitionList extends React.Component{
   componentDidMount() {
     storage.load({
       key: 'json',
@@ -129,9 +118,9 @@ const ExhibitionList = React.createClass({
       }
     })
 
-  },
+  }
   componentWillUpdate(nextProps, nextState) {
-    //console.log('exhibitionlist componentWillUpdate');
+    //console.log('exhibitionlist componentWillUpdate', nextProps);
     const nodes = nextProps.nodes;
     const dataBlob = {};
     const sectionIDs = [];
@@ -152,11 +141,11 @@ const ExhibitionList = React.createClass({
       }
     }
     myDataSource = myDataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
-  },
+  }
   fetchData() {
     console.log('exhibitionlist fetchData()' +this.props.baseUrl+'/alldata');
     this.props.fetchMuseumData(this.props.baseUrl);
-  },
+  }
   renderLoadingView() {
     return (
       <View style={styles.container}>
@@ -175,14 +164,14 @@ const ExhibitionList = React.createClass({
           </View>
       </View>
     );
-  },
+  }
   renderRow(rowData, sectionID, rowID) {
     return (
       <Text>
         {rowData}
       </Text>
     );
-  },
+  }
   renderSectionHeader(sectionData, sectionID) {
     // console.log('renderSectionHeader');
     // console.log('sectionData');
@@ -216,7 +205,7 @@ const ExhibitionList = React.createClass({
         </TouchableHighlight>
       </View>
     );
-  },
+  }
   renderListView() {
     return (
       <View>
@@ -224,7 +213,7 @@ const ExhibitionList = React.createClass({
           style={styles.listMargin}
           dataSource={myDataSource}
           renderRow={this.renderRow}
-          renderSectionHeader={this.renderSectionHeader}
+          renderSectionHeader={this.renderSectionHeader.bind(this)}
           enableEmptySections
         />
         <View>
@@ -247,9 +236,8 @@ const ExhibitionList = React.createClass({
         </View>
       </View>
     );
-  },
+  }
   render() {
-    //console.log('exhibitionlist render');
     const navbar = (<NavBar title={this.props.navigation.state.params.title} language={this.props.language} noBackButton />);
     if (!this.props.loaded) {
       let loadingView = this.renderLoadingView();
@@ -269,8 +257,8 @@ const ExhibitionList = React.createClass({
         </ScrollView>
       </View>
     );
-  },
-});
+  }
+}
 
 const mapStateToProps = (state) => {
   return {

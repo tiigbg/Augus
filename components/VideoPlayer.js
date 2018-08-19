@@ -11,41 +11,33 @@ import Video from 'react-native-video';
 
 let icon_signlanguage_sv = require('../assets/img/teckensprakstolkning_opaque.png');
 
-export default React.createClass({
-  getDefaultProps() {
-    return {
-      time: 0,
-      duration: 100,
-      isPlaying: false,
-      isFullScreen: false,
-      showSignlanguageIcon: false,
-    };
-  },
-  getInitialState() {
-    return {
+export default class VideoPlayer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       time: this.props.time,
       duration: this.props.duration,
       isPlaying: this.props.isPlaying,
       isFullScreen: this.props.isFullScreen,
       showSignlanguageIcon: this.props.showSignlanguageIcon,
     };
-  },
+  }
   onEnd() {
     this.setState({ isPlaying: false });
     if (this.refs.videoPlayer) {
       this.refs.videoPlayer.seek(0);
     }
     this.setState({ time: 0 });
-  },
+  }
   onFullscreenOpen() {
     this.setState({ isFullScreen: true });
-  },
+  }
   onFullscreenClose() {
     this.setState({ isFullScreen: false });
-  },
+  }
   handlePress() {
     this.setState({ isPlaying: !this.state.isPlaying });
-  },
+  }
   render() {
     return (
         <View style={styles.colStretch}>
@@ -112,5 +104,14 @@ export default React.createClass({
           </View>
         </View>
     );
-  },
-});
+  }
+}
+
+VideoPlayer.defaultProps = {
+  time: 0,
+  duration: 100,
+  isPlaying: false,
+  isFullScreen: false,
+  showSignlanguageIcon: false,
+};
+

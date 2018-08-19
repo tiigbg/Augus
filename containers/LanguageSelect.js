@@ -7,15 +7,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import RNFetchBlob from 'react-native-fetch-blob'
 import { findExhibitionListTitle } from '../util/exhibitionlist.js';
 
-
-
-const LanguageSelect = React.createClass({
-  getInitialState() {
-    return {
-    };
-  },
-  componentWillMount()
-  {
+class LanguageSelect extends React.Component {
+  componentWillMount() {
     console.log(this.props.navigation.state.key);
     if(this.props.navigation.state.key == 'Init')
     {
@@ -48,10 +41,8 @@ const LanguageSelect = React.createClass({
         }
       })
     }
-  },
+  }
   render() {
-
-   
     return (
       <View style={styles.screenContainer}>
         <ScrollView >
@@ -91,8 +82,8 @@ const LanguageSelect = React.createClass({
         </ScrollView>
       </View>
     );
-  },
-});
+  }
+}
 
 const mapStateToProps = (state) => {
   return {

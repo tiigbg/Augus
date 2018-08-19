@@ -8,14 +8,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import RNFetchBlob from 'react-native-fetch-blob'
 
 
-export default React.createClass({
-  getDefaultProps() {
-    return {
-      visible: false,
-      image: null,
-    };
-  },
-  getInitialState() {
+export default class ImageCaption extends React.Component {
+  constructor(props) {
+    super(props);
     let audioFile = this.props.audio.find((item)=>{ return item.parent_id == this.props.image.id && item.parent_type=='image' && item.language==this.props.language; });
     if (typeof audioFile !== "undefined") {
       hasAudio = true;
@@ -41,20 +36,15 @@ export default React.createClass({
         console.log(err);
       });
     }
-    return {
+    this.state = {
       visible: this.props.visible,
       hasAudio: false,
       audioLoaded: false,
       audioFilename: '',
       audioFile,
     };
-  },
-  componentWillMount() {
-    
-  },
-  componentWillUnmount: function componentWillUnmount() {
-    
-  },
+  }
+
   render() {
     if(this.props.image === null)
       return (<View />);
@@ -117,6 +107,10 @@ export default React.createClass({
         </View>
       );
     }
-  },
+  }
 }
-);
+
+ImageCaption.defaultProps = {
+  visible: false,
+  image: null,
+};
