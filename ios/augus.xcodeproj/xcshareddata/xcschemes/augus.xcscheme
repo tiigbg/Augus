@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Go&#x308;teborgs Fo&#x308;delse.app"
+               BuildableName = "Stra&#x308;ngna&#x308;s Domkyrka.app"
                BlueprintName = "augus"
                ReferencedContainer = "container:augus.xcodeproj">
             </BuildableReference>
@@ -71,7 +71,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Go&#x308;teborgs Fo&#x308;delse.app"
+            BuildableName = "Stra&#x308;ngna&#x308;s Domkyrka.app"
             BlueprintName = "augus"
             ReferencedContainer = "container:augus.xcodeproj">
          </BuildableReference>
@@ -94,7 +94,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Go&#x308;teborgs Fo&#x308;delse.app"
+            BuildableName = "Stra&#x308;ngna&#x308;s Domkyrka.app"
             BlueprintName = "augus"
             ReferencedContainer = "container:augus.xcodeproj">
          </BuildableReference>
@@ -113,7 +113,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Go&#x308;teborgs Fo&#x308;delse.app"
+            BuildableName = "Stra&#x308;ngna&#x308;s Domkyrka.app"
             BlueprintName = "augus"
             ReferencedContainer = "container:augus.xcodeproj">
          </BuildableReference>
