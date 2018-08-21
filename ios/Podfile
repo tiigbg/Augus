@@ -21,3 +21,9 @@ target 'augus' do
   end
 
 end
+
+# Hack to fix linker error between GVRSDK and React
+# see this issue comment https://github.com/facebook/react-native/issues/18022#issuecomment-372760977
+post_install do |installer|
+  system(". ./pod_post_install.sh")
+end
