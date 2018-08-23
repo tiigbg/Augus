@@ -1,13 +1,13 @@
 import React from 'react';
-import { ScrollView, Image, ListView, TouchableHighlight, Text, View} from 'react-native';
+import { ScrollView, Image, ListView, TouchableHighlight, Text, View, Button} from 'react-native';
 import { connect } from 'react-redux';
 import { findText, findChildren } from '../util/station.js';
 import { findExhibitionListTitle } from '../util/exhibitionlist.js';
-import NavBar from '../components/NavBar';
 import styles from '../styles/styles';
 import * as AT from '../constants/ActionTypes';
 // import { StationList } from 'StationList';
 import Storage from 'react-native-storage';
+import { goBack, previous, next } from '../util/header'
 import { Platform, AsyncStorage } from 'react-native';
 import RNFetchBlob from 'react-native-fetch-blob'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -84,6 +84,20 @@ global.storage = new Storage({
 */
 
 class ExhibitionList extends React.Component{
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: navigation.getParam('title')   
+    };
+  };
+  componentDidMount() {
+    this.props.navigation.setParams({ 
+      title: this.props.title,
+      parent_id: this.props.navigation.state.params.node.parent_id,
+      nodes: this.props.nodes,
+      language: this.props.language,
+      texts: this.props.texts,
+    });
+  }
   componentDidMount() {
     storage.load({
       key: 'json',
@@ -238,12 +252,10 @@ class ExhibitionList extends React.Component{
     );
   }
   render() {
-    const navbar = (<NavBar title={this.props.navigation.state.params.title} language={this.props.language} noBackButton />);
     if (!this.props.loaded) {
       let loadingView = this.renderLoadingView();
       return (
         <View style={styles.screenContainer}>
-          <View>{navbar}</View>
           {loadingView}
         </View>
       );
@@ -251,7 +263,6 @@ class ExhibitionList extends React.Component{
     let listView = this.renderListView();
     return (
       <View style={styles.screenContainer}>
-        <View style={ styles.navbar_container }>{navbar}</View>
         <ScrollView style={ styles.body_container } contentContainerStyle={styles.contentContainer}>
           {listView}
         </ScrollView>

@@ -26,31 +26,9 @@ export default class NavBar extends React.Component {
       } // FIXME Should we quit the app here?
       return true;
     }
-    //goBack = goBack.bind(this);
     BackHandler.addEventListener('hardwareBackPress', goBack);
 
     const backgroundColor = findColor(this.props.node, this.props.nodes, true);
-    let backButton = (<View />);
-    if (!this.props.noBackButton) {
-      backButton = (
-        <TouchableHighlight onPress={() => {
-          if (parentNode) {
-            NavigationService.navigate('StationList', {
-              node: parentNode,
-              title: findText(parentNode, this.props.texts, 'section', 'title', this.props.language).text,
-            });
-          } else {
-            NavigationService.navigate('ExhibitionList', { title: findExhibitionListTitle(this.props.language) });
-          }
-        }}
-
-          style={{ borderWidth: 3, borderColor: 'black', borderRadius: 5, backgroundColor: 'white' }}
-        >
-          <Text style={styles.backButton}>
-            <Icon name={'level-up'} size={50} color={'black'} style={{ textAlign: 'center', margin: 5, marginTop: 0, marginBottom: 0, }} />
-          </Text>
-        </TouchableHighlight>);
-    }
     let prevButton = (<View />);
     let nextButton = (<View />);
     if (!!this.props.previous && parentNode) {
@@ -94,7 +72,6 @@ export default class NavBar extends React.Component {
           flexGrow: 1,
           flexDirection: 'row',
         }}>
-          {backButton}
           {prevButton}
           {nextButton}
         </View>
@@ -103,9 +80,6 @@ export default class NavBar extends React.Component {
           flexGrow: 1,
           flexDirection: 'row',
         }}>
-          <Text style={[styles.station_name, { color: 'white', marginTop: 0, marginBottom: 0, }]}>
-            {this.props.title}
-          </Text>
         </View>
       </View>
     );

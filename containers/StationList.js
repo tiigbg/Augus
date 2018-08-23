@@ -1,9 +1,11 @@
 import React from 'react';
-import { ProgressBarAndroid, ProgressViewIOS, ScrollView, Image, ListView, TouchableHighlight, Text, View, TouchableOpacity, Platform } from 'react-native';
+import { ProgressBarAndroid, ProgressViewIOS, ScrollView, Image, ListView, TouchableHighlight, Text, View, TouchableOpacity, Platform, Button } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../styles/styles';
 import { findColor, findSymbol, findNode, findText, findChildren } from '../util/station.js';
 import NavBar from '../components/NavBar';
+import { goBack, previous, next } from '../util/header';
+import ARViewer from '../components/ARViewer';
 import AudioPlayer from '../components/AudioPlayer';
 import VideoPlayer from '../components/VideoPlayer';
 import ImageCaption from '../components/ImageCaption';
@@ -30,6 +32,39 @@ let myDataSource = new ListView.DataSource({
 
 
 class StationList extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: navigation.getParam('title'),
+      headerRight: (
+        <Button
+          onPress={() => navigation.navigate('ARDetector', {
+            nodes: navigation.getParam('nodes')
+          })}
+          title="AR"
+        />
+      ),
+      headerLeft: (
+        <Button
+          onPress={() => goBack(false, 
+            navigation.getParam('parent_id'),
+            navigation.getParam('nodes'),
+            navigation.getParam('language'),
+            navigation.getParam('texts'),
+            )}
+          title="Back"
+        />
+      ),
+    };
+  };
+  componentDidMount() {
+    this.props.navigation.setParams({ 
+      title: this.props.title,
+      parent_id: this.props.navigation.state.params.node.parent_id,
+      nodes: this.props.nodes,
+      language: this.props.language,
+      texts: this.props.texts,
+    });
+  }
   constructor(props){
     super(props);
     //console.log('StationList getInitialState props:');
@@ -424,7 +459,6 @@ class StationList extends React.Component {
     );
     return (
       <View style={styles.screenContainer}>
-        <View style={ styles.navbar_container }>{navbar}</View>
         <ScrollView style={ styles.body_container }>
           {stationView}
           <ListView
@@ -435,6 +469,7 @@ class StationList extends React.Component {
             enableEmptySections
           />
         </ScrollView>
+        <View style={ styles.navbar_container }>{navbar}</View>
       </View>
     );
   }

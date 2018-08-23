@@ -45,8 +45,8 @@ export default class VideoPlayer extends React.Component {
             navigator={this.props.navigator}
             activeProps={{ style: styles.lightBox }}
             style={styles.colStretch}
-            onClose={this.onFullscreenClose}
-            onOpen={this.onFullscreenOpen} >
+            onClose={this.onFullscreenClose.bind(this)}
+            onOpen={this.onFullscreenOpen.bind(this)} >
             <Video
               ref="videoPlayer"
               source={{ uri: this.props.file }} // Can be a URL or a local file.
@@ -63,7 +63,7 @@ export default class VideoPlayer extends React.Component {
               onProgress={
                 (progressStats) => {if (this.state.isPlaying) {this.setState({ time: progressStats.currentTime });}}
               }    // Callback every ~250ms with currentTime
-              onEnd={this.onEnd}           // Callback when playback finishes
+              onEnd={this.onEnd.bind(this)}           // Callback when playback finishes
               onError={this.videoError}    // Callback when video cannot be loaded
               style={this.state.isPlaying ? (styles.video) : { height: 0 }}
             />
@@ -79,7 +79,7 @@ export default class VideoPlayer extends React.Component {
                 style={{ fontSize:44, margin: 10, color:'black' }}
               /> : null
             }
-            <TouchableHighlight onPress={this.handlePress}>
+            <TouchableHighlight onPress={this.handlePress.bind(this)}>
               <Icon
                 name={this.state.isPlaying ? 'pause' : 'play'}
                 color={this.state.isFullScreen ? 'white' : 'black'}

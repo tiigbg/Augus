@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider, connect } from 'react-redux';
 
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, createStackNavigator } from 'react-navigation';
 import * as NavigationService from './util/NavigationService';
 import * as AT from './constants/ActionTypes';
 
@@ -9,11 +9,13 @@ import TabIcon from './components/TabIcon.js';
 import LanguageSelect from './containers/LanguageSelect';
 import ExhibitionList from './containers/ExhibitionList';
 import StationList from './containers/StationList';
+import ARDetector from './containers/ARDetector';
 
 import { configureStore } from './store/Store.js';
 
 export default class Augus extends React.Component {
   constructor(props) {
+    console.disableYellowBox = true;
     super(props);
     this.state = { store: configureStore() };
   }
@@ -32,7 +34,7 @@ export default class Augus extends React.Component {
   render() {
     return (
       <Provider store={this.state.store}>
-        <AppNavigator ref={(nav) => { this.navigator = nav; }} onNavigationStateChange={ this.onNavigationStateChange.bind(this) }  />
+        <RootNavigator ref={(nav) => { this.navigator = nav; }} onNavigationStateChange={ this.onNavigationStateChange.bind(this) }  />
       </Provider>
     );
   }
@@ -40,16 +42,14 @@ export default class Augus extends React.Component {
 }
 
 
-const AppNavigator = StackNavigator(
+const MainStack = createStackNavigator(
   {
     LanguageSelect: { screen: LanguageSelect },
     ExhibitionList: { screen: ExhibitionList },
     StationList: { screen: StationList },
+    ARDetector: { screen: ARDetector, },
   }, {
     headerMode: 'screen',
-    navigationOptions: {
-      header: null, // hide the header
-    },
     // Disable Navigator transition animations
     transitionConfig: () => ({
       transitionSpec: {
@@ -57,4 +57,14 @@ const AppNavigator = StackNavigator(
       },
   }),
   },
+);
+const RootNavigator = createStackNavigator(
+  {
+    Main: { screen: MainStack, },
+    ARDetector: { screen: ARDetector, },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
 );
