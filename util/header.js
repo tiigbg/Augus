@@ -5,7 +5,7 @@ import { findExhibitionListTitle } from './exhibitionlist.js';
 export function goBack(noBackButton, parentId, nodes, language, texts) {
   parentNode = findNode(parentId, nodes);
   if (parentNode) {
-    NavigationService.navigate('StationList', {
+    NavigationService.push('StationList', {
       node: parentNode,
       title: findText(parentNode, texts, 'section', 'title', language).text,
     });

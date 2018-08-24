@@ -51,7 +51,7 @@ class StationList extends React.Component {
             navigation.getParam('language'),
             navigation.getParam('texts'),
             )}
-          title="Back"
+          title="Tillbaka"
         />
       ),
     };
@@ -83,7 +83,7 @@ class StationList extends React.Component {
       const node = nodes[id];
       //console.log('going through nodes (id='+id+')');
       if (node.parent_id === exhibition.id) {
-        //console.log('Found child node with id='+node.id);
+        console.log('Found child node with id='+node.id);
         // sectionIDs.push(`${id}`);
         // rowIDs.push(`${id}`);
         rowIDs[0].push(`${id}`);
@@ -98,8 +98,11 @@ class StationList extends React.Component {
         //     dataBlob[`${id}:${subId}`] = `${id}:${subId}`;
         //   }
         // }
+      } else {
+        console.log("Parent ID is instead ", node.parent_id, exhibition.id);
       }
     }
+    console.log("datablob is", dataBlob);
     
     collapseText = (rowIDs[0].length > 0);
     
@@ -208,7 +211,7 @@ class StationList extends React.Component {
     //console.log('stationList renderRow', this.props);
     const station = this.props.nodes[rowID];
     let title = findText(station, this.props.texts, 'section', 'title', this.props.language).text;
-    let openFunction = () => { this.props.navigation.navigate('StationList', { node: station, title }); };
+    let openFunction = () => { this.props.navigation.push('StationList', { node: station, title }); };
     if (station.type === 'leaf') {
       console.log("Oh no, don't go here!!");
       openFunction = () => { this.props.navigation.navigate('StationScreen', { station, title, nodes: this.props.nodes }); };
