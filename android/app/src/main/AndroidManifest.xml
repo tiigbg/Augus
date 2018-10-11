@@ -6,10 +6,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="22" />
+        android:minSdkVersion="23"
+        android:targetSdkVersion="25" />
 
     <application
       android:name=".MainApplication"
@@ -17,6 +18,7 @@
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
       android:theme="@style/AppTheme">
+        <meta-data android:name="com.google.ar.core" android:value="optional" />
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
@@ -26,7 +28,7 @@
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
-     <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+            <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
