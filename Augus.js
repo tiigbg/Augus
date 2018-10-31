@@ -8,6 +8,7 @@ import * as AT from './constants/ActionTypes';
 import TabIcon from './components/TabIcon.js';
 import LanguageSelect from './containers/LanguageSelect';
 import ExhibitionScreen from './components/ExhibitionScreen';
+import StationScreen from './components/StationScreen';
 
 import ExhibitionList from './containers/ExhibitionList';
 import StationList from './containers/StationList';
@@ -61,7 +62,7 @@ const MainStack = createStackNavigator(
   {
     LanguageSelect: { screen: LanguageSelect },
     ExhibitionScreen: { screen: ExhibitionScreen },
-    StationList: { screen: StationList },
+    StationScreen: { screen: StationScreen },
     ARDetector: { screen: ARDetector }
   }, {
     headerMode: 'screen',
