@@ -1,23 +1,32 @@
 import React from 'react';
-import { ScrollView, Image, ListView, TouchableHighlight, Text, View, Button} from 'react-native';
+import { ScrollView, Image, ListView, TouchableHighlight, Text, View, 
+  Button, Platform, AsyncStorage  } from 'react-native';
+import Storage from 'react-native-storage';
+import { withNavigation } from 'react-navigation';
+
 import { connect } from 'react-redux';
+import * as NavigationService from '../util/NavigationService';
+import * as AT from '../constants/ActionTypes';
+import styles from '../styles/styles';
+
 import { findText, findChildren } from '../util/station.js';
 import { findExhibitionListTitle } from '../util/exhibitionlist.js';
-import styles from '../styles/styles';
-import * as AT from '../constants/ActionTypes';
-// import { StationList } from 'StationList';
-import Storage from 'react-native-storage';
+
+import { StationList } from '../containers/StationList';
+
 import { goBack, previous, next } from '../util/header'
-import { Platform, AsyncStorage } from 'react-native';
+//import { Platform, AsyncStorage } from 'react-native';
 import RNFetchBlob from 'react-native-fetch-blob'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+//const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID];
+//const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
 
-const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
-const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID];
-let myDataSource = new ListView.DataSource({
-  getSectionData,
-  getRowData,
+//const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
+//const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID];
+let dataSource = new ListView.DataSource({
+  getSectionData: (dataBlob, sectionID) => dataBlob[sectionID],
+  getRowData: (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID],
   rowHasChanged: (row1, row2) => row1 !== row2,
   sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
 });
@@ -25,28 +34,23 @@ let myDataSource = new ListView.DataSource({
 global.storage = new Storage({
     // maximum capacity, default 1000 
     size: 10000,
-
     // Use AsyncStorage for RN, or window.localStorage for web.
     // If not set, data would be lost after reload.
     storageBackend: AsyncStorage,
-
     // expire time, default 1 day(1000 * 3600 * 24 milliseconds).
     // can be null, which means never expire.
     defaultExpires: 1000 * 3600 * 24,
-
     // cache data in the memory. default is true.
     enableCache: true,
-
     // if data was not found in storage or expired,
     // the corresponding sync method will be invoked and return 
     // the latest data.
     sync : {
-      
       // The name of the sync method must be the same of the data's key
       // And the passed params will be an all-in-one object.
       // You can use promise here. 
       // Or plain callback function with resolve/reject, like:
-      image(params){
+      image(params) {
         let { id, resolve, reject } = params;
         fetch(this.props.baseUrl+'/imageFile/'+id, {
             method: 'GET',
@@ -57,7 +61,7 @@ global.storage = new Storage({
             return response.json();
         }).then(json => {
           // console.log(json);
-          if(json && json.user){
+          if(json && json.user) {
             storage.save({
                 key: 'user',
                 id,
@@ -84,11 +88,13 @@ global.storage = new Storage({
 */
 
 class ExhibitionList extends React.Component{
+
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: navigation.getParam('title')   
     };
   };
+
   componentDidMount() {
     this.props.navigation.setParams({ 
       title: this.props.title,
@@ -98,14 +104,13 @@ class ExhibitionList extends React.Component{
       texts: this.props.texts,
     });
   }
+
   componentDidMount() {
     storage.load({
       key: 'json',
-
       // autoSync(default true) means if data not found or expired,
       // then invoke the corresponding sync method
       autoSync: true,
-
       // syncInBackground(default true) means if data expired,
       // return the outdated data first while invoke the sync method.
       // It can be set to false to always return data provided by sync method when expired.(Of course it's slower)
@@ -114,8 +119,6 @@ class ExhibitionList extends React.Component{
       // found data go to then()
       const { dispatch } = this.props;
       this.props.loadFromCache(ret);
-
-      
     }).catch(err => {
       // any exception including data not found 
       // goes to catch()
@@ -131,10 +134,9 @@ class ExhibitionList extends React.Component{
             break;
       }
     })
-
   }
+
   componentWillUpdate(nextProps, nextState) {
-    //console.log('exhibitionlist componentWillUpdate', nextProps);
     const nodes = nextProps.nodes;
     const dataBlob = {};
     const sectionIDs = [];
@@ -143,23 +145,21 @@ class ExhibitionList extends React.Component{
     let iExh = 0;
     for (const i in nodes) {
       const node = nodes[i];
-      // console.log('reading node');
       if (node.parent_id == null) {
-        // console.log('found exhibition');
-        // console.log('exhibition');
-        // console.log(node);
         sectionIDs.push(`${iExh}`);
         dataBlob[`${iExh}`] = i;
         rowIDs[`${iExh}`] = [];
         iExh++;
       }
     }
-    myDataSource = myDataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
+    dataSource = dataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
   }
+
   fetchData() {
-    console.log('exhibitionlist fetchData()' +this.props.baseUrl+'/alldata');
+    //console.log('exhibitionlist fetchData()' +this.props.baseUrl+'/alldata');
     this.props.fetchMuseumData(this.props.baseUrl);
   }
+
   renderLoadingView() {
     return (
       <View style={styles.container}>
@@ -179,40 +179,36 @@ class ExhibitionList extends React.Component{
       </View>
     );
   }
-  renderRow(rowData, sectionID, rowID) {
-    return (
-      <Text>
-        {rowData}
-      </Text>
-    );
-  }
+
   renderSectionHeader(sectionData, sectionID) {
-    // console.log('renderSectionHeader');
+    console.log('renderSectionHeader');
     // console.log('sectionData');
     // console.log(sectionData);
     const exhibition = this.props.nodes[sectionData];
-    if(exhibition.hasOwnProperty('visibility') && exhibition.visibility == 'hidden')
-      return (<View/>);
-    let title = findText(exhibition, this.props.texts, 'section', 'title', this.props.language).text;
+    if (exhibition.hasOwnProperty('visibility') && exhibition.visibility == 'hidden'){
+      return (<View />);
+    }
+
+    let title = findText(
+      exhibition, this.props.texts, 'section', 'title', this.props.language).text;
     let images = findChildren(exhibition, this.props.images);
-    let exhibitionImageTag = (<View/>);
-    if(images.length > 0) {
+    let exhibitionImageTag = (<View />);
+    if (images.length > 0) {
       exhibitionImage = images[0];
       exhibitionImageTag = (
         <Image
-          source={{ uri: this.props.baseUrl+'/imageFile/'+exhibitionImage.id }}
+          source={{ uri: this.props.baseUrl + '/imageFile/' + exhibitionImage.id }}
           style={styles.exhibitionImage}
         />
       );
     }
+
     return (
       <View>
-        <TouchableHighlight
-      onPress={() => this.props.navigation.navigate('StationList', { node: exhibition, title })}
-        >
+        <TouchableHighlight onPress={() => this.onExhibitionPressed(exhibition, title)}>
           <View>
             <View style={styles.listContainer}>
-              { exhibitionImageTag }
+              {exhibitionImageTag}
               <Text style={styles.listText}>{title}</Text>
             </View>
           </View>
@@ -220,37 +216,61 @@ class ExhibitionList extends React.Component{
       </View>
     );
   }
-  renderListView() {
+
+  onExhibitionPressed(node, title){
+    this.props.onExhibitionPressed(node, title);
+  }
+
+  renderRow(rowData, sectionID, rowID) {
+    console.log('renderRow');
+    return (
+      <Text>
+        {rowData}
+      </Text>
+    );
+  }
+
+  renderListView(sectionData, sectionID) {
     return (
       <View>
         <ListView
-          style={styles.listMargin}
-          dataSource={myDataSource}
-          renderRow={this.renderRow}
-          renderSectionHeader={this.renderSectionHeader.bind(this)}
+          style = { styles.listMargin }
+          dataSource = { dataSource }
+          renderRow = { this.renderRow }
+          renderSectionHeader = { this.renderSectionHeader.bind(this) }
           enableEmptySections
         />
+
         <View>
           <TouchableHighlight
             onPress={() => { this.props.navigation.navigate('LanguageSelect'); }}>
             <View style={[styles.listContainer, {flexDirection: 'row'}]}>
                 <Icon name={'globe'} style={[styles.collapseIcon, {color: 'white'}]} />
-                <Text style={styles.listText}>{ this.props.language=='sv'? 'Change language':'Byt språk'}</Text>
+                <Text style={styles.listText}>
+                  { this.props.language=='sv'? 'Change language':'Byt språk'}
+                </Text>
               </View>
           </TouchableHighlight>
         </View>
+
         <View>
           <TouchableHighlight
-            onPress={() => { this.fetchData(); this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle(this.props.language)}); }}>
+            onPress={() => {
+              this.fetchData(); this.props.navigation.navigate(
+                'ExhibitionList', {
+                  title: findExhibitionListTitle(this.props.language)}); }}>
             <View style={[styles.listContainer, {flexDirection: 'row'}]}>
                 <Icon name={'refresh'} style={[styles.collapseIcon, {color: 'white'}]} />
-                <Text style={styles.listText}>{ this.props.language=='sv'? 'Ladda om':'Reload'}</Text>
+                <Text style={styles.listText}>
+                  { this.props.language=='sv'? 'Ladda om':'Reload'}
+                </Text>
               </View>
           </TouchableHighlight>
         </View>
       </View>
     );
   }
+
   render() {
     if (!this.props.loaded) {
       let loadingView = this.renderLoadingView();
@@ -260,14 +280,70 @@ class ExhibitionList extends React.Component{
         </View>
       );
     }
-    let listView = this.renderListView();
+
+    //Section Header?
+    /*const exhibition = this.props.nodes[this];
+    if (exhibition.hasOwnProperty('visibility') && exhibition.visibility == 'hidden') {
+      return (<View />);
+    }
+
+    let title = findText(
+      exhibition, this.props.texts, 'section', 'title', this.props.language).text;
+    let images = findChildren(exhibition, this.props.images);
+    let exhibitionImageTag = (<View />);
+
+    if (images.length > 0) {
+      exhibitionImage = images[0];
+      exhibitionImageTag = (
+        <Image
+          source={{ uri: this.props.baseUrl + '/imageFile/' + exhibitionImage.id }}
+          style={styles.exhibitionImage}
+        />
+      );
+    }*/
+
     return (
-      <View style={styles.screenContainer}>
-        <ScrollView style={ styles.body_container } contentContainerStyle={styles.contentContainer}>
-          {listView}
+      <View>
+        <ScrollView 
+          style={styles.body_container} 
+          contentContainerStyle={styles.contentContainer}
+        >
+          <ListView
+            style = {styles.listMargin}
+            dataSource = {dataSource}
+            renderRow = {this.renderRow}
+            renderSectionHeader={this.renderSectionHeader.bind(this)}
+            enableEmptySections
+          />
         </ScrollView>
       </View>
     );
+
+    return (
+      <View>
+        <TouchableHighlight
+          onPress={() =>
+            this.props.navigation.navigate('StationList', { node: exhibition, title })}
+        >
+          <View>
+            <View style={styles.listContainer}>
+              {exhibitionImageTag}
+              <Text style={styles.listText}>{title}</Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+    );
+
+    //let listView = this.renderListView();
+
+    /*return (
+      <View style={styles.screenContainer}>
+        <ScrollView style={ styles.body_container } contentContainerStyle={styles.contentContainer}>
+          { listView }
+        </ScrollView>
+      </View>
+    );*/
   }
 }
 
@@ -303,4 +379,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 // upgrade our component to become Redux-aware
+//export default withNavigation(mapStateToProps, mapDispatchToProps)(ExhibitionList);
 export default connect(mapStateToProps, mapDispatchToProps)(ExhibitionList);
+//export default withNavigation(ExhibitionList);
