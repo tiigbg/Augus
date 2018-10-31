@@ -1,18 +1,21 @@
 import React from 'react';
-import { ProgressBarAndroid, ProgressViewIOS, ScrollView, Image, ListView, TouchableHighlight, Text, View, TouchableOpacity, Platform } from 'react-native';
+import { ProgressBarAndroid, ProgressViewIOS, ScrollView, Image, ListView, 
+  TouchableHighlight, Text, View, TouchableOpacity, Platform } from 'react-native';
 import { connect } from 'react-redux';
+
 import * as AT from '../constants/ActionTypes';
 import styles from '../styles/styles';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RNFetchBlob from 'react-native-fetch-blob'
 import { findExhibitionListTitle } from '../util/exhibitionlist.js';
+import ExhibitionScreen from '../components/ExhibitionScreen'
 
 class LanguageSelect extends React.Component {
   componentWillMount() {
-    console.log(this.props.navigation.state.key);
-    if(this.props.navigation.state.key == 'Init')
-    {
-      console.log('First view');
+    //console.log(this.props.navigation.state.key);
+    if(this.props.navigation.state.key == 'Init') {
+      //console.log('First view');
       storage.load({
         key: 'language',
 
@@ -27,7 +30,8 @@ class LanguageSelect extends React.Component {
       }).then(ret => {
         // found data go to then()
         this.props.changeLanguage(ret.language, ret.displaySignlanguage);
-        this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle(ret.language)} );
+        this.props.navigation.navigate('ExhibitionScreen', 
+          {title: findExhibitionListTitle(ret.language)} );
         
       }).catch(err => {
         switch (err.name) {
@@ -42,6 +46,7 @@ class LanguageSelect extends React.Component {
       })
     }
   }
+
   render() {
     return (
       <View style={styles.screenContainer}>
@@ -49,7 +54,8 @@ class LanguageSelect extends React.Component {
           <TouchableHighlight
               onPress={() => {
                 this.props.changeLanguage('sv', false);
-                this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle('sv')} );
+                this.props.navigation.navigate('ExhibitionScreen', 
+                  {title: findExhibitionListTitle('sv')} );
               }}
               style={[styles.listContainer, { marginTop: 16 }]}
             >
@@ -57,10 +63,12 @@ class LanguageSelect extends React.Component {
                 Svenska
               </Text>
           </TouchableHighlight>
+
           <TouchableHighlight
               onPress={() => {
                 this.props.changeLanguage('sv', true);
-                this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle('sv')} );
+                this.props.navigation.navigate('ExhibitionScreen', 
+                  {title: findExhibitionListTitle('sv')} );
               }}
               style={styles.listContainer}
             >
@@ -68,10 +76,12 @@ class LanguageSelect extends React.Component {
                 Svenskt teckenspråk
               </Text>
           </TouchableHighlight>
+
           <TouchableHighlight
               onPress={() => {
                 this.props.changeLanguage('en', false);
-                this.props.navigation.navigate('ExhibitionList', {title: findExhibitionListTitle('en')} );
+                this.props.navigation.navigate('ExhibitionScreen', 
+                  {title: findExhibitionListTitle('en')} );
               }}
               style={styles.listContainer}
             >

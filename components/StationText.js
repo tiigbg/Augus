@@ -12,14 +12,15 @@ export default class StationText extends React.Component {
       visible: false
     }
   }
+
   render() {
     const bodyText = findText(this.props.node, this.props.texts, 'section', 'body', this.props.language).text;
     const shortBodyText = bodyText.substring(0, 140)+'...';
-    if(bodyText == null)
+    if(bodyText == null) {
       return (<View />);
+    }
 
-    if(!this.props.collapse || bodyText.length < 200)
-    {
+    if(!this.props.collapse || bodyText.length < 200) {
       return (
         <View style={{ borderWidth: 0, flexGrow: 1}}>
           <Text style={styles.imageDescription} >{bodyText}</Text>
@@ -27,8 +28,7 @@ export default class StationText extends React.Component {
       );
     }
 
-    if(this.state.visible)
-    {
+    if(this.state.visible) {
       return (
         <View style={{ borderWidth: 0, flexGrow: 1}}>
           <Text style={styles.imageDescription} >{bodyText}</Text>
@@ -42,9 +42,7 @@ export default class StationText extends React.Component {
           </View>
         </View>
       );
-    }
-    else
-    {
+    } else {
           //<View style={{ borderBottomWidth:15, borderBottomColor: '#f0f0f0dd', marginBottom: 0 }}></View>
       return (
         <View style={{ borderWidth: 0, flexGrow: 1}}>

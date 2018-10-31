@@ -31,6 +31,7 @@ export default class NavBar extends React.Component {
     const backgroundColor = findColor(this.props.node, this.props.nodes, true);
     let prevButton = (<View />);
     let nextButton = (<View />);
+    
     if (!!this.props.previous && parentNode) {
       prevButton = (
         <TouchableHighlight
@@ -45,6 +46,7 @@ export default class NavBar extends React.Component {
           <Icon name={'arrow-left'} size={50} color={'black'} style={{ textAlign: 'center', margin: 25, marginTop: 5, marginBottom: 0, }} />
         </TouchableHighlight>);
     }
+
     if (!!this.props.next && parentNode) {
       nextButton = (
         <TouchableHighlight
@@ -60,6 +62,7 @@ export default class NavBar extends React.Component {
           <Icon name={'arrow-right'} size={50} color={'black'} style={{ textAlign: 'center', margin: 25, marginTop: 5, marginBottom: 0, }} />
         </TouchableHighlight>);
     }
+
     return (
       <View style={{
         justifyContent: 'space-between',

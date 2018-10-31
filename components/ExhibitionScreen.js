@@ -1,17 +1,14 @@
 import React from 'react';
 import { View, Button } from 'react-native';
 import { connect } from 'react-redux';
+
 import ExhibitionList from '../containers/ExhibitionList';
 
 import * as AT from '../constants/ActionTypes';
+import styles from '../styles/styles';
 
 //
 class ExhibitionScreen extends React.Component {
-  //
-  constructor(props) {
-    super(props);
-    this.onExhibitionPressed = this.onExhibitionPressed.bind(this);
-  }
 
   //
   static navigationOptions = ({ navigation }) => {
@@ -23,18 +20,20 @@ class ExhibitionScreen extends React.Component {
   // Render list of exhibitions, language button and reload button
   render() {
     return (
-      <View>
+      <View style={ styles.screenContainer }>
+        {/* List of exhibitions */}
         <ExhibitionList 
-          navigation={this.navigation}
-          onExhibitionPressed={this.onExhibitionPressed}
+          navigation={this.props.navigation}
         />
 
+        {/* Language select button */}
         <Button
           onPress={() => this.onLanguageChangePressed()}
           title={this.props.language == 'sv' ? 'Byt språk' : 'Change language'}
           color="#e1057d"
         />
 
+        {/* Reload button */}
         <Button
           onPress={() => this.onReloadPressed()}
           title={this.props.language == 'sv' ? 'Ladda om' : 'Reload' }
@@ -54,11 +53,6 @@ class ExhibitionScreen extends React.Component {
     this.fetchData();
     this.props.navigation.navigate('ExhibitionScreen',
       { title: this.findExhibitionListTitle(this.props.language) });
-  }
-
-  //
-  onExhibitionPressed(node, title) {
-    this.props.navigation.navigate('StationList', { node: node, title });
   }
 
   //
@@ -111,3 +105,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExhibitionScreen);
+
+/* Reference to old button
+    <View>
+      <TouchableHighlight
+        onPress={() => { this.props.navigation.navigate('LanguageSelect'); }}>
+        <View style={[styles.listContainer, {flexDirection: 'row'}]}>
+            <Icon name={'globe'} style={[styles.collapseIcon, {color: 'white'}]} />
+            <Text style={styles.listText}>
+              { this.props.language=='sv'? 'Change language':'Byt språk'}
+            </Text>
+          </View>
+      </TouchableHighlight>
+    </View>
+  */

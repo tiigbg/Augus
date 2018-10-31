@@ -19,6 +19,7 @@ class AudioPlayer extends React.Component {
       sound: null,
     };
   }
+
   componentWillMount() {
     const sound = new Sound(this.props.file, '', (error) => {
       if (error) {
@@ -29,6 +30,7 @@ class AudioPlayer extends React.Component {
       } });
     AppState.addEventListener('change', this._handleAppStateChange);
   }
+
   componentWillUnmount() {
     clearInterval(this.interval);
     if (!!this.state.sound) {
@@ -36,6 +38,7 @@ class AudioPlayer extends React.Component {
     }
     AppState.removeEventListener('change', this._handleAppStateChange);
   }
+
   _handleAppStateChange(currentAppState) {
     if(currentAppState == "background") {
       if (!!this.state.sound) {
@@ -48,6 +51,7 @@ class AudioPlayer extends React.Component {
         //resume();
     }
   }
+
   handlePress() {
     this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }));
     if (this.state.isPlaying) {
@@ -67,14 +71,11 @@ class AudioPlayer extends React.Component {
       this.interval = setInterval(this.tick.bind(this), 100);
     }
   }
-  tick() {
 
-    if(this.props.nodeId == this.props.currentNodeId)
-    {
+  tick() {
+    if(this.props.nodeId == this.props.currentNodeId) {
       this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }));
-    }
-    else
-    {
+    } else {
       if (!!this.state.sound) {
         this.state.sound.pause();
         this.setState({ isPlaying: false });
@@ -82,6 +83,7 @@ class AudioPlayer extends React.Component {
       }
     }
   }
+
   render() {
     if (this.state.sound === null) {
       return (
@@ -118,14 +120,12 @@ class AudioPlayer extends React.Component {
     }
   }
 }
+
 AudioPlayer.defaultProps = {
   time: 0,
   duration: 0,
   isPlaying: false,
 };
-
-
-
 
 const mapStateToProps = (state) => {
   console.log(state);

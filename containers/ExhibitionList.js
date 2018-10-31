@@ -1,23 +1,19 @@
 import React from 'react';
 import { ScrollView, Image, ListView, TouchableHighlight, Text, View, 
   Button, Platform, AsyncStorage  } from 'react-native';
-import Storage from 'react-native-storage';
-import { withNavigation } from 'react-navigation';
-
 import { connect } from 'react-redux';
-import * as NavigationService from '../util/NavigationService';
-import * as AT from '../constants/ActionTypes';
-import styles from '../styles/styles';
+
+import { StationList } from '../containers/StationList';
 
 import { findText, findChildren } from '../util/station.js';
 import { findExhibitionListTitle } from '../util/exhibitionlist.js';
 
-import { StationList } from '../containers/StationList';
-
-import { goBack, previous, next } from '../util/header'
-//import { Platform, AsyncStorage } from 'react-native';
+import Storage from 'react-native-storage';
 import RNFetchBlob from 'react-native-fetch-blob'
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import * as AT from '../constants/ActionTypes';
+import styles from '../styles/styles';
 
 //const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID];
 //const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
@@ -89,22 +85,25 @@ global.storage = new Storage({
 
 class ExhibitionList extends React.Component{
 
+  //
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: navigation.getParam('title')   
     };
   };
 
+  //
   componentDidMount() {
     this.props.navigation.setParams({ 
       title: this.props.title,
       parent_id: this.props.navigation.state.params.node.parent_id,
       nodes: this.props.nodes,
       language: this.props.language,
-      texts: this.props.texts,
+      texts: this.props.texts
     });
   }
 
+  //
   componentDidMount() {
     storage.load({
       key: 'json',
@@ -136,6 +135,7 @@ class ExhibitionList extends React.Component{
     })
   }
 
+  //
   componentWillUpdate(nextProps, nextState) {
     const nodes = nextProps.nodes;
     const dataBlob = {};
@@ -155,11 +155,13 @@ class ExhibitionList extends React.Component{
     dataSource = dataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
   }
 
+  //
   fetchData() {
     //console.log('exhibitionlist fetchData()' +this.props.baseUrl+'/alldata');
     this.props.fetchMuseumData(this.props.baseUrl);
   }
 
+  //
   renderLoadingView() {
     return (
       <View style={styles.container}>
@@ -180,10 +182,8 @@ class ExhibitionList extends React.Component{
     );
   }
 
+  //
   renderSectionHeader(sectionData, sectionID) {
-    console.log('renderSectionHeader');
-    // console.log('sectionData');
-    // console.log(sectionData);
     const exhibition = this.props.nodes[sectionData];
     if (exhibition.hasOwnProperty('visibility') && exhibition.visibility == 'hidden'){
       return (<View />);
@@ -205,11 +205,12 @@ class ExhibitionList extends React.Component{
 
     return (
       <View>
-        <TouchableHighlight onPress={() => this.onExhibitionPressed(exhibition, title)}>
+        <TouchableHighlight onPress={ () => 
+          this.onExhibitionPressed(exhibition, title) }>
           <View>
-            <View style={styles.listContainer}>
-              {exhibitionImageTag}
-              <Text style={styles.listText}>{title}</Text>
+            <View style={ styles.listContainer }>
+              { exhibitionImageTag }
+              <Text style={ styles.listText }>{ title }</Text>
             </View>
           </View>
         </TouchableHighlight>
@@ -217,10 +218,7 @@ class ExhibitionList extends React.Component{
     );
   }
 
-  onExhibitionPressed(node, title){
-    this.props.onExhibitionPressed(node, title);
-  }
-
+  //
   renderRow(rowData, sectionID, rowID) {
     console.log('renderRow');
     return (
@@ -230,120 +228,39 @@ class ExhibitionList extends React.Component{
     );
   }
 
-  renderListView(sectionData, sectionID) {
-    return (
-      <View>
-        <ListView
-          style = { styles.listMargin }
-          dataSource = { dataSource }
-          renderRow = { this.renderRow }
-          renderSectionHeader = { this.renderSectionHeader.bind(this) }
-          enableEmptySections
-        />
-
-        <View>
-          <TouchableHighlight
-            onPress={() => { this.props.navigation.navigate('LanguageSelect'); }}>
-            <View style={[styles.listContainer, {flexDirection: 'row'}]}>
-                <Icon name={'globe'} style={[styles.collapseIcon, {color: 'white'}]} />
-                <Text style={styles.listText}>
-                  { this.props.language=='sv'? 'Change language':'Byt språk'}
-                </Text>
-              </View>
-          </TouchableHighlight>
-        </View>
-
-        <View>
-          <TouchableHighlight
-            onPress={() => {
-              this.fetchData(); this.props.navigation.navigate(
-                'ExhibitionList', {
-                  title: findExhibitionListTitle(this.props.language)}); }}>
-            <View style={[styles.listContainer, {flexDirection: 'row'}]}>
-                <Icon name={'refresh'} style={[styles.collapseIcon, {color: 'white'}]} />
-                <Text style={styles.listText}>
-                  { this.props.language=='sv'? 'Ladda om':'Reload'}
-                </Text>
-              </View>
-          </TouchableHighlight>
-        </View>
-      </View>
-    );
-  }
-
+  //
   render() {
     if (!this.props.loaded) {
       let loadingView = this.renderLoadingView();
       return (
-        <View style={styles.screenContainer}>
+        <View style={ styles.screenContainer }>
           {loadingView}
         </View>
       );
     }
 
-    //Section Header?
-    /*const exhibition = this.props.nodes[this];
-    if (exhibition.hasOwnProperty('visibility') && exhibition.visibility == 'hidden') {
-      return (<View />);
-    }
-
-    let title = findText(
-      exhibition, this.props.texts, 'section', 'title', this.props.language).text;
-    let images = findChildren(exhibition, this.props.images);
-    let exhibitionImageTag = (<View />);
-
-    if (images.length > 0) {
-      exhibitionImage = images[0];
-      exhibitionImageTag = (
-        <Image
-          source={{ uri: this.props.baseUrl + '/imageFile/' + exhibitionImage.id }}
-          style={styles.exhibitionImage}
-        />
-      );
-    }*/
-
     return (
       <View>
         <ScrollView 
-          style={styles.body_container} 
-          contentContainerStyle={styles.contentContainer}
+          style={ styles.body_container } 
+          contentContainerStyle={ styles.contentContainer }
         >
           <ListView
-            style = {styles.listMargin}
-            dataSource = {dataSource}
-            renderRow = {this.renderRow}
-            renderSectionHeader={this.renderSectionHeader.bind(this)}
+            style = { styles.listMargin }
+            dataSource = { dataSource }
+            renderRow = { this.renderRow }
+            renderSectionHeader={ this.renderSectionHeader.bind(this) }
             enableEmptySections
           />
         </ScrollView>
       </View>
     );
+  }
 
-    return (
-      <View>
-        <TouchableHighlight
-          onPress={() =>
-            this.props.navigation.navigate('StationList', { node: exhibition, title })}
-        >
-          <View>
-            <View style={styles.listContainer}>
-              {exhibitionImageTag}
-              <Text style={styles.listText}>{title}</Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-      </View>
-    );
-
-    //let listView = this.renderListView();
-
-    /*return (
-      <View style={styles.screenContainer}>
-        <ScrollView style={ styles.body_container } contentContainerStyle={styles.contentContainer}>
-          { listView }
-        </ScrollView>
-      </View>
-    );*/
+  // Handle on exhibition selected
+  onExhibitionPressed(node, title) {
+    this.props.navigation.navigate('StationScreen', 
+    { node: node, title });
   }
 }
 

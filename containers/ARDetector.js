@@ -78,6 +78,7 @@ class Detector extends React.Component {
       </ViroARScene>
     );
   }
+  
   _onAnchorFound(stuff1, stuff2, i) {
     console.log("We found anchor", stuff1, stuff2, i, this.props);
     const node = this.props.arSceneNavigator.viroAppProps.navigation.state.params.nodes[i];
