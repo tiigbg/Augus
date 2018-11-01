@@ -49,6 +49,8 @@ export default function Exhibitions(state = initialState, action) {
       audio = JSON.parse(JSON.stringify(action.payload.audio));
       video = JSON.parse(JSON.stringify(action.payload.video));
       signlanguages = JSON.parse(JSON.stringify(action.payload.signlanguages));
+      meshes = JSON.parse(JSON.stringify(action.payload.meshes));
+      triggerMarkers = JSON.parse(JSON.stringify(action.payload.triggerMarkers));
       
       global.storage.save({
         key: 'json',   // Note: Do not use underscore("_") in key!
@@ -60,6 +62,8 @@ export default function Exhibitions(state = initialState, action) {
             audio,
             video,
             signlanguages,
+            meshes,
+            triggerMarkers,
         },
 
         // if not specified, the defaultExpires will be applied instead.
@@ -80,6 +84,8 @@ export default function Exhibitions(state = initialState, action) {
         audio,
         video,
         signlanguages,
+        meshes,
+        triggerMarkers,
         loaded: true,
       };
     case AT.MUSEUM_DATA_FETCH_FAILED:
@@ -93,6 +99,8 @@ export default function Exhibitions(state = initialState, action) {
         audio: action.data.audio,
         video: action.data.video,
         signlanguages: action.data.signlanguages,
+        meshes: action.data.meshes,
+        triggerMarkers: action.data.triggerMarkers,
         loaded: true,
       };
     default:
