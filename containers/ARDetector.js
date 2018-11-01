@@ -25,6 +25,8 @@ import {
 class Detector extends React.Component {
   targets = {}
   markers = []
+
+  //
   constructor() {
     super();
 
@@ -32,17 +34,20 @@ class Detector extends React.Component {
     this.state = {
       text : "Initializing AR..."
     };
+
     let i = 0;
     for (let target of Object.keys(imageList)) { 
       let ii = i+1;
       console.log("imageList is", imageList);
       console.log("key is", target);
       console.log("require is", imageList[target]);
+
       this.targets[target] = {
         source: imageList[target],
         orientation: "Up",
         physicalWidth: 0.2
       };
+      
       this.markers.push(
         <ViroARImageMarker target={target}
           onAnchorFound={(anchor) => this._onAnchorFound(anchor, target, ii)}
@@ -51,6 +56,7 @@ class Detector extends React.Component {
       );
       i++;
     };
+
     ViroARTrackingTargets.createTargets(this.targets);
     console.log("Targets", this.targets);
     console.log("Markers", this.markers);
@@ -59,6 +65,7 @@ class Detector extends React.Component {
     this._onInitialized = this._onInitialized.bind(this);
   }
 
+  //
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized} >
@@ -79,13 +86,16 @@ class Detector extends React.Component {
     );
   }
   
+  //
   _onAnchorFound(stuff1, stuff2, i) {
     console.log("We found anchor", stuff1, stuff2, i, this.props);
-    const node = this.props.arSceneNavigator.viroAppProps.navigation.state.params.nodes[i];
+    const node = 
+      this.props.arSceneNavigator.viroAppProps.navigation.state.params.nodes[i];
     console.log("Node is", node);
     NavigationService.navigate('StationList', {node, title:""});
   }
 
+  //
   _onInitialized(state, reason) {
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({

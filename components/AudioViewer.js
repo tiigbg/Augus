@@ -1,7 +1,5 @@
 import React from 'react';
-import { ProgressBarAndroid, ProgressViewIOS, ScrollView, Image, 
-  ListView, TouchableHighlight, Text, View, TouchableOpacity, Platform, 
-  Button } from 'react-native';
+import { ProgressBarAndroid, ProgressViewIOS, View, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
 import AudioPlayer from '../components/AudioPlayer';
@@ -23,7 +21,9 @@ class AudioViewer extends React.Component {
     let audioFilename = '';
     let audioFile = this.props.audio.find((item)=>{ 
       return item.parent_id == this.props.navigation.state.params.node.id && 
-      item.parent_type=='section' && item.language==this.props.language; });
+      item.parent_type=='section' && 
+      item.language==this.props.language; 
+    });
 
     if(typeof audioFile !== "undefined") {
       hasAudio = true;
@@ -123,11 +123,16 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchMuseumData: (baseUrl) => {
-      dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: 
-        { REQUEST_URL: baseUrl + '/alldata' } });
+      dispatch({ 
+        type: AT.MUSEUM_DATA_FETCH_REQUESTED, 
+        payload: { REQUEST_URL: baseUrl + '/alldata' } 
+      });
     },
     loadFromCache: (data) => {
-      dispatch({ type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, data });
+      dispatch({ 
+        type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, 
+        data 
+      });
     }
   }
 };

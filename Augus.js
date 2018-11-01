@@ -9,9 +9,6 @@ import TabIcon from './components/TabIcon.js';
 import LanguageSelect from './containers/LanguageSelect';
 import ExhibitionScreen from './components/ExhibitionScreen';
 import StationScreen from './components/StationScreen';
-
-import ExhibitionList from './containers/ExhibitionList';
-import StationList from './containers/StationList';
 import ARDetector from './containers/ARDetector';
 
 import { configureStore } from './store/Store.js';

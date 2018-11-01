@@ -78,7 +78,7 @@ class StationList extends React.Component {
       const node = nodes[id];
       //console.log('going through nodes (id='+id+')');
      if (node.parent_id === exhibition.id) {
-        console.log('Found child node with id='+node.id);
+        //console.log('Found child node with id='+node.id);
         // sectionIDs.push(`${id}`);
         // rowIDs.push(`${id}`);
         rowIDs[0].push(`${id}`);
@@ -94,11 +94,11 @@ class StationList extends React.Component {
         //   }
         // }
       } else {
-        console.log("Parent ID is instead ", node.parent_id, exhibition.id);
+        //console.log("Parent ID is instead ", node.parent_id, exhibition.id);
       }
     }
 
-    console.log("datablob is", dataBlob);
+    //console.log("datablob is", dataBlob);
     
     collapseText = (rowIDs[0].length > 0);
     myDataSource = myDataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);

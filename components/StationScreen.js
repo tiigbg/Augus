@@ -8,6 +8,7 @@ import AudioViewer from './AudioViewer';
 import SignLanguageViewer from './SignLanguageViewer';
 import VideoViewer from './VideoViewer';
 import TextViewer from './TextViewer';
+import MeshViewer from './MeshViewer';
 
 import { findColor, findNode } from '../util/station.js';
 
@@ -48,7 +49,7 @@ class StationScreen extends React.Component {
       const node = nodes[id];
       //console.log('going through nodes (id='+id+')');
       if (node.parent_id === exhibition.id) {
-        console.log('Found child node with id='+node.id);
+        //console.log('Found child node with id='+node.id);
         // sectionIDs.push(`${id}`);
         // rowIDs.push(`${id}`);
         rowIDs[0].push(`${id}`);
@@ -64,11 +65,11 @@ class StationScreen extends React.Component {
         //   }
         // }
       } else {
-        console.log("Parent ID is instead ", node.parent_id, exhibition.id);
+        //console.log("Parent ID is instead ", node.parent_id, exhibition.id);
       }
     }
 
-    console.log("datablob is", dataBlob);
+    //console.log("datablob is", dataBlob);
     
     collapseText = (rowIDs[0].length > 0);
     myDataSource = myDataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
@@ -98,6 +99,7 @@ class StationScreen extends React.Component {
               <AudioViewer navigation={ this.props.navigation } />
               <SignLanguageViewer navigation={ this.props.navigation } />
               <VideoViewer navigation={ this.props.navigation } />
+              <MeshViewer navigation={ this.props.navigation } />
               <TextViewer navigation={ this.props.navigation } />
             </View>
           </View>
@@ -137,6 +139,8 @@ const mapStateToProps = (state) => {
       audio: state.exhibitions.audio,
       video: state.exhibitions.video,
       signlanguages: state.exhibitions.signlanguages,
+      /* meshes: state.exhibitions.meshes,
+      triggerimages: state.exhibitions.triggerimages, */
       loaded: state.exhibitions.loaded,
       baseUrl: state.settings.baseUrl,
       language: state.settings.language,
@@ -148,11 +152,16 @@ const mapStateToProps = (state) => {
     return {
       fetchMuseumData: (baseUrl) => {
         //console.log("Time to fetch from", baseUrl);
-        dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: 
-          { REQUEST_URL: baseUrl + '/alldata' } });
+        dispatch({ 
+          type: AT.MUSEUM_DATA_FETCH_REQUESTED, 
+          payload: { REQUEST_URL: baseUrl + '/alldata' } 
+        });
       },
       loadFromCache: (data) => {
-        dispatch({ type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, data });
+        dispatch({ 
+          type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, 
+          data 
+        });
       }
     }
   };

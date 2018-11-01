@@ -84,6 +84,8 @@ const mapStateToProps = (state) => {
     audio: state.exhibitions.audio,
     video: state.exhibitions.video,
     signlanguages: state.exhibitions.signlanguages,
+    /* meshes: state.exhibitions.meshes,
+    triggermarkers: state.exhibitions.triggermarkers, */
     loaded: state.exhibitions.loaded,
     baseUrl: state.settings.baseUrl,
     language: state.settings.language,
@@ -95,11 +97,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchMuseumData: (baseUrl) => {
       //console.log("Time to fetch from", baseUrl);
-      dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: 
-        { REQUEST_URL: baseUrl + '/alldata' } });
+      dispatch({ 
+        type: AT.MUSEUM_DATA_FETCH_REQUESTED, 
+        payload: { REQUEST_URL: baseUrl + '/alldata' } 
+      });
     },
     loadFromCache: (data) => {
-      dispatch({ type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, data });
+      dispatch({ 
+        type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, 
+        data 
+      });
     }
   }
 };

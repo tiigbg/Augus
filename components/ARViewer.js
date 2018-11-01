@@ -23,6 +23,7 @@ import {
 class Viewer extends React.Component {
   targets = {}
   markers = []
+
   constructor() {
     super();
 
@@ -39,16 +40,32 @@ class Viewer extends React.Component {
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized} >
-        <ViroText text={this.state.text} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
+        <ViroText 
+          text={this.state.text} 
+          scale={[.5, .5, .5]} 
+          position={[0, 0, -1]} 
+          style={styles.helloWorldTextStyle} 
+        />
+
         <Viro3DObject
-            source={require('../res/stenbockska_koret_dec2_3_centered.obj')}
-            position={[0, -1, -1]}
-            scale={[0.05, 0.05, 0.05]}
-            rotation={[0, 180, 0]}
-            type="OBJ" />
+          source={require('../res/stenbockska_koret_dec2_3_centered.obj')}
+          position={[0, -1, -1]}
+          scale={[0.05, 0.05, 0.05]}
+          rotation={[0, 180, 0]}
+          type="OBJ" 
+        />
+
         <ViroAmbientLight color={"#aaaaaa"} />
-        <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]}
-          position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
+
+        <ViroSpotLight 
+          innerAngle={5} 
+          outerAngle={90} 
+          direction={[0,-1,-.2]}
+          position={[0, 3, 1]} 
+          color="#ffffff" 
+          castsShadow={true} 
+        />
+        
         <ViroNode position={[0,-1,0]} dragType="FixedToWorld" onDrag={()=>{}} >
         </ViroNode>
       </ViroARScene>

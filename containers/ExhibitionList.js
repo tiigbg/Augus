@@ -136,6 +136,25 @@ class ExhibitionList extends React.Component{
   }
 
   //
+  /* componentDidUpdate(nextProps, nextState) {
+    const nodes = nextProps.nodes;
+    const dataBlob = {};
+    const sectionIDs = [];
+    const rowIDs = [];
+
+    let iExh = 0;
+    for (const i in nodes) {
+      const node = nodes[i];
+      if (node.parent_id == null) {
+        sectionIDs.push(`${iExh}`);
+        dataBlob[`${iExh}`] = i;
+        rowIDs[`${iExh}`] = [];
+        iExh++;
+      }
+    }
+    dataSource = dataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
+  } */
+
   componentWillUpdate(nextProps, nextState) {
     const nodes = nextProps.nodes;
     const dataBlob = {};
@@ -287,10 +306,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchMuseumData: (baseUrl) => {
       console.log("Time to fetch from", baseUrl);
-      dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: { REQUEST_URL: baseUrl +'/alldata' } });
+      dispatch({ 
+        type: AT.MUSEUM_DATA_FETCH_REQUESTED, 
+        payload: { REQUEST_URL: baseUrl +'/alldata' } 
+      });
     },
     loadFromCache: (data) => {
-      dispatch({ type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, data });
+      dispatch({ 
+        type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, 
+        data 
+      });
     }
   }
 };

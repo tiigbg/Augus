@@ -45,7 +45,7 @@ class TextViewer extends React.Component {
         //   }
         // }
       } else {
-        console.log("Parent ID is instead ", node.parent_id, exhibition.id);
+        //console.log("Parent ID is instead ", node.parent_id, exhibition.id);
       }
     }
 
@@ -63,7 +63,10 @@ class TextViewer extends React.Component {
     );
 
     // Section text
-    let description = findText(this.props.navigation.state.params.node, this.props.texts, 'section', 'body', this.props.language);
+    let description = findText(
+      this.props.navigation.state.params.node,
+      this.props.texts, 'section', 'body', this.props.language);
+      
     if ('parent_id' in description) {
       textView = (
         <View>
@@ -86,15 +89,7 @@ const mapStateToProps = (state) => {
   return {
     nodes: state.exhibitions.nodes,
     texts: state.exhibitions.texts,
-    images: state.exhibitions.images,
-    icons: state.exhibitions.icons,
-    audio: state.exhibitions.audio,
-    video: state.exhibitions.video,
-    signlanguages: state.exhibitions.signlanguages,
-    loaded: state.exhibitions.loaded,
-    baseUrl: state.settings.baseUrl,
-    language: state.settings.language,
-    displaySignlanguage: state.settings.displaySignlanguage
+    language: state.settings.language
   };
 };
 
@@ -102,11 +97,16 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchMuseumData: (baseUrl) => {
-      dispatch({ type: AT.MUSEUM_DATA_FETCH_REQUESTED, payload: 
-        { REQUEST_URL: baseUrl + '/alldata' } });
+      dispatch({ 
+        type: AT.MUSEUM_DATA_FETCH_REQUESTED, 
+        payload: { REQUEST_URL: baseUrl + '/alldata' } 
+      });
     },
     loadFromCache: (data) => {
-      dispatch({ type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, data });
+      dispatch({ 
+        type: AT.MUSEUM_DATA_LOADED_FROM_CACHE, 
+        data 
+      });
     }
   }
 };
