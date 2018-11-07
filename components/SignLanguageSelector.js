@@ -10,36 +10,36 @@ import * as AT from '../constants/ActionTypes';
 import styles from '../styles/styles';
 
 //
-class VideoViewer extends React.Component {
+class SignLanguageSelector extends React.Component {
 
   //
   constructor(props) {
     super(props);
 
-    let hasVideo = false;
-    let videoLoaded = false;
-    let videoFilename = '';
-    let videoFile = this.props.video.find((item)=>{ 
+    let hasSignlanguage = false;
+    let signlanguageLoaded = false;
+    let signlanguageFilename = '';
+    let signlanguageFile = this.props.signlanguages.find((item)=>{ 
       return item.parent_id == this.props.navigation.state.params.node.id && 
       item.language==this.props.language; });
 
-    if(typeof videoFile !== "undefined") {
-      hasVideo = true;
+    if(typeof signlanguageFile !== "undefined" && this.props.displaySignlanguage) {
+      hasSignlanguage = true;
       RNFetchBlob
       .config({
         fileCache : true,
-        key: ''+videoFile.id,
+        key: ''+signlanguageFile.id,
         appendExt : 'mp4',
       })
-      .fetch('GET', this.props.baseUrl+'/videoFile/'+videoFile.id, {
+      .fetch('GET', this.props.baseUrl+'/signlanguageFile/'+signlanguageFile.id, {
         
       })
       .progress((received, total) => {
-        this.setState({ videoLoadProgress: received / total });
+        this.setState({ signlanguageLoadProgress: received / total });
       })
       .then((res) => {
-        videoFilename = res.path();
-        this.setState({ videoFilename, videoLoaded: true });
+        signlanguageFilename = res.path();
+        this.setState({ signlanguageFilename, signlanguageLoaded: true });
       })
       .catch((err) => {
         console.log("error with fetching file:");
@@ -48,26 +48,28 @@ class VideoViewer extends React.Component {
     }
 
     this.state = {
-      hasVideo,
-      videoLoaded,
-      videoFilename
+      hasSignlanguage,
+      signlanguageLoaded,
+      signlanguageFilename
     };
   }
   
   //
   render(){
-    let videoPlayerView = (
+    let signlanguageView = (
       <View></View>
     );
 
-    // Section Videos
-    if(this.state.hasVideo) {
-      if(this.state.videoLoaded) {
-        videoPlayerView = (
+    if(this.state.hasSignlanguage && this.props.displaySignlanguage) {
+      if(this.state.signlanguageLoaded) {
+        signlanguageView = (
           <View>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
               <View style={{ flex: 1, flexDirection: 'column' }}>
-                <VideoPlayer file={ this.state.videoFilename } />
+                <VideoPlayer 
+                  file={ this.state.signlanguageFilename } 
+                  showSignlanguageIcon={ true } 
+                />
               </View>
             </View>
             <View style={styles.separator} />
@@ -75,14 +77,24 @@ class VideoViewer extends React.Component {
         );
       } else {
         if (Platform.OS === 'android') {
-          videoPlayerView = (<ProgressBarAndroid progress={this.state.videoLoadProgress}  styleAttr='Horizontal'></ProgressBarAndroid>)
+          signlanguageView = (
+            <ProgressBarAndroid 
+              progress={this.state.signlanguageLoadProgress}
+              styleAttr='Horizontal'>
+            </ProgressBarAndroid>
+          );
         } else {
-          videoPlayerView = (<ProgressViewIOS progress={this.state.videoLoadProgress} progressViewStyle='bar'></ProgressViewIOS >);
+          signlanguageView = (
+            <ProgressViewIOS 
+              progress={this.state.signlanguageLoadProgress} 
+              progressViewStyle='bar'>
+            </ProgressViewIOS >
+          );
         }
       }
     }
 
-    return videoPlayerView;
+    return signlanguageView;
   }
 }
 
@@ -121,4 +133,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(VideoViewer);
+export default connect(mapStateToProps, mapDispatchToProps)(SignLanguageSelector);

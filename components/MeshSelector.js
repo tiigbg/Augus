@@ -1,5 +1,6 @@
 import React from 'react';
-import { ProgressBarAndroid, ProgressViewIOS, View, Platform, Text } from 'react-native';
+import { ProgressBarAndroid, ProgressViewIOS, View, Platform, 
+  Button } from 'react-native';
 import { connect } from 'react-redux';
 
 import RNFetchBlob from 'react-native-fetch-blob'
@@ -8,7 +9,7 @@ import * as AT from '../constants/ActionTypes';
 import styles from '../styles/styles';
 
 //
-class MeshViewer extends React.Component {
+class MeshSelector extends React.Component {
 
   //
   constructor(props) {
@@ -18,15 +19,8 @@ class MeshViewer extends React.Component {
     let meshLoaded = false;
     let meshFilename = '';
     let meshFile = this.props.meshes.find((item) => {
-      return item.parent_id == this.props.navigation.state.params.node.id
-      /*&& 
-      item.parent_type == 'section' && 
-      item.language == this.props.language*/; 
+      return item.parent_id == this.props.navigation.state.params.node.id; 
     });
-
-    console.log("props.meshes: " + this.props.meshes);
-    //console.log("item: " + item);
-    console.log("mesh file: " + meshFile);
 
     if(typeof meshFile !== "undefined") {
       hasMesh = true;
@@ -71,10 +65,11 @@ class MeshViewer extends React.Component {
         <View>
           <View style = {{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
             <View style = {{ flex: 1, flexDirection: 'column' }}>
-              <Text>
-                { this.state.meshFilename }
-                { /*this.props.navigation.state.params.node.id*/ }
-              </Text>
+              <Button
+                onPress={() => this.onMeshSelected()}
+                title={this.props.language == 'sv' ? 'Titta på modell' : 'Look at model'}
+                color="#e1057d"
+              />
             </View>
           </View>
 
@@ -99,24 +94,21 @@ class MeshViewer extends React.Component {
       }
     }
   }
+
+  // Handle press on mesh button
+  onMeshSelected(){
+    this.props.navigation.navigate('ARViewer', {
+      nodeID: this.props.navigation.state.params.node.id
+    });
+  }
 }
 
 //
 const mapStateToProps = (state) => {
   return {
-    nodes: state.exhibitions.nodes,
-    texts: state.exhibitions.texts,
-    images: state.exhibitions.images,
-    icons: state.exhibitions.icons,
-    audio: state.exhibitions.audio,
-    video: state.exhibitions.video,
-    signlanguages: state.exhibitions.signlanguages,
     meshes: state.exhibitions.meshes,
-    /* triggermarkers: state.exhibitions.triggermarkers, */
     loaded: state.exhibitions.loaded,
-    baseUrl: state.settings.baseUrl,
-    language: state.settings.language,
-    displaySignlanguage: state.settings.displaySignlanguage
+    baseUrl: state.settings.baseUrl
   };
 };
 
@@ -138,4 +130,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MeshViewer);
+//
+export default connect(mapStateToProps, mapDispatchToProps)(MeshSelector);

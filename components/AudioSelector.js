@@ -2,7 +2,7 @@ import React from 'react';
 import { ProgressBarAndroid, ProgressViewIOS, View, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
-import AudioPlayer from '../components/AudioPlayer';
+import AudioPlayer from './AudioPlayer';
 
 import RNFetchBlob from 'react-native-fetch-blob'
 
@@ -10,7 +10,7 @@ import * as AT from '../constants/ActionTypes';
 import styles from '../styles/styles';
 
 //
-class AudioViewer extends React.Component {
+class AudioSelector extends React.Component {
 
   //
   constructor(props) {
@@ -137,4 +137,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AudioViewer);
+export default connect(mapStateToProps, mapDispatchToProps)(AudioSelector);
