@@ -1,15 +1,15 @@
 import React from 'react';
 import { Text, View, Image, TouchableHighlight, Slider } from 'react-native';
 
-import { secondsToTime } from '../util/time';
+import { secondsToTime } from '../../util/time';
 import Lightbox from 'react-native-lightbox';
 
-import styles from '../styles/styles';
+import styles from '../../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Video from 'react-native-video';
 
-let icon_signlanguage_sv = require('../assets/img/teckensprakstolkning_opaque.png');
+let icon_signlanguage_sv = require('../../assets/img/teckensprakstolkning_opaque.png');
 
 export default class VideoPlayer extends React.Component {
   constructor(props) {

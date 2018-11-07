@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, View, TouchableHighlight, Platform } from 'react-native';
-import { findNode, findText } from '../util/station.js';
+import { findNode, findText } from '../../util/station.js';
 
-import styles from '../styles/styles';
+import styles from '../../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class StationText extends React.Component {

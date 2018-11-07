@@ -12,6 +12,8 @@ class ExhibitionScreen extends React.Component {
 
   //
   constructor(props){
+    console.log("ExhibitionScreen");
+
     super(props);
   }
 

@@ -6,9 +6,9 @@ import { findColor, findSymbol, findNode, findText } from '../../util/station.js
 
 import styles from '../../styles/styles';
 
-let icon_audio_sv = require('../assets/img/upplast_text.png');
-let icon_signlanguage_sv = require('../assets/img/teckensprakstolkning_opaque.png');
-let icon_text_sv = require('../assets/img/textning.png');
+let icon_audio_sv = require('../../assets/img/upplast_text.png');
+let icon_signlanguage_sv = require('../../assets/img/teckensprakstolkning_opaque.png');
+let icon_text_sv = require('../../assets/img/textning.png');
 
 const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
 const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID];

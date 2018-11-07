@@ -1,15 +1,15 @@
 import React from 'react';
 import {Text, View, TouchableHighlight, Platform, ProgressBarAndroid, 
   ProgressViewIOS } from 'react-native';
-import { findText } from '../util/station.js';
+  import Icon from 'react-native-vector-icons/FontAwesome';
+import RNFetchBlob from 'react-native-fetch-blob'
 
 import AudioPlayer from './AudioPlayer';
 
-import styles from '../styles/styles';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import RNFetchBlob from 'react-native-fetch-blob'
+import { findText } from '../../util/station.js';
+import styles from '../../styles/styles';
 
-
+//
 export default class ImageCaption extends React.Component {
   constructor(props) {
     super(props);

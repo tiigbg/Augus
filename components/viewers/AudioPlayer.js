@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Text, View, TouchableHighlight, Slider, AppState} from 'react-native';
-
-import { secondsToTime } from '../util/time';
-import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import Sound from 'react-native-sound';
 
+import { secondsToTime } from '../../util/time';
+import styles from '../../styles/styles';
 
+//
 class AudioPlayer extends React.Component {
   constructor(props) {
     super(props);

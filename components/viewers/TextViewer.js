@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 
 import StationText from './StationText';
 
-import { findText, findNode } from '../util/station.js';
+import { findText, findNode } from '../../util/station.js';
 
-import * as AT from '../constants/ActionTypes';
-import styles from '../styles/styles';
+import * as AT from '../../constants/ActionTypes';
+import styles from '../../styles/styles';
 
 //
 class TextViewer extends React.Component {

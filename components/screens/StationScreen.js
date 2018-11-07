@@ -12,8 +12,8 @@ import MeshSelector from '../selectors/MeshSelector';
 
 import TextViewer from '../viewers/TextViewer';
 
-import * as AT from '../constants/ActionTypes';
-import styles from '../styles/styles';
+import * as AT from '../../constants/ActionTypes';
+import styles from '../../styles/styles';
 
 //
 /* const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];

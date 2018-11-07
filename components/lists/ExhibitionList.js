@@ -3,12 +3,12 @@ import { ScrollView, Image, ListView, TouchableHighlight, Text, View,
   AsyncStorage  } from 'react-native';
 import { connect } from 'react-redux';
 
-import { findText, findChildren } from '../util/station.js';
+import { findText, findChildren } from '../../util/station.js';
 
 import Storage from 'react-native-storage';
 
-import * as AT from '../constants/ActionTypes';
-import styles from '../styles/styles';
+import * as AT from '../../constants/ActionTypes';
+import styles from '../../styles/styles';
 
 //
 let dataSource = new ListView.DataSource({

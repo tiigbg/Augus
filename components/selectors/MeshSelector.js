@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 
 import RNFetchBlob from 'react-native-fetch-blob'
 
-import * as AT from '../constants/ActionTypes';
-import styles from '../styles/styles';
+import * as AT from '../../constants/ActionTypes';
+import styles from '../../styles/styles';
 
 //
 class MeshSelector extends React.Component {

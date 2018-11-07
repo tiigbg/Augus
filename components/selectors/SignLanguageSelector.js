@@ -6,8 +6,8 @@ import VideoPlayer from '../viewers/VideoPlayer';
 
 import RNFetchBlob from 'react-native-fetch-blob'
 
-import * as AT from '../constants/ActionTypes';
-import styles from '../styles/styles';
+import * as AT from '../../constants/ActionTypes';
+import styles from '../../styles/styles';
 
 //
 class SignLanguageSelector extends React.Component {

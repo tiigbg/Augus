@@ -2,16 +2,25 @@ import React from 'react';
 import { ScrollView, TouchableHighlight, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 
-import * as AT from '../constants/ActionTypes';
-import styles from '../styles/styles';
+import * as AT from '../../constants/ActionTypes';
+import styles from '../../styles/styles';
 
-import { findExhibitionListTitle } from '../util/exhibitionlist.js';
+import { findExhibitionListTitle } from '../../util/exhibitionlist.js';
 
 //
 class LanguageSelect extends React.Component {
 
   //
+  constructor(props){
+    super(props);
+
+    /* console.log("texts", this.props.texts); */
+  }
+
+  //
   componentWillMount() {
+    /* console.log("texts", this.props.texts); */
+
     //console.log(this.props.navigation.state.key);
     if(this.props.navigation.state.key == 'Init') {
       //console.log('First view');
@@ -48,6 +57,8 @@ class LanguageSelect extends React.Component {
 
   //TODO: Data dependent language selection rather than hard coded
   render() {
+    /* console.log("texts", this.props.texts); */
+
     return (
       <View style={styles.screenContainer}>
         <ScrollView>
@@ -101,6 +112,7 @@ const mapStateToProps = (state) => {
     loaded: state.exhibitions.loaded,
     baseUrl: state.settings.baseUrl,
     language: state.settings.language,
+    texts: state.exhibitions.texts,
   };
 };
 

@@ -4,15 +4,14 @@ import { connect } from 'react-redux';
 
 import ImageCaption from '../viewers/ImageCaption';
 
-import { findText, findChildren } from '../util/station.js';
-
 import Dimensions from 'Dimensions';
 import Lightbox from 'react-native-lightbox';
 import PhotoView from 'react-native-photo-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import * as AT from '../constants/ActionTypes';
-import styles from '../styles/styles';
+import { findText, findChildren } from '../../util/station.js';
+import * as AT from '../../constants/ActionTypes';
+import styles from '../../styles/styles';
 
 //
 class ImageSelector extends React.Component {

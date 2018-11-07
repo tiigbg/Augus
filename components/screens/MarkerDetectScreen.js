@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { findText, findNodeIndex } from '../util/station.js';
+import { findText, findNodeIndex } from '../../util/station.js';
 
 import { ViroARScene, ViroARSceneNavigator, ViroConstants, ViroARTrackingTargets,
   ViroARImageMarker } from 'react-viro';

@@ -10,7 +10,7 @@ import { StyleSheet } from 'react-native';
 import { ViroARSceneNavigator, ViroARScene, ViroConstants, ViroMaterials, Viro3DObject, ViroAmbientLight, 
   ViroSpotLight, ViroNode, ViroAnimations } from 'react-viro';
 
-import * as AT from '../constants/ActionTypes';
+import * as AT from '../../constants/ActionTypes';
 
 //
 class ARMeshScreen extends React.Component {
@@ -210,7 +210,7 @@ var styles = StyleSheet.create({
 //
 ViroMaterials.createMaterials({
   grid: {
-    diffuseTexture: require('../res/grid_bg.jpg'),
+    diffuseTexture: require('../../res/grid_bg.jpg'),
   },
 });
 

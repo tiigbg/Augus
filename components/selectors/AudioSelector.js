@@ -6,8 +6,8 @@ import AudioPlayer from '../viewers/AudioPlayer';
 
 import RNFetchBlob from 'react-native-fetch-blob'
 
-import * as AT from '../constants/ActionTypes';
-import styles from '../styles/styles';
+import * as AT from '../../constants/ActionTypes';
+import styles from '../../styles/styles';
 
 //
 class AudioSelector extends React.Component {

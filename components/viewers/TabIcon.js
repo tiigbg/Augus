@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import styles from '../styles/styles';
+import styles from '../../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default TabIcon = () => {
