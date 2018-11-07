@@ -9,6 +9,7 @@ import TabIcon from './components/TabIcon.js';
 import LanguageSelect from './containers/LanguageSelect';
 import ExhibitionScreen from './components/ExhibitionScreen';
 import StationScreen from './components/StationScreen';
+import ARViewer from './components/ARViewer';
 import ARDetector from './containers/ARDetector';
 
 import { configureStore } from './store/Store.js';
@@ -58,15 +59,17 @@ export default class Augus extends React.Component {
 const MainStack = createStackNavigator(
   {
     LanguageSelect: { screen: LanguageSelect },
+    ARDetectScreen: { screen: ARDetectScreen },
+    
     ExhibitionScreen: { screen: ExhibitionScreen },
     StationScreen: { screen: StationScreen },
-    ARDetector: { screen: ARDetector }
+    ARViewer: {screen: ARViewer },
   }, {
     headerMode: 'screen',
     // Disable Navigator transition animations
     transitionConfig: () => ({
       transitionSpec: {
-          duration: 0,
+          duration: 1,
       }
     })
   }
@@ -75,7 +78,7 @@ const MainStack = createStackNavigator(
 const RootNavigator = createStackNavigator(
   {
     Main: { screen: MainStack, },
-    ARDetector: { screen: ARDetector, }
+    ARDetectScreen: { screen: ARDetectScreen, }
   }, {
     mode: 'modal',
     headerMode: 'none'
