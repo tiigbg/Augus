@@ -20,17 +20,6 @@ class AudioPlayer extends React.Component {
     };
   }
 
-  /* componentDidMount() {
-    const sound = new Sound(this.props.file, '', (error) => {
-      if (error) {
-        console.log('failed to load the sound', error);
-      } else {
-        this.setState({ sound });
-        this.setState({ duration: this.state.sound.getDuration() });
-      } });
-    AppState.addEventListener('change', this._handleAppStateChange);
-  } */
-
   componentWillMount() {
     const sound = new Sound(this.props.file, '', (error) => {
       if (error) {

@@ -1,25 +1,16 @@
 import React from 'react';
 import { ScrollView, Image, ListView, TouchableHighlight, Text, View, 
-  Button, Platform, AsyncStorage  } from 'react-native';
+  AsyncStorage  } from 'react-native';
 import { connect } from 'react-redux';
 
-import { StationList } from '../containers/StationList';
-
 import { findText, findChildren } from '../util/station.js';
-import { findExhibitionListTitle } from '../util/exhibitionlist.js';
 
 import Storage from 'react-native-storage';
-import RNFetchBlob from 'react-native-fetch-blob'
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 import * as AT from '../constants/ActionTypes';
 import styles from '../styles/styles';
 
-//const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID];
-//const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
-
-//const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
-//const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID];
+//
 let dataSource = new ListView.DataSource({
   getSectionData: (dataBlob, sectionID) => dataBlob[sectionID],
   getRowData: (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID],
@@ -27,6 +18,7 @@ let dataSource = new ListView.DataSource({
   sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
 });
 
+//
 global.storage = new Storage({
     // maximum capacity, default 1000 
     size: 10000,
@@ -78,11 +70,7 @@ global.storage = new Storage({
     }
 });
 
-/*storage.remove({
-    key: 'json'
-});
-*/
-
+//
 class ExhibitionList extends React.Component{
 
   //
@@ -136,25 +124,6 @@ class ExhibitionList extends React.Component{
   }
 
   //
-  /* componentDidUpdate(nextProps, nextState) {
-    const nodes = nextProps.nodes;
-    const dataBlob = {};
-    const sectionIDs = [];
-    const rowIDs = [];
-
-    let iExh = 0;
-    for (const i in nodes) {
-      const node = nodes[i];
-      if (node.parent_id == null) {
-        sectionIDs.push(`${iExh}`);
-        dataBlob[`${iExh}`] = i;
-        rowIDs[`${iExh}`] = [];
-        iExh++;
-      }
-    }
-    dataSource = dataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
-  } */
-
   componentWillUpdate(nextProps, nextState) {
     const nodes = nextProps.nodes;
     const dataBlob = {};
@@ -187,14 +156,15 @@ class ExhibitionList extends React.Component{
         <Text>
           Loading... 
         </Text>
+
         <View>
           <TouchableHighlight
-              onPress={() => { this.fetchData(); }}
-              style={{ margin: 5 }}
-            >
-              <Text>
-                Retry
-              </Text>
+            onPress={() => { this.fetchData(); }}
+            style={{ margin: 5 }}
+          >
+            <Text>
+              Retry
+            </Text>
           </TouchableHighlight>
           </View>
       </View>
@@ -278,37 +248,29 @@ class ExhibitionList extends React.Component{
 
   // Handle on exhibition selected
   onExhibitionPressed(node, title) {
-    this.props.navigation.navigate('StationScreen', 
-    { node: node, title });
+    this.props.navigation.navigate('StationScreen', { node: node, title });
   }
 }
 
+//
 const mapStateToProps = (state) => {
   return {
-    // exhibitions: state.exhibitions.exhibitions,
-    // sections: state.exhibitions.sections,
-    // stations: state.exhibitions.stations,
     nodes: state.exhibitions.nodes,
     texts: state.exhibitions.texts,
     images: state.exhibitions.images,
-    icons: state.exhibitions.icons,
-    audio: state.exhibitions.audio,
-    video: state.exhibitions.video,
-    signlanguages: state.exhibitions.signlanguages,
     loaded: state.exhibitions.loaded,
     baseUrl: state.settings.baseUrl,
-    language: state.settings.language,
-    displaySignlanguage: state.settings.displaySignlanguage,
+    language: state.settings.language
   };
 };
 
+//
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchMuseumData: (baseUrl) => {
-      console.log("Time to fetch from", baseUrl);
       dispatch({ 
         type: AT.MUSEUM_DATA_FETCH_REQUESTED, 
-        payload: { REQUEST_URL: baseUrl +'/alldata' } 
+        payload: { REQUEST_URL: baseUrl + '/alldata' } 
       });
     },
     loadFromCache: (data) => {

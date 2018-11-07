@@ -188,14 +188,13 @@ class StationList extends React.Component {
   onStationPressed(station, title){
     /* this.props.navigation.navigate(
       'StationScreen', { station, title, nodes: this.props.nodes }); */
-
-    // If sub station
+    
     if (station.type === 'leaf') {
+      // If sub station
       this.props.navigation.navigate(
         'StationScreen', { station, title, nodes: this.props.nodes });
-    }
-    // If root station
-    else {
+    } else {
+      // If root station
       this.props.navigation.push(
         'StationScreen', { node: station, title });
     }

@@ -3,12 +3,18 @@ import { View, Button } from 'react-native';
 import { connect } from 'react-redux';
 
 import ExhibitionList from '../containers/ExhibitionList';
+import ARDetector from '../containers/ARDetector';
 
 import * as AT from '../constants/ActionTypes';
 import styles from '../styles/styles';
 
 //
 class ExhibitionScreen extends React.Component {
+
+  //
+  constructor(props){
+    super(props);
+  }
 
   //
   static navigationOptions = ({ navigation }) => {
@@ -21,22 +27,25 @@ class ExhibitionScreen extends React.Component {
   render() {
     return (
       <View style={ styles.screenContainer }>
-        {/* List of exhibitions */}
         <ExhibitionList 
           navigation={this.props.navigation}
         />
 
-        {/* Language select button */}
         <Button
           onPress={() => this.onLanguageChangePressed()}
           title={this.props.language == 'sv' ? 'Byt språk' : 'Change language'}
           color="#e1057d"
         />
 
-        {/* Reload button */}
         <Button
           onPress={() => this.onReloadPressed()}
           title={this.props.language == 'sv' ? 'Ladda om' : 'Reload' }
+          color="#e1057d"
+        />
+
+        <Button
+          onPress={() => this.onScanPressed()}
+          title={this.props.language == 'sv' ? 'Scanna' : 'Scan' }
           color="#e1057d"
         />
       </View>
@@ -51,8 +60,17 @@ class ExhibitionScreen extends React.Component {
   // Handle press on reload button
   onReloadPressed(){
     this.fetchData();
-    this.props.navigation.navigate('ExhibitionScreen',
-      { title: this.findExhibitionListTitle(this.props.language) });
+    this.props.navigation.navigate('ExhibitionScreen', { 
+      title: this.findExhibitionListTitle(this.props.language) 
+    });
+  }
+
+  // Handle press on scan button
+  onScanPressed(){
+    this.props.navigation.navigate('ARDetector', {
+      //triggerImages: this.props.triggerImages,
+      //nodes: this.props.nodes,
+    });
   }
 
   //
@@ -72,31 +90,22 @@ class ExhibitionScreen extends React.Component {
   }
 }
 
+//
 const mapStateToProps = (state) => {
   return {
-    // exhibitions: state.exhibitions.exhibitions,
-    // sections: state.exhibitions.sections,
-    // stations: state.exhibitions.stations,
-    nodes: state.exhibitions.nodes,
-    texts: state.exhibitions.texts,
-    images: state.exhibitions.images,
-    icons: state.exhibitions.icons,
-    audio: state.exhibitions.audio,
-    video: state.exhibitions.video,
-    signlanguages: state.exhibitions.signlanguages,
-    /* meshes: state.exhibitions.meshes,
-    triggermarkers: state.exhibitions.triggermarkers, */
-    loaded: state.exhibitions.loaded,
+    //nodes: state.exhibitions.nodes,
+    //texts: state.exhibitions.texts,
     baseUrl: state.settings.baseUrl,
     language: state.settings.language,
-    displaySignlanguage: state.settings.displaySignlanguage
+    //triggerImages: state.settings.triggerImages,
+    //language: state.settings.language,
   };
 };
 
+//
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchMuseumData: (baseUrl) => {
-      //console.log("Time to fetch from", baseUrl);
       dispatch({ 
         type: AT.MUSEUM_DATA_FETCH_REQUESTED, 
         payload: { REQUEST_URL: baseUrl + '/alldata' } 
@@ -111,6 +120,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
+//
 export default connect(mapStateToProps, mapDispatchToProps)(ExhibitionScreen);
 
 /* Reference to old button
