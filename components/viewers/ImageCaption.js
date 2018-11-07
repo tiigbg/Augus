@@ -1,7 +1,9 @@
 import React from 'react';
-import {Text, View, TouchableHighlight, Slider, Platform, ProgressBarAndroid, ProgressViewIOS } from 'react-native';
-import { findNode, findText } from '../util/station.js';
-import AudioPlayer from '../components/AudioPlayer';
+import {Text, View, TouchableHighlight, Platform, ProgressBarAndroid, 
+  ProgressViewIOS } from 'react-native';
+import { findText } from '../util/station.js';
+
+import AudioPlayer from './AudioPlayer';
 
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';

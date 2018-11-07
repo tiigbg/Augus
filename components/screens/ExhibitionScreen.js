@@ -2,11 +2,10 @@ import React from 'react';
 import { View, Button } from 'react-native';
 import { connect } from 'react-redux';
 
-import ExhibitionList from '../containers/ExhibitionList';
-import ARDetector from '../containers/ARDetector';
+import ExhibitionList from '../lists/ExhibitionList';
 
-import * as AT from '../constants/ActionTypes';
-import styles from '../styles/styles';
+import * as AT from '../../constants/ActionTypes';
+import styles from '../../styles/styles';
 
 //
 class ExhibitionScreen extends React.Component {
@@ -18,6 +17,7 @@ class ExhibitionScreen extends React.Component {
 
   //
   static navigationOptions = ({ navigation }) => {
+    console.log(navigation);
     return {
       headerTitle: navigation.getParam('title')
     };
@@ -67,7 +67,7 @@ class ExhibitionScreen extends React.Component {
 
   // Handle press on scan button
   onScanPressed(){
-    this.props.navigation.navigate('ARDetector', {
+    this.props.navigation.navigate('MarkerDetectScreen', {
       //triggerImages: this.props.triggerImages,
       //nodes: this.props.nodes,
     });

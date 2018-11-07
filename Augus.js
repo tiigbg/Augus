@@ -5,15 +5,15 @@ import { Provider, connect } from 'react-redux';
 import * as NavigationService from './util/NavigationService';
 import * as AT from './constants/ActionTypes';
 
-import TabIcon from './components/TabIcon.js';
-import LanguageSelect from './containers/LanguageSelect';
-import ExhibitionScreen from './components/ExhibitionScreen';
-import StationScreen from './components/StationScreen';
-import ARViewer from './components/ARViewer';
-import ARDetector from './containers/ARDetector';
+import LanguageScreen from './components/screens/LanguageSelect';
+import ExhibitionScreen from './components/screens/ExhibitionScreen';
+import StationScreen from './components/screens/StationScreen';
+import MarkerDetectScreen from './components/screens/MarkerDetectScreen';
+import ARMeshScreen from './components/screens/ARMeshScreen';
 
 import { configureStore } from './store/Store.js';
 
+//
 export default class Augus extends React.Component {
   constructor(props) {
     console.disableYellowBox = true;
@@ -21,10 +21,12 @@ export default class Augus extends React.Component {
     this.state = { store: configureStore() };
   }
 
+  //
   componentDidMount() {
     NavigationService.setNavigator(this.navigator);
   }
 
+  //
   onNavigationStateChange() {
     let currentNodeId = 0;
     let nav = this.navigator.state.nav;
@@ -44,6 +46,7 @@ export default class Augus extends React.Component {
     */
   }
 
+  //
   render() {
     return (
       <Provider store={this.state.store}>
@@ -56,14 +59,14 @@ export default class Augus extends React.Component {
   }
 }
 
+//
 const MainStack = createStackNavigator(
   {
-    LanguageSelect: { screen: LanguageSelect },
-    ARDetectScreen: { screen: ARDetectScreen },
-    
+    LanguageScreen: { screen: LanguageScreen },
     ExhibitionScreen: { screen: ExhibitionScreen },
     StationScreen: { screen: StationScreen },
-    ARViewer: {screen: ARViewer },
+    MarkerDetectScreen: { screen: MarkerDetectScreen },
+    ARMeshScreen: { screen: ARMeshScreen }
   }, {
     headerMode: 'screen',
     // Disable Navigator transition animations
@@ -75,10 +78,11 @@ const MainStack = createStackNavigator(
   }
 );
 
+//
 const RootNavigator = createStackNavigator(
   {
     Main: { screen: MainStack, },
-    ARDetectScreen: { screen: ARDetectScreen, }
+    MarkerDetectScreen: { screen: MarkerDetectScreen, }
   }, {
     mode: 'modal',
     headerMode: 'none'

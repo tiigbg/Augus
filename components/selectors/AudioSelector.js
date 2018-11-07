@@ -2,7 +2,7 @@ import React from 'react';
 import { ProgressBarAndroid, ProgressViewIOS, View, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
-import AudioPlayer from './AudioPlayer';
+import AudioPlayer from '../viewers/AudioPlayer';
 
 import RNFetchBlob from 'react-native-fetch-blob'
 

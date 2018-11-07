@@ -97,7 +97,7 @@ class MeshSelector extends React.Component {
 
   // Handle press on mesh button
   onMeshSelected(){
-    this.props.navigation.navigate('ARViewer', {
+    this.props.navigation.navigate('ARMeshScreen', {
       nodeID: this.props.navigation.state.params.node.id
     });
   }

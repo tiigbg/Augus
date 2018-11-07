@@ -13,7 +13,7 @@ import { ViroARSceneNavigator, ViroARScene, ViroConstants, ViroMaterials, Viro3D
 import * as AT from '../constants/ActionTypes';
 
 //
-class ARViewer extends React.Component {
+class ARMeshScreen extends React.Component {
 
   //
   constructor(props) {
@@ -127,7 +127,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 //
-export default connect(mapStateToProps, mapDispatchToProps)(ARViewer);
+export default connect(mapStateToProps, mapDispatchToProps)(ARMeshScreen);
 
 
 

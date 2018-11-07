@@ -2,7 +2,7 @@ import React from 'react';
 import { ProgressBarAndroid, ProgressViewIOS, View, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
-import VideoPlayer from './VideoPlayer';
+import VideoPlayer from '../viewers/VideoPlayer';
 
 import RNFetchBlob from 'react-native-fetch-blob'
 
@@ -10,36 +10,36 @@ import * as AT from '../constants/ActionTypes';
 import styles from '../styles/styles';
 
 //
-class SignLanguageSelector extends React.Component {
+class VideoSelector extends React.Component {
 
   //
   constructor(props) {
     super(props);
 
-    let hasSignlanguage = false;
-    let signlanguageLoaded = false;
-    let signlanguageFilename = '';
-    let signlanguageFile = this.props.signlanguages.find((item)=>{ 
+    let hasVideo = false;
+    let videoLoaded = false;
+    let videoFilename = '';
+    let videoFile = this.props.video.find((item)=>{ 
       return item.parent_id == this.props.navigation.state.params.node.id && 
       item.language==this.props.language; });
 
-    if(typeof signlanguageFile !== "undefined" && this.props.displaySignlanguage) {
-      hasSignlanguage = true;
+    if(typeof videoFile !== "undefined") {
+      hasVideo = true;
       RNFetchBlob
       .config({
         fileCache : true,
-        key: ''+signlanguageFile.id,
+        key: ''+videoFile.id,
         appendExt : 'mp4',
       })
-      .fetch('GET', this.props.baseUrl+'/signlanguageFile/'+signlanguageFile.id, {
+      .fetch('GET', this.props.baseUrl+'/videoFile/'+videoFile.id, {
         
       })
       .progress((received, total) => {
-        this.setState({ signlanguageLoadProgress: received / total });
+        this.setState({ videoLoadProgress: received / total });
       })
       .then((res) => {
-        signlanguageFilename = res.path();
-        this.setState({ signlanguageFilename, signlanguageLoaded: true });
+        videoFilename = res.path();
+        this.setState({ videoFilename, videoLoaded: true });
       })
       .catch((err) => {
         console.log("error with fetching file:");
@@ -48,28 +48,26 @@ class SignLanguageSelector extends React.Component {
     }
 
     this.state = {
-      hasSignlanguage,
-      signlanguageLoaded,
-      signlanguageFilename
+      hasVideo,
+      videoLoaded,
+      videoFilename
     };
   }
   
   //
   render(){
-    let signlanguageView = (
+    let videoPlayerView = (
       <View></View>
     );
 
-    if(this.state.hasSignlanguage && this.props.displaySignlanguage) {
-      if(this.state.signlanguageLoaded) {
-        signlanguageView = (
+    // Section Videos
+    if(this.state.hasVideo) {
+      if(this.state.videoLoaded) {
+        videoPlayerView = (
           <View>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
               <View style={{ flex: 1, flexDirection: 'column' }}>
-                <VideoPlayer 
-                  file={ this.state.signlanguageFilename } 
-                  showSignlanguageIcon={ true } 
-                />
+                <VideoPlayer file={ this.state.videoFilename } />
               </View>
             </View>
             <View style={styles.separator} />
@@ -77,24 +75,14 @@ class SignLanguageSelector extends React.Component {
         );
       } else {
         if (Platform.OS === 'android') {
-          signlanguageView = (
-            <ProgressBarAndroid 
-              progress={this.state.signlanguageLoadProgress}
-              styleAttr='Horizontal'>
-            </ProgressBarAndroid>
-          );
+          videoPlayerView = (<ProgressBarAndroid progress={this.state.videoLoadProgress}  styleAttr='Horizontal'></ProgressBarAndroid>)
         } else {
-          signlanguageView = (
-            <ProgressViewIOS 
-              progress={this.state.signlanguageLoadProgress} 
-              progressViewStyle='bar'>
-            </ProgressViewIOS >
-          );
+          videoPlayerView = (<ProgressViewIOS progress={this.state.videoLoadProgress} progressViewStyle='bar'></ProgressViewIOS >);
         }
       }
     }
 
-    return signlanguageView;
+    return videoPlayerView;
   }
 }
 
@@ -133,4 +121,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignLanguageSelector);
+export default connect(mapStateToProps, mapDispatchToProps)(VideoSelector);

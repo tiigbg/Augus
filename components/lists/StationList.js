@@ -1,24 +1,10 @@
 import React from 'react';
-import { ProgressBarAndroid, ProgressViewIOS, ScrollView, Image, ListView, 
-  TouchableHighlight, Text, View, TouchableOpacity, Platform, 
-  Button } from 'react-native';
+import { Image, ListView, TouchableHighlight, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import styles from '../styles/styles';
-import { findColor, findSymbol, findNode, findText, 
-  findChildren } from '../util/station.js';
-import NavBar from '../components/NavBar';
-import { goBack, previous, next } from '../util/header';
-import ARViewer from '../components/ARViewer';
-import AudioPlayer from '../components/AudioPlayer';
-import VideoPlayer from '../components/VideoPlayer';
-import ImageCaption from '../components/ImageCaption';
-import StationText from '../components/StationText';
-import Dimensions from 'Dimensions';
-import Lightbox from 'react-native-lightbox';
-import PhotoView from 'react-native-photo-view';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import RNFetchBlob from 'react-native-fetch-blob'
 
+import { findColor, findSymbol, findNode, findText } from '../../util/station.js';
+
+import styles from '../../styles/styles';
 
 let icon_audio_sv = require('../assets/img/upplast_text.png');
 let icon_signlanguage_sv = require('../assets/img/teckensprakstolkning_opaque.png');

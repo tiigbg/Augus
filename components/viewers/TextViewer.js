@@ -6,8 +6,6 @@ import StationText from './StationText';
 
 import { findText, findNode } from '../util/station.js';
 
-import RNFetchBlob from 'react-native-fetch-blob'
-
 import * as AT from '../constants/ActionTypes';
 import styles from '../styles/styles';
 

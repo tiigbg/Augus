@@ -2,13 +2,15 @@ import React from 'react';
 import { ScrollView, ListView, View } from 'react-native';
 import { connect } from 'react-redux';
 
-import StationList from '../containers/StationList';
-import ImageSelector from './ImageSelector';
-import AudioSelector from './AudioSelector';
-import SignLanguageSelector from './SignLanguageSelector';
-import VideoSelector from './VideoSelector';
-import MeshSelector from './MeshSelector';
-import TextViewer from './TextViewer';
+import StationList from '../lists/StationList';
+
+import ImageSelector from '../selectors/ImageSelector';
+import AudioSelector from '../selectors/AudioSelector';
+import SignLanguageSelector from '../selectors/SignLanguageSelector';
+import VideoSelector from '../selectors/VideoSelector';
+import MeshSelector from '../selectors/MeshSelector';
+
+import TextViewer from '../viewers/TextViewer';
 
 import * as AT from '../constants/ActionTypes';
 import styles from '../styles/styles';

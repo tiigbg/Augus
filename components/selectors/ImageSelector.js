@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, Image, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
-import ImageCaption from './ImageCaption';
+import ImageCaption from '../viewers/ImageCaption';
 
 import { findText, findChildren } from '../util/station.js';
 

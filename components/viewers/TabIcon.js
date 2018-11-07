@@ -5,7 +5,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default TabIcon = () => {
   <View style={styles.tabIcon}>
-    <Icon name={this.props.icontype} size={20} color={this.props.selected ? 'green' : 'black'} />
-    <Text style={{ color: this.props.selected ? 'green' : 'black' }}> {this.props.title}</Text>
+    <Icon 
+      name={this.props.icontype} 
+      size={20} 
+      color={this.props.selected ? 'green' : 'black'} 
+    />
+
+    <Text style={{ color: this.props.selected ? 'green' : 'black' }}> 
+      {this.props.title}
+    </Text>
   </View>
 }
