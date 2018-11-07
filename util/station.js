@@ -52,6 +52,17 @@ export function findNode(id, nodes) {
 }
 
 //
+export function findNodeIndex(id, nodes) {
+  for(i in nodes) {
+    const node = nodes[i];
+    if (node.id == id) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+//
 export function findChildren(parent, nodes) {
   children = [];
   for(i in nodes) {
