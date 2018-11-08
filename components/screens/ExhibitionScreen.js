@@ -12,14 +12,11 @@ class ExhibitionScreen extends React.Component {
 
   //
   constructor(props){
-    console.log("ExhibitionScreen");
-
     super(props);
   }
 
   //
   static navigationOptions = ({ navigation }) => {
-    console.log(navigation);
     return {
       headerTitle: navigation.getParam('title')
     };
@@ -34,20 +31,20 @@ class ExhibitionScreen extends React.Component {
         />
 
         <Button
-          onPress={() => this.onLanguageChangePressed()}
-          title={this.props.language == 'sv' ? 'Byt språk' : 'Change language'}
+          onPress={ () => this.onLanguageChangePressed() }
+          title={ this.props.language == 'sv' ? 'Byt språk' : 'Change language' }
           color="#e1057d"
         />
 
         <Button
-          onPress={() => this.onReloadPressed()}
-          title={this.props.language == 'sv' ? 'Ladda om' : 'Reload' }
+          onPress={ () => this.onReloadPressed() }
+          title={ this.props.language == 'sv' ? 'Ladda om' : 'Reload' }
           color="#e1057d"
         />
 
         <Button
-          onPress={() => this.onScanPressed()}
-          title={this.props.language == 'sv' ? 'Scanna' : 'Scan' }
+          onPress={ () => this.onScanPressed() }
+          title={ this.props.language == 'sv' ? 'Scanna' : 'Scan' }
           color="#e1057d"
         />
       </View>
@@ -96,7 +93,7 @@ class ExhibitionScreen extends React.Component {
 const mapStateToProps = (state) => {
   return {
     //nodes: state.exhibitions.nodes,
-    //texts: state.exhibitions.texts,
+    texts: state.exhibitions.texts,
     baseUrl: state.settings.baseUrl,
     language: state.settings.language,
     //triggerImages: state.settings.triggerImages,

@@ -72,8 +72,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(MarkerDetectScreen);
 
 // Marker detection scene, presented through marker detection screen
 class MarkerDetectScene extends React.Component {
-  targets = {}
-  markers = []
+  targets = {};
+  markers = [];
 
   //
   constructor(props) {

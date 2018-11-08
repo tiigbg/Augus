@@ -69,11 +69,11 @@ class TextViewer extends React.Component {
       textView = (
         <View>
           <StationText
-            texts={this.props.texts}
-            node={this.props.navigation.state.params.node}
-            language={this.props.language}
-            collapse={this.state.collapseText} />
-          <View style={styles.separator} />
+            texts={ this.props.texts }
+            node={ this.props.navigation.state.params.node }
+            language={ this.props.language }
+            collapse={ this.state.collapseText } />
+          <View style={ styles.separator } />
         </View>
       );
     }

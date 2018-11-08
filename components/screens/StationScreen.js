@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, ListView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import StationList from '../lists/StationList';
@@ -14,18 +14,6 @@ import TextViewer from '../viewers/TextViewer';
 
 import * as AT from '../../constants/ActionTypes';
 import styles from '../../styles/styles';
-
-//
-/* const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
-const getRowData = (dataBlob, sectionID, rowID) => dataBlob[sectionID + ':' + rowID]; */
-
-//
-/* let myDataSource = new ListView.DataSource({
-  getSectionData,
-  getRowData,
-  rowHasChanged: (row1, row2) => row1 !== row2,
-  sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
-}); */
 
 //
 class StationScreen extends React.Component {
