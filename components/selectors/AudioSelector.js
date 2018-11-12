@@ -9,7 +9,7 @@ import RNFetchBlob from 'react-native-fetch-blob'
 import * as AT from '../../constants/ActionTypes';
 import styles from '../../styles/styles';
 
-//
+// Presents available audio clips, packaging them in AudioPlayer components
 class AudioSelector extends React.Component {
 
   //
@@ -31,10 +31,10 @@ class AudioSelector extends React.Component {
       RNFetchBlob
       .config({
         fileCache : true,
-        key: ''+audioFile.id,
+        key: '' + audioFile.id,
         appendExt : 'mp3', // FIXME should this be fixated to always be mp3?
       })
-      .fetch('GET', this.props.baseUrl+'/audioFile/'+audioFile.id, {
+      .fetch('GET', this.props.baseUrl + '/audioFile/' + audioFile.id, {
         
       })
       .progress((received, total) => {
@@ -43,6 +43,8 @@ class AudioSelector extends React.Component {
       .then((res) => {
         audioFilename = res.path();
         this.setState({ audioFilename, audioLoaded: true });
+        console.log("AudioSelector.res: ", res);
+        console.log("AudioSelector.audioFileName: ", audioFilename);
       })
       .catch((err) => {
         console.log("error with fetching file:");
@@ -72,7 +74,7 @@ class AudioSelector extends React.Component {
               <View style={{ flex: 1, flexDirection: 'column' }}>
                 <AudioPlayer 
                   file={ this.state.audioFilename }
-                  nodeId={this.props.navigation.state.params.node.id} 
+                  nodeId={ this.props.navigation.state.params.node.id } 
                 />
               </View>
             </View>

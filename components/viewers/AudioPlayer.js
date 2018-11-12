@@ -9,6 +9,8 @@ import styles from '../../styles/styles';
 
 //
 class AudioPlayer extends React.Component {
+
+  //
   constructor(props) {
     super(props);
     this.state = {
@@ -19,17 +21,20 @@ class AudioPlayer extends React.Component {
     };
   }
 
+  //
   componentWillMount() {
     const sound = new Sound(this.props.file, '', (error) => {
-      if (error) {
+      if(error) {
         console.log('failed to load the sound', error);
       } else {
         this.setState({ sound });
         this.setState({ duration: this.state.sound.getDuration() });
-      } });
+      } 
+    });
     AppState.addEventListener('change', this._handleAppStateChange);
   }
 
+  //
   componentWillUnmount() {
     clearInterval(this.interval);
     if (!!this.state.sound) {
@@ -38,9 +43,11 @@ class AudioPlayer extends React.Component {
     AppState.removeEventListener('change', this._handleAppStateChange);
   }
 
+  //
   _handleAppStateChange(currentAppState) {
     if(currentAppState == "background") {
       if (!!this.state.sound) {
+        console.log("handleAppStateChange pause");
         this.state.sound.pause();
         this.setState({ isPlaying: false });
         clearInterval(this.interval);
@@ -51,9 +58,12 @@ class AudioPlayer extends React.Component {
     }
   }
 
+  // Handle if play/pause button pressed
   handlePress() {
     this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }));
-    if (this.state.isPlaying) {
+
+    if(this.state.isPlaying) {
+      console.log("handlePress pause");
       this.state.sound.pause();
       this.setState({ isPlaying: false });
       clearInterval(this.interval);
@@ -61,7 +71,8 @@ class AudioPlayer extends React.Component {
       this.state.sound.play((success) => {
         this.setState({ isPlaying: false });
         clearInterval(this.interval);
-        if (success) {
+
+        if(success) {
           console.log('successfully finished playing');
         } else {
           console.log('playback failed due to audio decoding errors');
@@ -71,11 +82,12 @@ class AudioPlayer extends React.Component {
     }
   }
 
+  // Called every 100ms if sound is playing, pauses if screen changed
   tick() {
     if(this.props.nodeId == this.props.currentNodeId) {
       this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }));
     } else {
-      if (!!this.state.sound) {
+      if(!!this.state.sound) {
         this.state.sound.pause();
         this.setState({ isPlaying: false });
         clearInterval(this.interval);
@@ -83,6 +95,7 @@ class AudioPlayer extends React.Component {
     }
   }
 
+  //
   render() {
     if (this.state.sound === null) {
       return (
@@ -92,26 +105,35 @@ class AudioPlayer extends React.Component {
       return (
           <View style={{ flexDirection: 'row' }}>
             <Icon
-                name={'volume-up'} 
-                color={'black'} 
-                style={{fontSize: 47, margin: 10}} />
-            <TouchableHighlight onPress={this.handlePress.bind(this)}>
+                name={ 'volume-up' } 
+                color={ 'black' } 
+                style={ {fontSize: 47, margin: 10} } />
+
+            <TouchableHighlight onPress={ this.handlePress.bind(this) }>
               <Icon
-                name={this.state.isPlaying ? 'pause' : 'play'} 
-                color={'black'} 
-                style={styles.playPauseButton} />
+                name={ this.state.isPlaying ? 'pause' : 'play' } 
+                color={ 'black' } 
+                style={ styles.playPauseButton } />
             </TouchableHighlight>
+
             <View style={{ flex:1, flexDirection: 'column' }}>
               <View style={{ flexDirection:'row', justifyContent:'space-between' }}>
-                <Text style={{ color: 'black' }}>{secondsToTime(Math.round(this.state.time))}</Text>
                 <Text style={{ color: 'black' }}>
-                  {secondsToTime(Math.round(this.state.duration - this.state.time))}
+                  { secondsToTime(Math.round(this.state.time)) }
+                </Text>
+
+                <Text style={{ color: 'black' }}>
+                  { secondsToTime(Math.round(this.state.duration - this.state.time)) }
                 </Text>
               </View>
-              <Slider value={this.state.time}
-                maximumValue={this.state.sound.getDuration()}
-                onValueChange={(value) => (this.state.sound.setCurrentTime(value),
-                                            this.setState({ time: value }))}
+
+              <Slider 
+                value={ this.state.time }
+                maximumValue={ this.state.sound.getDuration() }
+                onValueChange={ (value) => (
+                  this.state.sound.setCurrentTime(value),
+                  this.setState({ time: value })
+                ) }
               />
             </View>
           </View>
@@ -120,14 +142,16 @@ class AudioPlayer extends React.Component {
   }
 }
 
+//
 AudioPlayer.defaultProps = {
   time: 0,
   duration: 0,
   isPlaying: false,
 };
 
+//
 const mapStateToProps = (state) => {
-  console.log(state);
+  console.log("AudioPlayer.mapStateToProps: ", state);
   return {
     currentNodeId: state.routes.currentNodeId,
   };
