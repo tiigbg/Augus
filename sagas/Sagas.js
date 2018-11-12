@@ -3,7 +3,7 @@ import * as AT from '../constants/ActionTypes';
 
 // worker Saga : will be fired on ADVENTURES_FETCH_REQUESTED actions
 function* fetchMuseumData(action) {
-  console.log('fetchMuseumData');
+  //console.log('fetchMuseumData');
   try {
     const payload = yield call(fetchData, action.payload.REQUEST_URL);
     yield put({ type: AT.MUSEUM_DATA_FETCH_SUCCEEDED, payload: payload});
@@ -14,7 +14,7 @@ function* fetchMuseumData(action) {
 }
 
 function fetchData(url) {
-  console.log("The url is " + url);
+  //console.log("The url is " + url);
   return fetch(url).then((response) => response.json());
 }
 
@@ -26,6 +26,6 @@ function fetchData(url) {
  and only the latest one will be run
  */
 export default function* fetchDataSaga() {
-  console.log("Starting saga");
+  //console.log("Starting saga");
   yield takeLatest(AT.MUSEUM_DATA_FETCH_REQUESTED, fetchMuseumData);
 }
