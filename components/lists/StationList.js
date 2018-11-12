@@ -19,40 +19,24 @@ let myDataSource = new ListView.DataSource({
   sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
 });
 
+//
 class StationList extends React.Component {
-  /*static navigationOptions = ({ navigation }) => {
-    return {
-      headerTitle: navigation.getParam('title'),
-      headerRight: (
-        <Button
-          onPress={() => navigation.navigate('ARDetector', {
-            nodes: navigation.getParam('nodes')
-          })}
-          title="AR"
-        />
-      ),
-      headerLeft: (
-        <Button
-          onPress={() => goBack(false, 
-            navigation.getParam('parent_id'),
-            navigation.getParam('nodes'),
-            navigation.getParam('language'),
-            navigation.getParam('texts'),
-            )}
-          title="Tillbaka"
-        />
-      ),
-    };
-  };*/
 
   //
   constructor(props){
     super(props);
-    //console.log('StationList getInitialState props:');
-    //console.log(this.props);
+
     const nodes = this.props.nodes;
-    // const exhibition = nodes[this.props.node.id];
-    const exhibition = findNode(this.props.navigation.state.params.node.id, nodes);
+
+    // If used as a side menu display root stations, else find related stations
+    let exhibitionID;
+    if(this.props.isSideMenu){
+      exhibitionID = 1;
+    } else {
+      //exhibition = findNode(this.props.navigation.state.params.node.id, nodes);
+      exhibitionID = findNode(this.props.navigation.state.params.node.id, nodes).id;
+    }
+
     const dataBlob = {};
     const sectionIDs = [];
     const rowIDs = [];
@@ -62,29 +46,14 @@ class StationList extends React.Component {
     for (const id in nodes){
       // don't confuse museum sections and list sections here
       const node = nodes[id];
-      //console.log('going through nodes (id='+id+')');
-     if (node.parent_id === exhibition.id) {
-        //console.log('Found child node with id='+node.id);
-        // sectionIDs.push(`${id}`);
-        // rowIDs.push(`${id}`);
+
+      if (node.parent_id === exhibitionID) {
         rowIDs[0].push(`${id}`);
         dataBlob[`0:${id}`] = `0:${id}`;
-        // rowIDs[`${id}`] = [];
-        // rowIDs.push([]);
-        // add all stations for this section
-        // for (const subId in nodes) {
-        //   const subNode = nodes[subId];
-        //   if (subNode.parent === node.id) {
-        //     rowIDs[rowIDs.length-1].push(`${subId}`);
-        //     dataBlob[`${id}:${subId}`] = `${id}:${subId}`;
-        //   }
-        // }
-      } else {
-        //console.log("Parent ID is instead ", node.parent_id, exhibition.id);
       }
     }
 
-    //console.log("datablob is", dataBlob);
+    console.log("StationList.rowIDs: ", rowIDs);
     
     collapseText = (rowIDs[0].length > 0);
     myDataSource = myDataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
@@ -92,6 +61,7 @@ class StationList extends React.Component {
 
   //
   static navigationOptions = ({ navigation }) => {
+    console.log("StationList.navigationOptions");
     return {
       headerTitle: navigation.getParam('title')   
     };
@@ -99,27 +69,36 @@ class StationList extends React.Component {
 
   //
   componentDidMount() {
-    this.props.navigation.setParams({ 
-      title: this.props.title,
-      parent_id: this.props.navigation.state.params.node.parent_id,
-      nodes: this.props.nodes,
-      language: this.props.language,
-      texts: this.props.texts,
-    });
+    console.log("StationList.componentDidMount.navigation: ", this.props.navigation);
+
+    if(this.props.isSideMenu){
+      this.props.navigation.setParams({ 
+        title: this.props.title,
+        parent_id: 1,
+        nodes: this.props.nodes,
+        language: this.props.language,
+        texts: this.props.texts,
+      });
+    } else {
+      this.props.navigation.setParams({ 
+        title: this.props.title,
+        parent_id: this.props.navigation.state.params.node.parent_id,
+        nodes: this.props.nodes,
+        language: this.props.language,
+        texts: this.props.texts,
+      });
+    }
   }
 
   //
   render() {
-    const station = this.props.navigation.state.params.node;
-    const nodes = this.props.nodes;
-
     return (
-      <View style={styles.screenContainer}>
+      <View style={ styles.screenContainer }>
         <ListView
-          style={styles.listMargin}
-          dataSource={myDataSource}
-          renderRow={this.renderRow.bind(this)}
-          renderSectionHeader={this.renderSectionHeader}
+          style={ styles.listMargin }
+          dataSource={ myDataSource }
+          renderRow={ this.renderRow.bind(this) }
+          renderSectionHeader={ this.renderSectionHeader }
           enableEmptySections
         />
       </View>
@@ -133,7 +112,6 @@ class StationList extends React.Component {
 
   //
   renderRow(rowData, sectionID, rowID) {
-    //console.log('stationList renderRow', this.props);
     const station = this.props.nodes[rowID];
     let title = findText(
       station, this.props.texts, 'section', 'title', this.props.language).text;
@@ -172,9 +150,6 @@ class StationList extends React.Component {
 
   // Handle on station selected
   onStationPressed(station, title){
-    /* this.props.navigation.navigate(
-      'StationScreen', { station, title, nodes: this.props.nodes }); */
-    
     if (station.type === 'leaf') {
       // If sub station
       this.props.navigation.navigate(
@@ -188,8 +163,7 @@ class StationList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  //console.log('StationList mapStateToProps state:');
-  //console.log(state);
+  console.log("StationList.mapStateToProps");
   return {
     nodes: state.exhibitions.nodes,
     texts: state.exhibitions.texts,
