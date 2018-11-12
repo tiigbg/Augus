@@ -1,10 +1,14 @@
 import React from 'react';
+import { Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import { findText, findNodeIndex } from '../../util/station.js';
 
+import StationList from '../lists/StationList.js';
+
 import { ViroARScene, ViroARSceneNavigator, ViroConstants, ViroARTrackingTargets,
   ViroARImageMarker } from 'react-viro';
+import SideMenu from 'react-native-side-menu';
 
 // Marker detection screen
 class MarkerDetectScreen extends React.Component {
@@ -16,24 +20,35 @@ class MarkerDetectScreen extends React.Component {
   
   //
   render() {
-    let viroAppProps = {...this.props};
-    return (
-      <ViroARSceneNavigator
-        initialScene={{
-          scene: MarkerDetectScene,
-          passProps:{
-            navigation: this.props.navigation,
-            triggerMarkers: this.props.triggerMarkers,
-            baseUrl: this.props.baseUrl,
-            nodes: this.props.nodes,
-            texts: this.props.texts,
-            language: this.props.language
-          }
-        }}
-        viroAppProps = { viroAppProps } // pass initial props
-        vrModeEnabled = { false }
-        apiKey = { "7EFF3BA2-A590-4375-9C6E-525728A8D55D" }
+    /* const menu = <Text></Text> */
+    const menu = 
+      <StationList 
+        navigation={ this.props.navigation } 
+        isSideMenu={ true }
       />
+    let viroAppProps = {...this.props};
+
+    /*  */
+
+    return (
+      <SideMenu menu={ menu }>
+        <ViroARSceneNavigator
+          initialScene={{
+            scene: MarkerDetectScene,
+            passProps:{
+              navigation: this.props.navigation,
+              triggerMarkers: this.props.triggerMarkers,
+              baseUrl: this.props.baseUrl,
+              nodes: this.props.nodes,
+              texts: this.props.texts,
+              language: this.props.language
+            }
+          }}
+          viroAppProps = { viroAppProps } // pass initial props
+          vrModeEnabled = { false }
+          apiKey = { "7EFF3BA2-A590-4375-9C6E-525728A8D55D" }
+        />
+      </SideMenu>
     );
   }
 }
