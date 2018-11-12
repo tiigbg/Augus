@@ -1,14 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 
-//import ARMeshScene from './ARMeshScene';
+import RNFetchBlob from 'react-native-fetch-blob';
 
-import RNFetchBlob from 'react-native-fetch-blob'
-import { StyleSheet } from 'react-native';
-
-import { ViroARSceneNavigator, ViroARScene, ViroConstants, ViroMaterials, Viro3DObject, ViroAmbientLight, 
-  ViroSpotLight, ViroNode, ViroAnimations } from 'react-viro';
+import { ViroARSceneNavigator, ViroARScene, ViroConstants, ViroMaterials, Viro3DObject, 
+  ViroAmbientLight, ViroSpotLight, ViroNode, ViroAnimations } from 'react-viro';
 
 import * as AT from '../../constants/ActionTypes';
 
