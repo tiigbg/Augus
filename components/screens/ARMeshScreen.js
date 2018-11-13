@@ -156,7 +156,11 @@ class ARMeshScene2 extends React.Component {
             position={[0, -1, -1]}
             scale={[0.05, 0.05, 0.05]}
             rotation={[0, 180, 0]}
-            type="OBJ" 
+            type="OBJ"
+            
+            lightReceivingBitMask={3}
+            shadowCastingBitMask={2}
+            materials={["grid"]}
           />
 
           <ViroAmbientLight color={"#aaaaaa"} />
@@ -208,6 +212,8 @@ var styles = StyleSheet.create({
 ViroMaterials.createMaterials({
   grid: {
     diffuseTexture: require('../../res/grid_bg.jpg'),
+    lightingModel: "Lambert",
+    //diffuseTexture: {uri: 'https://file.io/hIFKCf'},
   },
 });
 
