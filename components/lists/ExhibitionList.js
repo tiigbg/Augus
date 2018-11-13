@@ -187,7 +187,7 @@ class ExhibitionList extends React.Component{
       exhibitionImageTag = (
         <Image
           source={{ uri: this.props.baseUrl + '/imageFile/' + exhibitionImage.id }}
-          style={styles.exhibitionImage}
+          style={ styles.exhibitionImage }
         />
       );
     }

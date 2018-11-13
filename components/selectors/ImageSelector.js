@@ -81,41 +81,47 @@ class ImageSelector extends React.Component {
             function renderLightboxHeader(close) {
               return (
                 <TouchableOpacity 
-                  onPress={close} 
-                  style={styles.closeButtonContainer} 
-                  accessibilityLabel={'Close'}
+                  onPress={ close } 
+                  style={ styles.closeButtonContainer } 
+                  accessibilityLabel={ 'Close' }
                 >
-                  <Icon name={'times'} style={styles.closeButton} />
+                  <Icon 
+                    name={ 'times' } 
+                    style={ styles.closeButton } 
+                  />
                 </TouchableOpacity>
               );
             }
             
             return (
               <Lightbox
-                key={i}
-                navigator={this.props.navigator}
+                key={ i }
+                navigator={ this.props.navigator }
                 activeProps={{ style: styles.lightBox }}
-                renderContent={renderFullScreenImage}
-                renderHeader={renderLightboxHeader}
-                swipeToDismiss={false}
+                renderContent={ renderFullScreenImage }
+                renderHeader={ renderLightboxHeader }
+                swipeToDismiss={ false }
               >
                 <View style={[styles.imageGalleryBox, { width: imageboxwidth }]}>
                   <Image
                     source={{ uri: this.props.baseUrl+'/imageFile/'+eachImage.id }}
-                    style={styles.detailsImage}
-                    resizeMode={'contain'}
+                    style={ styles.detailsImage }
+                    resizeMode={ 'contain' }
                   />
                   <View style={ styles.expandIconBox }>
-                    <Icon name={'expand'} style={styles.expandIcon} />
+                    <Icon
+                      name={ 'expand' }
+                      style={ styles.expandIcon } 
+                    />
                   </View>
                   <View style={{ flexDirection: 'row' }}>
                     <ImageCaption 
-                      texts={this.props.texts} 
-                      image={eachImage} 
-                      baseUrl={this.props.baseUrl} 
-                      audio={this.props.audio} 
-                      node={this.props.navigation.state.params.node} 
-                      language={this.props.language}
+                      texts={ this.props.texts } 
+                      image={ eachImage } 
+                      baseUrl={ this.props.baseUrl } 
+                      audio={ this.props.audio } 
+                      node={ this.props.navigation.state.params.node } 
+                      language={ this.props.language }
                     />
                   </View>
                 </View>

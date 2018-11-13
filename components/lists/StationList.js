@@ -53,7 +53,7 @@ class StationList extends React.Component {
       }
     }
 
-    console.log("StationList.rowIDs: ", rowIDs);
+    //console.log("StationList.rowIDs: ", rowIDs);
     
     collapseText = (rowIDs[0].length > 0);
     myDataSource = myDataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs);
@@ -61,7 +61,7 @@ class StationList extends React.Component {
 
   //
   static navigationOptions = ({ navigation }) => {
-    console.log("StationList.navigationOptions");
+    //console.log("StationList.navigationOptions");
     return {
       headerTitle: navigation.getParam('title')   
     };
@@ -69,7 +69,7 @@ class StationList extends React.Component {
 
   //
   componentDidMount() {
-    console.log("StationList.componentDidMount.navigation: ", this.props.navigation);
+    //console.log("StationList.componentDidMount.navigation: ", this.props.navigation);
 
     if(this.props.isSideMenu){
       this.props.navigation.setParams({ 
@@ -134,11 +134,10 @@ class StationList extends React.Component {
         <TouchableHighlight
           onPress={ () => this.onStationPressed(station, title) }
         >
-          <View style={
-            [styles.listContainer, { backgroundColor, borderColor, borderWidth: 3 }]}>
+          <View style={ styles.listContainer }>
             <View style={styles.rightContainer}>
               {symbolView}
-              <Text style={[styles.listText, { color: '#000' }]}>
+              <Text style={ styles.listText }>
                 {title}
               </Text>
             </View>
