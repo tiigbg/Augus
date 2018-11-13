@@ -3,6 +3,7 @@ import { View, Button } from 'react-native';
 import { connect } from 'react-redux';
 
 import ExhibitionList from '../lists/ExhibitionList';
+import ListedButton from '../ListedButton';
 
 import * as AT from '../../constants/ActionTypes';
 import styles from '../../styles/styles';
@@ -30,22 +31,19 @@ class ExhibitionScreen extends React.Component {
           navigation={this.props.navigation}
         />
 
-        <Button
+        <ListedButton
           onPress={ () => this.onLanguageChangePressed() }
-          title={ this.props.language == 'sv' ? 'Byt språk' : 'Change language' }
-          color="#e1057d"
+          text= { this.props.language == 'sv' ? 'Byt språk' : 'Change language' }
         />
 
-        <Button
+        <ListedButton
           onPress={ () => this.onReloadPressed() }
-          title={ this.props.language == 'sv' ? 'Ladda om' : 'Reload' }
-          color="#e1057d"
+          text= { this.props.language == 'sv' ? 'Ladda om' : 'Reload' }
         />
 
-        <Button
+        <ListedButton
           onPress={ () => this.onScanPressed() }
-          title={ this.props.language == 'sv' ? 'Scanna' : 'Scan' }
-          color="#e1057d"
+          text= { this.props.language == 'sv' ? 'Scanna' : 'Scan' }
         />
       </View>
     );

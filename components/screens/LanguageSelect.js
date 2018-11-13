@@ -2,6 +2,8 @@ import React from 'react';
 import { ScrollView, TouchableHighlight, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 
+import ListedButton from '../ListedButton';
+
 import * as AT from '../../constants/ActionTypes';
 import styles from '../../styles/styles';
 import languageCodes from '../../constants/LanguageCodes';
@@ -84,6 +86,10 @@ class LanguageSelect extends React.Component {
 
   // Render language button for each unique language code found in text data
   render() {
+    if(!this.props.texts){
+      this.fetchData();
+    }
+
     this.parseLanguages(this.props.texts);
 
     let languageButtons = [];
@@ -94,15 +100,11 @@ class LanguageSelect extends React.Component {
     this.languages.map(function(languageCode, i){
       // Add language button to array to be rendered
       languageButtons.push(
-        <TouchableHighlight
+        <ListedButton
           key={ i }
           onPress={ () => onLanguagePressed(props, languages[i], false) }
-          style={ [styles.listContainer, { marginTop: 16 }] }
-        >
-          <Text style={ [styles.listText] }>
-            { codeToLanguage(languages[i]) }
-          </Text>
-        </TouchableHighlight>
+          text= { codeToLanguage(languages[i]) }
+        />
       );
     });
     
@@ -181,6 +183,8 @@ class LanguageSelect extends React.Component {
 
   //
   onLanguagePressed(props, language, isSignLanguage){
+    console.log("LanguageSelect.onLanguagePressed");
+
     props.changeLanguage(language, isSignLanguage);
     props.navigation.navigate(
       'ExhibitionScreen', 
