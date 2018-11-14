@@ -154,7 +154,7 @@ class ARMeshScene2 extends React.Component {
           <Viro3DObject
             source={{uri:this.props.meshFilename}}
             position={[0, -1, -1]}
-            scale={[0.05, 0.05, 0.05]}
+            scale={[1, 1, 1]}
             rotation={[0, 180, 0]}
             type="OBJ"
             
