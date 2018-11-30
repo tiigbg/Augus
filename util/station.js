@@ -75,16 +75,16 @@ export function findChildren(parent, nodes) {
 }
 
 //
-export function findText(node, texts, parent_type='section', type='title', 
-  language='sv') {
+export function findText(node, texts, parentType='section', type='title', language='sv') {
   for(i in texts) {
     const text = texts[i];
-    if (text.parent_id == node.id && text.type==type && text.language==language && 
-      text.parent_type==parent_type) {
+    if (text.parent_id == node.id && text.type == type && text.language == language && 
+      text.parent_type == parentType) {
       return text;
     }
   }
 
-  // console.log('text not found, returning Untitled for parent_id='+node.id+' type='+type+' language='+language);
+  /* console.log('text not found, returning Untitled for parent_id=' + node.id +
+    ' type=' + type + ' language=' + language); */
   return {'text':null}; // FIXME Should this throw an error instead?
 }
