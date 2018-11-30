@@ -1,12 +1,13 @@
 import React from 'react';
-import { ProgressBarAndroid, ProgressViewIOS, View, Platform, 
-  Button } from 'react-native';
+import { ProgressBarAndroid, ProgressViewIOS, View, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
 import RNFetchBlob from 'react-native-fetch-blob'
 
 import * as AT from '../../constants/ActionTypes';
 import styles from '../../styles/styles';
+import languageCodes from '../../constants/LanguageCodes';
+import ListedButton from '../ListedButton';
 
 //
 class MeshSelector extends React.Component {
@@ -60,16 +61,26 @@ class MeshSelector extends React.Component {
       return(<View></View>);
     }
 
+    let codeToLanguage = this.codeToLanguage;
+    let language = this.props.language;
+
     if(this.state.meshLoaded) {
+      console.log(codeToLanguage);
+      console.log(language);
+
       return(
         <View>
           <View style = {{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
             <View style = {{ flex: 1, flexDirection: 'column' }}>
-              <Button
+              <ListedButton
+                onPress={ () => this.onMeshSelected() }
+                text={ codeToLanguage(language).modelText }
+              />
+              {/* <Button
                 onPress={() => this.onMeshSelected()}
                 title={this.props.language == 'sv' ? 'Titta på modell' : 'Look at model'}
                 color="#e1057d"
-              />
+              /> */}
             </View>
           </View>
 
@@ -101,6 +112,14 @@ class MeshSelector extends React.Component {
       nodeID: this.props.navigation.state.params.node.id
     });
   }
+
+  // Given code, returns language name with code TODO: rid of ridiculous naming
+  codeToLanguage(languageCode) {
+    var language = languageCodes.languageCodes.filter(function (language) {
+      return language.code == languageCode;
+    });
+    return language[0];
+  }
 }
 
 //
@@ -108,7 +127,8 @@ const mapStateToProps = (state) => {
   return {
     meshes: state.exhibitions.meshes,
     loaded: state.exhibitions.loaded,
-    baseUrl: state.settings.baseUrl
+    baseUrl: state.settings.baseUrl,
+    language: state.settings.language,
   };
 };
 
