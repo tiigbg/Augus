@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Image, View, TouchableOpacity } from 'react-native';
+import { Text, ScrollView, Image, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
 import ImageCaption from '../viewers/ImageCaption';
@@ -23,8 +23,14 @@ class ImageSelector extends React.Component {
   
   //
   render(){
-    let images = findChildren(
-      this.props.navigation.state.params.node, this.props.images);
+    let images = 
+      findChildren(this.props.navigation.state.params.node, this.props.images);
+
+    /* let baseUrl = this.props.baseUrl; */
+    /* let renderItem = this.renderItem; */
+    /* function renderDataWithUrl({item, index}) {
+      renderItem(baseUrl, {item, index});
+    } */
 
     if(images.length > 0) {
       return(
@@ -40,20 +46,39 @@ class ImageSelector extends React.Component {
   }
 
   //
-  renderImages(images){
+  renderItem (baseUrl, {item, index}) {
+    console.log("ImageSelector.renderItem: ", baseUrl + '/imageFile/', item);
+
+    return (
+      <View style={ styles.slide }>
+        <Image
+          source={{ uri: baseUrl + '/imageFile/' + item.id }}
+          style={{ width: 200, height: 200 }}
+        />
+      </View>
+    );
+  }
+
+  //
+  renderImages(images) {
     let imageView = (
       <View></View>
     );
+
+    let renderLightboxHeader = this.renderLightboxHeader;
+    let renderFullScreenImage = this.renderFullScreenImage;
+    let baseUrl = this.props.baseUrl;
 
     if(images.length > 0) {
       imageView = (
         <View>
         {
           images.map((eachImage, i) => {
-            const imageboxwidth = Dimensions.get('window').width/5*4;
+            const imageboxwidth = Dimensions.get('window').width;// / 5 * 4;
             const imageDescription = findText(
               eachImage, this.props.texts, 'image', 'body', this.props.language).text;
-            function renderFullScreenImage() {
+              
+            /* function renderFullScreenImage() {
               //console.log('renderFullScreenImage with props', this.props);
               return (
                 <View>
@@ -72,13 +97,18 @@ class ImageSelector extends React.Component {
                   />
                 </View>
               );
-              /* <Text style={{ color: '#fff', marginTop: -100, fontSize: 28 }}>
-                {imageDescription}
-              </Text> */
+              //<Text style={{ color: '#fff', marginTop: -100, fontSize: 28 }}>
+              //  {imageDescription}
+              //</Text>
+            } */
+
+            function renderFullScreen() {
+              renderFullScreenImage(baseUrl, eachImage);
             }
             // Needed to be able to reach props inside function
-            renderFullScreenImage = renderFullScreenImage.bind(this);
-            function renderLightboxHeader(close) {
+            renderFullScreen = renderFullScreen.bind(this);
+
+            /* function renderLightboxHeader(close) {
               return (
                 <TouchableOpacity 
                   onPress={ close } 
@@ -91,29 +121,29 @@ class ImageSelector extends React.Component {
                   />
                 </TouchableOpacity>
               );
-            }
+            } */
             
             return (
               <Lightbox
                 key={ i }
                 navigator={ this.props.navigator }
                 activeProps={{ style: styles.lightBox }}
-                renderContent={ renderFullScreenImage }
-                renderHeader={ renderLightboxHeader }
-                swipeToDismiss={ false }
+                //renderContent={ renderFullScreen }
+                //renderHeader={ renderLightboxHeader }
+                swipeToDismiss={ true }
               >
-                <View style={[styles.imageGalleryBox, { width: imageboxwidth }]}>
+                <View style={ [styles.imageGalleryBox, { width: imageboxwidth }] }>
                   <Image
-                    source={{ uri: this.props.baseUrl+'/imageFile/'+eachImage.id }}
+                    source={{ uri: this.props.baseUrl + '/imageFile/' + eachImage.id }}
                     style={ styles.detailsImage }
-                    resizeMode={ 'contain' }
+                    resizeMode={ 'cover' }
                   />
-                  <View style={ styles.expandIconBox }>
+                  {/* <View style={ styles.expandIconBox }>
                     <Icon
                       name={ 'expand' }
                       style={ styles.expandIcon } 
                     />
-                  </View>
+                  </View> */}
                   <View style={{ flexDirection: 'row' }}>
                     <ImageCaption 
                       texts={ this.props.texts } 
@@ -134,6 +164,48 @@ class ImageSelector extends React.Component {
     }
 
     return imageView;
+  }
+
+  // 
+  renderLightboxHeader(close) {
+    return (
+      <TouchableOpacity 
+        onPress={ close } 
+        style={ styles.closeButtonContainer } 
+        accessibilityLabel={ 'Close' }
+      >
+        <Icon 
+          name={ 'times' } 
+          style={ styles.closeButton } 
+        />
+      </TouchableOpacity>
+    );
+  }
+
+  // 
+  renderFullScreenImage(baseUrl, eachImage) {
+    console.log('renderFullScreenImage: ', baseUrl, ", ", eachImage);
+
+    return (
+      <View>
+        <PhotoView
+          source={{ uri: baseUrl + '/imageFile/' + eachImage.id }}
+          minimumZoomScale={ 0.5 }
+          maximumZoomScale={ 5 }
+          androidScaleType="center"
+          resizeMode={ 'contain' }
+          style={{
+            width: Dimensions.get('window').width,
+            height: Dimensions.get('window').height,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        />
+      </View>
+    );
+    /* <Text style={{ color: '#fff', marginTop: -100, fontSize: 28 }}>
+      {imageDescription}
+    </Text> */
   }
 }
 
