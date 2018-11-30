@@ -52,7 +52,8 @@ export default class Augus extends React.Component {
   }
 }
 
-//
+// Navigation order of screen, language select is first but will open
+// exhibition screen if language stored since previous session
 const MainStack = createStackNavigator(
   {
     LanguageScreen: { screen: LanguageScreen },
