@@ -9,7 +9,8 @@ import { ViroARSceneNavigator, ViroARScene, ViroConstants, ViroMaterials, Viro3D
 
 import * as AT from '../../constants/ActionTypes';
 
-//
+// Screen for displaying meshes in AR
+// Uses ARMeshScene which is defined below
 class ARMeshScreen extends React.Component {
 
   //
@@ -128,7 +129,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(ARMeshScreen);
 
 
 
-//
+// Scene displaying a mesh
+// Used by ARMeshScreen, defined above
 class ARMeshScene2 extends React.Component {
 
   //
