@@ -2,20 +2,22 @@ import React from 'react';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
 import styles from '../styles/styles';
 
-class ListedButton extends React.Component {
+class BannerButton extends React.Component {
 
   //
   render() {
     //console.log("ListedButton.render: ", this.props.onPress);
-    const { onPress, text, iconPath } = this.props;
+    const { onPress, text, imagePath } = this.props;
+
+    console.log("BannerButton: ", imagePath);
 
     //this.props.baseUrl + '/iconFile/' + symbol.id
-    let icon = (<View />);
-    if(iconPath){
-      icon = (
+    let image = (<View />);
+    if(imagePath){
+      image = (
         <Image
-          source={{ uri: iconPath }}
-          style={ styles.stationSymbol }
+          source={{ uri: imagePath }}
+          style={ styles.exhibitionImage }
         />
       )
     }
@@ -23,13 +25,13 @@ class ListedButton extends React.Component {
     return(
       <TouchableHighlight
         onPress={ onPress }
-        style={ styles.simpleButton }
+        style={ styles.bannerButton }
         underlayColor='rgba(180, 180, 180, 0.9)'
       >
-        <View style={ styles.rightContainer }>
-          { icon }
+        <View>
+          { image }
 
-          <Text style={ styles.listText }>
+          <Text style={ styles.bannerButtonText }>
             { text }
           </Text>
         </View>
@@ -38,4 +40,4 @@ class ListedButton extends React.Component {
   }
 }
 
-export default ListedButton;
+export default BannerButton;
