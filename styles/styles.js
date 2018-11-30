@@ -1,11 +1,17 @@
 import { StyleSheet, } from 'react-native';
 
-let buttonTextColor = '#8c1b1b';
-let readTextColor = 'white';
-let iconColor = '#8c1b1b';
-let backColor = 'white';
+let svKyrkanRed = '#f92c16';
+let svKyrkanYellow = '#ffc734';
+let customRedBrown = '#8c1b1b';
 
-let backgroundColor = '#885959';
+let buttonTextColor = '#8c1b1b';
+let readTextColor = '#8c1b1b';
+let iconColor = '#8c1b1b';
+let backColor = svKyrkanYellow;
+
+let borderColor = customRedBrown;
+let borderSize = 0;
+//let backgroundColor = 'white';
 let componentColor = 'white';
 
 let hMargin = 32;
@@ -18,11 +24,8 @@ let backColor5 = 'yellow';
 let textFont = 'Foundry Sterling W01';
 
 export default StyleSheet.create({
-  /* textColor = 'red',
-  backColor = 'blue',
-  backColor2 = 'green',
-  backColor3 = 'silver', */
 
+  //General
   navigator: {
     flex: 1,
     backgroundColor: backColor,
@@ -32,24 +35,46 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    backgroundColor: backgroundColor,
+    backgroundColor: backColor,
   },
 
-  body_container: {
+  scrollListContainer: {
     flexGrow: 80,
   },
 
-  listMargin: {
-    marginTop: 5,
-    marginBottom: 0,
-  },
-
-  container: {
+  loadingContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: backColor3,
+    backgroundColor: backColor,
+  },
+
+  stationContentContainer: {
+    marginVertical: vMargin,
+    paddingHorizontal: hMargin,
+  },
+
+  //Text
+  title: {
+    fontSize: 26,
+    marginVertical: vMargin * 2,
+    padding: 0,
+    textAlign: 'center',
+    fontWeight: '500',
+    flexWrap: 'wrap',
+    flex: 1,
+    color: readTextColor,
+  },
+
+  stationText: {
+    fontSize: 20,
+    /* marginHorizontal: hMargin,
+    padding: 0, */
+    textAlign: 'justify',
+    flexWrap: 'wrap',
+    flex: 1,
+    color: readTextColor,
   },
 
   rightContainer: {
@@ -57,18 +82,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     // backgroundColor: '#333333',
-  },
-
-  listCategoryContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: backColor4,
-    marginBottom: 16,
-    marginRight: 8,
-    marginLeft: 8,
-    padding: 4,
   },
 
   listContainer: {
@@ -83,123 +96,10 @@ export default StyleSheet.create({
     borderRadius: 5,
   },
 
-  listText: {
-    flex: 1,
-    flexDirection: 'row',
-    fontSize: 28,
-    textAlign: 'left',
-    justifyContent: 'center',
-    color: buttonTextColor,
-  },
-
-  listCategoryText: {
-    flex: 1,
-    flexDirection: 'row',
-    fontSize: 28,
-    textAlign: 'center',
-    justifyContent: 'center',
-    color: buttonTextColor,
-  },
-
   tabIcon: {
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-  },
-
-  map: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-
-  thumbnail: {
-    width: 120,
-    height: 81,
-  },
-
-  title: {
-    fontSize: 20,
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-
-  year: {
-    textAlign: 'center',
-  },
-
-  section_name: {
-    fontSize: 20,
-    marginBottom: 4,
-    textAlign: 'center',
-  },
-
-  section_name_container: {
-    backgroundColor:"#e1057d",
-    marginBottom: 4,
-  },
-
-  navbar_container: {
-    flexGrow: 1,
-  },
-
-  stationTitlePane: {
-    justifyContent: 'space-between',
-    flexGrow: 1,
-    flexDirection: 'row',
-    marginBottom: 5,
-  },
-
-  station_name: {
-    fontSize: 32,
-    margin: 0,
-    marginTop: 10,
-    marginBottom: 14,
-    textAlign: 'center',
-    fontWeight: '500',
-    flexWrap: 'wrap',
-    flex: 1,
-  },
-
-  backButton: {
-    fontSize: 32,
-    margin: 5,
-    marginRight: 25,
-    marginLeft: 25,
-    textAlign: 'center',
-    fontWeight: '500',
-    color: buttonTextColor,
-  },
-
-  station_text: {
-    fontSize: 22,
-    color: readTextColor,
-    marginTop: 0,
-    marginBottom: 14,
-  },
-
-  listView: {
-    paddingTop: 64,
-    backgroundColor: backColor3,
-  },
-
-  contentContainer: {
-    padding: 10,
-    paddingTop: 5,
-    //paddingBottom: 50,
-  },
-  
-  rightPane: {
-    justifyContent: 'space-between',
-    flex: 1,
-  },
-
-  adventureTitle: {
-    flex: 1,
-    fontSize: 24,
-    fontWeight: '500',
   },
 
   separator: {
@@ -247,12 +147,6 @@ export default StyleSheet.create({
     padding: 10,
   },
 
-  detailsImage: {
-    width: 200,
-    height: 200,
-    backgroundColor: '#eaeaea',
-  },
-
   closeButton: {
     color: iconColor,
     textAlign: 'center',
@@ -287,48 +181,47 @@ export default StyleSheet.create({
     backgroundColor: backColor,
   },
 
-  exhibitionImage: {
-    flex: 1,
-    flexDirection: 'row',
-    //alignItems: 'stretch',
-    height: 160,
-    //backgroundColor: backColor5,
-    //borderWidth: 3,
-    //borderColor: '#007da0',
-    /* marginRight: -10,
-    marginLeft: -10,
-    marginTop: -10, */
-    //borderTopLeftRadius: 10,
-    //borderTopRightRadius: 10,
-    //padding: 8,
-  },
-
   stationSymbol: {
     height: 40,
     width: 40,
     marginRight: 10,
-
   },
 
+  // Station images
   imageGallery: {
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 0,
+    paddingBottom: 0,
     flexDirection: 'row',
-    backgroundColor: '#888',
+    //backgroundColor: '#888',
+  },
+
+  lightBox: {
+    flex: 1,
+    height: 280,
   },
 
   imageGalleryBox: {
+    //width: 280,
+    height: 280,
     justifyContent: 'center',
-    flexDirection:'column', 
-    flex:1, 
+    flexDirection: 'column', 
+    flex: 1, 
     alignItems: 'center', 
-    borderColor:'rgba(0, 0, 0, 0.1)', 
-    borderWidth:1, 
-    padding: 10, 
-    marginRight:5, 
-    marginLeft:5, 
-    backgroundColor: '#eee',
-    borderRadius: 10,
+    borderColor: 'red', 
+    //borderWidth:1, 
+    //padding: 10, 
+    //marginRight:5, 
+    //marginLeft:5, 
+    //backgroundColor: '#eee',
+    //borderRadius: 10,
+  },
+
+  detailsImage: {
+    flex: 1,
+    alignSelf: 'stretch',
+    width: undefined,
+    height: undefined,
+    //backgroundColor: '#eaeaea',
   },
 
   imageCaption: { 
@@ -354,27 +247,79 @@ export default StyleSheet.create({
     alignSelf: 'stretch',
   },
 
-  lightBox: {
+  exhibitionImage: {
     flex: 1,
-    height: 150,
+    flexDirection: 'row',
+    //alignSelf: 'stretch',
+    //alignItems: 'stretch',
+    height: 160,
+    //width: undefined,
+    //backgroundColor: 'red',
+    margin: 0,
+    //borderWidth: 3,
+    //borderColor: '#007da0',
+    /* marginRight: -10,
+    marginLeft: -10,
+    marginTop: -10, */
+    //borderTopLeftRadius: 10,
+    //borderTopRightRadius: 10,
+    //padding: 8,
   },
 
   bannerButton: {
     backgroundColor: componentColor,
+
+    shadowOffset: { width: 3, height: 3, },
+    shadowColor: 'black',
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 3,
+
+    borderColor: borderColor,
+    borderWidth: borderSize,
+
     marginVertical: vMargin,
-    marginLeft: hMargin,
-    marginRight: hMargin,
-    padding: 16,
-    height: 320,
+    marginHorizontal: hMargin,
+    //padding: 16,
+    //height: 320,
     borderRadius: 5,
+  },
+
+  bannerButtonText: {
+    flex: 1,
+    flexDirection: 'row',
+    fontSize: 24,
+    textAlign: 'left',
+    justifyContent: 'center',
+    color: buttonTextColor,
+    margin: 16,
   },
 
   simpleButton: {
     backgroundColor: componentColor,
+
+    shadowOffset: { width: 3, height: 3, },
+    shadowColor: 'black',
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 3,
+
+    borderColor: borderColor,
+    borderWidth: borderSize,
+
     marginVertical: vMargin,
     marginHorizontal: hMargin,
     padding: 16,
-    height: 80,
+    minHeight: 70,
     borderRadius: 5,
+  },
+
+  listText: {
+    flex: 1,
+    flexDirection: 'row',
+    fontSize: 24,
+    textAlign: 'left',
+    justifyContent: 'center',
+    color: buttonTextColor,
   },
 });
