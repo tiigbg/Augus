@@ -9,6 +9,7 @@ import Storage from 'react-native-storage';
 
 import * as AT from '../../constants/ActionTypes';
 import styles from '../../styles/styles';
+import BannerButton from '../BannerButton.js';
 
 //
 let dataSource = new ListView.DataSource({
@@ -152,7 +153,7 @@ class ExhibitionList extends React.Component{
   //
   renderLoadingView() {
     return (
-      <View style={styles.container}>
+      <View style={styles.loadingContainer}>
         <Text>
           Loading... 
         </Text>
@@ -181,29 +182,26 @@ class ExhibitionList extends React.Component{
     let title = findText(
       exhibition, this.props.texts, 'section', 'title', this.props.language).text;
     let images = findChildren(exhibition, this.props.images);
-    let exhibitionImageTag = (<View />);
+    /* let exhibitionImageTag = (<View />); */
+    let imagePath;
     if (images.length > 0) {
-      exhibitionImage = images[0];
-      exhibitionImageTag = (
+      //exhibitionImage = images[0];
+      /* exhibitionImageTag = (
         <Image
           source={{ uri: this.props.baseUrl + '/imageFile/' + exhibitionImage.id }}
           style={ styles.exhibitionImage }
+          //resizeMode={ 'cover' }
         />
-      );
+      ); */
+      imagePath = this.props.baseUrl + '/imageFile/' + images[0].id;
     }
 
     return (
-      <View>
-        <TouchableHighlight onPress={ () => 
-          this.onExhibitionPressed(exhibition, title) }>
-          <View>
-            <View style={ styles.listContainer }>
-              { exhibitionImageTag }
-              <Text style={ styles.listText }>{ title }</Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-      </View>
+      <BannerButton
+        onPress={ () => this.onExhibitionPressed(exhibition, title) }
+        imagePath={ imagePath }
+        text={ title }
+      />
     );
   }
 
@@ -231,13 +229,13 @@ class ExhibitionList extends React.Component{
     return (
       <View>
         <ScrollView 
-          style={ styles.body_container } 
-          contentContainerStyle={ styles.contentContainer }
+          style={ styles.scrollListContainer } 
+          //contentContainerStyle={ styles.contentContainer }
         >
           <ListView
-            style = { styles.listMargin }
-            dataSource = { dataSource }
-            renderRow = { this.renderRow }
+            //style={ styles.listMargin }
+            dataSource={ dataSource }
+            renderRow={ this.renderRow }
             renderSectionHeader={ this.renderSectionHeader.bind(this) }
             enableEmptySections
           />

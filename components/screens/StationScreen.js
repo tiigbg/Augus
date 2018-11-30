@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import StationList from '../lists/StationList';
@@ -11,6 +11,7 @@ import VideoSelector from '../selectors/VideoSelector';
 import MeshSelector from '../selectors/MeshSelector';
 
 import TextViewer from '../viewers/TextViewer';
+import { findText } from '../../util/station.js';
 
 import * as AT from '../../constants/ActionTypes';
 import styles from '../../styles/styles';
@@ -32,13 +33,18 @@ class StationScreen extends React.Component {
 
   // Render content selectors and list of sub stations
   render() {
+    let title = findText(
+      this.props.navigation.state.params.node, 
+      this.props.texts, 'section', 'title', this.props.language);
+
     return (
       <View style={ styles.screenContainer }>
-        <ScrollView style={ styles.body_container }>
+        <ScrollView style={ styles.scrollListContainer }>
           <View>
             <ImageSelector navigation={ this.props.navigation } />
+            <Text style={ styles.title }>{ title.text }</Text>
 
-            <View style={ styles.contentContainer }>
+            <View style= { styles.stationContentContainer }>
               <AudioSelector navigation={ this.props.navigation } />
               <SignLanguageSelector navigation={ this.props.navigation } />
               <VideoSelector navigation={ this.props.navigation } />
@@ -57,6 +63,9 @@ class StationScreen extends React.Component {
 //
 const mapStateToProps = (state) => {
   return {
+    nodes: state.exhibitions.nodes,
+    texts: state.exhibitions.texts,
+    language: state.settings.language
   };
 };
 

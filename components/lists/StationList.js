@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { findColor, findSymbol, findNode, findText } from '../../util/station.js';
 
 import styles from '../../styles/styles';
+import ListedButton from '../ListedButton.js';
 
 let icon_audio_sv = require('../../assets/img/upplast_text.png');
 let icon_signlanguage_sv = require('../../assets/img/teckensprakstolkning_opaque.png');
@@ -95,7 +96,7 @@ class StationList extends React.Component {
     return (
       <View style={ styles.screenContainer }>
         <ListView
-          style={ styles.listMargin }
+          //style={ styles.listMargin }
           dataSource={ myDataSource }
           renderRow={ this.renderRow.bind(this) }
           renderSectionHeader={ this.renderSectionHeader }
@@ -117,6 +118,7 @@ class StationList extends React.Component {
       station, this.props.texts, 'section', 'title', this.props.language).text;
 
     const symbol = findSymbol(station, this.props.nodes, this.props.icons);
+    let iconPath = "";
     let symbolView = (<View />);
     if (symbol !== '') {
       symbolView = (
@@ -124,15 +126,25 @@ class StationList extends React.Component {
           source={{ uri: this.props.baseUrl+'/iconFile/'+symbol.id }}
           style={styles.stationSymbol}
         />);
+
+      iconPath = this.props.baseUrl+'/iconFile/'+symbol.id;
     }
 
     const backgroundColor = findColor(station, this.props.nodes, false);
     const borderColor = findColor(station, this.props.nodes, true);
 
     return (
-      <View>
+      <ListedButton
+        onPress={ () => this.onStationPressed(station, title) }
+        text={ title }
+        //icon={ symbol } 
+      />
+    );
+
+    /* <View>
         <TouchableHighlight
           onPress={ () => this.onStationPressed(station, title) }
+          style={ styles.simpleButton }
         >
           <View style={ styles.listContainer }>
             <View style={styles.rightContainer}>
@@ -143,8 +155,7 @@ class StationList extends React.Component {
             </View>
           </View>
         </TouchableHighlight>
-      </View>
-    );
+      </View> */
   }
 
   // Handle on station selected
@@ -162,7 +173,7 @@ class StationList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("StationList.mapStateToProps");
+  //console.log("StationList.mapStateToProps");
   return {
     nodes: state.exhibitions.nodes,
     texts: state.exhibitions.texts,

@@ -7,6 +7,7 @@ import ListedButton from '../ListedButton';
 
 import * as AT from '../../constants/ActionTypes';
 import styles from '../../styles/styles';
+import languageCodes from '../../constants/LanguageCodes';
 
 //
 class ExhibitionScreen extends React.Component {
@@ -28,22 +29,22 @@ class ExhibitionScreen extends React.Component {
     return (
       <View style={ styles.screenContainer }>
         <ExhibitionList 
-          navigation={this.props.navigation}
-        />
-
-        <ListedButton
-          onPress={ () => this.onLanguageChangePressed() }
-          text= { this.props.language == 'sv' ? 'Byt språk' : 'Change language' }
-        />
-
-        <ListedButton
-          onPress={ () => this.onReloadPressed() }
-          text= { this.props.language == 'sv' ? 'Ladda om' : 'Reload' }
+          navigation={ this.props.navigation }
         />
 
         <ListedButton
           onPress={ () => this.onScanPressed() }
-          text= { this.props.language == 'sv' ? 'Scanna' : 'Scan' }
+          text={ this.codeToLanguage(this.props.language).scanText }
+        />
+
+        <ListedButton
+          onPress={ () => this.onLanguageChangePressed() }
+          text={ this.codeToLanguage(this.props.language).selectText }
+        />
+
+        <ListedButton
+          onPress={ () => this.onReloadPressed() }
+          text={ this.codeToLanguage(this.props.language).reloadText }
         />
       </View>
     );
@@ -51,7 +52,7 @@ class ExhibitionScreen extends React.Component {
 
   // Handle press on language button
   onLanguageChangePressed(){
-    this.props.navigation.navigate('LanguageSelect');
+    this.props.navigation.navigate('LanguageScreen');
   }
 
   // Handle press on reload button
@@ -64,10 +65,7 @@ class ExhibitionScreen extends React.Component {
 
   // Handle press on scan button
   onScanPressed(){
-    this.props.navigation.navigate('MarkerDetectScreen', {
-      //triggerImages: this.props.triggerImages,
-      //nodes: this.props.nodes,
-    });
+    this.props.navigation.navigate('MarkerDetectScreen');
   }
 
   //
@@ -84,6 +82,14 @@ class ExhibitionScreen extends React.Component {
         return 'Start';
     }
     return 'Start';
+  }
+
+  // Given code, returns language name with code TODO: rid of ridiculous naming
+  codeToLanguage(languageCode) {
+    var language = languageCodes.languageCodes.filter(function (language) {
+      return language.code == languageCode;
+    });
+    return language[0];
   }
 }
 
