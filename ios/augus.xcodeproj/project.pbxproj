@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -879,8 +878,8 @@
 						DevelopmentTeam = 4U49S8227Q;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 4U49S8227Q;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = UXPG98T2HT;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1578,12 +1577,12 @@
 			baseConfigurationReference = 2F38FF065503B711AE21D403 /* Pods-augus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 4U49S8227Q;
+				DEVELOPMENT_TEAM = UXPG98T2HT;
 				ENABLE_BITCODE = NO;
 				GCC_NO_COMMON_BLOCKS = NO;
 				HEADER_SEARCH_PATHS = (
@@ -1601,10 +1600,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = se.tii.augus.cathedral;
+				PRODUCT_BUNDLE_IDENTIFIER = se.ri.augus.strangnas;
 				PRODUCT_NAME = "Strängnäs Domkyrka";
-				PROVISIONING_PROFILE = "07a0f087-a0d7-4e79-a80b-e504d2231681";
-				PROVISIONING_PROFILE_SPECIFIER = "Augus Cathedral Dev Cert March";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1615,11 +1614,11 @@
 			baseConfigurationReference = 0183FA9700C2AE1DFAFF9D80 /* Pods-augus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4U49S8227Q;
+				DEVELOPMENT_TEAM = UXPG98T2HT;
 				ENABLE_BITCODE = NO;
 				GCC_NO_COMMON_BLOCKS = NO;
 				HEADER_SEARCH_PATHS = (
@@ -1637,10 +1636,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = se.tii.augus.cathedral;
+				PRODUCT_BUNDLE_IDENTIFIER = se.ri.augus.strangnas;
 				PRODUCT_NAME = "Strängnäs Domkyrka";
-				PROVISIONING_PROFILE = "07a0f087-a0d7-4e79-a80b-e504d2231681";
-				PROVISIONING_PROFILE_SPECIFIER = "Augus Cathedral Dev Cert March";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
