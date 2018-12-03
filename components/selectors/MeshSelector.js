@@ -10,7 +10,7 @@ import styles from '../../styles/styles';
 import languageCodes from '../../constants/LanguageCodes';
 import ListedButton from '../ListedButton';
 
-//
+// Presents a button for selectin a mesh related to the current station
 class MeshSelector extends React.Component {
 
   //

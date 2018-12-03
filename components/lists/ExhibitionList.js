@@ -71,7 +71,7 @@ global.storage = new Storage({
     }
 });
 
-//
+// Presents a list of available exhibtions
 class ExhibitionList extends React.Component{
 
   //

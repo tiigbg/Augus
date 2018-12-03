@@ -57,6 +57,7 @@ export default StyleSheet.create({
 
   //Text
   title: {
+    fontFamily: 'foundrySterlingBook',
     fontSize: 26,
     marginVertical: vMargin * 2,
     padding: 0,
@@ -255,10 +256,10 @@ export default StyleSheet.create({
   bannerButton: {
     backgroundColor: componentColor,
 
-    shadowOffset: { width: 3, height: 3, },
+    shadowOffset: { width: 0, height: 0, },
     shadowColor: 'black',
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
+    shadowOpacity: 0.6,
+    shadowRadius: 1,
     elevation: 3,
 
     borderColor: borderColor,
@@ -270,6 +271,7 @@ export default StyleSheet.create({
   },
 
   bannerButtonText: {
+    fontFamily: 'foundrySterlingBook',
     flex: 1,
     flexDirection: 'row',
     fontSize: 24,
@@ -282,10 +284,10 @@ export default StyleSheet.create({
   simpleButton: {
     backgroundColor: componentColor,
 
-    shadowOffset: { width: 3, height: 3, },
+    shadowOffset: { width: 0, height: 0, },
     shadowColor: 'black',
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
+    shadowOpacity: 0.6,
+    shadowRadius: 1,
     elevation: 3,
 
     borderColor: borderColor,
@@ -299,6 +301,7 @@ export default StyleSheet.create({
   },
 
   listText: {
+    fontFamily: 'foundrySterlingBook',
     flex: 1,
     flexDirection: 'row',
     fontSize: 24,

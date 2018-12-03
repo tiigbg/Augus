@@ -62,5 +62,10 @@
     "providesModuleNodeModules": [
       "react-native"
     ]
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   }
 }
