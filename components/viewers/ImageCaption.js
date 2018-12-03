@@ -84,9 +84,9 @@ export default class ImageCaption extends React.Component {
           <View style={{flexDirection:'row'}}>
             <TouchableHighlight
               onPress={() => this.setState({ visible: false }) }
-              style={styles.collapseIconTouch}
+              //style={ styles.collapseIconTouch }
             >
-              <Icon name={'chevron-up'} style={styles.collapseIcon} />
+              <Icon name={'chevron-up'} style={ styles.icon } />
             </TouchableHighlight>
           </View>
         </View>
@@ -101,9 +101,9 @@ export default class ImageCaption extends React.Component {
           <View style={{flexDirection:'row'}}>
             <TouchableHighlight
               onPress={() => this.setState({ visible: true }) }
-              style={styles.collapseIconTouch}
+              //style={ styles.collapseIconTouch }
             >
-              <Icon name={'chevron-down'} style={styles.collapseIcon} />
+              <Icon name={'chevron-down'} style={ styles.icon } />
             </TouchableHighlight>
           </View>
         </View>

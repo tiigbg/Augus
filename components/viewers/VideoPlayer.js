@@ -12,6 +12,7 @@ import Video from 'react-native-video';
 let icon_signlanguage_sv = require('../../assets/img/teckensprakstolkning_opaque.png');
 
 export default class VideoPlayer extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -22,6 +23,7 @@ export default class VideoPlayer extends React.Component {
       showSignlanguageIcon: this.props.showSignlanguageIcon,
     };
   }
+
   onEnd() {
     this.setState({ isPlaying: false });
     if (this.refs.videoPlayer) {
@@ -29,15 +31,19 @@ export default class VideoPlayer extends React.Component {
     }
     this.setState({ time: 0 });
   }
+
   onFullscreenOpen() {
     this.setState({ isFullScreen: true });
   }
+
   onFullscreenClose() {
     this.setState({ isFullScreen: false });
   }
+
   handlePress() {
     this.setState({ isPlaying: !this.state.isPlaying });
   }
+
   render() {
     return (
         <View style={styles.colStretch}>
@@ -68,33 +74,37 @@ export default class VideoPlayer extends React.Component {
               style={this.state.isPlaying ? (styles.video) : { height: 0 }}
             />
           </Lightbox>
+          
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 }}>
             { this.props.showSignlanguageIcon ? <Image
                 source={icon_signlanguage_sv}
                 style={{ width: 50, height: 50, marginRight: 10 }}
               /> : null
             }
-            { !this.props.showSignlanguageIcon ? <Icon
-                name={'video-camera'}
-                style={{ fontSize:44, margin: 10, color:'black' }}
-              /> : null
+
+            { !this.props.showSignlanguageIcon ? 
+                <Icon name={ 'video-camera' } style={ styles.icon } /> : null
             }
+
             <TouchableHighlight onPress={this.handlePress.bind(this)}>
               <Icon
-                name={this.state.isPlaying ? 'pause' : 'play'}
-                color={this.state.isFullScreen ? 'white' : 'black'}
-                style={styles.playPauseButton}
+                name={ this.state.isPlaying ? 'pause' : 'play' }
+                color={ this.state.isFullScreen ? 'white' : 'black' }
+                style={ styles.playPauseButton }
               />
             </TouchableHighlight>
+
             <View style={{ flex: 1, flexDirection: 'column' }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Text style={{ color: this.state.isFullScreen ? 'white' : 'black' }}>
                   {secondsToTime(Math.round(this.state.time))}
                 </Text>
+
                 <Text style={{ color: this.state.isFullScreen ? 'white' : 'black' }}>
                   {secondsToTime(Math.round(this.state.duration - this.state.time))}
                 </Text>
               </View>
+
               <Slider value={this.state.time}
                 maximumValue={this.state.duration}
                 onValueChange={(value) => (this.refs.videoPlayer.seek(value),

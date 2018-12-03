@@ -113,16 +113,22 @@ export default StyleSheet.create({
     color: readTextColor,
   },
 
-  expandIconBox: {
+  icon: {
+    fontSize: 47,
+    margin: 10,
+    color: iconColor,
+  },
+
+  /* expandIconBox: {
     width: 200,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     marginTop: -64,
     marginBottom:0,
     marginRight:-75,
-  },
+  }, */
 
-  expandIcon: {
+  /* expandIcon: {
     fontSize: 48,
     color: iconColor,
     backgroundColor: backColor,
@@ -132,20 +138,20 @@ export default StyleSheet.create({
     paddingBottom: 5,
     paddingRight: 5,
     marginRight: 5,
-  },
+  }, */
 
-  collapseIconTouch:{
+  /* collapseIconTouch:{
     borderWidth:3,
     borderColor:'black',
     borderRadius:5,
     backgroundColor: iconColor,
-  },
+  }, */
 
-  collapseIcon: {
+  /* collapseIcon: {
     fontSize: 35,
     color: readTextColor,
     padding: 10,
-  },
+  }, */
 
   closeButton: {
     color: iconColor,
@@ -192,7 +198,6 @@ export default StyleSheet.create({
     paddingTop: 0,
     paddingBottom: 0,
     flexDirection: 'row',
-    //backgroundColor: '#888',
   },
 
   lightBox: {
@@ -201,19 +206,12 @@ export default StyleSheet.create({
   },
 
   imageGalleryBox: {
-    //width: 280,
     height: 280,
     justifyContent: 'center',
     flexDirection: 'column', 
     flex: 1, 
     alignItems: 'center', 
     borderColor: 'red', 
-    //borderWidth:1, 
-    //padding: 10, 
-    //marginRight:5, 
-    //marginLeft:5, 
-    //backgroundColor: '#eee',
-    //borderRadius: 10,
   },
 
   detailsImage: {
@@ -221,7 +219,6 @@ export default StyleSheet.create({
     alignSelf: 'stretch',
     width: undefined,
     height: undefined,
-    //backgroundColor: '#eaeaea',
   },
 
   imageCaption: { 
@@ -250,20 +247,9 @@ export default StyleSheet.create({
   exhibitionImage: {
     flex: 1,
     flexDirection: 'row',
-    //alignSelf: 'stretch',
-    //alignItems: 'stretch',
+
     height: 160,
-    //width: undefined,
-    //backgroundColor: 'red',
     margin: 0,
-    //borderWidth: 3,
-    //borderColor: '#007da0',
-    /* marginRight: -10,
-    marginLeft: -10,
-    marginTop: -10, */
-    //borderTopLeftRadius: 10,
-    //borderTopRightRadius: 10,
-    //padding: 8,
   },
 
   bannerButton: {
@@ -280,8 +266,6 @@ export default StyleSheet.create({
 
     marginVertical: vMargin,
     marginHorizontal: hMargin,
-    //padding: 16,
-    //height: 320,
     borderRadius: 5,
   },
 

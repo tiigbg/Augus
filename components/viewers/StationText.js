@@ -40,15 +40,13 @@ export default class StationText extends React.Component {
           <View style={{ flexDirection:'row'}}>
             <TouchableHighlight
               onPress={ () => this.setState({ visible: false }) }
-              style={ styles.collapseIconTouch }
             >
-              <Icon name={ 'chevron-up' } style={ styles.collapseIcon } />
+              <Icon name={ 'chevron-up' } style={ styles.icon } />
             </TouchableHighlight>
           </View>
         </View>
       );
     } else {
-          //<View style={{ borderBottomWidth:15, borderBottomColor: '#f0f0f0dd', marginBottom: 0 }}></View>
       return (
         <View style={{ borderWidth: 0, flexGrow: 1}}>
           <Text style={ styles.stationText } >
@@ -57,10 +55,9 @@ export default class StationText extends React.Component {
 
           <View style={{ flexDirection:'row'}}>
             <TouchableHighlight
-              onPress={() => this.setState({ visible: true }) }
-              style={styles.collapseIconTouch}
+              onPress={ () => this.setState({ visible: true }) }
             >
-              <Icon name={'chevron-down'} size={40} style={styles.collapseIcon} />
+              <Icon name={ 'chevron-down' } style={ styles.icon } />
             </TouchableHighlight>
           </View>
         </View>

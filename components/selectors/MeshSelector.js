@@ -3,6 +3,7 @@ import { ProgressBarAndroid, ProgressViewIOS, View, Platform } from 'react-nativ
 import { connect } from 'react-redux';
 
 import RNFetchBlob from 'react-native-fetch-blob'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import * as AT from '../../constants/ActionTypes';
 import styles from '../../styles/styles';
@@ -71,16 +72,13 @@ class MeshSelector extends React.Component {
       return(
         <View>
           <View style = {{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+            <Icon name={ 'cube' } style={ styles.icon } />
+
             <View style = {{ flex: 1, flexDirection: 'column' }}>
               <ListedButton
                 onPress={ () => this.onMeshSelected() }
                 text={ codeToLanguage(language).modelText }
               />
-              {/* <Button
-                onPress={() => this.onMeshSelected()}
-                title={this.props.language == 'sv' ? 'Titta på modell' : 'Look at model'}
-                color="#e1057d"
-              /> */}
             </View>
           </View>
 

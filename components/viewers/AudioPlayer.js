@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Text, View, TouchableHighlight, Slider, AppState} from 'react-native';
+import { Text, View, TouchableHighlight, Slider, AppState } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Sound from 'react-native-sound';
 
@@ -76,14 +76,20 @@ class AudioPlayer extends React.Component {
           console.log('successfully finished playing');
         } else {
           console.log('playback failed due to audio decoding errors');
-        } });
-      this.setState({ isPlaying: true });
-      this.interval = setInterval(this.tick.bind(this), 100);
+        }
+      });
+
+      console.log("Now playing");
+      if(this.props.nodeId == this.props.currentNodeId){
+        this.setState({ isPlaying: true });
+        this.interval = setInterval(this.tick.bind(this), 100);
+      }
     }
   }
 
   // Called every 100ms if sound is playing, pauses if screen changed
   tick() {
+    console.log("AudioPlayer.tick");
     if(this.props.nodeId == this.props.currentNodeId) {
       this.state.sound.getCurrentTime((seconds) => this.setState({ time: seconds }));
     } else {
@@ -103,40 +109,37 @@ class AudioPlayer extends React.Component {
       );
     } else {
       return (
-          <View style={{ flexDirection: 'row' }}>
+        <View style={{ flexDirection: 'row' }}>
+          <Icon name={ 'volume-up' } style={ styles.icon } />
+
+          <TouchableHighlight onPress={ this.handlePress.bind(this) }>
             <Icon
-                name={ 'volume-up' } 
-                color={ 'black' } 
-                style={ {fontSize: 47, margin: 10} } />
+              name={ this.state.isPlaying ? 'pause' : 'play' } 
+              color={ 'black' } 
+              style={ styles.playPauseButton } />
+          </TouchableHighlight>
 
-            <TouchableHighlight onPress={ this.handlePress.bind(this) }>
-              <Icon
-                name={ this.state.isPlaying ? 'pause' : 'play' } 
-                color={ 'black' } 
-                style={ styles.playPauseButton } />
-            </TouchableHighlight>
+          <View style={{ flex:1, flexDirection: 'column' }}>
+            <View style={{ flexDirection:'row', justifyContent:'space-between' }}>
+              <Text style={{ color: 'black' }}>
+                { secondsToTime(Math.round(this.state.time)) }
+              </Text>
 
-            <View style={{ flex:1, flexDirection: 'column' }}>
-              <View style={{ flexDirection:'row', justifyContent:'space-between' }}>
-                <Text style={{ color: 'black' }}>
-                  { secondsToTime(Math.round(this.state.time)) }
-                </Text>
-
-                <Text style={{ color: 'black' }}>
-                  { secondsToTime(Math.round(this.state.duration - this.state.time)) }
-                </Text>
-              </View>
-
-              <Slider 
-                value={ this.state.time }
-                maximumValue={ this.state.sound.getDuration() }
-                onValueChange={ (value) => (
-                  this.state.sound.setCurrentTime(value),
-                  this.setState({ time: value })
-                ) }
-              />
+              <Text style={{ color: 'black' }}>
+                { secondsToTime(Math.round(this.state.duration - this.state.time)) }
+              </Text>
             </View>
+
+            <Slider 
+              value={ this.state.time }
+              maximumValue={ this.state.sound.getDuration() }
+              onValueChange={ (value) => (
+                this.state.sound.setCurrentTime(value),
+                this.setState({ time: value })
+              ) }
+            />
           </View>
+        </View>
       );
     }
   }
@@ -151,7 +154,6 @@ AudioPlayer.defaultProps = {
 
 //
 const mapStateToProps = (state) => {
-  console.log("AudioPlayer.mapStateToProps: ", state);
   return {
     currentNodeId: state.routes.currentNodeId,
   };
