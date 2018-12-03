@@ -16,7 +16,7 @@ import { findText } from '../../util/station.js';
 import * as AT from '../../constants/ActionTypes';
 import styles from '../../styles/styles';
 
-//
+// Presents contents of a station such as images, text, audio, video and sub stations
 class StationScreen extends React.Component {
 
   //

@@ -27,8 +27,9 @@ class LanguageSelect extends React.Component {
 
   //
   componentWillMount() {
+    console.log("LanguageSelect: ", this.props.navigation);
     if(this.props.navigation.state.key == 'Init') {
-      //console.log('First view');
+      console.log('First view');
       storage.load({
         key: 'language',
         autoSync: false, // if data not found, invoke sync method
@@ -103,7 +104,7 @@ class LanguageSelect extends React.Component {
         <ListedButton
           key={ i }
           onPress={ () => onLanguagePressed(props, languages[i], false) }
-          text= { codeToLanguage(languages[i]) }
+          text={ codeToLanguage(languages[i]) }
         />
       );
     });

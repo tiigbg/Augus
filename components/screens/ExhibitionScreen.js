@@ -9,7 +9,7 @@ import * as AT from '../../constants/ActionTypes';
 import styles from '../../styles/styles';
 import languageCodes from '../../constants/LanguageCodes';
 
-//
+// Presents stations of an exhibition and options such as tag scanning, change language
 class ExhibitionScreen extends React.Component {
 
   //

@@ -13,7 +13,7 @@ import { findText, findChildren } from '../../util/station.js';
 import * as AT from '../../constants/ActionTypes';
 import styles from '../../styles/styles';
 
-//
+// Presents available images, packaging them in a LightBox
 class ImageSelector extends React.Component {
 
   //
@@ -21,17 +21,13 @@ class ImageSelector extends React.Component {
     super(props);
   }
   
-  //
+  // Render available images for the current navigation node
   render(){
+    // Retrieve related images to the current navigation node
     let images = 
       findChildren(this.props.navigation.state.params.node, this.props.images);
 
-    /* let baseUrl = this.props.baseUrl; */
-    /* let renderItem = this.renderItem; */
-    /* function renderDataWithUrl({item, index}) {
-      renderItem(baseUrl, {item, index});
-    } */
-
+    // If any image retrieved, render each image
     if(images.length > 0) {
       return(
         <ScrollView horizontal style={ styles.imageGallery }>
@@ -40,6 +36,7 @@ class ImageSelector extends React.Component {
       );
     }
 
+    // If no images, render empty view
     return (
       <View></View>
     );
@@ -59,7 +56,7 @@ class ImageSelector extends React.Component {
     );
   }
 
-  //
+  // Renders each image, given array of images, using LightBox
   renderImages(images) {
     let imageView = (
       <View></View>
@@ -75,32 +72,8 @@ class ImageSelector extends React.Component {
         {
           images.map((eachImage, i) => {
             const imageboxwidth = Dimensions.get('window').width;// / 5 * 4;
-            const imageDescription = findText(
-              eachImage, this.props.texts, 'image', 'body', this.props.language).text;
-              
-            /* function renderFullScreenImage() {
-              //console.log('renderFullScreenImage with props', this.props);
-              return (
-                <View>
-                  <PhotoView
-                    source={{ uri: this.props.baseUrl+'/imageFile/'+eachImage.id }}
-                    minimumZoomScale={0.5}
-                    maximumZoomScale={5}
-                    androidScaleType="center"
-                    resizeMode={'contain'}
-                    style={{
-                      width: Dimensions.get('window').width,
-                      height: Dimensions.get('window').height,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  />
-                </View>
-              );
-              //<Text style={{ color: '#fff', marginTop: -100, fontSize: 28 }}>
-              //  {imageDescription}
-              //</Text>
-            } */
+            /* const imageDescription = findText(
+              eachImage, this.props.texts, 'image', 'body', this.props.language).text; */
 
             function renderFullScreen() {
               renderFullScreenImage(baseUrl, eachImage);
@@ -138,12 +111,6 @@ class ImageSelector extends React.Component {
                     style={ styles.detailsImage }
                     resizeMode={ 'cover' }
                   />
-                  {/* <View style={ styles.expandIconBox }>
-                    <Icon
-                      name={ 'expand' }
-                      style={ styles.expandIcon } 
-                    />
-                  </View> */}
                   <View style={{ flexDirection: 'row' }}>
                     <ImageCaption 
                       texts={ this.props.texts } 

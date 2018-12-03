@@ -9,8 +9,6 @@ class BannerButton extends React.Component {
     //console.log("ListedButton.render: ", this.props.onPress);
     const { onPress, text, imagePath } = this.props;
 
-    console.log("BannerButton: ", imagePath);
-
     //this.props.baseUrl + '/iconFile/' + symbol.id
     let image = (<View />);
     if(imagePath){
