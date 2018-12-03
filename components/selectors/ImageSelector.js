@@ -111,6 +111,7 @@ class ImageSelector extends React.Component {
                     style={ styles.detailsImage }
                     resizeMode={ 'cover' }
                   />
+
                   <View style={{ flexDirection: 'row' }}>
                     <ImageCaption 
                       texts={ this.props.texts } 
@@ -121,6 +122,18 @@ class ImageSelector extends React.Component {
                       language={ this.props.language }
                     />
                   </View>
+
+                  <Image
+                    source={ require('../../res/gradient_h.png') }
+                    tintColor={ styles.backColor }
+                    style={{ 
+                      position: 'absolute',
+                      bottom: 0,
+                      width: Dimensions.get('window').width,
+                      height: 32,
+                      resizeMode: 'stretch'
+                    }}
+                  />
                 </View>
               </Lightbox>
             );

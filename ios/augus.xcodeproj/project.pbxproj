@@ -45,6 +45,7 @@
 		E265EC0D9113E975512FDA16 /* Pods_augusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED1C25D9730757FDB122DF5 /* Pods_augusTests.framework */; };
 		EA7CD0A352E547AF9943B622 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16BACC977B444A128914DF7B /* AppCenter-Config.plist */; };
 		F448C514E1A042FFBE7F2161 /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D689531FE8A4394B3780AFB /* libAppCenterReactNative.a */; };
+		5D4CACB763FE48CD84038F30 /* foundrySterlingBook.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7343BA7375CA4371852F6880 /* foundrySterlingBook.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -449,6 +450,7 @@
 		ED48038FD3AE47C47A4FB710 /* Pods-augus-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augus-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-augus-tvOSTests/Pods-augus-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF186CC531CAD04388468447 /* Pods-augusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augusTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-augusTests/Pods-augusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F8A64A09595E08F0C7C28ED8 /* Pods-augus-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augus-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-augus-tvOSTests/Pods-augus-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		7343BA7375CA4371852F6880 /* foundrySterlingBook.ttf */ = {isa = PBXFileReference; name = "foundrySterlingBook.ttf"; path = "../assets/fonts/foundrySterlingBook.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -623,6 +625,7 @@
 				764F6225E459430D82C835DD /* Zocial.ttf */,
 				879CBEDD000B4AE29CF1EA92 /* MaterialCommunityIcons.ttf */,
 				3D456D7A6F6C456A8BB1AFA8 /* Feather.ttf */,
+				7343BA7375CA4371852F6880 /* foundrySterlingBook.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1342,6 +1345,7 @@
 				AB5A08ABF9F04394B69C39E6 /* MaterialCommunityIcons.ttf in Resources */,
 				EA7CD0A352E547AF9943B622 /* AppCenter-Config.plist in Resources */,
 				417A296DC2EA4F5B9F2346CA /* Feather.ttf in Resources */,
+				5D4CACB763FE48CD84038F30 /* foundrySterlingBook.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
