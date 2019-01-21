@@ -11,17 +11,13 @@ let backColor = svKyrkanYellow;
 
 let borderColor = customRedBrown;
 let borderSize = 0;
-//let backgroundColor = 'white';
 let componentColor = 'white';
 
 let hMargin = 32;
 let vMargin = 8;
 
-let backColor3 = 'red';
-let backColor4 = 'purple';
-let backColor5 = 'yellow';
-
-let textFont = 'Foundry Sterling W01';
+let headerFont = 'foundrySterlingBook';
+let textFont = 'arial';
 
 export default StyleSheet.create({
 
@@ -57,7 +53,7 @@ export default StyleSheet.create({
 
   //Text
   title: {
-    fontFamily: 'foundrySterlingBook',
+    fontFamily: headerFont,
     fontSize: 26,
     marginVertical: vMargin * 2,
     padding: 0,
@@ -69,9 +65,8 @@ export default StyleSheet.create({
   },
 
   stationText: {
+    fontFamily: textFont,
     fontSize: 20,
-    /* marginHorizontal: hMargin,
-    padding: 0, */
     textAlign: 'justify',
     flexWrap: 'wrap',
     flex: 1,
@@ -82,18 +77,13 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    // backgroundColor: '#333333',
   },
 
   listContainer: {
     backgroundColor: componentColor,
     marginVertical: vMargin,
     marginHorizontal: hMargin - 8,
-    /* marginBottom: 16,
-    marginRight: 8,
-    marginLeft: 8, */
     padding: 8,
-    //height: 320,
     borderRadius: 5,
   },
 
@@ -110,6 +100,7 @@ export default StyleSheet.create({
   },
 
   imageDescription: {
+    fontFamily: textFont,
     fontSize: 22,
     color: readTextColor,
   },
@@ -120,45 +111,10 @@ export default StyleSheet.create({
     color: iconColor,
   },
 
-  /* expandIconBox: {
-    width: 200,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    marginTop: -64,
-    marginBottom:0,
-    marginRight:-75,
-  }, */
-
-  /* expandIcon: {
-    fontSize: 48,
-    color: iconColor,
-    backgroundColor: backColor,
-    borderWidth: 3,
-    borderRadius: 5,
-    padding: 10,
-    paddingBottom: 5,
-    paddingRight: 5,
-    marginRight: 5,
-  }, */
-
-  /* collapseIconTouch:{
-    borderWidth:3,
-    borderColor:'black',
-    borderRadius:5,
-    backgroundColor: iconColor,
-  }, */
-
-  /* collapseIcon: {
-    fontSize: 35,
-    color: readTextColor,
-    padding: 10,
-  }, */
-
   closeButton: {
     color: iconColor,
     textAlign: 'center',
     margin: 10,
-    // alignSelf: 'center',
     fontSize: 60,
   },
 
@@ -168,8 +124,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 8,
-    //borderColor: backColor,
-    //borderRadius: 5,
     margin: 5,
     alignSelf: 'flex-start',
     backgroundColor: backColor,
@@ -271,7 +225,7 @@ export default StyleSheet.create({
   },
 
   bannerButtonText: {
-    fontFamily: 'foundrySterlingBook',
+    fontFamily: headerFont,
     flex: 1,
     flexDirection: 'row',
     fontSize: 24,
@@ -301,7 +255,7 @@ export default StyleSheet.create({
   },
 
   listText: {
-    fontFamily: 'foundrySterlingBook',
+    fontFamily: headerFont,
     flex: 1,
     flexDirection: 'row',
     fontSize: 24,
