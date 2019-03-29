@@ -195,7 +195,7 @@ export default StyleSheet.create({
   },
 
   video: {
-    height: 210,
+    height: 420,
     alignSelf: 'stretch',
   },
 
@@ -207,6 +207,7 @@ export default StyleSheet.create({
     margin: 0,
   },
 
+  // Buttons
   bannerButton: {
     backgroundColor: componentColor,
 
